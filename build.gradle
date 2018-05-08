@@ -1,0 +1,21 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+   compile 'com.google.guava:guava:20.0'  // Google Guava dependency
+   compile 'org.seleniumhq.selenium:selenium-java:3.11.0'
+   compile 'commons-io:commons-io:2.4'
+   compile 'javax.mail:mail:1.5.0-b01'
+   compile 'com.sun.mail:javax.mail:1.6.1'
+   compile 'junit:junit:4.12-beta-3'
+   compile group: 'org.slf4j', name:'slf4j-api', version: '1.7.2'
+   compile group: 'ch.qos.logback', name:'logback-classic', version: '1.0.9'
+   compile group: 'ch.qos.logback', name:'logback-core', version: '1.0.9'
+   testCompile 'junit:junit:4.12'         // JUnit dependency for testing
+}
+
+mainClassName = 'com.lm.ta.testrunners.Runner'  // Main class with main method
