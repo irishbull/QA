@@ -8,30 +8,29 @@ import org.slf4j.LoggerFactory;
 
 public class Runner {
 
-	private static final Logger logger = LoggerFactory.getLogger(Runner.class);
+  private static final Logger logger = LoggerFactory.getLogger(Runner.class);
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		Class<?> c = null;
+    Class<?> c = null;
 
-		// Manage multiple test suites (passing args as TestSuite1.class,
-		// TestSuite2.class,....TestSuiten.class)
+    // Manage multiple test suites (passing args as TestSuite1.class,
+    // TestSuite2.class,....TestSuiten.class) 
 
-		for (String arg : args) {
-			try {
-				c = Class.forName(arg);
-				logger.info("Starting test suite {}", c);
-				Result result = JUnitCore.runClasses(c);
-				for (Failure fail : result.getFailures()) {
-					logger.info("Test failed: {}", fail.toString());
-				}
-				if (result.wasSuccessful()) {
-					logger.info("All tests finished successfully...");
-				}
-			}
-			catch (Exception e) {
-				logger.error("Error running test suite {}", e.getMessage(), e);
-			}
-		}
-	}
+    for (String arg : args) {
+      try {
+        c = Class.forName(arg);
+        logger.info("Starting test suite {}", c);
+        Result result = JUnitCore.runClasses(c);
+        for (Failure fail : result.getFailures()) {
+          logger.info("Test failed: {}", fail.toString());
+        }
+        if (result.wasSuccessful()) {
+          logger.info("All tests finished successfully...");
+        }
+      } catch (Exception e) {
+        logger.error("Error running test suite {}", e.getMessage(), e);
+      }
+    }
+  }
 }
