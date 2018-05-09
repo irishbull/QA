@@ -14,14 +14,13 @@ public class Runner {
 
     Class<?> c = null;
 
-    // Manage multiple test suites (passing args as TestSuite1.class,
-    // TestSuite2.class,....TestSuiten.class) 
-
     for (String arg : args) {
       try {
         c = Class.forName(arg);
         logger.info("Starting test suite {}", c);
+
         Result result = JUnitCore.runClasses(c);
+
         for (Failure fail : result.getFailures()) {
           logger.info("Test failed: {}", fail.toString());
         }
