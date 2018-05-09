@@ -1,5 +1,5 @@
 apply plugin: 'java'
-apply plugin: 'application'
+//apply plugin: 'application'
 
 repositories {
     jcenter()
@@ -18,4 +18,11 @@ dependencies {
    testCompile 'junit:junit:4.12'         // JUnit dependency for testing
 }
 
-mainClassName = 'com.lm.ta.testrunners.Runner'  // Main class with main method
+task runP (type: JavaExec, dependsOn: classes){
+    if(project.hasProperty('myargs')){
+        args(myargs.split(","))
+    }
+    description = "Secure algorythm testing"
+    main = "com.lm.ta.testrunners.Runner"
+    classpath = sourceSets.main.runtimeClasspath
+}
