@@ -20,7 +20,7 @@ public class WebInit {
 	
 	@BeforeClass
 	public static void setUp(){
-		System.setProperty(Constants.CHROME_DRIVER_SYSTEM_PROPERTY, Constants.CHROME_DRIVER_SYSTEM_PATH);
+		System.setProperty(Constants.SetUp.CHROME_WEBDRIVER, Constants.SetUp.CHROME_WEBDRIVER_PATH);
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	}
