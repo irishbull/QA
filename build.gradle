@@ -1,5 +1,41 @@
 apply plugin: 'java'
-//apply plugin: 'application'
+apply plugin: 'environments'
+
+
+environments {
+    Main {
+        taskName = "refreshMainEnvCustomName"
+        sourceDir = "./src/main/environments/"
+        destinationDir = "./src/main/resources/"
+        dependentTasks = ["runP"]
+
+
+        // Whether tasks for resolving environments must overwrite already exists files.
+        // Default value true
+        overwriteByTask = true
+
+        // Whether tasks, dependent on resolving environments, must
+        // overwrite already exists files.
+        // Default value false
+        overwriteByDependentTask = true
+
+        // Whether already exists files must be overwritten during
+        // resolving environments on the one of the Gradle life cycle.
+        // Default value false
+        overwriteOnLoadPhase = true
+    }
+}
+
+buildscript {
+    repositories {
+        flatDir {
+            dirs "${rootProject.projectDir}/gradle/plugins"
+        }
+    }
+    dependencies {
+        classpath group: 'org.gradle.plugins', name: 'gradle-environments-plugin', version: '1.0'
+    }
+}
 
 repositories {
     jcenter()
