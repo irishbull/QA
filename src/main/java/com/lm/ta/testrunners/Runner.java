@@ -1,5 +1,7 @@
 package com.lm.ta.testrunners;
 
+import com.lm.ta.utilities.ReadPropertiesFile;
+
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
@@ -11,6 +13,9 @@ public class Runner {
   private static final Logger logger = LoggerFactory.getLogger(Runner.class);
 
   public static void main(String[] args) {
+
+    String str = ReadPropertiesFile.getProperty("environment");
+    logger.info("**** ENVIRONMENT {} ****", str);
 
     Class<?> c = null;
 

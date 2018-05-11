@@ -1,26 +1,24 @@
 apply plugin: 'java'
 apply plugin: 'environments'
 
-
 environments {
     Main {
         taskName = "refreshMainEnvCustomName"
         sourceDir = "./src/main/environments/"
         destinationDir = "./src/main/resources/"
-        dependentTasks = ["runP"]
+        dependentTasks = ["processResources"]
 
-
-        // Whether tasks for resolving environments must overwrite already exists files.
+        // Whether tasks for resolving environments must overwrite files that already exist
         // Default value true
         overwriteByTask = true
 
-        // Whether tasks, dependent on resolving environments, must
-        // overwrite already exists files.
+        // Whether tasks, dependent on resolving environments,
+        // must overwrite files that already exist
         // Default value false
         overwriteByDependentTask = true
 
-        // Whether already exists files must be overwritten during
-        // resolving environments on the one of the Gradle life cycle.
+        // Whether files that already exist must be overwritten
+        // during resolving environments
         // Default value false
         overwriteOnLoadPhase = true
     }
@@ -58,7 +56,20 @@ task runP (type: JavaExec, dependsOn: classes){
     if(project.hasProperty('myargs')){
         args(myargs.split(","))
     }
-    description = "Secure algorythm testing"
+    description = "Test Runner"
     main = "com.lm.ta.testrunners.Runner"
     classpath = sourceSets.main.runtimeClasspath
+
+    println "JAVA_HOME = ${getProjectProperty('org.gradle.java.home')}"
+}
+
+
+def String getProjectProperty(String propertyName)
+{
+    String propertyValue = "null"
+    if (hasProperty(propertyName))
+    {
+        propertyValue = this.properties[propertyName]
+    }
+    return propertyValue
 }
