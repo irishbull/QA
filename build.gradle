@@ -1,75 +1,31 @@
 apply plugin: 'java'
-apply plugin: 'environments'
-
-environments {
-    Main {
-        taskName = "refreshMainEnvCustomName"
-        sourceDir = "./src/main/environments/"
-        destinationDir = "./src/main/resources/"
-        dependentTasks = ["processResources"]
-
-        // Whether tasks for resolving environments must overwrite files that already exist
-        // Default value true
-        overwriteByTask = true
-
-        // Whether tasks, dependent on resolving environments,
-        // must overwrite files that already exist
-        // Default value false
-        overwriteByDependentTask = true
-
-        // Whether files that already exist must be overwritten
-        // during resolving environments
-        // Default value false
-        overwriteOnLoadPhase = true
-    }
-}
-
-buildscript {
-    repositories {
-        flatDir {
-            dirs "${rootProject.projectDir}/gradle/plugins"
-        }
-    }
-    dependencies {
-        classpath group: 'org.gradle.plugins', name: 'gradle-environments-plugin', version: '1.0'
-    }
-}
 
 repositories {
     jcenter()
 }
 
 dependencies {
-   compile 'com.google.guava:guava:20.0'  // Google Guava dependency
-   compile 'org.seleniumhq.selenium:selenium-java:3.11.0'
-   compile 'commons-io:commons-io:2.4'
-   compile 'javax.mail:mail:1.5.0-b01'
-   compile 'com.sun.mail:javax.mail:1.6.1'
-   compile 'junit:junit:4.12-beta-3'
-   compile group: 'org.slf4j', name:'slf4j-api', version: '1.7.2'
-   compile group: 'ch.qos.logback', name:'logback-classic', version: '1.0.9'
-   compile group: 'ch.qos.logback', name:'logback-core', version: '1.0.9'
-   testCompile 'junit:junit:4.12'         // JUnit dependency for testing
+    compile 'com.google.guava:guava:20.0'
+    compile 'org.seleniumhq.selenium:selenium-java:3.11.0'
+    compile 'commons-io:commons-io:2.4'
+    compile 'junit:junit:4.12-beta-3'
+    compile group: 'org.slf4j', name:'slf4j-api', version: '1.7.2'
+    compile group: 'ch.qos.logback', name:'logback-classic', version: '1.0.9'
+    compile group: 'ch.qos.logback', name:'logback-core', version: '1.0.9'
+    testCompile 'junit:junit:4.12'         // JUnit dependency for testing
 }
 
-task runP (type: JavaExec, dependsOn: classes){
-    if(project.hasProperty('myargs')){
-        args(myargs.split(","))
+
+test {
+    testLogging {
+        // Show that tests are run in the command-line output
+        events 'started', 'passed'
     }
-    description = "Test Runner"
-    main = "com.lm.ta.testrunners.Runner"
-    classpath = sourceSets.main.runtimeClasspath
 
-    println "JAVA_HOME = ${getProjectProperty('org.gradle.java.home')}"
-}
-
-
-def String getProjectProperty(String propertyName)
-{
-    String propertyValue = "null"
-    if (hasProperty(propertyName))
-    {
-        propertyValue = this.properties[propertyName]
+    useJUnit {
+        exclude '**/ta/testcases/*Test.class'
     }
-    return propertyValue
+
 }
+
+
