@@ -6,19 +6,19 @@ import org.openqa.selenium.support.FindBy;
 
 public class ReceiptPage extends PageObject {
 
-	@FindBy(tagName = "h1")
-	private WebElement header;
-	
-	public ReceiptPage(WebDriver driver) {
-		super(driver);
-	}
+  @FindBy(tagName = "h1")
+  private WebElement header;
 
-	public boolean isInitialized() {
-		return header.isDisplayed();
-	}
+  public ReceiptPage(WebDriver driver) {
+    super(driver);
+  }
 
-	public String confirmationHeader(){
-		return header.getText();
-	}
+  public boolean isInitialized() {
+    return header.isDisplayed();
+  }
+
+  public String confirmationHeader() {
+    return header.getText();
+  }
 
 }

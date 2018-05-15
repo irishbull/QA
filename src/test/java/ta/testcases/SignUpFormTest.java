@@ -12,25 +12,25 @@ import static org.junit.Assert.assertTrue;
 
 public class SignUpFormTest extends WebInit {
 
-	private static final Logger logger = LoggerFactory.getLogger(SignUpFormTest.class);
+  private static final Logger logger = LoggerFactory.getLogger(SignUpFormTest.class);
 
-	@Test
-	public void signUp(){
+  @Test
+  public void signUp() {
 
-		String str = ReadPropertiesFile.getProperty("environment");
-		logger.info("**** ENVIRONMENT {} ****", str);
+    String str = ReadPropertiesFile.getProperty("environment");
+    logger.info("**** ENVIRONMENT {} ****", str);
 
-		driver.get("http://www.kimschiller.com/page-object-pattern-tutorial/index.html");
-		
-		SignUpPage signUpPage = new SignUpPage(driver);
-		assertTrue(signUpPage.isInitialized());
+    driver.get("http://www.kimschiller.com/page-object-pattern-tutorial/index.html");
 
-		signUpPage.enterName("First", "Last");
-		signUpPage.enterAddress("123 Street", "12345");
+    SignUpPage signUpPage = new SignUpPage(driver);
+    assertTrue(signUpPage.isInitialized());
 
-		ReceiptPage receiptPage = signUpPage.submit();
-		assertTrue(receiptPage.isInitialized());
+    signUpPage.enterName("First", "Last");
+    signUpPage.enterAddress("123 Street", "12345");
 
-		assertEquals("Thank you!", receiptPage.confirmationHeader());
-	}	
+    ReceiptPage receiptPage = signUpPage.submit();
+    assertTrue(receiptPage.isInitialized());
+
+    assertEquals("Thank you!", receiptPage.confirmationHeader());
+  }
 }

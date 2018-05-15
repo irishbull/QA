@@ -10,7 +10,6 @@ public class Constants {
   }
 
 
-
   public static class SignUpPage {
 
     public static class PageStructure {
