@@ -1,0 +1,8 @@
+Refresh the test environment and run the task test
+
+    gradle refreshTestEnvironment -PEnv=development test
+
+    gradle refreshTestEnvironment -PEnv=integration test
+
+note
+the default environment is development
