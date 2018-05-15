@@ -1,8 +1,11 @@
 apply plugin: 'java'
+apply plugin: 'environments'
+
 
 repositories {
     jcenter()
 }
+
 
 dependencies {
     compile 'com.google.guava:guava:20.0'
@@ -16,6 +19,42 @@ dependencies {
 }
 
 
+buildscript {
+    repositories {
+        flatDir {
+            dirs "${rootProject.projectDir}/gradle/plugins"
+        }
+    }
+    dependencies {
+        classpath group: 'org.gradle.plugins', name: 'gradle-environments-plugin', version: '1.0'
+    }
+}
+
+
+environments {
+    Test {
+        taskName = "refreshTestEnvironment"
+        sourceDir = "./src/test/environments/"
+        destinationDir = "./src/test/resources/"
+        dependentTasks = ["processResources"]
+
+        // Whether tasks for resolving environments must overwrite files that already exist
+        // Default value true
+        overwriteByTask = true
+
+        // Whether tasks, dependent on resolving environments,
+        // must overwrite files that already exist
+        // Default value false
+        overwriteByDependentTask = true
+
+        // Whether files that already exist must be overwritten
+        // during resolving environments
+        // Default value false
+        overwriteOnLoadPhase = true
+    }
+}
+
+
 test {
     testLogging {
         // Show that tests are run in the command-line output
@@ -25,7 +64,4 @@ test {
     useJUnit {
         exclude '**/ta/testcases/*Test.class'
     }
-
 }
-
-
