@@ -1,19 +1,19 @@
 package ta.config;
 
 import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import java.util.concurrent.TimeUnit;
 import ta.utilities.Constants;
 
 /**
- * <strong>WebInit</strong> handles setup and teardown of WebDriver.
+ * <strong>BaseTest</strong> handles setup and teardown of WebDriver.
  * 
  * @author dmonaco
  */
-public class WebInit {
+public class BaseTest {
 
   protected static WebDriver driver;
 

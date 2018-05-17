@@ -1,16 +1,17 @@
 package ta.testcases;
 
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ta.config.WebInit;
+import org.testng.annotations.Test;
+import ta.config.BaseTest;
 import ta.pageobjects.ReceiptPage;
 import ta.pageobjects.SignUpPage;
 import ta.utilities.ReadPropertiesFile;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
-public class SignUpFormTest extends WebInit {
+
+public class SignUpFormTest extends BaseTest {
 
   private static final Logger logger = LoggerFactory.getLogger(SignUpFormTest.class);
 
