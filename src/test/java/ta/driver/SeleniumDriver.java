@@ -47,8 +47,9 @@ public class SeleniumDriver {
 
 
   /*
+   * setDriver method to create driver instance
    *
-   *
+   * @param browser
    */
   public final void setDriver(String browser) {
     DesiredCapabilities capabilities;

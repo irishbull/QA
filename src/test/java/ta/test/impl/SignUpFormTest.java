@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import ta.driver.SeleniumDriver;
-import ta.pageobjects.ReceiptPage;
-import ta.pageobjects.SignUpPage;
+import ta.pageobjects.impl.ReceiptPO;
+import ta.pageobjects.impl.SignUpPO;
 import ta.test.BaseTest;
 import ta.utilities.ReadPropertiesFile;
 import static org.testng.Assert.assertEquals;
@@ -25,15 +25,15 @@ public class SignUpFormTest extends BaseTest {
 
     SeleniumDriver.getInstance().getDriver().get("http://www.kimschiller.com/page-object-pattern-tutorial/index.html");
 
-    SignUpPage signUpPage = new SignUpPage();
-    assertTrue(signUpPage.isInitialized());
+    SignUpPO signUpPO = new SignUpPO();
+    assertTrue(signUpPO.isInitialized());
 
-    signUpPage.enterName("First", "Last");
-    signUpPage.enterAddress("123 Street", "12345");
+    signUpPO.enterName("First", "Last");
+    signUpPO.enterAddress("123 Street", "12345");
 
-    ReceiptPage receiptPage = signUpPage.submit();
-    assertTrue(receiptPage.isInitialized());
+    ReceiptPO receiptPO = signUpPO.submit();
+    assertTrue(receiptPO.isInitialized());
 
-    assertEquals("Thank you!", receiptPage.confirmationHeader());
+    assertEquals("Thank you!", receiptPO.confirmationHeader());
   }
 }

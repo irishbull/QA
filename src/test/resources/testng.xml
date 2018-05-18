@@ -19,7 +19,7 @@
 
     <test name = "exampletest2">
         <classes>
-            <class name = "ta.test.TryTestNG_T2" />
+            <class name = "ta.test.impl.LoginTest" />
         </classes>
     </test>
     

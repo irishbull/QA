@@ -1,9 +1,11 @@
-package ta.pageobjects;
+package ta.pageobjects.impl;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SignUpPage extends PageObject {
+import ta.pageobjects.PageObject;
+
+public class SignUpPO extends PageObject {
 
   @FindBy(id = "firstname")
   private WebElement firstName;
@@ -20,7 +22,7 @@ public class SignUpPage extends PageObject {
   @FindBy(id = "signup")
   private WebElement submitButton;
 
-  public SignUpPage() {
+  public SignUpPO() {
     super();
   }
 
@@ -44,8 +46,8 @@ public class SignUpPage extends PageObject {
     this.zipCode.sendKeys(zipCode);
   }
 
-  public ReceiptPage submit() {
+  public ReceiptPO submit() {
     submitButton.click();
-    return new ReceiptPage();
+    return new ReceiptPO();
   }
 }

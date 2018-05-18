@@ -1,14 +1,16 @@
-package ta.pageobjects;
+package ta.pageobjects.impl;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ReceiptPage extends PageObject {
+import ta.pageobjects.PageObject;
+
+public class ReceiptPO extends PageObject {
 
   @FindBy(tagName = "h1")
   private WebElement header;
 
-  public ReceiptPage() {
+  public ReceiptPO() {
     super();
   }
 
