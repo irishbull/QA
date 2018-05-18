@@ -67,6 +67,6 @@ test {
 
     useTestNG() {
         useDefaultListeners = true
-        suites 'src/test/resources/TestNGSample.xml'
+        suites 'src/test/resources/testng.xml'
     }
 }

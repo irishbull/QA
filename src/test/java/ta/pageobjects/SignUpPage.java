@@ -1,6 +1,5 @@
 package ta.pageobjects;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -21,8 +20,8 @@ public class SignUpPage extends PageObject {
   @FindBy(id = "signup")
   private WebElement submitButton;
 
-  public SignUpPage(WebDriver driver) {
-    super(driver);
+  public SignUpPage() {
+    super();
   }
 
   public boolean isInitialized() {
@@ -47,6 +46,6 @@ public class SignUpPage extends PageObject {
 
   public ReceiptPage submit() {
     submitButton.click();
-    return new ReceiptPage(driver);
+    return new ReceiptPage();
   }
 }

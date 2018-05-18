@@ -5,10 +5,9 @@ public class Constants {
   public static class SetUp {
 
     public final static String CHROME_WEBDRIVER = "webdriver.chrome.driver";
-    public final static String CHROME_WEBDRIVER_PATH = "driver/chromedriver.exe";
+    public final static String FIREFOX_WEBDRIVER = "webdriver.gecko.driver";
 
   }
-
 
   public static class SignUpPage {
 
