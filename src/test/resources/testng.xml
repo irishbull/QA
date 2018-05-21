@@ -22,5 +22,11 @@
             <class name = "ta.test.impl.LoginTest" />
         </classes>
     </test>
-    
+
+    <test name = "cookieTest">
+        <classes>
+            <class name = "ta.test.impl.CookieTest" />
+        </classes>
+    </test>
+
 </suite>

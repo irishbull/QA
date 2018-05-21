@@ -7,6 +7,8 @@ public class Constants {
     public final static String CHROME_WEBDRIVER = "webdriver.chrome.driver";
     public final static String FIREFOX_WEBDRIVER = "webdriver.gecko.driver";
 
+    public final static Integer IMPLICITY_WAIT = 10;
+
   }
 
   public static class SignUpPage {

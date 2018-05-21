@@ -26,8 +26,6 @@ public class LoginTest extends BaseTest {
 
     WelcomePO welcomePO = loginPage.submit();
 
-    BrowserUtils.waitFor("OrangeHRM", 5);
-
     logger.info("Title = " + SeleniumDriver.getInstance().getDriver().getTitle());
 
     assertTrue(SeleniumDriver.getInstance().getDriver().getTitle().contains("OrangeHRM"));
@@ -35,7 +33,7 @@ public class LoginTest extends BaseTest {
     /* assert fails with firefox welcomePO.getDashboardElem() -> NoSuchElementException
      * assert does NOT fail with chrome
      */
-    //assertTrue(welcomePO.getDashboardElem().contains("Dashboard"));
+    assertTrue(welcomePO.getDashboardElem().contains("Dashboard"));
   }
 }
 
