@@ -1,9 +1,15 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Suite_1">
+<suite name="Suite_1">
 
-    <parameter name="browser"  value="firefox"/>
+    <parameter name="browser" value="chrome"/>
+
+    <test name="homePageTest">
+        <classes>
+            <class name="ta.test.impl.HomePageTest"/>
+        </classes>
+    </test>
 
     <test name = "signUpFormTest">
         <classes>
@@ -11,13 +17,7 @@
         </classes>
     </test>
 
-    <test name = "exampletest1">
-        <classes>
-            <class name = "ta.test.TryTestNG_T1" />
-        </classes>
-    </test>
-
-    <test name = "exampletest2">
+    <test name = "loginTest">
         <classes>
             <class name = "ta.test.impl.LoginTest" />
         </classes>

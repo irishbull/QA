@@ -8,7 +8,6 @@ import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.LoginPO;
 import ta.pageobjects.impl.WelcomePO;
 import ta.test.BaseTest;
-import ta.utilities.BrowserUtils;
 
 import static org.testng.Assert.assertTrue;
 
@@ -30,9 +29,6 @@ public class LoginTest extends BaseTest {
 
     assertTrue(SeleniumDriver.getInstance().getDriver().getTitle().contains("OrangeHRM"));
 
-    /* assert fails with firefox welcomePO.getDashboardElem() -> NoSuchElementException
-     * assert does NOT fail with chrome
-     */
     assertTrue(welcomePO.getDashboardElem().contains("Dashboard"));
   }
 }
