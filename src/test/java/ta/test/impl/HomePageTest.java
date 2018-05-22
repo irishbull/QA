@@ -9,7 +9,6 @@ import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.IdeaPiuPO;
 import ta.test.BaseTest;
-import ta.utilities.BrowserUtils;
 
 import static org.testng.Assert.assertTrue;
 
@@ -36,7 +35,6 @@ public class HomePageTest extends BaseTest {
 
     WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-
     HomePagePO homePagePO = new HomePagePO();
 
     String mainWindow = driver.getWindowHandle();
@@ -51,10 +49,11 @@ public class HomePageTest extends BaseTest {
       }
     }
 
-    BrowserUtils.waitForTitle("Diventa Titolare Idea", 10);
-
-    logger.info("TITLE = " + ideaPiuPO.getTitle());
     assertTrue(ideaPiuPO.getTitle().contains("Diventa Titolare Idea"));
+
+    assertTrue(ideaPiuPO.getUrl().contains("idea-piu"));
+
+    assertTrue(ideaPiuPO.getDivAttribute().equals("idea-piu"));
 
     // close the window, if that window no more required
     driver.close();

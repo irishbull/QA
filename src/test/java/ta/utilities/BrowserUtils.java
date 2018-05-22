@@ -15,7 +15,13 @@ import ta.driver.SeleniumDriver;
  */
 public class BrowserUtils {
 
-  public static void waitForPageFullyLoaded(int timeout) {
+  /**
+   * wait for page fully loaded
+   * 
+   * @param timeout
+   * @throws Exception
+   */
+  public static void waitForPageFullyLoaded(int timeout) throws Exception {
     WebDriver driver = SeleniumDriver.getInstance().getDriver();
     ExpectedCondition<Boolean> pageLoadCondition = new ExpectedCondition<Boolean>() {
       public Boolean apply(WebDriver driver) {
@@ -25,6 +31,40 @@ public class BrowserUtils {
     };
     WebDriverWait wait = new WebDriverWait(driver, timeout);
     wait.until(pageLoadCondition);
+  }
+
+
+  /**
+   * wait up before throwing exception (static locator)
+   * 
+   * @param element
+   * @param timer
+   * @throws Exception
+   */
+  public static void waitFor(WebElement element, int timer) throws Exception {
+    WebDriver driver = SeleniumDriver.getInstance().getDriver();
+
+    // wait for the static element to appear
+    WebDriverWait wait = new WebDriverWait(driver, timer);
+
+    wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)));
+  }
+
+
+  /**
+   * wait up before throwing exception (dynamic locator)
+   * 
+   * @param by
+   * @param timer
+   * @throws Exception
+   */
+  public static void waitFor(By by, int timer) throws Exception {
+    WebDriver driver = SeleniumDriver.getInstance().getDriver();
+
+    // wait for the dynamic element to appear
+    WebDriverWait wait = new WebDriverWait(driver, timer);
+
+    wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(by)));
   }
 
 

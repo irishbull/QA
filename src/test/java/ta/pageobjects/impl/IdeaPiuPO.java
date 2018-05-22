@@ -6,18 +6,27 @@ import org.openqa.selenium.support.How;
 
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.PageObject;
+import ta.utilities.BrowserUtils;
+import ta.utilities.Constants;
 
 public class IdeaPiuPO extends PageObject {
 
-  @FindBy(how = How.TAG_NAME, using = "h1")
-  WebElement h1;
+  @FindBy(how = How.ID, using = "idea-piu")
+  WebElement div;
 
-  public String getTitle() {
+  public String getTitle() throws Exception {
+    BrowserUtils.waitForTitle("Diventa Titolare Idea", 10);
     return SeleniumDriver.getInstance().getDriver().getTitle();
   }
 
-  public String getH1() {
-    return h1.getText();
+  public String getUrl() throws Exception {
+    BrowserUtils.waitForURL("idea-piu", 10);
+    return SeleniumDriver.getInstance().getDriver().getCurrentUrl();
+  }
+
+  public String getDivAttribute() throws Exception {
+    BrowserUtils.waitForPageFullyLoaded(10);
+    return div.getAttribute("class");
   }
 
   public IdeaPiuPO() {
