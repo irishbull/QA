@@ -3,6 +3,10 @@
 
 <suite name="Suite_1">
 
+    <listeners>
+        <listener class-name="ta.utilities.LogListener" />
+    </listeners>
+
     <parameter name="browser" value="chrome"/>
 
     <test name="homePageTest">

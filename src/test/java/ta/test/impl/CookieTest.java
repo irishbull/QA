@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import ta.driver.SeleniumDriver;
 import ta.test.BaseTest;
 import ta.utilities.BrowserUtils;
+import ta.utilities.JavascriptUtils;
 
 // Test of www.iperdrive.it site to manage cookies modal
 
@@ -23,7 +24,7 @@ public class CookieTest extends BaseTest {
 
     // Because Selenium driver cannot interact with modal, we need to use
     // JavascriptExecutor to execute native javascript code
-    BrowserUtils.modalClose(By.className("remodal-close"));
+    JavascriptUtils.modalClose(By.className("remodal-close"));
 
   }
 }
