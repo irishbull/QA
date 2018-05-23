@@ -1,6 +1,8 @@
 package ta.utilities;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import ta.driver.SeleniumDriver;
@@ -52,5 +54,18 @@ public class JavascriptUtils {
   public static void click(WebElement element){
     JavascriptExecutor js = (JavascriptExecutor)SeleniumDriver.getInstance().getDriver();
     js.executeScript("arguments[0].click();", element );
+  }
+
+  /**
+   * modalClose method to poll page title
+   *
+   * @param by
+   * @throws Exception
+   */
+  public static void modalClose(By by) throws Exception {
+    WebDriver driver = SeleniumDriver.getInstance().getDriver();
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    WebElement elementToClick = driver.findElement(by);
+    js.executeScript("arguments[0].click();", elementToClick);
   }
 }

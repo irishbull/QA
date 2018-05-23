@@ -96,18 +96,4 @@ public class BrowserUtils {
 
     wait.until(ExpectedConditions.refreshed(ExpectedConditions.urlContains(url)));
   }
-
-
-  /**
-   * modalClose method to poll page title
-   *
-   * @param by
-   * @throws Exception
-   */
-  public static void modalClose(By by) throws Exception {
-    WebDriver driver = SeleniumDriver.getInstance().getDriver();
-    JavascriptExecutor js = (JavascriptExecutor) driver;
-    WebElement elementToClick = driver.findElement(by);
-    js.executeScript("arguments[0].click();", elementToClick);
-  }
 }

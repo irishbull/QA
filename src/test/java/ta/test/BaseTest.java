@@ -23,7 +23,7 @@ public abstract class BaseTest {
 
   @AfterClass
   public static void tearDown() {
-    SeleniumDriver.getInstance().getDriver().close();
+    SeleniumDriver.getInstance().getDriver().close(); // close the actual window
     logger.info("Tear down");
   }
 }
