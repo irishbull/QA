@@ -1,28 +1,43 @@
+// -----------  START PLUGIN SECTION -----------
+
 apply plugin: 'java'
 apply plugin: 'environments'
+apply plugin: 'io.qameta.allure'
 
+// -----------  END PLUGIN SECTION -----------
+
+
+// -----------  START REPOSITORIES SECTION -----------
 
 repositories {
     jcenter()
 }
 
-repositories {
-    jcenter()
-}
+// -----------  END REPOSITORIES SECTION -----------
 
+
+// -----------  START DEPENDENCIES SECTION -----------
 
 dependencies {
-    compile 'com.google.guava:guava:20.0'
-    compile 'org.seleniumhq.selenium:selenium-java:3.11.0'
-    compile 'commons-io:commons-io:2.4'
-    compile 'junit:junit:4.12-beta-3'
-    compile group: 'org.slf4j', name:'slf4j-api', version: '1.7.2'
-    compile group: 'ch.qos.logback', name:'logback-classic', version: '1.0.9'
-    compile group: 'ch.qos.logback', name:'logback-core', version: '1.0.9'
-    testCompile 'org.testng:testng:6.10'
+    compile( 'com.google.guava:guava:20.0',
+             'org.seleniumhq.selenium:selenium-java:3.11.0',
+             'commons-io:commons-io:2.4',
+             'junit:junit:4.12-beta-3',
+             'org.slf4j:slf4j-api:1.7.2',
+             'ch.qos.logback:logback-classic:1.0.9',
+             'ch.qos.logback:logback-core:1.0.9'
+    )
+
+    testCompile('org.testng:testng:6.10'
+    )
 }
 
+// -----------  END DEPENDENCIES SECTION -----------
 
+
+// -----------  START BUILDSCRIPT SECTION -----------
+
+// environments plugin
 buildscript {
     repositories {
         flatDir {
@@ -34,6 +49,22 @@ buildscript {
     }
 }
 
+// allure report plugin
+buildscript {
+
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "io.qameta.allure:allure-gradle:2.3"
+    }
+}
+
+// -----------  END BUILDSCRIPT SECTION -----------
+
+
+// -----------  START TASK SECTION -----------
 
 environments {
     Test {
@@ -58,7 +89,6 @@ environments {
     }
 }
 
-
 test {
     testLogging {
         // Show that tests are run in the command-line output
@@ -70,3 +100,12 @@ test {
         suites 'src/test/resources/testng.xml'
     }
 }
+
+allure {
+    version = '2.2.1'
+    autoconfigure = true
+    resultsDir = file('/allure-results')
+    reportDir = file('/allure-report')
+}
+
+// -----------  END TASK SECTION -----------
