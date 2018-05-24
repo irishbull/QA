@@ -14,7 +14,7 @@
             <class name="ta.test.impl.HomePageTest"/>
         </classes>
     </test>
-
+<!--
     <test name = "signUpFormTest">
         <classes>
             <class name = "ta.test.impl.SignUpFormTest" />
@@ -32,5 +32,5 @@
             <class name = "ta.test.impl.CookieTest" />
         </classes>
     </test>
-
+-->
 </suite>

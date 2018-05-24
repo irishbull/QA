@@ -9,6 +9,7 @@ import ta.pageobjects.impl.ReceiptPO;
 import ta.pageobjects.impl.SignUpPO;
 import ta.test.BaseTest;
 import ta.utilities.ReadPropertiesFile;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -23,7 +24,8 @@ public class SignUpFormTest extends BaseTest {
     String str = ReadPropertiesFile.getProperty("environment");
     logger.info("**** ENVIRONMENT {} ****", str);
 
-    SeleniumDriver.getInstance().getDriver().get("http://www.kimschiller.com/page-object-pattern-tutorial/index.html");
+    SeleniumDriver.getInstance().getDriver()
+        .get("http://www.kimschiller.com/page-object-pattern-tutorial/index.html");
 
     SignUpPO signUpPO = new SignUpPO();
     assertTrue(signUpPO.isInitialized());

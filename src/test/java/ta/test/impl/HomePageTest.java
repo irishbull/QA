@@ -25,6 +25,7 @@ public class HomePageTest extends BaseTest {
 
     HomePagePO homePagePO = new HomePagePO();
     logger.info("SPAN TEXT = " + homePagePO.getSpanText());
+    logger.info("IdeaPiù");
 
     assertTrue(homePagePO.getSpanText().contains("Ideapi"));
   }
@@ -41,13 +42,16 @@ public class HomePageTest extends BaseTest {
 
     // click link opening new tab
     IdeaPiuPO ideaPiuPO = homePagePO.clickLink();
+    logger.info("BUTTON CLICKED");
 
     // switch window
     for (String winHandle : driver.getWindowHandles()) {
       if (!mainWindow.equals(winHandle)) {
         driver.switchTo().window(winHandle);
+        logger.info("driver switched to window: {}", winHandle);
       }
     }
+
 
     assertTrue(ideaPiuPO.getTitle().contains("Diventa Titolare Idea"));
 
@@ -55,11 +59,18 @@ public class HomePageTest extends BaseTest {
 
     assertTrue(ideaPiuPO.getDivAttribute().equals("idea-piu"));
 
-    // close the window, if that window no more required
-    driver.close();
 
-    // switch back to original window (main window)
-    driver.switchTo().window(mainWindow);
+    // switch back
+    if (!driver.getWindowHandle().equals(mainWindow)) {
+
+      // close the window, window is no more required
+      driver.close();
+
+      // switch back to original window (main window)
+      driver.switchTo().window(mainWindow);
+
+      logger.info("driver switched to window: {}", mainWindow);
+    }
 
   }
 }

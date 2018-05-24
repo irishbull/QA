@@ -49,11 +49,12 @@ public class JavascriptUtils {
 
   /**
    * method to execute a js click event
+   * 
    * @param element
    */
-  public static void click(WebElement element){
-    JavascriptExecutor js = (JavascriptExecutor)SeleniumDriver.getInstance().getDriver();
-    js.executeScript("arguments[0].click();", element );
+  public static void click(WebElement element) {
+    JavascriptExecutor js = (JavascriptExecutor) SeleniumDriver.getInstance().getDriver();
+    js.executeScript("arguments[0].click();", element);
   }
 
   /**

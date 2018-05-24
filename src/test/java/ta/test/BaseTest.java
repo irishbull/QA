@@ -12,18 +12,20 @@ import ta.driver.SeleniumDriver;
 
 public abstract class BaseTest {
 
-  private static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
+  private final Logger logger = LoggerFactory.getLogger(getClass());
 
   @Parameters({"browser"})
   @BeforeClass
   public void setUp(@Optional("chrome") String browser) {
-    SeleniumDriver.getInstance().setDriver(browser);
     logger.info("Set up");
+    SeleniumDriver.getInstance().setDriver(browser);
+    logger.info("Driver info {}", SeleniumDriver.getInstance().toString());
   }
 
   @AfterClass
-  public static void tearDown() {
-    SeleniumDriver.getInstance().getDriver().close(); // close the actual window
+  public void tearDown() {
     logger.info("Tear down");
+    logger.info("Driver info {}", SeleniumDriver.getInstance().toString());
+    SeleniumDriver.getInstance().getDriver().close(); // close the actual window
   }
 }

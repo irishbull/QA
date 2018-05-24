@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import java.nio.charset.StandardCharsets;
+
 import ta.pageobjects.PageObject;
 
 public class HomePagePO extends PageObject {
@@ -17,7 +19,8 @@ public class HomePagePO extends PageObject {
   }
 
   public String getSpanText() {
-    return span.getText();
+    // return a UTF-16 string from an array of bytes that is supposed to be in UTF-8
+    return new String(span.getText().getBytes(StandardCharsets.UTF_8));
   }
 
   public IdeaPiuPO clickLink() {

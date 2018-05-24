@@ -78,7 +78,8 @@ public class SeleniumDriver {
         System.setProperty("webdriver.chrome.driver",
             ReadPropertiesFile.getProperty("chrome.webdriver.path"));
         webDriver.set(new ChromeDriver(chrOptions.merge(capabilities)));
-        getDriver().manage().timeouts().implicitlyWait(Constants.SetUp.IMPLICITY_WAIT,TimeUnit.SECONDS);
+        getDriver().manage().timeouts().implicitlyWait(Constants.SetUp.IMPLICITY_WAIT,
+            TimeUnit.SECONDS);
 
         break;
 
@@ -102,7 +103,8 @@ public class SeleniumDriver {
         System.setProperty("webdriver.gecko.driver",
             ReadPropertiesFile.getProperty("firefox.webdriver.path"));
         webDriver.set(new FirefoxDriver(ffxOpts.merge(capabilities)));
-        getDriver().manage().timeouts().implicitlyWait(Constants.SetUp.IMPLICITY_WAIT,TimeUnit.SECONDS);
+        getDriver().manage().timeouts().implicitlyWait(Constants.SetUp.IMPLICITY_WAIT,
+            TimeUnit.SECONDS);
 
         break;
 

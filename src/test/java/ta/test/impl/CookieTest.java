@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
+
 import ta.driver.SeleniumDriver;
 import ta.test.BaseTest;
-import ta.utilities.BrowserUtils;
 import ta.utilities.JavascriptUtils;
 
 // Test of www.iperdrive.it site to manage cookies modal
