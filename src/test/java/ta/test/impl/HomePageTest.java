@@ -44,9 +44,10 @@ public class HomePageTest extends BaseTest {
     IdeaPiuPO ideaPiuPO = homePagePO.clickLink();
     logger.info("BUTTON CLICKED");
 
-    // switch window
+
     for (String winHandle : driver.getWindowHandles()) {
       if (!mainWindow.equals(winHandle)) {
+        // switch window
         driver.switchTo().window(winHandle);
         logger.info("driver switched to window: {}", winHandle);
       }
