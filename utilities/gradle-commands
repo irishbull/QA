@@ -1,8 +1,10 @@
-Refresh the test environment and run the task test
+#Refresh the test environment and run the task test (default environment is development)
 
     gradle refreshTestEnvironment -PEnv=development test
 
     gradle refreshTestEnvironment -PEnv=integration test
 
-note
-the default environment is development
+
+
+#Generate allure report
+gradle allureReport
