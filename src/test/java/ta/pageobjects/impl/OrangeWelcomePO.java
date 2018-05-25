@@ -14,8 +14,8 @@ public class OrangeWelcomePO extends PageObject {
   @FindBy(how = How.TAG_NAME, using = "title")
   private WebElement title;
 
-  public String getDashboardElem() {
-    return menu_dashboard_index.getText();
+  public WebElement getDashboardElem() {
+    return menu_dashboard_index;
   }
 
   public String getTitle() {

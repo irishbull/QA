@@ -1,15 +1,14 @@
 package ta.test.impl;
 
-import org.openqa.selenium.NoSuchElementException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.OrangeLoginPO;
 import ta.pageobjects.impl.OrangeWelcomePO;
 import ta.test.BaseTest;
+import ta.utilities.BrowserUtils;
 
 import static org.testng.Assert.assertTrue;
 
@@ -31,30 +30,21 @@ public class OrangeLoginTest extends BaseTest {
 
     assertTrue(SeleniumDriver.getInstance().getDriver().getTitle().contains("OrangeHRM"));
 
-    assertTrue(orangeWelcomePO.getDashboardElem().contains("Dashboard"));
+    assertTrue(BrowserUtils.exists(orangeWelcomePO.getDashboardElem(), 10));
   }
 
 
   @Test
   public void loginFailure() throws Exception {
 
-    try {
-      SeleniumDriver.getInstance().getDriver().get("http://opensource.demo.orangehrmlive.com/");
+    SeleniumDriver.getInstance().getDriver().get("http://opensource.demo.orangehrmlive.com/");
 
-      OrangeLoginPO loginPage = new OrangeLoginPO();
-      loginPage.enterUsernameAndPassword("username", "password");
+    OrangeLoginPO loginPage = new OrangeLoginPO();
+    loginPage.enterUsernameAndPassword("username", "password");
 
-      OrangeWelcomePO orangeWelcomePO = loginPage.submit();
+    OrangeWelcomePO orangeWelcomePO = loginPage.submit();
 
-      logger.info("Title = " + SeleniumDriver.getInstance().getDriver().getTitle());
-
-      assertTrue(SeleniumDriver.getInstance().getDriver().getTitle().contains("OrangeHRM"));
-
-      assertTrue(orangeWelcomePO.getDashboardElem().contains("Dashboard"));
-    } catch (NoSuchElementException nsee) {
-      logger.error(nsee.getMessage());
-      Assert.fail(nsee.toString());
-    }
+    assertTrue(!BrowserUtils.exists(orangeWelcomePO.getDashboardElem(), 10));
   }
 
 }

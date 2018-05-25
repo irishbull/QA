@@ -108,7 +108,7 @@ public class BrowserUtils {
    * @param timer
    * @return true when the webElement exists
    */
-  public boolean exists(WebElement element, int timer) {
+  public static boolean exists(WebElement element, int timer) {
 
     try {
 
