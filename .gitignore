@@ -70,6 +70,7 @@ local.properties
 # Allure
 .allure
 allure-results/
+allure-report/
 
 # User-specific stuff:
 .idea/**/workspace.xml
