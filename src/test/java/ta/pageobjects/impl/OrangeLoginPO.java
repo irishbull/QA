@@ -5,6 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 import ta.pageobjects.PageObject;
+import ta.utilities.BrowserUtils;
 
 
 public class OrangeLoginPO extends PageObject {
@@ -22,7 +23,7 @@ public class OrangeLoginPO extends PageObject {
     super();
   }
 
-  public void enterUsernameAndPassword(String username, String password) {
+  public void enterUsernameAndPassword(String username, String password) throws Exception{
     this.username.clear();
     this.username.sendKeys(username);
     this.password.clear();

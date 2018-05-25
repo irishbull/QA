@@ -7,6 +7,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 import ta.driver.SeleniumDriver;
+import ta.utilities.ReadPropertiesFile;
 
 
 public abstract class BaseTest {
@@ -17,10 +18,14 @@ public abstract class BaseTest {
   public void setUp() {
     logger.info("Set up");
 
-    String browser = System.getProperty("browser");
-    Assert.assertNotNull(browser);
+    String environment = ReadPropertiesFile.getProperty("environment");
+    Assert.assertNotNull(environment, "Required property 'environment' not found");
+    logger.info("Environmente = [{}]", environment);
 
-    logger.info("browser in use is '{}']", browser);
+    String browser = System.getProperty("browser");
+    Assert.assertNotNull(browser, "Required parameter 'Browser' is missing");
+    logger.info("Browser [{}]", browser);
+
     SeleniumDriver.getInstance().setDriver(browser);
     logger.info("Driver instance {}", SeleniumDriver.getInstance().toString());
   }
