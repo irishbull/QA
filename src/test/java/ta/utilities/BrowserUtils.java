@@ -2,6 +2,9 @@ package ta.utilities;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -95,5 +98,30 @@ public class BrowserUtils {
     WebDriverWait wait = new WebDriverWait(driver, timer);
 
     wait.until(ExpectedConditions.refreshed(ExpectedConditions.urlContains(url)));
+  }
+
+
+  /**
+   * check if a webElement exists
+   *
+   * @param element
+   * @param timer
+   * @return true when the webElement exists
+   */
+  public static boolean exists(WebElement element, int timer) {
+
+    try {
+
+      WebDriverWait wait = new WebDriverWait(SeleniumDriver.getInstance().getDriver(), timer);
+
+      wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)));
+
+      return true;
+    }
+
+    catch(StaleElementReferenceException | TimeoutException | NoSuchElementException exc) {
+      return false;
+    }
+
   }
 }

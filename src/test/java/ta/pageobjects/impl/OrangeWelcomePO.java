@@ -6,7 +6,7 @@ import org.openqa.selenium.support.How;
 
 import ta.pageobjects.PageObject;
 
-public class WelcomePO extends PageObject {
+public class OrangeWelcomePO extends PageObject {
 
   @FindBy(how = How.ID, using = "menu_dashboard_index")
   private WebElement menu_dashboard_index;
@@ -14,15 +14,15 @@ public class WelcomePO extends PageObject {
   @FindBy(how = How.TAG_NAME, using = "title")
   private WebElement title;
 
-  public String getDashboardElem() {
-    return menu_dashboard_index.getText();
+  public WebElement getDashboardElem() {
+    return menu_dashboard_index;
   }
 
   public String getTitle() {
     return title.getText();
   }
 
-  public WelcomePO() {
+  public OrangeWelcomePO() {
     super();
   }
 }

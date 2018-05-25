@@ -12,9 +12,9 @@ import ta.utilities.JavascriptUtils;
 
 // Test of www.iperdrive.it site to manage cookies modal
 
-public class CookieTest extends BaseTest {
+public class IperCookieTest extends BaseTest {
 
-  private static final Logger logger = LoggerFactory.getLogger(CookieTest.class);
+  private static final Logger logger = LoggerFactory.getLogger(IperCookieTest.class);
 
   @Test
   public void cookieTest() throws Exception {

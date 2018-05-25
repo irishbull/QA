@@ -1,0 +1,18 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite-2">
+
+    <test name = "orangeLoginTest">
+        <classes>
+            <class name = "ta.test.impl.OrangeLoginTest" />
+        </classes>
+    </test>
+
+    <test name = "iperCookieTest">
+        <classes>
+            <class name = "ta.test.impl.IperCookieTest" />
+        </classes>
+    </test>
+
+</suite>

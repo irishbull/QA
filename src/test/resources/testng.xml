@@ -1,36 +1,15 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite_1">
+<suite name="allSuites">
 
     <listeners>
         <listener class-name="ta.utilities.LogListener" />
     </listeners>
 
-    <parameter name="browser" value="chrome"/>
-
-    <test name="homePageTest">
-        <classes>
-            <class name="ta.test.impl.HomePageTest"/>
-        </classes>
-    </test>
-
-    <test name = "signUpFormTest">
-        <classes>
-            <class name = "ta.test.impl.SignUpFormTest" />
-        </classes>
-    </test>
-
-    <test name = "loginTest">
-        <classes>
-            <class name = "ta.test.impl.LoginTest" />
-        </classes>
-    </test>
-
-    <test name = "cookieTest">
-        <classes>
-            <class name = "ta.test.impl.CookieTest" />
-        </classes>
-    </test>
+    <suite-files>
+        <suite-file path="testng-1.xml"/>
+        <suite-file path="testng-2.xml"/>
+    </suite-files>
 
 </suite>

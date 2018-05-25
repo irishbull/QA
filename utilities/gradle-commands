@@ -1,10 +1,22 @@
-#Refresh the test environment and run the task test (default environment is development)
+--------------------------------------------------
+Refresh the test environment and run the task test
+--------------------------------------------------
+    gradle refreshTestEnvironment -PEnv={environment} -PBrowser={browser} test
 
-    gradle refreshTestEnvironment -PEnv=development test
+----------------------
+Generate allure report
+----------------------
+    gradle allureReport -PBrowser={browser}
 
-    gradle refreshTestEnvironment -PEnv=integration test
 
+where {environment} is one of:
+ - development *
+ - integration
 
+where {browser} is one of:
+ - chrome *
+ - firefox
+ - explorer
 
-#Generate allure report
-gradle allureReport
+* default value
+
