@@ -4,6 +4,7 @@
 <suite name="allSuites">
 
     <listeners>
+        <listener class-name="ta.utilities.SuiteListener"/>
         <listener class-name="ta.utilities.LogListener" />
     </listeners>
 
