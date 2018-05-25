@@ -98,14 +98,31 @@ test {
     useTestNG() {
         useDefaultListeners = true
         suites 'src/test/resources/testng.xml'
+
+        // add browser to use to system property
+        systemProperty "browser", project.getProperty("Browser")
     }
 }
 
 allure {
     version = '2.2.1'
     autoconfigure = true
-    resultsDir = file('/allure-results')
-    reportDir = file('/allure-report')
+
+    def browser = project.getProperty('Browser')
+
+    switch(browser){
+        case "firefox":
+            resultsDir = file('/allure-results/firefox')
+            reportDir = file('/allure-report/firefox')
+            break;
+        case "explorer":
+            resultsDir = file('/allure-results/explorer')
+            reportDir = file('/allure-report/explorer')
+            break;
+        default:
+            resultsDir = file('/allure-results/chrome')
+            reportDir = file('/allure-report/chrome')
+    }
 }
 
 // -----------  END TASK SECTION -----------

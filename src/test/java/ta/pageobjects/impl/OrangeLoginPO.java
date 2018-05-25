@@ -7,7 +7,7 @@ import org.openqa.selenium.support.How;
 import ta.pageobjects.PageObject;
 
 
-public class LoginPO extends PageObject {
+public class OrangeLoginPO extends PageObject {
 
   @FindBy(how = How.ID, using = "txtUsername")
   private WebElement username;
@@ -18,7 +18,7 @@ public class LoginPO extends PageObject {
   @FindBy(how = How.ID, using = "btnLogin")
   private WebElement submitButton;
 
-  public LoginPO() {
+  public OrangeLoginPO() {
     super();
   }
 
@@ -29,8 +29,8 @@ public class LoginPO extends PageObject {
     this.password.sendKeys(password);
   }
 
-  public WelcomePO submit() {
+  public OrangeWelcomePO submit() {
     this.submitButton.submit();
-    return new WelcomePO();
+    return new OrangeWelcomePO();
   }
 }

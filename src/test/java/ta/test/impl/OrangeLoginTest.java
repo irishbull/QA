@@ -7,31 +7,31 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import ta.driver.SeleniumDriver;
-import ta.pageobjects.impl.LoginPO;
-import ta.pageobjects.impl.WelcomePO;
+import ta.pageobjects.impl.OrangeLoginPO;
+import ta.pageobjects.impl.OrangeWelcomePO;
 import ta.test.BaseTest;
 
 import static org.testng.Assert.assertTrue;
 
-public class LoginTest extends BaseTest {
+public class OrangeLoginTest extends BaseTest {
 
-  private static final Logger logger = LoggerFactory.getLogger(LoginTest.class);
+  private static final Logger logger = LoggerFactory.getLogger(OrangeLoginTest.class);
 
   @Test
   public void loginSuccess() throws Exception {
 
     SeleniumDriver.getInstance().getDriver().get("http://opensource.demo.orangehrmlive.com/");
 
-    LoginPO loginPage = new LoginPO();
+    OrangeLoginPO loginPage = new OrangeLoginPO();
     loginPage.enterUsernameAndPassword("Admin", "admin");
 
-    WelcomePO welcomePO = loginPage.submit();
+    OrangeWelcomePO orangeWelcomePO = loginPage.submit();
 
     logger.info("Title = " + SeleniumDriver.getInstance().getDriver().getTitle());
 
     assertTrue(SeleniumDriver.getInstance().getDriver().getTitle().contains("OrangeHRM"));
 
-    assertTrue(welcomePO.getDashboardElem().contains("Dashboard"));
+    assertTrue(orangeWelcomePO.getDashboardElem().contains("Dashboard"));
   }
 
 
@@ -41,16 +41,16 @@ public class LoginTest extends BaseTest {
     try {
       SeleniumDriver.getInstance().getDriver().get("http://opensource.demo.orangehrmlive.com/");
 
-      LoginPO loginPage = new LoginPO();
+      OrangeLoginPO loginPage = new OrangeLoginPO();
       loginPage.enterUsernameAndPassword("username", "password");
 
-      WelcomePO welcomePO = loginPage.submit();
+      OrangeWelcomePO orangeWelcomePO = loginPage.submit();
 
       logger.info("Title = " + SeleniumDriver.getInstance().getDriver().getTitle());
 
       assertTrue(SeleniumDriver.getInstance().getDriver().getTitle().contains("OrangeHRM"));
 
-      assertTrue(welcomePO.getDashboardElem().contains("Dashboard"));
+      assertTrue(orangeWelcomePO.getDashboardElem().contains("Dashboard"));
     } catch (NoSuchElementException nsee) {
       logger.error(nsee.getMessage());
       Assert.fail(nsee.toString());
