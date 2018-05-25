@@ -6,6 +6,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.HashMap;
@@ -108,6 +110,26 @@ public class SeleniumDriver {
 
         break;
 
+      case "iexplorer":
+
+        // Internet Explorer options
+        InternetExplorerOptions ieOpts = new InternetExplorerOptions();
+
+        // Internet Explorer capabilities
+        capabilities = DesiredCapabilities.internetExplorer();
+        capabilities.setCapability(InternetExplorerDriver.NATIVE_EVENTS, false);
+        capabilities.setCapability(
+            InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+        capabilities.setCapability(InternetExplorerDriver.INITIAL_BROWSER_URL, "");
+        capabilities.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, true);
+        capabilities.setCapability("allow-blocked-content", true);
+        capabilities.setCapability("allowBlockedContent", true);
+
+        System.setProperty("webdriver.ie.driver",
+            ReadPropertiesFile.getProperty("iexplorer.webdriver.path"));
+        webDriver.set(new InternetExplorerDriver(ieOpts.merge(capabilities)));
+        getDriver().manage().timeouts().implicitlyWait(Constants.SetUp.IMPLICITY_WAIT,
+            TimeUnit.SECONDS);
     }
   }
 }
