@@ -16,7 +16,7 @@ where {environment} is one of:
 where {browser} is one of:
  - chrome *
  - firefox
- - explorer
+ - iexplorer
 
 * default value
 
