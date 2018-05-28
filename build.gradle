@@ -120,6 +120,7 @@ allure {
             reportDir = file('/allure-report/iexplorer')
             break;
         default:
+            //chrome
             resultsDir = file('/allure-results/chrome')
             reportDir = file('/allure-report/chrome')
     }
