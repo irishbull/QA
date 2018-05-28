@@ -115,9 +115,9 @@ allure {
             resultsDir = file('/allure-results/firefox')
             reportDir = file('/allure-report/firefox')
             break;
-        case "explorer":
-            resultsDir = file('/allure-results/explorer')
-            reportDir = file('/allure-report/explorer')
+        case "iexplorer":
+            resultsDir = file('/allure-results/iexplorer')
+            reportDir = file('/allure-report/iexplorer')
             break;
         default:
             resultsDir = file('/allure-results/chrome')

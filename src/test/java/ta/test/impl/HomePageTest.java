@@ -9,6 +9,8 @@ import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.IdeaPiuPO;
 import ta.test.BaseTest;
+import ta.utilities.Constants;
+import ta.utilities.ReadPropertiesFile;
 
 import static org.testng.Assert.assertTrue;
 
@@ -21,11 +23,10 @@ public class HomePageTest extends BaseTest {
 
     WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-    driver.get("\n" + "https://lmuser:test0102@www-react-qa.leroymerlin.it/");
+    driver.get(ReadPropertiesFile.getProperty("base.url"));
 
     HomePagePO homePagePO = new HomePagePO();
     logger.info("SPAN TEXT = " + homePagePO.getSpanText());
-    logger.info("IdeaPiù");
 
     assertTrue(homePagePO.getSpanText().contains("Ideapi"));
   }
@@ -56,7 +57,7 @@ public class HomePageTest extends BaseTest {
 
     assertTrue(ideaPiuPO.getTitle().contains("Diventa Titolare Idea"));
 
-    assertTrue(ideaPiuPO.getUrl().contains("idea-piu"));
+    assertTrue(ideaPiuPO.getUrl().contains(Constants.PathComponent.IDEAPIU));
 
     assertTrue(ideaPiuPO.getDivAttribute().equals("idea-piu"));
 
