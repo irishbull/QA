@@ -19,31 +19,19 @@ public class HomePageTest extends BaseTest {
   private static final Logger logger = LoggerFactory.getLogger(HomePageTest.class);
 
   @Test
-  public void spanTest() throws Exception {
+  public void ideaPiuLinkTest() throws Exception {
 
     WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
     driver.get(ReadPropertiesFile.getProperty("base.url"));
 
     HomePagePO homePagePO = new HomePagePO();
-    logger.info("SPAN TEXT = " + homePagePO.getSpanText());
-
-    assertTrue(homePagePO.getSpanText().contains("Ideapi"));
-  }
-
-
-  @Test(dependsOnMethods = {"spanTest"})
-  public void linkTest() throws Exception {
-
-    WebDriver driver = SeleniumDriver.getInstance().getDriver();
-
-    HomePagePO homePagePO = new HomePagePO();
 
     String mainWindow = driver.getWindowHandle();
 
     // click link opening new tab
-    IdeaPiuPO ideaPiuPO = homePagePO.clickLink();
-    logger.info("BUTTON CLICKED");
+    IdeaPiuPO ideaPiuPO = homePagePO.clickIdeaPiuLink();
+    logger.info("IdeaPiu link CLICKED");
 
 
     for (String winHandle : driver.getWindowHandles()) {

@@ -1,0 +1,26 @@
+package ta.pageobjects.impl;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+
+import java.util.List;
+
+import ta.pageobjects.PageObject;
+
+public class HomePageSearchResultsPO extends PageObject {
+
+
+  @FindBy(how = How.NAME, using = "SELENIUM_SEARCH_RESULTS_WRAPPER")
+  private WebElement searchResults;
+
+  public WebElement getSearchResults() {
+    return searchResults;
+  }
+
+  public int numberOfLiElem() {
+    List<WebElement> li = searchResults.findElements(By.tagName("li"));
+    return li.size();
+  }
+}
