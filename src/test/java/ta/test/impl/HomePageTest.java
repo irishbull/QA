@@ -1,5 +1,6 @@
 package ta.test.impl;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.IdeaPiuPO;
 import ta.test.BaseTest;
+import ta.utilities.BrowserUtils;
 import ta.utilities.Constants;
 import ta.utilities.ReadPropertiesFile;
 
@@ -17,6 +19,39 @@ import static org.testng.Assert.assertTrue;
 public class HomePageTest extends BaseTest {
 
   private static final Logger logger = LoggerFactory.getLogger(HomePageTest.class);
+
+  @Test
+  public void navigateProductMenu() throws Exception {
+
+    WebDriver driver = SeleniumDriver.getInstance().getDriver();
+
+    driver.get(ReadPropertiesFile.getProperty("base.url"));
+
+    HomePagePO homePagePO = new HomePagePO();
+
+    BrowserUtils.hover(homePagePO.getProductMenu());
+
+    BrowserUtils.hover(homePagePO.getProductMenu()
+        .findElement(By.name("SELENIUM_PRODUCTS_MENU_MACROCATEGORYGROUP_WRAPPER")));
+
+    BrowserUtils.waitFor(By.name("SELENIUM_PRODUCTS_MENU_MACROCATEGORY_WRAPPER"), 10);
+
+    BrowserUtils.hover(homePagePO.getMacroCategory());
+
+    BrowserUtils.waitFor(By.name("SELENIUM_PRODUCTS_MENU_CATEGORY_WRAPPER"), 10);
+
+    BrowserUtils.hover(homePagePO.getCategory());
+
+    BrowserUtils.waitFor(By.linkText("Zerbini"), 10 );
+
+    homePagePO.getZerbiniLink().click();
+
+    logger.info("Garage link clicked");
+
+
+
+  }
+
 
   @Test
   public void ideaPiuLinkTest() throws Exception {
