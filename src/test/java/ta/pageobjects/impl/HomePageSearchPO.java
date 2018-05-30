@@ -9,20 +9,20 @@ import ta.pageobjects.PageObject;
 public class HomePageSearchPO extends PageObject {
 
   @FindBy(how = How.NAME, using = "SELENIUM_SEARCH_TOP")
-  private WebElement divSearch;
+  private WebElement searchWrapper;
 
 
   public HomePageSearchPO() {
     super();
   }
 
-  public HomePageSearchResultsPO clickDiv() {
-    divSearch.click();
+  public HomePageSearchResultsPO clickOnSearch() {
+    searchWrapper.click();
     return new HomePageSearchResultsPO();
   }
 
-  public WebElement getDiv() {
-    return divSearch;
+  public WebElement getSearchWrapper() {
+    return searchWrapper;
   }
 
 }

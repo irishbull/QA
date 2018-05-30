@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
-
 import ta.driver.SeleniumDriver;
 
 import ta.pageobjects.impl.HomePageSearchPO;
@@ -20,19 +19,19 @@ public class HomePageSearchTest extends BaseTest {
   private static final Logger logger = LoggerFactory.getLogger(HomePageSearchTest.class);
 
   @Test
-  public void searchTest() {
+  public void searchReturnsAtMost3Results() throws Exception{
       WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
       driver.get(ReadPropertiesFile.getProperty("base.url"));
 
       HomePageSearchPO homePageSearchPO = new HomePageSearchPO();
 
-      HomePageSearchResultsPO homePageSearchResultsPO = homePageSearchPO.clickDiv();
+      HomePageSearchResultsPO homePageSearchResultsPO = homePageSearchPO.clickOnSearch();
 
-      int a = homePageSearchResultsPO.numberOfLiElem();
+      int a = homePageSearchResultsPO.numberOfLiElems();
       logger.info(String.valueOf(a));
 
-      assertTrue(homePageSearchResultsPO.numberOfLiElem() <= 3);
+      assertTrue(homePageSearchResultsPO.numberOfLiElems() <= 3);
   }
 }
 

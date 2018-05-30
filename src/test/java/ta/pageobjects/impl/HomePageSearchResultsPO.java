@@ -9,6 +9,7 @@ import java.util.List;
 
 import ta.pageobjects.PageObject;
 
+
 public class HomePageSearchResultsPO extends PageObject {
 
 
@@ -19,8 +20,8 @@ public class HomePageSearchResultsPO extends PageObject {
     return searchResults;
   }
 
-  public int numberOfLiElem() {
-    List<WebElement> li = searchResults.findElements(By.tagName("li"));
-    return li.size();
+  public int numberOfLiElems() {
+    List<WebElement> liElems = searchResults.findElements(By.tagName("li"));
+    return liElems.size();
   }
 }
