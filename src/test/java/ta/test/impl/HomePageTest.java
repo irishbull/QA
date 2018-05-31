@@ -33,17 +33,14 @@ public class HomePageTest extends BaseTest {
     BrowserUtils.hover(homePagePO.getProductMenu());
 
     BrowserUtils.waitFor(By.name("SELENIUM_PRODUCTS_MENU_MACROCATEGORYGROUP_WRAPPER"),10);
-    //BrowserUtils.waitFor(homePagePO.getMacroCategoryGroup(), 10);
     BrowserUtils.hover(homePagePO.getMacroCategoryGroup());
 
     BrowserUtils.hover(homePagePO.getBagnoLink());
 
     BrowserUtils.waitFor(By.name("SELENIUM_PRODUCTS_MENU_MACROCATEGORY_WRAPPER"),10);
-    //BrowserUtils.waitFor(homePagePO.getMacroCategory(), 10);
     BrowserUtils.hover(homePagePO.getDocceSpan());
 
     BrowserUtils.waitFor(By.name("SELENIUM_PRODUCTS_MENU_CATEGORY_WRAPPER"),10);
-    //BrowserUtils.waitFor(homePagePO.getCategory(), 10);
     BrowserUtils.hover(homePagePO.getSauneSpan());
 
     logger.info("Navigate menu : Prodotti -> Bagno -> Docce -> Saune");
