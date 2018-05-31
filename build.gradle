@@ -126,6 +126,4 @@ allure {
     }
 }
 
-test.finalizedBy(allureReport)
-
 // -----------  END TASK SECTION -----------
