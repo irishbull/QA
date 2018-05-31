@@ -102,8 +102,6 @@ test {
         // add browser to use to system property
         systemProperty "browser", project.getProperty("Browser")
     }
-
-    test.finalizedBy(allureReport)
 }
 
 allure {
@@ -127,5 +125,7 @@ allure {
             reportDir = file('/allure-report/chrome')
     }
 }
+
+test.finalizedBy(allureReport)
 
 // -----------  END TASK SECTION -----------
