@@ -35,14 +35,8 @@ public class HomePagePO extends PageObject {
   @FindBy(how = How.XPATH, xpath = "//div[@name='SELENIUM_PRODUCTS_MENU_MACROCATEGORY_WRAPPER']/div/div/span[contains(text(), 'Docce')]")
   private WebElement docceSpan;
 
-  @FindBy(how = How.LINK_TEXT, using = "Docce")
-  private WebElement docceLink;
-
   @FindBy(how = How.XPATH, xpath = "//div[@name='SELENIUM_PRODUCTS_MENU_CATEGORY_WRAPPER']/div/a/div/span[contains(text(), 'Saune')]")
   private WebElement sauneSpan;
-
-  @FindBy(how = How.LINK_TEXT, using = "Saune")
-  private WebElement sauneLink;
 
 
   public WebElement getIdeaPiuLink() {
@@ -81,16 +75,8 @@ public class HomePagePO extends PageObject {
     return docceSpan;
   }
 
-  public WebElement getDocceLink() {
-    return docceLink;
-  }
-
   public WebElement getSauneSpan() {
     return sauneSpan;
-  }
-
-  public WebElement getSauneLink() {
-    return sauneLink;
   }
 
   public IdeaPiuPO clickIdeaPiuLink() {

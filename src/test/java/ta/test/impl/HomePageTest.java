@@ -2,6 +2,7 @@ package ta.test.impl;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
@@ -31,20 +32,21 @@ public class HomePageTest extends BaseTest {
 
     BrowserUtils.hover(homePagePO.getProductMenu());
 
-    BrowserUtils.hover(homePagePO.getProductMenu()
-        .findElement(By.name("SELENIUM_PRODUCTS_MENU_MACROCATEGORYGROUP_WRAPPER")));
+    BrowserUtils.waitFor(By.name("SELENIUM_PRODUCTS_MENU_MACROCATEGORYGROUP_WRAPPER"),10);
+    //BrowserUtils.waitFor(homePagePO.getMacroCategoryGroup(), 10);
+    BrowserUtils.hover(homePagePO.getMacroCategoryGroup());
 
     BrowserUtils.hover(homePagePO.getBagnoLink());
 
-    BrowserUtils.waitFor(By.name("SELENIUM_PRODUCTS_MENU_MACROCATEGORY_WRAPPER"), 10);
-
+    BrowserUtils.waitFor(By.name("SELENIUM_PRODUCTS_MENU_MACROCATEGORY_WRAPPER"),10);
+    //BrowserUtils.waitFor(homePagePO.getMacroCategory(), 10);
     BrowserUtils.hover(homePagePO.getDocceSpan());
 
-    BrowserUtils.waitFor(By.name("SELENIUM_PRODUCTS_MENU_CATEGORY_WRAPPER"), 10);
-
+    BrowserUtils.waitFor(By.name("SELENIUM_PRODUCTS_MENU_CATEGORY_WRAPPER"),10);
+    //BrowserUtils.waitFor(homePagePO.getCategory(), 10);
     BrowserUtils.hover(homePagePO.getSauneSpan());
 
-    logger.info("Garage link clicked");
+    logger.info("Navigate menu : Prodotti -> Bagno -> Docce -> Saune");
   }
 
 
