@@ -14,14 +14,14 @@ public class HomePageSearchResultsPO extends PageObject {
 
 
   @FindBy(how = How.NAME, using = "SELENIUM_SEARCH_RESULTS_WRAPPER")
-  private WebElement searchResults;
+  private WebElement searchResultsWrapper;
 
   public WebElement getSearchResults() {
-    return searchResults;
+    return searchResultsWrapper;
   }
 
   public int numberOfLiElems() {
-    List<WebElement> liElems = searchResults.findElements(By.tagName("li"));
+    List<WebElement> liElems = searchResultsWrapper.findElements(By.tagName("li"));
     return liElems.size();
   }
 }

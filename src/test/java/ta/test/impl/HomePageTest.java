@@ -34,8 +34,6 @@ public class HomePageTest extends BaseTest {
     BrowserUtils.hover(homePagePO.getProductMenu()
         .findElement(By.name("SELENIUM_PRODUCTS_MENU_MACROCATEGORYGROUP_WRAPPER")));
 
-    BrowserUtils.waitFor(homePagePO.getBagnoLink(), 10);
-
     BrowserUtils.hover(homePagePO.getBagnoLink());
 
     BrowserUtils.waitFor(By.name("SELENIUM_PRODUCTS_MENU_MACROCATEGORY_WRAPPER"), 10);
