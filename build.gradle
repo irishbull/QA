@@ -102,10 +102,6 @@ test {
         // add browser to use to system property
         systemProperty "browser", project.getProperty("Browser")
     }
-
-    subprojects {
-        test.finalizedBy(allureReport)
-    }
 }
 
 allure {
