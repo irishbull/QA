@@ -34,22 +34,19 @@ public class HomePageTest extends BaseTest {
     BrowserUtils.hover(homePagePO.getProductMenu()
         .findElement(By.name("SELENIUM_PRODUCTS_MENU_MACROCATEGORYGROUP_WRAPPER")));
 
+    BrowserUtils.waitFor(homePagePO.getBagnoLink(), 10);
+
+    BrowserUtils.hover(homePagePO.getBagnoLink());
+
     BrowserUtils.waitFor(By.name("SELENIUM_PRODUCTS_MENU_MACROCATEGORY_WRAPPER"), 10);
 
-    BrowserUtils.hover(homePagePO.getMacroCategory());
+    BrowserUtils.hover(homePagePO.getDocceSpan());
 
     BrowserUtils.waitFor(By.name("SELENIUM_PRODUCTS_MENU_CATEGORY_WRAPPER"), 10);
 
-    BrowserUtils.hover(homePagePO.getCategory());
-
-    BrowserUtils.waitFor(By.linkText("Zerbini"), 10 );
-
-    homePagePO.getZerbiniLink().click();
+    BrowserUtils.hover(homePagePO.getSauneSpan());
 
     logger.info("Garage link clicked");
-
-
-
   }
 
 

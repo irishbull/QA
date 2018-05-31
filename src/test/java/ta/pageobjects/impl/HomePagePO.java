@@ -1,5 +1,6 @@
 package ta.pageobjects.impl;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -32,16 +33,15 @@ public class HomePagePO extends PageObject {
   @FindBy(how = How.LINK_TEXT, using = "Bagno")
   private WebElement bagnoLink;
 
-  @FindBy(how = How.LINK_TEXT, using = "Zerbini")
-  private WebElement zerbiniLink;
+  @FindBy(how = How.XPATH, xpath = "//div[@name='SELENIUM_PRODUCTS_MENU_MACROCATEGORY_WRAPPER']/div/div/span[contains(text(), 'Docce')]")
+  private WebElement docceSpan;
 
-  public HomePagePO() {
-    super();
-  }
+  @FindBy(how = How.XPATH, xpath = "//div[@name='SELENIUM_PRODUCTS_MENU_CATEGORY_WRAPPER']/div/a/div/span[contains(text(), 'Saune')]")
+  private WebElement sauneSpan;
 
-  public IdeaPiuPO clickIdeaPiuLink() {
-    ideaPiuLink.click();
-    return new IdeaPiuPO();
+
+  public WebElement getIdeaPiuLink() {
+    return ideaPiuLink;
   }
 
   public WebElement getCommunityLink() {
@@ -72,7 +72,18 @@ public class HomePagePO extends PageObject {
     return bagnoLink;
   }
 
-  public WebElement getZerbiniLink() {
-    return zerbiniLink;
+  public WebElement getDocceSpan() {
+    return docceSpan;
   }
+
+  public WebElement getSauneSpan() {
+    return sauneSpan;
+  }
+
+  public IdeaPiuPO clickIdeaPiuLink() {
+    WebElement parent = ideaPiuLink.findElement(By.xpath(".."));
+    parent.click();
+    return new IdeaPiuPO();
+  }
+
 }
