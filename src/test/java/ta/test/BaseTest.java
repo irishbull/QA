@@ -22,8 +22,9 @@ public abstract class BaseTest {
     Assert.assertNotNull(environment, "Required property 'environment' not found");
     logger.info("Environmente = [{}]", environment);
 
-    String browser = System.getProperty("browser");
-    Assert.assertNotNull(browser, "Required parameter 'Browser' is missing");
+    //String browser = System.getProperty("browser")
+    //Assert.assertNotNull(browser, "Required parameter 'Browser' is missing");
+    String browser = System.getProperty("browser", "chrome");
     logger.info("Browser [{}]", browser);
 
     SeleniumDriver.getInstance().setDriver(browser);

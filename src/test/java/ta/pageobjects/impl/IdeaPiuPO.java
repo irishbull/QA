@@ -7,6 +7,7 @@ import org.openqa.selenium.support.How;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.PageObject;
 import ta.utilities.BrowserUtils;
+import ta.utilities.Constants;
 
 
 public class IdeaPiuPO extends PageObject {
@@ -15,17 +16,17 @@ public class IdeaPiuPO extends PageObject {
   WebElement div;
 
   public String getTitle() throws Exception {
-    BrowserUtils.waitForTitle("Diventa Titolare Idea", 10);
+    BrowserUtils.waitForTitle("Diventa Titolare Idea", Constants.WaitTime.EXPLICT_WAIT);
     return SeleniumDriver.getInstance().getDriver().getTitle();
   }
 
   public String getUrl() throws Exception {
-    BrowserUtils.waitForURL("idea-piu", 10);
+    BrowserUtils.waitForURL("idea-piu", Constants.WaitTime.EXPLICT_WAIT);
     return SeleniumDriver.getInstance().getDriver().getCurrentUrl();
   }
 
   public String getDivAttribute() throws Exception {
-    BrowserUtils.waitForPageFullyLoaded(10);
+    BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICT_WAIT);
     return div.getAttribute("class");
   }
 
