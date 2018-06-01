@@ -2,16 +2,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite-1">
-
+<!--
     <test name = "signUpFormTest">
         <classes>
             <class name = "ta.test.impl.SignUpFormTest" />
         </classes>
     </test>
+-->
 
     <test name="homePageTest">
         <classes>
             <class name="ta.test.impl.HomePageTest"/>
+            <class name="ta.test.impl.HomePageSearchTest"/>
         </classes>
     </test>
 

@@ -7,6 +7,7 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -122,6 +123,16 @@ public class BrowserUtils {
     catch(StaleElementReferenceException | TimeoutException | NoSuchElementException exc) {
       return false;
     }
-
   }
+
+  /**
+   * mouse over the specified element
+   *
+   * @param element
+   */
+  public static void hover(WebElement element) {
+    Actions action = new Actions(SeleniumDriver.getInstance().getDriver());
+    action.moveToElement(element).perform();
+  }
+
 }

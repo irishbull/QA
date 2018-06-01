@@ -1,5 +1,6 @@
 package ta.test.impl;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.IdeaPiuPO;
 import ta.test.BaseTest;
+import ta.utilities.BrowserUtils;
 import ta.utilities.Constants;
 import ta.utilities.ReadPropertiesFile;
 
@@ -19,31 +21,45 @@ public class HomePageTest extends BaseTest {
   private static final Logger logger = LoggerFactory.getLogger(HomePageTest.class);
 
   @Test
-  public void spanTest() throws Exception {
+  public void navigateProductMenu() throws Exception {
 
     WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
     driver.get(ReadPropertiesFile.getProperty("base.url"));
 
     HomePagePO homePagePO = new HomePagePO();
-    logger.info("SPAN TEXT = " + homePagePO.getSpanText());
 
-    assertTrue(homePagePO.getSpanText().contains("Ideapi"));
+    BrowserUtils.hover(homePagePO.getProductMenu());
+
+    BrowserUtils.waitFor(By.name("SELENIUM_PRODUCTS_MENU_MACROCATEGORYGROUP_WRAPPER"),10);
+    BrowserUtils.hover(homePagePO.getMacroCategoryGroup());
+
+    BrowserUtils.hover(homePagePO.getBagnoLink());
+
+    BrowserUtils.waitFor(By.name("SELENIUM_PRODUCTS_MENU_MACROCATEGORY_WRAPPER"),10);
+    BrowserUtils.hover(homePagePO.getDocceSpan());
+
+    BrowserUtils.waitFor(By.name("SELENIUM_PRODUCTS_MENU_CATEGORY_WRAPPER"),10);
+    BrowserUtils.hover(homePagePO.getSauneSpan());
+
+    logger.info("Navigate menu : Prodotti -> Bagno -> Docce -> Saune");
   }
 
 
-  @Test(dependsOnMethods = {"spanTest"})
-  public void linkTest() throws Exception {
+  @Test
+  public void ideaPiuLinkTest() throws Exception {
 
     WebDriver driver = SeleniumDriver.getInstance().getDriver();
+
+    driver.get(ReadPropertiesFile.getProperty("base.url"));
 
     HomePagePO homePagePO = new HomePagePO();
 
     String mainWindow = driver.getWindowHandle();
 
     // click link opening new tab
-    IdeaPiuPO ideaPiuPO = homePagePO.clickLink();
-    logger.info("BUTTON CLICKED");
+    IdeaPiuPO ideaPiuPO = homePagePO.clickIdeaPiuLink();
+    logger.info("IdeaPiu link CLICKED");
 
 
     for (String winHandle : driver.getWindowHandles()) {

@@ -28,6 +28,8 @@ public abstract class BaseTest {
 
     SeleniumDriver.getInstance().setDriver(browser);
     logger.info("Driver instance {}", SeleniumDriver.getInstance().toString());
+
+    SeleniumDriver.getInstance().getDriver().manage().window().maximize();
   }
 
   @AfterSuite
