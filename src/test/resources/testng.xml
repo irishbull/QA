@@ -6,6 +6,7 @@
     <listeners>
         <listener class-name="ta.utilities.SuiteListener"/>
         <listener class-name="ta.utilities.LogListener" />
+        <listener class-name="ta.utilities.AllureScreenshotListener"/>
     </listeners>
 
     <suite-files>

@@ -28,7 +28,7 @@ public class OrangeLoginTest extends BaseTest {
 
     BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICT_WAIT);
 
-    loginPage.enterUsernameAndPassword("Admin", "admin");
+    loginPage.enterUsernameAndPassword("Admin", "adm");
 
     OrangeWelcomePO orangeWelcomePO = loginPage.submit();
 
