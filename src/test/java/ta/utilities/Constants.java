@@ -3,8 +3,8 @@ package ta.utilities;
 public class Constants {
 
   public static class WaitTime {
-    public final static Integer IMPLICITY_WAIT = 5;
-    public final static Integer EXPLICT_WAIT = 2;
+    public final static Integer IMPLICIT_WAIT = 5;
+    public final static Integer EXPLICIT_WAIT = 2;
   }
 
   public static class PathComponent {

@@ -23,7 +23,7 @@ public class StoreLocatorTest extends BaseTest {
 
         BrowserUtils.hover(storeLocatorPO.getStoreLocatorDiv());
 
-        BrowserUtils.waitFor(storeLocatorPO.getStoreLocatorPopup(), Constants.WaitTime.EXPLICT_WAIT);
+        BrowserUtils.waitFor(storeLocatorPO.getStoreLocatorPopup(), Constants.WaitTime.EXPLICIT_WAIT);
 
         BrowserUtils.hover(storeLocatorPO.getStoreLocatorPopup());
 

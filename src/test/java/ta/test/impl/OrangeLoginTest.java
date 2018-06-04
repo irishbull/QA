@@ -26,7 +26,7 @@ public class OrangeLoginTest extends BaseTest {
 
     OrangeLoginPO loginPage = new OrangeLoginPO();
 
-    BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICT_WAIT);
+    BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
 
     loginPage.enterUsernameAndPassword("Admin", "adm");
 
@@ -36,7 +36,7 @@ public class OrangeLoginTest extends BaseTest {
 
     assertTrue(SeleniumDriver.getInstance().getDriver().getTitle().contains("OrangeHRM"));
 
-    assertTrue(BrowserUtils.exists(orangeWelcomePO.getDashboardElem(), Constants.WaitTime.EXPLICT_WAIT));
+    assertTrue(BrowserUtils.exists(orangeWelcomePO.getDashboardElem(), Constants.WaitTime.EXPLICIT_WAIT));
   }
 
 
@@ -48,13 +48,13 @@ public class OrangeLoginTest extends BaseTest {
 
     OrangeLoginPO loginPage = new OrangeLoginPO();
 
-    BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICT_WAIT);
+    BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
 
     loginPage.enterUsernameAndPassword("username", "password");
 
     OrangeWelcomePO orangeWelcomePO = loginPage.submit();
 
-    assertTrue(!BrowserUtils.exists(orangeWelcomePO.getDashboardElem(), Constants.WaitTime.EXPLICT_WAIT));
+    assertTrue(!BrowserUtils.exists(orangeWelcomePO.getDashboardElem(), Constants.WaitTime.EXPLICIT_WAIT));
   }
 }
 

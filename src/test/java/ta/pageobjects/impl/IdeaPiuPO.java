@@ -16,17 +16,17 @@ public class IdeaPiuPO extends PageObject {
   WebElement div;
 
   public String getTitle() throws Exception {
-    BrowserUtils.waitForTitle("Diventa Titolare Idea", Constants.WaitTime.EXPLICT_WAIT);
+    BrowserUtils.waitForTitle("Diventa Titolare Idea", Constants.WaitTime.EXPLICIT_WAIT);
     return SeleniumDriver.getInstance().getDriver().getTitle();
   }
 
   public String getUrl() throws Exception {
-    BrowserUtils.waitForURL("idea-piu", Constants.WaitTime.EXPLICT_WAIT);
+    BrowserUtils.waitForURL("idea-piu", Constants.WaitTime.EXPLICIT_WAIT);
     return SeleniumDriver.getInstance().getDriver().getCurrentUrl();
   }
 
   public String getDivAttribute() throws Exception {
-    BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICT_WAIT);
+    BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
     return div.getAttribute("class");
   }
 

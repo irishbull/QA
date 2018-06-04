@@ -21,7 +21,7 @@ public class OrangeLoginPO extends PageObject {
     super();
   }
 
-  public void enterUsernameAndPassword(String username, String password) throws Exception{
+  public void enterUsernameAndPassword(String username, String password) throws Exception {
     this.username.clear();
     this.username.sendKeys(username);
     this.password.clear();
