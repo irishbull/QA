@@ -15,7 +15,7 @@ public abstract class BaseTest {
   private final Logger logger = LoggerFactory.getLogger(getClass());
 
   @BeforeSuite
-  public void setUp() {
+  public void suiteSetup() {
     logger.info("Set up");
 
     String environment = ReadPropertiesFile.getProperty("environment");
@@ -34,7 +34,7 @@ public abstract class BaseTest {
   }
 
   @AfterSuite
-  public void tearDown() {
+  public void suiteTeardown() {
     logger.info("Tear down");
     logger.info("Driver instance {}", SeleniumDriver.getInstance().toString());
     SeleniumDriver.getInstance().getDriver().quit();

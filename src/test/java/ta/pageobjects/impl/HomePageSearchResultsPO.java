@@ -12,7 +12,6 @@ import ta.pageobjects.PageObject;
 
 public class HomePageSearchResultsPO extends PageObject {
 
-
   @FindBy(how = How.NAME, using = "SELENIUM_SEARCH_RESULTS_WRAPPER")
   private WebElement searchResultsWrapper;
 
