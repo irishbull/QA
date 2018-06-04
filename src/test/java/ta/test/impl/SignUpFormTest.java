@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
+import io.qameta.allure.Description;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.ReceiptPO;
 import ta.pageobjects.impl.SignUpPO;
@@ -18,6 +19,7 @@ public class SignUpFormTest extends BaseTest {
   private static final Logger logger = LoggerFactory.getLogger(SignUpFormTest.class);
 
   @Test
+  @Description("Test sign up form submit")
   public void signUp() {
 
     SeleniumDriver.getInstance().getDriver()

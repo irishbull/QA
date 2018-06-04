@@ -5,8 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
+import io.qameta.allure.Description;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
+import ta.pageobjects.impl.HomePageSearchResultsPO;
 import ta.pageobjects.impl.IdeaPiuPO;
 import ta.test.BaseTest;
 import ta.utilities.BrowserUtils;
@@ -20,7 +22,26 @@ public class HomePageTest extends BaseTest {
   private static final Logger logger = LoggerFactory.getLogger(HomePageTest.class);
 
   @Test
-  public void navigateProductMenu() throws Exception {
+  @Description("Verifica che la ricerca (string vuota) restuisce al piu' tre risultati")
+  public void tc_001_searchReturnsAtMost3Results() throws Exception{
+    WebDriver driver = SeleniumDriver.getInstance().getDriver();
+
+    driver.get(ReadPropertiesFile.getProperty("base.url"));
+
+    HomePagePO homePagePO = new HomePagePO();
+
+    HomePageSearchResultsPO homePageSearchResultsPO = homePagePO.clickOnSearch();
+
+    int a = homePageSearchResultsPO.getResultsNumber();
+    logger.info(String.valueOf(a));
+
+    assertTrue(homePageSearchResultsPO.getResultsNumber() <= 3);
+  }
+
+
+  @Test
+  @Description("Verifica la navigazione del menu : Prodotti -> Bagno -> Docce -> Saune")
+  public void tc_002_navigateProductMenu() throws Exception {
 
     WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
@@ -46,7 +67,8 @@ public class HomePageTest extends BaseTest {
 
 
   @Test
-  public void ideaPiuLinkTest() throws Exception {
+  @Description("Verifica il corretto funzionamento del link idea-piu")
+  public void tc_003_ideaPiuLinkTest() throws Exception {
 
     WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
@@ -88,7 +110,6 @@ public class HomePageTest extends BaseTest {
 
       logger.info("driver switched to window: {}", mainWindow);
     }
-
   }
 }
 
