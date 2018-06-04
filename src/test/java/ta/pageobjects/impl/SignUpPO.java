@@ -1,6 +1,7 @@
 package ta.pageobjects.impl;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 import ta.pageobjects.PageObject;
@@ -8,18 +9,23 @@ import ta.pageobjects.PageObject;
 public class SignUpPO extends PageObject {
 
   @FindBy(id = "firstname")
+  @CacheLookup
   private WebElement firstName;
 
   @FindBy(id = "lastname")
+  @CacheLookup
   private WebElement lastName;
 
   @FindBy(id = "address")
+  @CacheLookup
   private WebElement address;
 
   @FindBy(id = "zipcode")
+  @CacheLookup
   private WebElement zipCode;
 
   @FindBy(id = "signup")
+  @CacheLookup
   private WebElement submitButton;
 
   public SignUpPO() {

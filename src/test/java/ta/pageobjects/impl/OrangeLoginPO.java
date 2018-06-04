@@ -1,6 +1,7 @@
 package ta.pageobjects.impl;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import ta.pageobjects.PageObject;
@@ -9,12 +10,15 @@ import ta.pageobjects.PageObject;
 public class OrangeLoginPO extends PageObject {
 
   @FindBy(how = How.ID, using = "txtUsername")
+  @CacheLookup
   private WebElement username;
 
   @FindBy(how = How.ID, using = "txtPassword")
+  @CacheLookup
   private WebElement password;
 
   @FindBy(how = How.ID, using = "btnLogin")
+  @CacheLookup
   private WebElement submitButton;
 
   public OrangeLoginPO() {

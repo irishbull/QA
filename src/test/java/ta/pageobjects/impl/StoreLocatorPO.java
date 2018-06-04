@@ -1,6 +1,7 @@
 package ta.pageobjects.impl;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
@@ -9,6 +10,7 @@ import ta.pageobjects.PageObject;
 public class StoreLocatorPO extends PageObject {
 
     @FindBy(how = How.NAME, using = "SELENIUM_STORE_LOCATOR_DESKTOP")
+    @CacheLookup
     private WebElement storeLocatorDiv;
 
     @FindBy(how = How.NAME, using = "SELENIUM_STORE_LOCATOR_POPUP")

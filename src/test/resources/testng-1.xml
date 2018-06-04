@@ -12,7 +12,6 @@
     <test name="homePageTest">
         <classes>
             <class name="ta.test.impl.HomePageTest"/>
-            <class name="ta.test.impl.HomePageSearchTest"/>
             <class name="ta.test.impl.StoreLocatorTest"/>
         </classes>
     </test>
