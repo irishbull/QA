@@ -73,6 +73,7 @@ public class SeleniumDriver {
             "--disable-popup-blocking");
         // TO REMOVE
         chrOptions.addArguments("--no-sandbox");
+        chrOptions.addArguments("--headless");
 
         // Chrome desired capabilities
         capabilities = DesiredCapabilities.chrome();
