@@ -172,4 +172,7 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
+*.properties
+
 # End of https://www.gitignore.io/api/java,gradle,eclipse,intellij
+
