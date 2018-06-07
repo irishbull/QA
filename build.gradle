@@ -115,17 +115,17 @@ allure {
 
     switch(browser){
         case "firefox":
-            resultsDir = file('./build/reports/allure-results/firefox')
-            reportDir = file('./build/reports/allure-report/firefox')
+            resultsDir = file('./allure-results/firefox')
+            reportDir = file('./allure-report/firefox')
             break;
         case "iexplorer":
-            resultsDir = file('./build/reports/allure-results/iexplorer')
-            reportDir = file('./build/reports/allure-report/iexplorer')
+            resultsDir = file('./allure-results/iexplorer')
+            reportDir = file('./allure-report/iexplorer')
             break;
         default:
             //chrome
-            resultsDir = file('./build/reports/allure-results/chrome')
-            reportDir = file('./build/reports/allure-report/chrome')
+            resultsDir = file('./allure-results/chrome')
+            reportDir = file('./allure-report/chrome')
     }
 }
 
