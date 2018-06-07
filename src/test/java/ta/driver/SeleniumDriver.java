@@ -71,6 +71,7 @@ public class SeleniumDriver {
         chrOptions.setExperimentalOption("prefs", chromePrefs);
         chrOptions.addArguments("--disable-plugins", "--disable-extensions",
             "--disable-popup-blocking");
+        chrOptions.addArguments("--headless");
 
         // Chrome desired capabilities
         capabilities = DesiredCapabilities.chrome();
