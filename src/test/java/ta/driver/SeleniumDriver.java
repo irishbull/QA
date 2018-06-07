@@ -96,6 +96,7 @@ public class SeleniumDriver {
         FirefoxProfile ffProfile = new FirefoxProfile();
         ffProfile.setPreference("browser.autofocus", true);
         ffProfile.setPreference("browser.tabs.remote.autostart.2", false);
+        ffxOpts.addArguments("--headless");
 
         // Firefox capabilities
         capabilities = DesiredCapabilities.firefox();
