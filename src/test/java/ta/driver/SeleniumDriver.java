@@ -71,6 +71,9 @@ public class SeleniumDriver {
         chrOptions.setExperimentalOption("prefs", chromePrefs);
         chrOptions.addArguments("--disable-plugins", "--disable-extensions",
             "--disable-popup-blocking");
+
+        // option needed by Jenkins to work on Linux. This option avoid browser opening during test
+        // for local test comment this line
         chrOptions.addArguments("--headless");
 
         // Chrome desired capabilities
@@ -96,6 +99,9 @@ public class SeleniumDriver {
         FirefoxProfile ffProfile = new FirefoxProfile();
         ffProfile.setPreference("browser.autofocus", true);
         ffProfile.setPreference("browser.tabs.remote.autostart.2", false);
+
+        // option needed by Jenkins to work on Linux. This option avoid browser opening during test
+        // for local test comment this line
         ffxOpts.addArguments("--headless");
 
         // Firefox capabilities
