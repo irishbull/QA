@@ -4,9 +4,9 @@
 <suite name="allSuites">
 
     <listeners>
-        <listener class-name="ta.utilities.SuiteListener"/>
-        <listener class-name="ta.utilities.LogListener" />
-        <listener class-name="ta.utilities.AllureScreenshotListener"/>
+        <listener class-name="ta.test.listeners.SuiteListener"/>
+        <listener class-name="ta.test.listeners.LogListener" />
+        <listener class-name="ta.test.listeners.AllureScreenshotListener"/>
     </listeners>
 
     <suite-files>

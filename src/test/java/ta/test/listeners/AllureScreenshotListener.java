@@ -1,4 +1,4 @@
-package ta.utilities;
+package ta.test.listeners;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -10,6 +10,7 @@ import org.testng.ITestResult;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+
 
 import io.qameta.allure.Allure;
 import ta.driver.SeleniumDriver;
@@ -27,12 +28,18 @@ public class AllureScreenshotListener implements IInvokedMethodListener {
   }
 
   private void attachScreenshot() {
+
     try {
+
       WebDriver driver = SeleniumDriver.getInstance().getDriver();
-      Allure.addAttachment("Screenshot", new ByteArrayInputStream(FileUtils
+      Allure
+          .addAttachment("Screenshot", new ByteArrayInputStream(FileUtils
           .readFileToByteArray(((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE))));
+
     } catch (IOException e) {
       e.printStackTrace();
     }
-  }
+
+}
+
 }
