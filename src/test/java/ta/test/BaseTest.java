@@ -22,12 +22,12 @@ public abstract class BaseTest {
     Assert.assertNotNull(environment, "Required property 'environment' not found");
     logger.info("Environmente = [{}]", environment);
 
-    //String browser = System.getProperty("browser");
-    //Assert.assertNotNull(browser, "Required parameter 'Browser' is missing");
-    // Quando si vuole eseguire un test da locale, utilizzare le due roghe sotto invece delle due righe sopra
+    String browser = System.getProperty("browser");
+    Assert.assertNotNull(browser, "Required parameter 'Browser' is missing");
+    /* debug locally
      String browser = System.getProperty("browser", "chrome");
      logger.info("Browser [{}]", browser);
-
+    */
     SeleniumDriver.getInstance().setDriver(browser);
     logger.info("Driver instance {}", SeleniumDriver.getInstance().toString());
 
