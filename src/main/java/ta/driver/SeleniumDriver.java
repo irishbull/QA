@@ -20,7 +20,7 @@ import ta.utilities.ReadPropertiesFile;
 public class SeleniumDriver {
 
   private static SeleniumDriver instance = new SeleniumDriver();
-  private ThreadLocal<WebDriver> webDriver = new ThreadLocal<WebDriver>();
+  private ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 
 
   // private constructor to prevent any other class from instantiating (singleton)
@@ -59,36 +59,6 @@ public class SeleniumDriver {
     DesiredCapabilities capabilities;
 
     switch (browser) {
-
-      case "chrome":
-
-        // Chrome preferences
-        Map<String, Object> chromePrefs = new HashMap<String, Object>();
-        chromePrefs.put("credentials_enable_service", false);
-
-        // Chrome options
-        ChromeOptions chrOptions = new ChromeOptions();
-        chrOptions.setExperimentalOption("prefs", chromePrefs);
-        chrOptions.addArguments("--disable-plugins", "--disable-extensions",
-            "--disable-popup-blocking");
-
-        // option needed by Jenkins to work on Linux. This option avoid browser opening during test
-        // for local test comment this line
-        chrOptions.addArguments("--headless");
-
-        // Chrome desired capabilities
-        capabilities = DesiredCapabilities.chrome();
-        capabilities.setCapability(ChromeOptions.CAPABILITY, chrOptions);
-        capabilities.setCapability("applicationCacheEnabled", false);
-
-        System.setProperty("webdriver.chrome.driver",
-            ReadPropertiesFile.getProperty("chrome.webdriver.path"));
-        webDriver.set(new ChromeDriver(chrOptions.merge(capabilities)));
-        getDriver().manage().timeouts().implicitlyWait(Constants.WaitTime.IMPLICIT_WAIT,
-            TimeUnit.SECONDS);
-
-        break;
-
 
       case "firefox":
 
@@ -138,6 +108,37 @@ public class SeleniumDriver {
         webDriver.set(new InternetExplorerDriver(ieOpts.merge(capabilities)));
         getDriver().manage().timeouts().implicitlyWait(Constants.WaitTime.IMPLICIT_WAIT,
             TimeUnit.SECONDS);
+
+        break;
+
+      case "chrome": default:
+
+        // Chrome preferences
+        Map<String, Object> chromePrefs = new HashMap<>();
+        chromePrefs.put("credentials_enable_service", false);
+
+        // Chrome options
+        ChromeOptions chrOptions = new ChromeOptions();
+        chrOptions.setExperimentalOption("prefs", chromePrefs);
+        chrOptions.addArguments("--disable-plugins", "--disable-extensions",
+            "--disable-popup-blocking");
+
+        // option needed by Jenkins to work on Linux. This option avoid browser opening during test
+        // for local test comment this line
+        chrOptions.addArguments("--headless");
+
+        // Chrome desired capabilities
+        capabilities = DesiredCapabilities.chrome();
+        capabilities.setCapability(ChromeOptions.CAPABILITY, chrOptions);
+        capabilities.setCapability("applicationCacheEnabled", false);
+
+        System.setProperty("webdriver.chrome.driver",
+            ReadPropertiesFile.getProperty("chrome.webdriver.path"));
+        webDriver.set(new ChromeDriver(chrOptions.merge(capabilities)));
+        getDriver().manage().timeouts().implicitlyWait(Constants.WaitTime.IMPLICIT_WAIT,
+            TimeUnit.SECONDS);
+
+        break;
     }
   }
 }

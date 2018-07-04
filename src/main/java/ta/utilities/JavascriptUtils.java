@@ -7,6 +7,9 @@ import org.openqa.selenium.WebElement;
 
 import ta.driver.SeleniumDriver;
 
+/*
+ * Javascript utilities class
+ */
 public class JavascriptUtils {
 
   /*
@@ -68,5 +71,10 @@ public class JavascriptUtils {
     JavascriptExecutor js = (JavascriptExecutor) driver;
     WebElement elementToClick = driver.findElement(by);
     js.executeScript("arguments[0].click();", elementToClick);
+  }
+
+
+  private JavascriptUtils() {
+    throw new IllegalStateException("JavascriptUtils - Object construction is forbidden");
   }
 }

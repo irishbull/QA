@@ -6,7 +6,7 @@ import ta.driver.SeleniumDriver;
 
 public abstract class PageObject {
 
-  public PageObject() {
+  protected PageObject() {
     PageFactory.initElements(SeleniumDriver.getInstance().getDriver(), this);
   }
 }

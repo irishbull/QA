@@ -19,6 +19,8 @@ import ta.driver.SeleniumDriver;
  */
 public class BrowserUtils {
 
+  private static final String CONSTRUCTION_FORBIDDEN = "BrowserUtils - Object construction is forbidden";
+
   /**
    * wait for page fully loaded
    * 
@@ -135,4 +137,7 @@ public class BrowserUtils {
     action.moveToElement(element).perform();
   }
 
+  private BrowserUtils() {
+    throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);
+  }
 }

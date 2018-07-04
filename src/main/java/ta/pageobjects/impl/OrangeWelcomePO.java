@@ -11,14 +11,14 @@ public class OrangeWelcomePO extends PageObject {
 
   @FindBy(how = How.ID, using = "menu_dashboard_index")
   @CacheLookup
-  private WebElement menu_dashboard_index;
+  private WebElement menuDashboardIndex;
 
   @FindBy(how = How.TAG_NAME, using = "title")
   @CacheLookup
   private WebElement title;
 
   public WebElement getDashboardElem() {
-    return menu_dashboard_index;
+    return menuDashboardIndex;
   }
 
   public String getTitle() {

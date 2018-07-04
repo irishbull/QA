@@ -6,8 +6,11 @@ public class ReadPropertiesFile {
 
   private static ResourceBundle rb = ResourceBundle.getBundle("project-config");
 
+  private ReadPropertiesFile() {
+    throw new IllegalStateException("ReadPropertiesFile - Object construction is forbidden");
+  }
+
   public static String getProperty(String key) {
-    // ResourceBundle.clearCache();
     return rb.getString(key);
   }
 }
