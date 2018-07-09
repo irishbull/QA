@@ -18,6 +18,9 @@ public class IperCookieTest extends BaseTest {
 
   @Test
   public void cookieTest() throws Exception {
+
+    logger.info(String.valueOf(Thread.currentThread().getId()));
+
     WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
     driver.get("http://www.iperdrive.it/");

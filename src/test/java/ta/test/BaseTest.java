@@ -4,7 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+
+import java.util.Objects;
 
 import ta.driver.SeleniumDriver;
 import ta.utilities.ReadPropertiesFile;
@@ -14,7 +19,7 @@ public abstract class BaseTest {
 
   private final Logger logger = LoggerFactory.getLogger(getClass());
 
-  @BeforeSuite
+  @BeforeTest
   public void suiteSetup() {
     logger.info("Set up");
 
@@ -38,6 +43,8 @@ public abstract class BaseTest {
   public void suiteTeardown() {
     logger.info("Tear down");
     logger.info("Driver instance {}", SeleniumDriver.getInstance().toString());
-    SeleniumDriver.getInstance().getDriver().quit();
+    if(Objects.nonNull(SeleniumDriver.getInstance().getDriver())){
+      SeleniumDriver.getInstance().getDriver().quit();
+    }
   }
 }

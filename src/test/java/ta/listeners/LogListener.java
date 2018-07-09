@@ -59,7 +59,7 @@ public class LogListener extends TestListenerAdapter {
   public void onTestSkipped(ITestResult tr) {
 
     logger.info("SKIPPED");
-    logger.info("END  -> {}, at {}", tr.getName());
+    logger.info("END  -> {}", tr.getName());
 
     super.onTestSkipped(tr);
   }

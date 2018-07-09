@@ -1,11 +1,14 @@
 package ta.test.impl;
 
+import org.json.simple.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
+import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.HomePageSearchResultsPO;
@@ -19,11 +22,25 @@ import static org.testng.Assert.assertTrue;
 
 public class HomePageTest extends BaseTest {
 
+  private static final String DATA_FILE = "src/test/java/ta/test/json/HomePageTest.json";
   private static final Logger logger = LoggerFactory.getLogger(HomePageTest.class);
 
-  @Test
+  @BeforeClass(alwaysRun = true, enabled = true)
+    protected void testClassSetup() throws Exception {
+
+        // set datafile for data provider
+        JSONDataProvider.dataFile=DATA_FILE;
+    }
+
+
+  @Test(dataProvider="fetchData_JSON", dataProviderClass=JSONDataProvider.class)
   @Description("Verifica che la ricerca (string vuota) restuisce al piu' tre risultati")
-  public void tc_001_searchReturnsAtMost3Results() throws Exception {
+  public void tc_001_searchReturnsAtMost3Results(String rowID,
+                                                 String description,
+                                                 JSONObject testData) throws Exception {
+
+    logger.info(String.valueOf(Thread.currentThread().getId()));
+
     WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
     driver.get(ReadPropertiesFile.getProperty("base.url"));
@@ -34,15 +51,20 @@ public class HomePageTest extends BaseTest {
 
     int a = homePageSearchResultsPO.getResultsNumber();
 
+    logger.info("description from json file: {}", testData.get("description").toString());
     logger.info(String.valueOf(a));
 
     assertTrue(homePageSearchResultsPO.getResultsNumber() <= 3);
   }
 
 
-  @Test
+  @Test(dataProvider="fetchData_JSON", dataProviderClass=JSONDataProvider.class)
   @Description("Verifica la navigazione del menu : Prodotti -> Bagno -> Docce -> Saune")
-  public void tc_002_navigateProductMenu() throws Exception {
+  public void tc_002_navigateProductMenu(String rowID,
+                                         String description,
+                                         JSONObject testData) throws Exception {
+
+    logger.info(String.valueOf(Thread.currentThread().getId()));
 
     WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
@@ -64,12 +86,17 @@ public class HomePageTest extends BaseTest {
     BrowserUtils.hover(homePagePO.getSauneSpan());
 
     logger.info("Navigate menu : Prodotti -> Bagno -> Docce -> Saune");
+    logger.info("description from json file: {}", testData.get("description").toString());
   }
 
 
-  @Test
+  @Test(dataProvider="fetchData_JSON", dataProviderClass=JSONDataProvider.class)
   @Description("Verifica il corretto funzionamento del link idea-piu")
-  public void tc_003_ideaPiuLinkTest() throws Exception {
+  public void tc_003_ideaPiuLinkTest(String rowID,
+                                     String description,
+                                     JSONObject testData) throws Exception {
+
+    logger.info(String.valueOf(Thread.currentThread().getId()));
 
     WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
@@ -82,6 +109,7 @@ public class HomePageTest extends BaseTest {
     // click link opening new tab
     IdeaPiuPO ideaPiuPO = homePagePO.clickIdeaPiuLink();
     logger.info("IdeaPiu link CLICKED");
+    logger.info("description from json file: {}", testData.get("description").toString());
 
 
     for (String winHandle : driver.getWindowHandles()) {
@@ -112,5 +140,6 @@ public class HomePageTest extends BaseTest {
       logger.info("driver switched to window: {}", mainWindow);
     }
   }
+
 }
 
