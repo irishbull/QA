@@ -4,7 +4,6 @@ import org.json.simple.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -22,124 +21,116 @@ import static org.testng.Assert.assertTrue;
 
 public class HomePageTest extends BaseTest {
 
-  private static final String DATA_FILE = "src/test/java/ta/test/json/HomePageTest.json";
-  private static final Logger logger = LoggerFactory.getLogger(HomePageTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(HomePageTest.class);
 
-  @BeforeClass(alwaysRun = true, enabled = true)
-    protected void testClassSetup() throws Exception {
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Description("Verifica che la ricerca (string vuota) restuisce al piu' tre risultati")
+    public void tc_001_searchReturnsAtMost3Results(String rowID,
+                                                   String description,
+                                                   JSONObject testData) throws Exception {
 
-        // set datafile for data provider
-        JSONDataProvider.dataFile=DATA_FILE;
+        logger.info(description);
+        logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
+
+        WebDriver driver = SeleniumDriver.getInstance().getDriver();
+
+        driver.get(ReadPropertiesFile.getProperty("base.url"));
+
+        HomePagePO homePagePO = new HomePagePO();
+
+        HomePageSearchResultsPO homePageSearchResultsPO = homePagePO.clickOnSearch();
+
+        int a = homePageSearchResultsPO.getResultsNumber();
+
+        logger.info("description from json file: {}", testData.get("description").toString());
+        logger.info(String.valueOf(a));
+
+        assertTrue(homePageSearchResultsPO.getResultsNumber() <= 3);
     }
 
 
-  @Test(dataProvider="fetchData_JSON", dataProviderClass=JSONDataProvider.class)
-  @Description("Verifica che la ricerca (string vuota) restuisce al piu' tre risultati")
-  public void tc_001_searchReturnsAtMost3Results(String rowID,
-                                                 String description,
-                                                 JSONObject testData) throws Exception {
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Description("Verifica la navigazione del menu : Prodotti -> Bagno -> Docce -> Saune")
+    public void tc_002_navigateProductMenu(String rowID,
+                                           String description,
+                                           JSONObject testData) throws Exception {
 
-    logger.info(String.valueOf(Thread.currentThread().getId()));
+        logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
 
-    WebDriver driver = SeleniumDriver.getInstance().getDriver();
+        WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-    driver.get(ReadPropertiesFile.getProperty("base.url"));
+        driver.get(ReadPropertiesFile.getProperty("base.url"));
 
-    HomePagePO homePagePO = new HomePagePO();
+        HomePagePO homePagePO = new HomePagePO();
 
-    HomePageSearchResultsPO homePageSearchResultsPO = homePagePO.clickOnSearch();
+        BrowserUtils.hover(homePagePO.getProductMenu());
 
-    int a = homePageSearchResultsPO.getResultsNumber();
+        BrowserUtils.waitFor(homePagePO.getMacroCategoryGroup(), Constants.WaitTime.EXPLICIT_WAIT);
+        BrowserUtils.hover(homePagePO.getMacroCategoryGroup());
 
-    logger.info("description from json file: {}", testData.get("description").toString());
-    logger.info(String.valueOf(a));
+        BrowserUtils.hover(homePagePO.getBagnoLink());
 
-    assertTrue(homePageSearchResultsPO.getResultsNumber() <= 3);
-  }
+        BrowserUtils.waitFor(homePagePO.getMacroCategory(), Constants.WaitTime.EXPLICIT_WAIT);
+        BrowserUtils.hover(homePagePO.getDocceSpan());
 
+        BrowserUtils.waitFor(homePagePO.getCategory(), Constants.WaitTime.EXPLICIT_WAIT);
+        BrowserUtils.hover(homePagePO.getSauneSpan());
 
-  @Test(dataProvider="fetchData_JSON", dataProviderClass=JSONDataProvider.class)
-  @Description("Verifica la navigazione del menu : Prodotti -> Bagno -> Docce -> Saune")
-  public void tc_002_navigateProductMenu(String rowID,
-                                         String description,
-                                         JSONObject testData) throws Exception {
-
-    logger.info(String.valueOf(Thread.currentThread().getId()));
-
-    WebDriver driver = SeleniumDriver.getInstance().getDriver();
-
-    driver.get(ReadPropertiesFile.getProperty("base.url"));
-
-    HomePagePO homePagePO = new HomePagePO();
-
-    BrowserUtils.hover(homePagePO.getProductMenu());
-
-    BrowserUtils.waitFor(homePagePO.getMacroCategoryGroup(), Constants.WaitTime.EXPLICIT_WAIT);
-    BrowserUtils.hover(homePagePO.getMacroCategoryGroup());
-
-    BrowserUtils.hover(homePagePO.getBagnoLink());
-
-    BrowserUtils.waitFor(homePagePO.getMacroCategory(), Constants.WaitTime.EXPLICIT_WAIT);
-    BrowserUtils.hover(homePagePO.getDocceSpan());
-
-    BrowserUtils.waitFor(homePagePO.getCategory(), Constants.WaitTime.EXPLICIT_WAIT);
-    BrowserUtils.hover(homePagePO.getSauneSpan());
-
-    logger.info("Navigate menu : Prodotti -> Bagno -> Docce -> Saune");
-    logger.info("description from json file: {}", testData.get("description").toString());
-  }
-
-
-  @Test(dataProvider="fetchData_JSON", dataProviderClass=JSONDataProvider.class)
-  @Description("Verifica il corretto funzionamento del link idea-piu")
-  public void tc_003_ideaPiuLinkTest(String rowID,
-                                     String description,
-                                     JSONObject testData) throws Exception {
-
-    logger.info(String.valueOf(Thread.currentThread().getId()));
-
-    WebDriver driver = SeleniumDriver.getInstance().getDriver();
-
-    driver.get(ReadPropertiesFile.getProperty("base.url"));
-
-    HomePagePO homePagePO = new HomePagePO();
-
-    String mainWindow = driver.getWindowHandle();
-
-    // click link opening new tab
-    IdeaPiuPO ideaPiuPO = homePagePO.clickIdeaPiuLink();
-    logger.info("IdeaPiu link CLICKED");
-    logger.info("description from json file: {}", testData.get("description").toString());
-
-
-    for (String winHandle : driver.getWindowHandles()) {
-      if (!mainWindow.equals(winHandle)) {
-        // switch window
-        driver.switchTo().window(winHandle);
-        logger.info("driver switched to window: {}", winHandle);
-      }
+        logger.info("Navigate menu : Prodotti -> Bagno -> Docce -> Saune");
+        logger.info("description from json file: {}", testData.get("description").toString());
     }
 
 
-    assertTrue(ideaPiuPO.getTitle().contains("Diventa Titolare Idea"));
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Description("Verifica il corretto funzionamento del link idea-piu")
+    public void tc_003_ideaPiuLinkTest(String rowID,
+                                       String description,
+                                       JSONObject testData) throws Exception {
 
-    assertTrue(ideaPiuPO.getUrl().contains(Constants.PathComponent.IDEAPIU));
+        logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
 
-    assertTrue(ideaPiuPO.getDivAttribute().equals("idea-piu"));
+        WebDriver driver = SeleniumDriver.getInstance().getDriver();
+
+        driver.get(ReadPropertiesFile.getProperty("base.url"));
+
+        HomePagePO homePagePO = new HomePagePO();
+
+        String mainWindow = driver.getWindowHandle();
+
+        // click link opening new tab
+        IdeaPiuPO ideaPiuPO = homePagePO.clickIdeaPiuLink();
+        logger.info("IdeaPiu link CLICKED");
+        logger.info("description from json file: {}", testData.get("description").toString());
 
 
-    // switch back
-    if (!driver.getWindowHandle().equals(mainWindow)) {
+        for (String winHandle : driver.getWindowHandles()) {
+            if (!mainWindow.equals(winHandle)) {
+                // switch window
+                driver.switchTo().window(winHandle);
+                logger.info("driver switched to window: {}", winHandle);
+            }
+        }
 
-      // close the window, window is no more required
-      driver.close();
 
-      // switch back to original window (main window)
-      driver.switchTo().window(mainWindow);
+        assertTrue(ideaPiuPO.getTitle().contains("Diventa Titolare Idea"));
 
-      logger.info("driver switched to window: {}", mainWindow);
+        assertTrue(ideaPiuPO.getUrl().contains(Constants.PathComponent.IDEAPIU));
+
+        assertTrue(ideaPiuPO.getDivAttribute().equals("idea-piu"));
+
+
+        // switch back
+        if (!driver.getWindowHandle().equals(mainWindow)) {
+
+            // close the window, window is no more required
+            driver.close();
+
+            // switch back to original window (main window)
+            driver.switchTo().window(mainWindow);
+
+            logger.info("driver switched to window: {}", mainWindow);
+        }
     }
-  }
 
 }
 

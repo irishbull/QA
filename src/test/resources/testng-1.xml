@@ -1,15 +1,17 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite-1">
+<suite name="Suite-1" parallel="tests" thread-count="5">
 
     <test name = "signUpFormTest">
+        <parameter name="json-path"  value="src/test/java/ta/test/json/SignUpFormTest.json"/>
         <classes>
             <class name = "ta.test.impl.SignUpFormTest" />
         </classes>
     </test>
 
     <test name="homePageTest">
+        <parameter name="json-path"  value="src/test/java/ta/test/json/HomePageTest.json"/>
         <classes>
             <class name="ta.test.impl.HomePageTest"/>
         </classes>

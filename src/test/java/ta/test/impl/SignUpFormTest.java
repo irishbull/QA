@@ -3,7 +3,6 @@ package ta.test.impl;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -19,36 +18,28 @@ import static org.testng.Assert.assertTrue;
 
 public class SignUpFormTest extends BaseTest {
 
-  private static final String DATA_FILE = "src/test/java/ta/test/json/SignUpFormTest.json";
-  private static final Logger logger = LoggerFactory.getLogger(SignUpFormTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(SignUpFormTest.class);
 
-  @BeforeClass(alwaysRun = true, enabled = true)
-  protected void testClassSetup() throws Exception {
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, testName = "dataProvider.json")
+    @Description("Test sign up form submit")
+    public void tc001_signUpFormTest(String rowID,
+                                     String description,
+                                     JSONObject testData) {
 
-    // set datafile for data provider
-    JSONDataProvider.dataFile=DATA_FILE;
-  }
+        logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
+        logger.info(description);
+        SeleniumDriver.getInstance().getDriver()
+                .get("http://www.kimschiller.com/page-object-pattern-tutorial/index.html");
 
-  @Test(dataProvider="fetchData_JSON", dataProviderClass=JSONDataProvider.class)
-  @Description("Test sign up form submit")
-  public void tc001_signUpFormTest(String rowID,
-                     String description,
-                     JSONObject testData) {
+        SignUpPO signUpPO = new SignUpPO();
+        assertTrue(signUpPO.isInitialized());
 
-    logger.info(String.valueOf(Thread.currentThread().getId()));
-    logger.info(description);
-    SeleniumDriver.getInstance().getDriver()
-        .get("http://www.kimschiller.com/page-object-pattern-tutorial/index.html");
+        signUpPO.enterName(testData.get("first-name").toString(), testData.get("last-name").toString());
+        signUpPO.enterAddress(testData.get("address").toString(), testData.get("zip-code").toString());
 
-    SignUpPO signUpPO = new SignUpPO();
-    assertTrue(signUpPO.isInitialized());
+        ReceiptPO receiptPO = signUpPO.submit();
+        assertTrue(receiptPO.isInitialized());
 
-    signUpPO.enterName(testData.get("first-name").toString(), testData.get("last-name").toString());
-    signUpPO.enterAddress(testData.get("address").toString(), testData.get("zip-code").toString());
-
-    ReceiptPO receiptPO = signUpPO.submit();
-    assertTrue(receiptPO.isInitialized());
-
-    assertEquals("Thank you!", receiptPO.confirmationHeader());
-  }
+        assertEquals("Thank you!", receiptPO.confirmationHeader());
+    }
 }

@@ -1,0 +1,61 @@
+{
+  "tc001_signUpFormTest": [
+    {
+      "rowID": "tc001_signUpFormTest.01",
+      "description": "insert form fields - tc001.01",
+      "first-name": "Nome1",
+      "last-name": "Cognome1",
+      "address": "via Mazzini",
+      "zip-code": "1234"
+    },
+    {
+      "rowID": "tc001_signUpFormTest.02",
+      "description": "insert form fields - tc001.02",
+      "first-name": "Nome2",
+      "last-name": "Cognome2",
+      "address": "piazza Garibaldi",
+      "zip-code": "1234"
+    }
+  ],
+
+  "tc002_signUpFormTest": [
+    {
+      "rowID": "tc002_signUpFormTest.01",
+      "description": "insert form fields tc002.01",
+      "first-name": "Nome",
+      "last-name": "Cognome",
+      "address": "via Roma",
+      "zip-code": "1234"
+    },
+    {
+      "rowID": "tc002_signUpFormTest.02",
+      "description": "insert form fields tc002.02",
+      "first-name": "Nome",
+      "last-name": "Cognome",
+      "address": "via Roma",
+      "zip-code": "1234"
+    }
+  ],
+
+  "tc_001_searchReturnsAtMost3Results": [
+    {
+      "rowID": "tc_001_searchReturnsAtMost3Results.01",
+      "description": "search should return at most 3 results"
+    }
+  ],
+
+  "tc_002_navigateProductMenu": [
+    {
+      "rowID": "tc_002_navigateProductMenu.01",
+      "description": "navigate the product menu macro category group -> category group -> category"
+    }
+  ],
+
+  "tc_003_ideaPiuLinkTest": [
+    {
+      "rowID": "tc_003_ideaPiuLinkTest.01",
+      "description": "click idea piu' link"
+    }
+  ]
+}
+

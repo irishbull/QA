@@ -3,49 +3,55 @@ package ta.dataproviders;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 
+
 import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class JSONDataProvider {
-    public static String dataFile = "";
-    public static String testCaseName = "";
 
-    public JSONDataProvider() throws Exception {
-    }
+    private static final Logger logger = LoggerFactory.getLogger(JSONDataProvider.class);
 
     /**
      * fetchData method to retrieve test data for specified method
      *
-     * @param method
      * @return Object[][]
-     * @throws Exception
      */
-    @DataProvider(name = "fetchData_JSON")
-    public static Object[][] fetchData(Method method) throws Exception {
-        Object rowID, description;
+    @DataProvider(name = "fetchJSONData")
+    public Object[][] fetchData(ITestContext ctx, Method method) throws IOException, ParseException {
+        Object rowID;
+        Object description;
         Object[][] result;
-        testCaseName = method.getName();
-        List<JSONObject> testDataList = new ArrayList<JSONObject>();
-        JSONArray testData = (JSONArray) extractData_JSON(dataFile).get(method.getName());
+        List<JSONObject> testDataList = new ArrayList<>();
 
-        for ( int i = 0; i < testData.size(); i++ ) {
+
+        String dataFile = ctx.getCurrentXmlTest().getAllParameters().get("json-path");
+        logger.info(dataFile);
+
+        JSONArray testData = (JSONArray) extractJSONData(dataFile).get(method.getName());
+
+        for (int i = 0; i < testData.size(); i++) {
             testDataList.add((JSONObject) testData.get(i));
         }
 
         // include Filter
-        if ( System.getProperty("includePattern") != null ) {
+        if (System.getProperty("includePattern") != null) {
             String include = System.getProperty("includePattern");
-            List<JSONObject> newList = new ArrayList<JSONObject>();
+            List<JSONObject> newList = new ArrayList<>();
             List<String> tests = Arrays.asList(include.split(",", -1));
 
-            for ( String getTest : tests ) {
-                for ( int i = 0; i < testDataList.size(); i++ ) {
-                    if ( testDataList.get(i).toString().contains(getTest) ) {
+            for (String getTest : tests) {
+                for (int i = 0; i < testDataList.size(); i++) {
+                    if (testDataList.get(i).toString().contains(getTest)) {
                         newList.add(testDataList.get(i));
                     }
                 }
@@ -56,14 +62,14 @@ public class JSONDataProvider {
         }
 
         // exclude Filter
-        if ( System.getProperty("excludePattern") != null ) {
-            String exclude =System.getProperty("excludePattern");
+        if (System.getProperty("excludePattern") != null) {
+            String exclude = System.getProperty("excludePattern");
             List<String> tests = Arrays.asList(exclude.split(",", -1));
 
-            for ( String getTest : tests ) {
+            for (String getTest : tests) {
                 // start at end of list and work backwards so index stays in sync
-                for ( int i = testDataList.size() - 1 ; i >= 0; i-- ) {
-                    if ( testDataList.get(i).toString().contains(getTest) ) {
+                for (int i = testDataList.size() - 1; i >= 0; i--) {
+                    if (testDataList.get(i).toString().contains(getTest)) {
                         testDataList.remove(testDataList.get(i));
                     }
                 }
@@ -74,14 +80,12 @@ public class JSONDataProvider {
         try {
             result = new Object[testDataList.size()][testDataList.get(0).size()];
 
-            for ( int i = 0; i < testDataList.size(); i++ ) {
+            for (int i = 0; i < testDataList.size(); i++) {
                 rowID = testDataList.get(i).get("rowID");
                 description = testDataList.get(i).get("description");
-                result[i] = new Object[] { rowID, description, testDataList.get(i) };
+                result[i] = new Object[]{rowID, description, testDataList.get(i)};
             }
-        }
-
-        catch(IndexOutOfBoundsException ie) {
+        } catch (IndexOutOfBoundsException ie) {
             result = new Object[0][0];
         }
 
@@ -89,13 +93,11 @@ public class JSONDataProvider {
     }
 
     /**
-     * extractData_JSON method to get JSON data from file
+     * extractJSONData method to get JSON data from file
      *
-     * @param file
      * @return JSONObject
-     * @throws Exception
      */
-    public static JSONObject extractData_JSON(String file) throws Exception {
+    public static JSONObject extractJSONData(String file) throws IOException, ParseException {
         FileReader reader = new FileReader(file);
         JSONParser jsonParser = new JSONParser();
 

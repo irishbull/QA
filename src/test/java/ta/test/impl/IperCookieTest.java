@@ -19,7 +19,7 @@ public class IperCookieTest extends BaseTest {
   @Test
   public void cookieTest() throws Exception {
 
-    logger.info(String.valueOf(Thread.currentThread().getId()));
+    logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
 
     WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
