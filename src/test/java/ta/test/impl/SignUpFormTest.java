@@ -22,12 +22,10 @@ public class SignUpFormTest extends BaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, testName = "dataProvider.json")
     @Description("Test sign up form submit")
-    public void tc001_signUpFormTest(String rowID,
-                                     String description,
-                                     JSONObject testData) {
+    public void tc001_signUpFormTest(JSONObject testData) {
 
         logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
-        logger.info(description);
+        logger.info(testData.get("description").toString());
         SeleniumDriver.getInstance().getDriver()
                 .get("http://www.kimschiller.com/page-object-pattern-tutorial/index.html");
 

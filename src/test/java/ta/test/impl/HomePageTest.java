@@ -25,11 +25,9 @@ public class HomePageTest extends BaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Verifica che la ricerca (string vuota) restuisce al piu' tre risultati")
-    public void tc_001_searchReturnsAtMost3Results(String rowID,
-                                                   String description,
-                                                   JSONObject testData) throws Exception {
+    public void tc_001_searchReturnsAtMost3Results(JSONObject testData) throws Exception {
 
-        logger.info(description);
+        logger.info(testData.get("description").toString());
         logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
@@ -51,9 +49,7 @@ public class HomePageTest extends BaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Verifica la navigazione del menu : Prodotti -> Bagno -> Docce -> Saune")
-    public void tc_002_navigateProductMenu(String rowID,
-                                           String description,
-                                           JSONObject testData) throws Exception {
+    public void tc_002_navigateProductMenu(JSONObject testData) throws Exception {
 
         logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
 
@@ -83,9 +79,7 @@ public class HomePageTest extends BaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Verifica il corretto funzionamento del link idea-piu")
-    public void tc_003_ideaPiuLinkTest(String rowID,
-                                       String description,
-                                       JSONObject testData) throws Exception {
+    public void tc_003_ideaPiuLinkTest(JSONObject testData) throws Exception {
 
         logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
 

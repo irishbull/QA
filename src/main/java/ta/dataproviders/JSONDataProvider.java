@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -28,8 +27,6 @@ public class JSONDataProvider {
      */
     @DataProvider(name = "fetchJSONData")
     public Object[][] fetchData(ITestContext ctx, Method method) throws IOException, ParseException {
-        Object rowID;
-        Object description;
         Object[][] result;
         List<JSONObject> testDataList = new ArrayList<>();
 
@@ -81,9 +78,7 @@ public class JSONDataProvider {
             result = new Object[testDataList.size()][testDataList.get(0).size()];
 
             for (int i = 0; i < testDataList.size(); i++) {
-                rowID = testDataList.get(i).get("rowID");
-                description = testDataList.get(i).get("description");
-                result[i] = new Object[]{rowID, description, testDataList.get(i)};
+                result[i] = new Object[]{testDataList.get(i)};
             }
         } catch (IndexOutOfBoundsException ie) {
             result = new Object[0][0];
