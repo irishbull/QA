@@ -6,61 +6,53 @@ import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
 public class LogListener extends TestListenerAdapter {
-  private static final Logger logger = LoggerFactory.getLogger("");
+    private static final Logger logger = LoggerFactory.getLogger("");
 
-  /**
-   * onTestStart method
-   *
-   * @param tr
-   */
-  @Override
-  public void onTestStart(ITestResult tr) {
-    logger.info("------------- Test '{}' -------------", tr.getName());
-    logger.info("START -> {}", tr.getName());
+    /**
+     * onTestStart method
+     */
+    @Override
+    public void onTestStart(ITestResult tr) {
+        logger.info("------------- Test '{}' -------------", tr.getName());
+        logger.info("START -> {}", tr.getName());
 
-    super.onTestStart(tr);
-  }
+        super.onTestStart(tr);
+    }
 
 
-  /**
-   * onTestSuccess method
-   *
-   * @param tr
-   */
-  @Override
-  public void onTestSuccess(ITestResult tr) {
-    logger.info("PASSED");
-    logger.info("END -> {}", tr.getName());
+    /**
+     * onTestSuccess method
+     */
+    @Override
+    public void onTestSuccess(ITestResult tr) {
+        logger.info("PASSED");
+        logger.info("END -> {}", tr.getName());
 
-    super.onTestSuccess(tr);
-  }
+        super.onTestSuccess(tr);
+    }
 
 
-  /**
-   * onTestFailure method
-   *
-   * @param tr
-   */
-  @Override
-  public void onTestFailure(ITestResult tr) {
-    logger.info("FAILED");
-    logger.info("END  -> {}", tr.getName());
+    /**
+     * onTestFailure method
+     */
+    @Override
+    public void onTestFailure(ITestResult tr) {
+        logger.info("FAILED");
+        logger.info("END  -> {}", tr.getName());
 
-    super.onTestFailure(tr);
-  }
+        super.onTestFailure(tr);
+    }
 
 
-  /**
-   * onTestSkipped method
-   *
-   * @param tr
-   */
-  @Override
-  public void onTestSkipped(ITestResult tr) {
+    /**
+     * onTestSkipped method
+     */
+    @Override
+    public void onTestSkipped(ITestResult tr) {
 
-    logger.info("SKIPPED");
-    logger.info("END  -> {}", tr.getName());
+        logger.info("SKIPPED");
+        logger.info("END  -> {}", tr.getName());
 
-    super.onTestSkipped(tr);
-  }
+        super.onTestSkipped(tr);
+    }
 }

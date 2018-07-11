@@ -16,45 +16,45 @@ import static org.testng.Assert.assertTrue;
 
 public class OrangeLoginTest extends BaseTest {
 
-  private static final Logger logger = LoggerFactory.getLogger(OrangeLoginTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(OrangeLoginTest.class);
 
-  @Test
-  @Description("Login test with valid username and password")
-  public void loginSuccess() throws Exception {
+    @Test
+    @Description("Login test with valid username and password")
+    public void loginSuccess() throws Exception {
 
-    SeleniumDriver.getInstance().getDriver().get("http://opensource.demo.orangehrmlive.com/");
+        SeleniumDriver.getInstance().getDriver().get("http://opensource.demo.orangehrmlive.com/");
 
-    OrangeLoginPO loginPage = new OrangeLoginPO();
+        OrangeLoginPO loginPage = new OrangeLoginPO();
 
-    BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
+        BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
 
-    loginPage.enterUsernameAndPassword("Admin", "adm");
+        loginPage.enterUsernameAndPassword("Admin", "adm");
 
-    OrangeWelcomePO orangeWelcomePO = loginPage.submit();
+        OrangeWelcomePO orangeWelcomePO = loginPage.submit();
 
-    logger.info("Title = " + SeleniumDriver.getInstance().getDriver().getTitle());
+        logger.info("Title = " + SeleniumDriver.getInstance().getDriver().getTitle());
 
-    assertTrue(SeleniumDriver.getInstance().getDriver().getTitle().contains("OrangeHRM"));
+        assertTrue(SeleniumDriver.getInstance().getDriver().getTitle().contains("OrangeHRM"));
 
-    assertTrue(BrowserUtils.exists(orangeWelcomePO.getDashboardElem(), Constants.WaitTime.EXPLICIT_WAIT));
-  }
+        assertTrue(BrowserUtils.exists(orangeWelcomePO.getDashboardElem(), Constants.WaitTime.EXPLICIT_WAIT));
+    }
 
 
-  @Test
-  @Description("Login test with invalid username and password")
-  public void loginFailure() throws Exception {
+    @Test
+    @Description("Login test with invalid username and password")
+    public void loginFailure() throws Exception {
 
-    SeleniumDriver.getInstance().getDriver().get("http://opensource.demo.orangehrmlive.com/");
+        SeleniumDriver.getInstance().getDriver().get("http://opensource.demo.orangehrmlive.com/");
 
-    OrangeLoginPO loginPage = new OrangeLoginPO();
+        OrangeLoginPO loginPage = new OrangeLoginPO();
 
-    BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
+        BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
 
-    loginPage.enterUsernameAndPassword("username", "password");
+        loginPage.enterUsernameAndPassword("username", "password");
 
-    OrangeWelcomePO orangeWelcomePO = loginPage.submit();
+        OrangeWelcomePO orangeWelcomePO = loginPage.submit();
 
-    assertTrue(!BrowserUtils.exists(orangeWelcomePO.getDashboardElem(), Constants.WaitTime.EXPLICIT_WAIT));
-  }
+        assertTrue(!BrowserUtils.exists(orangeWelcomePO.getDashboardElem(), Constants.WaitTime.EXPLICIT_WAIT));
+    }
 }
 

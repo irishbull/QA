@@ -7,17 +7,17 @@ import org.testng.ISuiteListener;
 
 public class SuiteListener implements ISuiteListener {
 
-  private static final Logger logger = LoggerFactory.getLogger("");
+    private static final Logger logger = LoggerFactory.getLogger("");
 
-  @Override
-  public void onStart(ISuite suite) {
-    logger.info("-------------------------- SUITE '{}' --------------------------",
-        suite.getName());
-  }
+    @Override
+    public void onStart(ISuite suite) {
+        logger.info("-------------------------- SUITE '{}' --------------------------",
+                suite.getName());
+    }
 
-  @Override
-  public void onFinish(ISuite suite) {
-    logger.info("-------------------------- SUITE '{}' --------------------------",
-        suite.getName());
-  }
+    @Override
+    public void onFinish(ISuite suite) {
+        logger.info("-------------------------- SUITE '{}' --------------------------",
+                suite.getName());
+    }
 }

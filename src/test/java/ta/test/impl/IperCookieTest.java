@@ -14,20 +14,20 @@ import ta.utilities.JavascriptUtils;
 
 public class IperCookieTest extends BaseTest {
 
-  private static final Logger logger = LoggerFactory.getLogger(IperCookieTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(IperCookieTest.class);
 
-  @Test
-  public void cookieTest() throws Exception {
+    @Test
+    public void cookieTest() throws Exception {
 
-    logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
+        logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
 
-    WebDriver driver = SeleniumDriver.getInstance().getDriver();
+        WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-    driver.get("http://www.iperdrive.it/");
+        driver.get("http://www.iperdrive.it/");
 
-    // Because Selenium driver cannot interact with modal, we need to use
-    // JavascriptExecutor to execute native javascript code
-    JavascriptUtils.modalClose(By.className("remodal-close"));
+        // Because Selenium driver cannot interact with modal, we need to use
+        // JavascriptExecutor to execute native javascript code
+        JavascriptUtils.modalClose(By.className("remodal-close"));
 
-  }
+    }
 }
