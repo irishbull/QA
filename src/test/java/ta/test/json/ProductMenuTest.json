@@ -1,0 +1,28 @@
+{
+  "tc_001_navigateProductMenu": [
+    {
+      "rowID" : "tc_001_navigateProductMenu.01",
+      "description" : "navigate the product menu : Bagno -> Docce -> Saune",
+      "macroCategoryGroup" : "Bagno",
+      "macroCategory" : "Docce",
+      "category" : "Saune",
+      "pagePath" : "/prodotti/saune-CAT3216-c"
+    },
+    {
+      "rowID": "tc_001_navigateProductMenu.02",
+      "description" : "navigate the product menu : Cucina -> Lavelli -> Lavelli cucina",
+      "macroCategoryGroup" : "Cucina",
+      "macroCategory" : "Lavelli",
+      "category" : "Lavelli cucina",
+      "pagePath" : "/prodotti/lavelli-cucina-CAT63-c"
+    },
+    {
+      "rowID": "tc_001_navigateProductMenu.03",
+      "description" : "navigate the product menu : Ordine e sistemazione -> Scatole e contenitori -> Bauli",
+      "macroCategoryGroup" : "Illuminazione",
+      "macroCategory" : "Smart Lighting",
+      "category" : "Smart Lighting",
+      "pagePath" : "/prodotti/smart-lighting-CAT4174-c"
+    }
+  ]
+}
