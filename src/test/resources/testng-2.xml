@@ -9,9 +9,9 @@
         </classes>
     </test>
 -->
-    <test name = "iperCookieTest">
+    <test name = "loginTest">
         <classes>
-            <class name = "ta.test.impl.IperCookieTest" />
+            <class name = "ta.test.impl.LoginTest" />
         </classes>
     </test>
 
