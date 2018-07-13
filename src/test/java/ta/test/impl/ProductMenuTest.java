@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
+import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.ProductMenuPO;
 import ta.test.BaseTest;
 import ta.utilities.BrowserUtils;
@@ -24,13 +25,18 @@ public class ProductMenuTest extends BaseTest {
     @Description("Verifica la navigazione del menu")
     public void tc_001_navigateProductMenu(JSONObject testData) throws Exception {
 
-        logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
+        logger.debug("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
         logger.info( testData.get("description").toString());
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
         driver.get(ReadPropertiesFile.getProperty("qa.base.url"));
 
+        HomePagePO homePagePO = new HomePagePO();
+
+        if(BrowserUtils.exists(homePagePO.getAcceptCookiesButton(), Constants.WaitTime.EXPLICIT_WAIT)){
+            homePagePO.getAcceptCookiesButton().click();
+        }
         ProductMenuPO productMenuPO = new ProductMenuPO();
 
         // Menu

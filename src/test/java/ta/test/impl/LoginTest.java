@@ -9,8 +9,6 @@ import io.qameta.allure.Description;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.LoginPO;
-import ta.pageobjects.impl.OrangeLoginPO;
-import ta.pageobjects.impl.OrangeWelcomePO;
 import ta.test.BaseTest;
 import ta.utilities.BrowserUtils;
 import ta.utilities.Constants;
@@ -30,13 +28,19 @@ public class LoginTest extends BaseTest {
 
         HomePagePO homePagePO = new HomePagePO();
 
+        if(BrowserUtils.exists(homePagePO.getAcceptCookiesButton(), Constants.WaitTime.EXPLICIT_WAIT)){
+            homePagePO.getAcceptCookiesButton().click();
+        }
+
         LoginPO loginPO = homePagePO.clickLoginIconLink();
 
         loginPO.enterUsernameAndPassword("giovanni.bologna@nttdata.com", "lymn1234");
 
         homePagePO = loginPO.clickLoginButton();
 
-        BrowserUtils.exists(homePagePO.getFirstNameDiv(),Constants.WaitTime.EXPLICIT_WAIT);
+        BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
+
+        BrowserUtils.exists(homePagePO.getFirstNameDiv(), Constants.WaitTime.EXPLICIT_WAIT);
 
         logger.info("First name = {}", homePagePO.getLoginIcon().findElement(By.tagName("div")).getText());
 

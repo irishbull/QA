@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 import java.util.Objects;
@@ -37,12 +38,11 @@ public abstract class BaseTest {
         SeleniumDriver.getInstance().getDriver().manage().window().maximize();
     }
 
-    @AfterSuite
+    @AfterTest
     public void suiteTeardown() {
         logger.info("Tear down");
         logger.info("Driver instance {}", SeleniumDriver.getInstance().toString());
-        if (Objects.nonNull(SeleniumDriver.getInstance().getDriver())) {
-            SeleniumDriver.getInstance().getDriver().quit();
-        }
+        SeleniumDriver.getInstance().getDriver().manage().deleteAllCookies();
+        SeleniumDriver.getInstance().getDriver().quit();
     }
 }

@@ -54,6 +54,9 @@ public class HomePagePO extends PageObject {
     @FindBy(how = How.XPATH, using = "/html/body/div[1]/div/div[3]/div[1]/div/div[2]/div[4]/div[2]/div/a/div")
     private WebElement firstNameDiv;
 
+    @FindBy(how = How.ID, using = "consent_prompt_submit")
+    private WebElement acceptCookiesButton;
+
     public IdeaPiuPO clickIdeaPiuLink() {
         ideaPiuLink.click();
         return new IdeaPiuPO();
@@ -117,5 +120,9 @@ public class HomePagePO extends PageObject {
 
     public WebElement getFirstNameDiv() {
         return firstNameDiv;
+    }
+
+    public WebElement getAcceptCookiesButton() {
+        return acceptCookiesButton;
     }
 }
