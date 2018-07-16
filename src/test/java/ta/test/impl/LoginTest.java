@@ -1,11 +1,13 @@
 package ta.test.impl;
 
-import org.openqa.selenium.By;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
+import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.LoginPO;
@@ -14,37 +16,67 @@ import ta.utilities.BrowserUtils;
 import ta.utilities.Constants;
 import ta.utilities.ReadPropertiesFile;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends BaseTest {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginTest.class);
 
-    @Test
-    @Description("Login test with valid username and password")
-    public void loginSuccess() throws Exception {
 
-        SeleniumDriver.getInstance().getDriver().get(ReadPropertiesFile.getProperty("qa.base.url"));
+    @BeforeMethod
+    public void beforeTest() {
+
+        SeleniumDriver.getInstance().getDriver().get(ReadPropertiesFile.getProperty("qa.auth.base.url"));
 
         HomePagePO homePagePO = new HomePagePO();
 
-        if(BrowserUtils.exists(homePagePO.getAcceptCookiesButton(), Constants.WaitTime.EXPLICIT_WAIT)){
+        if (BrowserUtils.exists(homePagePO.getAcceptCookiesButton(), Constants.WaitTime.EXPLICIT_WAIT)) {
             homePagePO.getAcceptCookiesButton().click();
+            logger.debug("Cookies accepted");
         }
+    }
+
+
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Description("Login test with valid username and password")
+    public void tc_001_loginSuccess(JSONObject testData) throws Exception {
+
+        HomePagePO homePagePO = new HomePagePO();
 
         LoginPO loginPO = homePagePO.clickLoginIconLink();
 
-        loginPO.enterUsernameAndPassword("giovanni.bologna@nttdata.com", "lymn1234");
+        loginPO.enterUsernameAndPassword(testData.get("username").toString(), testData.get("password").toString());
 
         homePagePO = loginPO.clickLoginButton();
 
-        BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
+        // after successful login user is redirected to homepage
+        assertEquals(SeleniumDriver.getInstance().getDriver().getCurrentUrl(), ReadPropertiesFile.getProperty("qa.base.url"), "Page url");
 
-        BrowserUtils.exists(homePagePO.getFirstNameDiv(), Constants.WaitTime.EXPLICIT_WAIT);
+        BrowserUtils.waitFor(homePagePO.getUserFirstName(), Constants.WaitTime.EXPLICIT_WAIT);
 
-        logger.info("First name = {}", homePagePO.getLoginIcon().findElement(By.tagName("div")).getText());
+        // after successful user firstName has the expected value
+        assertEquals(homePagePO.getUserFirstName().getText(), testData.get("firstName").toString(), "User first name");
+    }
 
-        assertTrue(homePagePO.getFirstNameDiv().getText().equalsIgnoreCase("giovanni"));
+
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Description("Login test with erroneous username or password")
+    public void tc_002_loginFailure(JSONObject testData) throws Exception {
+
+        HomePagePO homePagePO = new HomePagePO();
+
+        LoginPO loginPO = homePagePO.clickLoginIconLink();
+
+        loginPO.enterUsernameAndPassword(testData.get("username").toString(), testData.get("password").toString());
+
+        loginPO.clickLoginButton();
+
+        // error message wrapper exists
+        assertTrue(BrowserUtils.exists(loginPO.getLoginErrorMessageWrapper(), Constants.WaitTime.EXPLICIT_WAIT));
+
+        // error message has the expected value
+        assertEquals(loginPO.getLoginErrorMessageWrapper().getText(), testData.get("expectedValue").toString(), "Error message");
 
     }
 }

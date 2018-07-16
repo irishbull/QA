@@ -74,14 +74,26 @@ public class BrowserUtils {
 
 
     /**
-     * waitForURL method to poll page URL
+     * waitForURLContains method to poll page URL
      */
-    public static void waitForURL(String url, int timer) throws Exception {
+    public static void waitForURLContains(String url, int timer) throws Exception {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         WebDriverWait wait = new WebDriverWait(driver, timer);
 
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.urlContains(url)));
+    }
+
+
+    /**
+     * waitForURLMatches method to poll page that matches the specified URL
+     */
+    public static void waitForURLMatches(String url, int timer) throws Exception {
+
+        WebDriver driver = SeleniumDriver.getInstance().getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, timer);
+
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.urlMatches(url)));
     }
 
 
@@ -103,6 +115,7 @@ public class BrowserUtils {
             return false;
         }
     }
+
 
     /**
      * mouse over the specified element

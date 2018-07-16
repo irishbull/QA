@@ -4,6 +4,7 @@
 <suite name="Suite-2">
 
     <test name = "loginTest">
+        <parameter name="json-path"  value="src/test/java/ta/test/json/LoginTest.json"/>
         <classes>
             <class name = "ta.test.impl.LoginTest" />
         </classes>

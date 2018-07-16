@@ -21,6 +21,9 @@ public class LoginPO extends PageObject {
     @CacheLookup
     private WebElement loginButton;
 
+    @FindBy(how = How.CLASS_NAME, using = "error-login")
+    private WebElement loginErrorMessageWrapper;
+
     public void enterUsernameAndPassword(String email, String password) throws Exception {
         this.email.clear();
         this.email.sendKeys(email);
@@ -31,5 +34,9 @@ public class LoginPO extends PageObject {
     public HomePagePO clickLoginButton() {
         this.loginButton.submit();
         return new HomePagePO();
+    }
+
+    public WebElement getLoginErrorMessageWrapper() {
+        return this.loginErrorMessageWrapper;
     }
 }

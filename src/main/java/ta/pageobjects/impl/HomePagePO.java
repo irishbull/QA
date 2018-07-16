@@ -51,8 +51,8 @@ public class HomePagePO extends PageObject {
     @FindBy(how = How.NAME, using = "SELENIUM_HEADER_MENU_LOGIN_ICON")
     private WebElement loginIcon;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[1]/div/div[3]/div[1]/div/div[2]/div[4]/div[2]/div/a/div")
-    private WebElement firstNameDiv;
+    @FindBy(how = How.NAME, using = "SELENIUM_HEADER_MENU_LOGIN_TEXT")
+    private WebElement userFirstName;
 
     @FindBy(how = How.ID, using = "consent_prompt_submit")
     private WebElement acceptCookiesButton;
@@ -73,18 +73,6 @@ public class HomePagePO extends PageObject {
     }
 
     // getter
-    public WebElement getIdeaPiuLink() {
-        return ideaPiuLink;
-    }
-
-    public WebElement getCommunityLink() {
-        return communityLink;
-    }
-
-    public WebElement getCorsiLink() {
-        return corsiLink;
-    }
-
     public WebElement getProductMenu() {
         return productMenu;
     }
@@ -97,30 +85,17 @@ public class HomePagePO extends PageObject {
         return macroCategory;
     }
 
-    public WebElement getCategory() {
-        return category;
-    }
+    public WebElement getCategory() { return category; }
 
-    public WebElement getBagnoLink() {
-        return bagnoLink;
-    }
+    public WebElement getBagnoLink() { return bagnoLink; }
 
     public WebElement getDocceSpan() {
         return docceSpan;
     }
 
-    public WebElement getSauneSpan() {
+    public WebElement getSauneSpan() { return sauneSpan; }
 
-        return sauneSpan;
-    }
-
-    public WebElement getLoginIcon() {
-        return loginIcon;
-    }
-
-    public WebElement getFirstNameDiv() {
-        return firstNameDiv;
-    }
+    public WebElement getUserFirstName() { return userFirstName; }
 
     public WebElement getAcceptCookiesButton() {
         return acceptCookiesButton;

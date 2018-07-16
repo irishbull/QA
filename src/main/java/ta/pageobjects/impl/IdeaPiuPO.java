@@ -21,7 +21,7 @@ public class IdeaPiuPO extends PageObject {
   }
 
   public String getUrl() throws Exception {
-    BrowserUtils.waitForURL("idea-piu", Constants.WaitTime.EXPLICIT_WAIT);
+    BrowserUtils.waitForURLContains("idea-piu", Constants.WaitTime.EXPLICIT_WAIT);
     return SeleniumDriver.getInstance().getDriver().getCurrentUrl();
   }
 
