@@ -3,11 +3,8 @@ package ta.test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-
-import java.util.Objects;
 
 import ta.driver.SeleniumDriver;
 import ta.utilities.ReadPropertiesFile;
