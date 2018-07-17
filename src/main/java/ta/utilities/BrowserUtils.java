@@ -40,6 +40,19 @@ public class BrowserUtils {
     /**
      * wait up before throwing exception (static locator)
      */
+    public static void waitForClickable(WebElement element, int timer) throws Exception {
+        WebDriver driver = SeleniumDriver.getInstance().getDriver();
+
+        // wait for the static element to appear
+        WebDriverWait wait = new WebDriverWait(driver, timer);
+
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(element)));
+    }
+
+
+    /**
+     * wait up before throwing exception (static locator)
+     */
     public static void waitFor(WebElement element, int timer) throws Exception {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
@@ -48,6 +61,20 @@ public class BrowserUtils {
 
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)));
     }
+
+
+    /**
+     * wait up before throwing exception (dynamic locator)
+     */
+    public static void waitForClickable(By by, int timer) throws Exception {
+        WebDriver driver = SeleniumDriver.getInstance().getDriver();
+
+        // wait for the dynamic element to appear
+        WebDriverWait wait = new WebDriverWait(driver, timer);
+
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(by)));
+    }
+
 
 
     /**
