@@ -7,19 +7,19 @@ import ta.pageobjects.PageObject;
 
 public class ReceiptPO extends PageObject {
 
-  @FindBy(tagName = "h1")
-  private WebElement header;
+    @FindBy(tagName = "h1")
+    private WebElement header;
 
-  public ReceiptPO() {
-    super();
-  }
+    public ReceiptPO() {
+        super();
+    }
 
-  public boolean isInitialized() {
-    return header.isDisplayed();
-  }
+    public boolean isInitialized() {
+        return header.isDisplayed();
+    }
 
-  public String confirmationHeader() {
-    return header.getText();
-  }
+    public String confirmationHeader() {
+        return header.getText();
+    }
 
 }

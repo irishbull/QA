@@ -12,25 +12,25 @@ import ta.utilities.Constants;
 
 public class IdeaPiuPO extends PageObject {
 
-  @FindBy(how = How.ID, using = "idea-piu")
-  WebElement div;
+    @FindBy(how = How.ID, using = "idea-piu")
+    WebElement div;
 
-  public String getTitle() throws Exception {
-    BrowserUtils.waitForTitle("Diventa Titolare Idea", Constants.WaitTime.EXPLICIT_WAIT);
-    return SeleniumDriver.getInstance().getDriver().getTitle();
-  }
+    public String getTitle() throws Exception {
+        BrowserUtils.waitForTitle("Diventa Titolare Idea", Constants.WaitTime.EXPLICIT_WAIT);
+        return SeleniumDriver.getInstance().getDriver().getTitle();
+    }
 
-  public String getUrl() throws Exception {
-    BrowserUtils.waitForURLContains("idea-piu", Constants.WaitTime.EXPLICIT_WAIT);
-    return SeleniumDriver.getInstance().getDriver().getCurrentUrl();
-  }
+    public String getUrl() throws Exception {
+        BrowserUtils.waitForURLContains("idea-piu", Constants.WaitTime.EXPLICIT_WAIT);
+        return SeleniumDriver.getInstance().getDriver().getCurrentUrl();
+    }
 
-  public String getDivAttribute() throws Exception {
-    BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
-    return div.getAttribute("class");
-  }
+    public String getDivAttribute() throws Exception {
+        BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
+        return div.getAttribute("class");
+    }
 
-  public IdeaPiuPO() {
-    super();
-  }
+    public IdeaPiuPO() {
+        super();
+    }
 }

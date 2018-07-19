@@ -127,7 +127,7 @@ public class SeleniumDriver {
 
                 // option needed by Jenkins to work on Linux. This option avoid browser opening during test
                 // for local test comment this line
-                //chrOptions.addArguments("--headless");
+                chrOptions.addArguments("--headless");
 
                 // Chrome desired capabilities
                 capabilities = DesiredCapabilities.chrome();

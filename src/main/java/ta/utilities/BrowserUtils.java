@@ -76,7 +76,6 @@ public class BrowserUtils {
     }
 
 
-
     /**
      * wait up before throwing exception (dynamic locator)
      */

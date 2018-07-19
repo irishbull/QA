@@ -8,52 +8,52 @@ import ta.pageobjects.PageObject;
 
 public class SignUpPO extends PageObject {
 
-  @FindBy(id = "firstname")
-  @CacheLookup
-  private WebElement firstName;
+    @FindBy(id = "firstname")
+    @CacheLookup
+    private WebElement firstName;
 
-  @FindBy(id = "lastname")
-  @CacheLookup
-  private WebElement lastName;
+    @FindBy(id = "lastname")
+    @CacheLookup
+    private WebElement lastName;
 
-  @FindBy(id = "address")
-  @CacheLookup
-  private WebElement address;
+    @FindBy(id = "address")
+    @CacheLookup
+    private WebElement address;
 
-  @FindBy(id = "zipcode")
-  @CacheLookup
-  private WebElement zipCode;
+    @FindBy(id = "zipcode")
+    @CacheLookup
+    private WebElement zipCode;
 
-  @FindBy(id = "signup")
-  @CacheLookup
-  private WebElement submitButton;
+    @FindBy(id = "signup")
+    @CacheLookup
+    private WebElement submitButton;
 
-  public SignUpPO() {
-    super();
-  }
+    public SignUpPO() {
+        super();
+    }
 
-  public boolean isInitialized() {
-    return firstName.isDisplayed();
-  }
+    public boolean isInitialized() {
+        return firstName.isDisplayed();
+    }
 
-  public void enterName(String firstName, String lastName) {
-    this.firstName.clear();
-    this.firstName.sendKeys(firstName);
+    public void enterName(String firstName, String lastName) {
+        this.firstName.clear();
+        this.firstName.sendKeys(firstName);
 
-    this.lastName.clear();
-    this.lastName.sendKeys(lastName);
-  }
+        this.lastName.clear();
+        this.lastName.sendKeys(lastName);
+    }
 
-  public void enterAddress(String address, String zipCode) {
-    this.address.clear();
-    this.address.sendKeys(address);
+    public void enterAddress(String address, String zipCode) {
+        this.address.clear();
+        this.address.sendKeys(address);
 
-    this.zipCode.clear();
-    this.zipCode.sendKeys(zipCode);
-  }
+        this.zipCode.clear();
+        this.zipCode.sendKeys(zipCode);
+    }
 
-  public ReceiptPO submit() {
-    submitButton.click();
-    return new ReceiptPO();
-  }
+    public ReceiptPO submit() {
+        submitButton.click();
+        return new ReceiptPO();
+    }
 }

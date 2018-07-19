@@ -12,11 +12,11 @@ import ta.pageobjects.PageObject;
 
 public class HomePageSearchResultsPO extends PageObject {
 
-  @FindBy(how = How.NAME, using = "SELENIUM_SEARCH_RESULTS_WRAPPER")
-  private WebElement searchResultsWrapper;
+    @FindBy(how = How.NAME, using = "SELENIUM_SEARCH_RESULTS_WRAPPER")
+    private WebElement searchResultsWrapper;
 
-  public int getResultsNumber() {
-    List<WebElement> liElems = searchResultsWrapper.findElements(By.tagName("li"));
-    return liElems.size();
-  }
+    public int getResultsNumber() {
+        List<WebElement> liElems = searchResultsWrapper.findElements(By.tagName("li"));
+        return liElems.size();
+    }
 }

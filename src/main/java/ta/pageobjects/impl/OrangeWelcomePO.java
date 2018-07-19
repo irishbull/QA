@@ -9,23 +9,23 @@ import ta.pageobjects.PageObject;
 
 public class OrangeWelcomePO extends PageObject {
 
-  @FindBy(how = How.ID, using = "menu_dashboard_index")
-  @CacheLookup
-  private WebElement menuDashboardIndex;
+    @FindBy(how = How.ID, using = "menu_dashboard_index")
+    @CacheLookup
+    private WebElement menuDashboardIndex;
 
-  @FindBy(how = How.TAG_NAME, using = "title")
-  @CacheLookup
-  private WebElement title;
+    @FindBy(how = How.TAG_NAME, using = "title")
+    @CacheLookup
+    private WebElement title;
 
-  public WebElement getDashboardElem() {
-    return menuDashboardIndex;
-  }
+    public WebElement getDashboardElem() {
+        return menuDashboardIndex;
+    }
 
-  public String getTitle() {
-    return title.getText();
-  }
+    public String getTitle() {
+        return title.getText();
+    }
 
-  public OrangeWelcomePO() {
-    super();
-  }
+    public OrangeWelcomePO() {
+        super();
+    }
 }

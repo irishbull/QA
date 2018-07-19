@@ -26,15 +26,15 @@ public class ProductMenuTest extends BaseTest {
     public void tc_001_navigateProductMenu(JSONObject testData) throws Exception {
 
         logger.debug("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
-        logger.info( testData.get("description").toString());
+        logger.info(testData.get("description").toString());
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("qa.auth.base.url"));
+        driver.get(ReadPropertiesFile.getProperty("qa.base.url"));
 
         HomePagePO homePagePO = new HomePagePO();
 
-        if(BrowserUtils.exists(homePagePO.getAcceptCookiesButton(), Constants.WaitTime.EXPLICIT_WAIT)){
+        if (BrowserUtils.exists(homePagePO.getAcceptCookiesButton(), Constants.WaitTime.EXPLICIT_WAIT)) {
             homePagePO.getAcceptCookiesButton().click();
         }
         ProductMenuPO productMenuPO = new ProductMenuPO();
@@ -43,20 +43,16 @@ public class ProductMenuTest extends BaseTest {
         BrowserUtils.hover(productMenuPO.getProductMenuWrapper());
 
         // MacroCategoryGroup
-        BrowserUtils.waitFor(productMenuPO.getMacroCategoryGroup(), Constants.WaitTime.EXPLICIT_WAIT);
-        BrowserUtils.hover(productMenuPO.getMacroCategoryGroup());
-        BrowserUtils.hover(productMenuPO.findMacroCategoryGroupLink(testData.get("macroCategoryGroup").toString()));
-        logger.debug(testData.get("macroCategoryGroup").toString() + " OK");
+        productMenuPO.mouseEnterMacroCategoryGroup(testData.get("macroCategoryGroup").toString());
+        logger.debug("MacroCategoryGroup " + testData.get("macroCategoryGroup").toString() + " OK");
 
         // MacroCategory
-        BrowserUtils.waitFor(productMenuPO.getMacroCategory(), Constants.WaitTime.EXPLICIT_WAIT);
-        BrowserUtils.hover(productMenuPO.findMacroCategoryLink(testData.get("macroCategory").toString()));
-        logger.debug(testData.get("macroCategory").toString() + " OK");
+        productMenuPO.mouseEnterMacroCategory(testData.get("macroCategory").toString());
+        logger.debug("MacroCategory " + testData.get("macroCategory").toString() + " OK");
 
         // Category
-        BrowserUtils.waitFor(productMenuPO.getCategory(), Constants.WaitTime.EXPLICIT_WAIT);
-        productMenuPO.findCategoryLink(testData.get("category").toString()).click();
-        logger.debug(testData.get("category").toString() + " OK");
+        productMenuPO.clickCategory(testData.get("category").toString());
+        logger.debug("Category " + testData.get("category").toString() + " OK");
 
         assertTrue(driver.getCurrentUrl().contains(testData.get("pagePath").toString()));
     }

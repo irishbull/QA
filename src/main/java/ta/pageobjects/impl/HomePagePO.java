@@ -85,17 +85,25 @@ public class HomePagePO extends PageObject {
         return macroCategory;
     }
 
-    public WebElement getCategory() { return category; }
+    public WebElement getCategory() {
+        return category;
+    }
 
-    public WebElement getBagnoLink() { return bagnoLink; }
+    public WebElement getBagnoLink() {
+        return bagnoLink;
+    }
 
     public WebElement getDocceSpan() {
         return docceSpan;
     }
 
-    public WebElement getSauneSpan() { return sauneSpan; }
+    public WebElement getSauneSpan() {
+        return sauneSpan;
+    }
 
-    public WebElement getUserFirstName() { return userFirstName; }
+    public WebElement getUserFirstName() {
+        return userFirstName;
+    }
 
     public WebElement getAcceptCookiesButton() {
         return acceptCookiesButton;
