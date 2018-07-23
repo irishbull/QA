@@ -1,5 +1,11 @@
 package ta.driver;
 
+import net.lightbody.bmp.BrowserMobProxy;
+import net.lightbody.bmp.BrowserMobProxyServer;
+import net.lightbody.bmp.client.ClientUtil;
+import net.lightbody.bmp.proxy.CaptureType;
+
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -8,19 +14,32 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import ta.utilities.Constants;
 import ta.utilities.ReadPropertiesFile;
 
+
 public class SeleniumDriver {
 
     private static SeleniumDriver instance = new SeleniumDriver();
     private ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
+    private ThreadLocal<BrowserMobProxy> proxy = new ThreadLocal<>();
+
+    public ThreadLocal<WebDriver> getWebDriver() {
+        return webDriver;
+    }
+
+    public BrowserMobProxy getProxy() {
+        return proxy.get();
+    }
 
 
     // private constructor to prevent any other class from instantiating (singleton)
@@ -63,6 +82,36 @@ public class SeleniumDriver {
 
             case "firefox":
 
+                // start the proxy
+                proxy.set(new BrowserMobProxyServer());
+                proxy.get().start(0);
+
+                // get the Selenium proxy object
+                Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy.get());
+
+
+                proxy.get().enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
+
+                //proxy.get().enableHarCaptureTypes(CaptureType.REQUEST_CONTENT);
+
+                /*
+                You can decide what kind of network calls you need to capture by using proxy.setHarCaptureTypes method
+                proxy.setHarCaptureTypes(CaptureType.REQUEST_HEADERS,CaptureType.RESPONSE_HEADERS);
+                proxy.setHarCaptureTypes(CaptureType.REQUEST_CONTENT,CaptureType.RESPONSE_CONTENT);
+                */
+
+                proxy.get().newHar("Analytics&Tooso");
+
+                /*List<String> allowUrlPatterns = new ArrayList<>();
+                allowUrlPatterns.add("https?://analytics\\.api\\.tooso\\.ai/.*");
+
+                // All the URLs that are not from our sites are blocked and a status code of 403 is returned
+                proxy.get().whitelistRequests(allowUrlPatterns, 403);
+*/
+
+                //proxy.get().addWhitelistPattern("https?://analytics\\.api\\.tooso\\.ai/.*");
+
+
                 // Firefox options
                 FirefoxOptions ffxOpts = new FirefoxOptions();
 
@@ -79,6 +128,9 @@ public class SeleniumDriver {
                 capabilities = DesiredCapabilities.firefox();
                 capabilities.setCapability(FirefoxDriver.PROFILE, ffProfile);
                 capabilities.setCapability("marionette", true);
+
+                // configure Proxy as a desired capability
+                capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
 
 
                 System.setProperty("webdriver.gecko.driver",

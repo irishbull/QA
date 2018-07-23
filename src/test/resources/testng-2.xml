@@ -3,6 +3,8 @@
 
 <suite name="Suite-2">
 
+    <parameter name="isAnalyticsSuite" value= "true"/>
+
     <test name = "loginTest">
         <parameter name="json-path"  value="src/test/java/ta/test/json/LoginTest.json"/>
         <classes>

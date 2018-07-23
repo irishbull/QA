@@ -3,8 +3,17 @@ package ta.test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.Objects;
 
 import ta.driver.SeleniumDriver;
 import ta.utilities.ReadPropertiesFile;
@@ -13,14 +22,16 @@ import ta.utilities.ReadPropertiesFile;
 public abstract class BaseTest {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
+    private static final String FILE_PATH = "C:\\Users\\bolognagi\\Desktop\\har\\result_";
 
-    @BeforeTest
-    public void testSetup() {
-        logger.info("Set up");
+    @Parameters("isAnalyticsSuite")
+    @BeforeSuite
+    public void beforeSuite(@Optional("false") boolean isAnalyticsSuite) {
+        logger.info("Suite set up");
 
         String environment = ReadPropertiesFile.getProperty("environment");
         Assert.assertNotNull(environment, "Required property 'environment' not found");
-        logger.info("Environmente = [{}]", environment);
+        logger.info("Environment = [{}]", environment);
 
         String browser = System.getProperty("browser");
         Assert.assertNotNull(browser, "Required parameter 'Browser' is missing");
@@ -32,13 +43,39 @@ public abstract class BaseTest {
         SeleniumDriver.getInstance().setDriver(browser);
         logger.info("Driver instance {}", SeleniumDriver.getInstance().toString());
 
+        /* Start the proxy when the suite target is Analytics
+        if(isAnalyticsSuite) {
+            SeleniumDriver.getInstance().getProxy().start(0);
+            logger.info("Proxy started");
+
+            SeleniumDriver.getInstance().getProxy().newHar("Tooso_"+ new Date().getTime());
+            logger.info("Har file created: " + SeleniumDriver.getInstance().getProxy().getHar());
+        }
+        */
         SeleniumDriver.getInstance().getDriver().manage().window().maximize();
     }
 
-    @AfterTest
-    public void suiteTeardown() {
-        logger.info("Tear down");
+
+    @Parameters("isAnalyticsSuite")
+    @AfterSuite
+    public void afterSuite(@Optional("false") boolean isAnalyticsSuite) {
+        logger.info("Suite tear down");
         logger.info("Driver instance {}", SeleniumDriver.getInstance().toString());
+
+        if(isAnalyticsSuite && Objects.nonNull(SeleniumDriver.getInstance().getProxy())) {
+            SeleniumDriver.getInstance().getProxy().stop();
+            logger.info("Proxy stopped");
+        }
+
+        File harFile = new File(FILE_PATH + new Date().getTime() + ".har");
+        try {
+            SeleniumDriver.getInstance().getProxy().getHar().writeTo(harFile);
+        } catch (IOException ex) {
+            System.out.println (ex.toString());
+            System.out.println("Could not find file " + FILE_PATH);
+        }
+
+
         SeleniumDriver.getInstance().getDriver().manage().deleteAllCookies();
         SeleniumDriver.getInstance().getDriver().quit();
     }

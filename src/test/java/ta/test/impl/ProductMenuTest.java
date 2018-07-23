@@ -1,10 +1,21 @@
 package ta.test.impl;
 
+import net.lightbody.bmp.core.har.Har;
+import net.lightbody.bmp.core.har.HarEntry;
+import net.lightbody.bmp.core.har.HarLog;
+import net.lightbody.bmp.core.har.HarPage;
+
 import org.json.simple.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.Date;
 
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
@@ -19,6 +30,13 @@ import ta.utilities.ReadPropertiesFile;
 import static org.testng.Assert.assertTrue;
 
 public class ProductMenuTest extends BaseTest {
+
+   @BeforeMethod
+    public void setUp() {
+        SeleniumDriver.getInstance().getProxy().newPage("page" + new Date().getTime());
+        logger.info("ProductMenuTest Har page created");
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(ProductMenuTest.class);
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
@@ -56,4 +74,23 @@ public class ProductMenuTest extends BaseTest {
 
         assertTrue(driver.getCurrentUrl().contains(testData.get("pagePath").toString()));
     }
+
+/*    @AfterClass
+    public void teardown() {
+        Har har = SeleniumDriver.getInstance().getProxy().getHar();
+        HarPage harPage = SeleniumDriver.getInstance().getProxy().getHar().getLog().getPages().get(0);
+
+        logger.info(harPage.getId());
+
+
+        for(HarEntry harEntry : har.getLog().getEntries()){
+
+            logger.info("req: " + harEntry.getRequest().getUrl());
+        }
+
+        if(Objects.nonNull(SeleniumDriver.getInstance().getProxy().getHar())) {
+            SeleniumDriver.getInstance().getProxy().endHar();
+            logger.info("ProductMenuTest Har end");
+        }
+    }*/
 }

@@ -1,0 +1,15 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Tooso">
+
+    <parameter name="isAnalyticsSuite" value= "true"/>
+
+    <test name = "homePage">
+        <parameter name="json-path" value="src/test/java/ta/test/json/tooso/ToosoPageViewTest.json"/>
+        <classes>
+            <class name = "ta.test.impl.ToosoPageViewTest" />
+        </classes>
+    </test>
+
+</suite>

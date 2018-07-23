@@ -1,0 +1,10 @@
+{
+  "tc_001_verifyPageViewRequest": [
+    {
+      "rowID": "tc_001_verifyPageViewRequest.01",
+      "description": "verify the page view get parameters",
+      "tid":"TA-0233570210"
+    }
+  ]
+}
+
