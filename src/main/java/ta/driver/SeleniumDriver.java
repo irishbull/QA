@@ -109,10 +109,6 @@ public class SeleniumDriver {
 
                     proxy.get().enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
 
-                    // create new Har
-                    //proxy.get().newHar("Analytics&Tooso");
-                    //logger.debug("Har created");
-
                     // configure Proxy as a desired capability
                     capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
 

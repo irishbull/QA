@@ -3,21 +3,28 @@ package ta.test.impl;
 import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.core.har.HarEntry;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.json.simple.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
+import java.net.URI;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.test.BaseTest;
-import ta.utilities.BrowserUtils;
-import ta.utilities.Constants;
+import ta.utilities.AnalyticsUtils;
 import ta.utilities.ReadPropertiesFile;
 
 
@@ -41,39 +48,36 @@ public class ToosoPageViewTest extends BaseTest {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("base.url"));
+        driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("path").toString());
 
-        BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
 
-        Har har = SeleniumDriver.getInstance().getProxy().getHar();
-        logger.info("Har = " + SeleniumDriver.getInstance().getProxy().getHar());
+        //BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
+        Thread.sleep(7000); //To remove
 
-        for (HarEntry harEntry : har.getLog().getEntries()) {
-            logger.info("HAR ENTRY: " + harEntry.getRequest().getUrl());
-        }
-
-        logger.info("Page is fully loaded");
-    }
-
-    @Test
-    @Description("Verifica i valori dei parametri della richiesta GET")
-    public void tc_002_verifyPageViewRequest() throws Exception {
-
-        logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
-
-        WebDriver driver = SeleniumDriver.getInstance().getDriver();
-
-        driver.get("https://www.leroymerlin.it/catalogo/box-doccia-scorrevole-yavary-36581860-p");
-
-        BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
         logger.info("Har = " + SeleniumDriver.getInstance().getProxy().getHar());
 
-        for (HarEntry harEntry : har.getLog().getEntries()) {
-            logger.info("HAR ENTRY: " + harEntry.getRequest().getUrl());
+        List<HarEntry> toosoEntries = AnalyticsUtils.filterByHostName(har.getLog().getEntries(),"analytics.api.tooso.ai");
+
+        Assert.assertTrue(toosoEntries.size() == 1);
+
+        String url  = toosoEntries.get(0).getRequest().getUrl();
+        logger.info("URL to be checked: {}", url);
+
+        HashMap<String, String> expectedValuesMap = (HashMap<String, String>) testData.get("expectedValues");
+
+        List<NameValuePair> urlNameValuePairs = URLEncodedUtils.parse(new URI(url), Charset.forName("UTF-8"));
+
+        for (NameValuePair pair : urlNameValuePairs) {
+            logger.info("query param [{}]={}", pair.getName(), pair.getValue());
+            String expectedValue = expectedValuesMap.get(pair.getName());
+            if(Objects.nonNull(expectedValue)) {
+                logger.info("Assert expected[{}] = current[{}]", pair.getValue(), expectedValue);
+                Assert.assertEquals(pair.getValue(), expectedValue, "Query param "  + pair.getName());
+            }
         }
 
-        logger.info("Product page is fully loaded");
+        logger.info("Test completed");
     }
 }

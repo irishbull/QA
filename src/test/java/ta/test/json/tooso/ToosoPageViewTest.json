@@ -1,9 +1,26 @@
 {
   "tc_001_verifyPageViewRequest": [
     {
-      "rowID": "tc_001_verifyPageViewRequest.01",
-      "description": "verify the page view get parameters",
-      "tid":"TA-0233570210"
+      "rowID":"tc_001_verifyPageViewRequest.01",
+      "description":"validate PageView GET parameters",
+      "path":"/",
+      "expectedValues": {
+        "tid":"TA-8787580432",
+        "dl":"https://www.leroymerlin.it/",
+        "de":"UTF-8",
+        "t":"pageview"
+        }
+    },
+    {
+      "rowID":"tc_001_verifyPageViewRequest.02",
+      "description":"validate PageView GET parameters",
+      "path":"/prodotti/piani-cucina-CAT1445-c",
+      "expectedValues": {
+        "tid":"TA-8787580432",
+        "dl":"https://www.leroymerlin.it/prodotti/piani-cucina-CAT1445-c",
+        "de":"UTF-8",
+        "t":"pagev"
+      }
     }
   ]
 }
