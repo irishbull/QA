@@ -11,7 +11,7 @@
 
     <suite-files>
         <!-- <suite-file path="testng-1.xml"/> -->
-        <!-- <suite-file path="testng-2.xml"/>-->
+        <!-- <suite-file path="testng-2.xml"/> -->
         <suite-file path="testng-3.xml"/>
     </suite-files>
 

@@ -16,10 +16,10 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -29,23 +29,14 @@ import ta.utilities.ReadPropertiesFile;
 
 public class SeleniumDriver {
 
+    private final Logger logger = LoggerFactory.getLogger(SeleniumDriver.class);
     private static SeleniumDriver instance = new SeleniumDriver();
     private ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
     private ThreadLocal<BrowserMobProxy> proxy = new ThreadLocal<>();
 
-    public ThreadLocal<WebDriver> getWebDriver() {
-        return webDriver;
-    }
-
-    public BrowserMobProxy getProxy() {
-        return proxy.get();
-    }
-
-
     // private constructor to prevent any other class from instantiating (singleton)
     private SeleniumDriver() {
     }
-
 
     /**
      * getInstance method to retrieve active driver instance
@@ -59,6 +50,13 @@ public class SeleniumDriver {
         return instance;
     }
 
+    public ThreadLocal<WebDriver> getWebDriver() {
+        return webDriver;
+    }
+
+    public BrowserMobProxy getProxy() {
+        return proxy.get();
+    }
 
     /**
      * getDriver method to retrieve active driver
@@ -75,42 +73,12 @@ public class SeleniumDriver {
      *
      * @param browser
      */
-    public final void setDriver(String browser) {
+    public final void setDriver(String browser, boolean isProxyRequired) {
         DesiredCapabilities capabilities;
 
         switch (browser) {
 
             case "firefox":
-
-                // start the proxy
-                proxy.set(new BrowserMobProxyServer());
-                proxy.get().start(0);
-
-                // get the Selenium proxy object
-                Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy.get());
-
-
-                proxy.get().enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
-
-                //proxy.get().enableHarCaptureTypes(CaptureType.REQUEST_CONTENT);
-
-                /*
-                You can decide what kind of network calls you need to capture by using proxy.setHarCaptureTypes method
-                proxy.setHarCaptureTypes(CaptureType.REQUEST_HEADERS,CaptureType.RESPONSE_HEADERS);
-                proxy.setHarCaptureTypes(CaptureType.REQUEST_CONTENT,CaptureType.RESPONSE_CONTENT);
-                */
-
-                proxy.get().newHar("Analytics&Tooso");
-
-                /*List<String> allowUrlPatterns = new ArrayList<>();
-                allowUrlPatterns.add("https?://analytics\\.api\\.tooso\\.ai/.*");
-
-                // All the URLs that are not from our sites are blocked and a status code of 403 is returned
-                proxy.get().whitelistRequests(allowUrlPatterns, 403);
-*/
-
-                //proxy.get().addWhitelistPattern("https?://analytics\\.api\\.tooso\\.ai/.*");
-
 
                 // Firefox options
                 FirefoxOptions ffxOpts = new FirefoxOptions();
@@ -129,9 +97,26 @@ public class SeleniumDriver {
                 capabilities.setCapability(FirefoxDriver.PROFILE, ffProfile);
                 capabilities.setCapability("marionette", true);
 
-                // configure Proxy as a desired capability
-                capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
+                if(isProxyRequired) {
 
+                    // start the proxy
+                    proxy.set(new BrowserMobProxyServer());
+                    proxy.get().start(0);
+                    logger.debug("Proxy started");
+
+                    // get the Selenium proxy object
+                    Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy.get());
+
+                    proxy.get().enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
+
+                    // create new Har
+                    //proxy.get().newHar("Analytics&Tooso");
+                    //logger.debug("Har created");
+
+                    // configure Proxy as a desired capability
+                    capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
+
+                }
 
                 System.setProperty("webdriver.gecko.driver",
                         ReadPropertiesFile.getProperty("firefox.webdriver.path"));
@@ -140,6 +125,7 @@ public class SeleniumDriver {
                         TimeUnit.SECONDS);
 
                 break;
+
 
             case "iexplorer":
 
@@ -163,6 +149,7 @@ public class SeleniumDriver {
                         TimeUnit.SECONDS);
 
                 break;
+
 
             case "chrome":
             default:

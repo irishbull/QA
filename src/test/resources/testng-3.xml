@@ -3,7 +3,7 @@
 
 <suite name="Tooso">
 
-    <parameter name="isAnalyticsSuite" value= "true"/>
+    <parameter name="isProxyRequired" value= "true"/>
 
     <test name = "homePage">
         <parameter name="json-path" value="src/test/java/ta/test/json/tooso/ToosoPageViewTest.json"/>

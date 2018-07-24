@@ -4,9 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
@@ -24,11 +22,12 @@ public abstract class BaseTest {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private static final String FILE_PATH = "C:\\Users\\bolognagi\\Desktop\\har\\result_";
 
-    @Parameters("isAnalyticsSuite")
+    @Parameters("isProxyRequired")
     @BeforeSuite
-    public void beforeSuite(@Optional("false") boolean isAnalyticsSuite) {
+    public void beforeSuite(@Optional("false") boolean isProxyRequired) {
         logger.info("Suite set up");
 
+        // TO REMOVE
         String environment = ReadPropertiesFile.getProperty("environment");
         Assert.assertNotNull(environment, "Required property 'environment' not found");
         logger.info("Environment = [{}]", environment);
@@ -40,33 +39,26 @@ public abstract class BaseTest {
         String browser = System.getProperty("browser", "chrome");
         logger.info("Browser [{}]", browser);
         */
-        SeleniumDriver.getInstance().setDriver(browser);
+
+        SeleniumDriver.getInstance().setDriver(browser, isProxyRequired);
         logger.info("Driver instance {}", SeleniumDriver.getInstance().toString());
 
-        /* Start the proxy when the suite target is Analytics
-        if(isAnalyticsSuite) {
-            SeleniumDriver.getInstance().getProxy().start(0);
-            logger.info("Proxy started");
-
-            SeleniumDriver.getInstance().getProxy().newHar("Tooso_"+ new Date().getTime());
-            logger.info("Har file created: " + SeleniumDriver.getInstance().getProxy().getHar());
-        }
-        */
         SeleniumDriver.getInstance().getDriver().manage().window().maximize();
     }
 
 
-    @Parameters("isAnalyticsSuite")
+    @Parameters("isProxyRequired")
     @AfterSuite
-    public void afterSuite(@Optional("false") boolean isAnalyticsSuite) {
+    public void afterSuite(@Optional("false") boolean isProxyRequired) {
         logger.info("Suite tear down");
         logger.info("Driver instance {}", SeleniumDriver.getInstance().toString());
 
-        if(isAnalyticsSuite && Objects.nonNull(SeleniumDriver.getInstance().getProxy())) {
+        if(isProxyRequired && Objects.nonNull(SeleniumDriver.getInstance().getProxy())) {
             SeleniumDriver.getInstance().getProxy().stop();
             logger.info("Proxy stopped");
         }
 
+        //TO REMOVE
         File harFile = new File(FILE_PATH + new Date().getTime() + ".har");
         try {
             SeleniumDriver.getInstance().getProxy().getHar().writeTo(harFile);
@@ -74,7 +66,6 @@ public abstract class BaseTest {
             System.out.println (ex.toString());
             System.out.println("Could not find file " + FILE_PATH);
         }
-
 
         SeleniumDriver.getInstance().getDriver().manage().deleteAllCookies();
         SeleniumDriver.getInstance().getDriver().quit();
