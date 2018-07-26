@@ -24,6 +24,7 @@ import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.test.BaseTest;
 import ta.utilities.AnalyticsUtils;
+import ta.utilities.Constants;
 import ta.utilities.ReadPropertiesFile;
 
 
@@ -56,7 +57,7 @@ public class ToosoPageViewTest extends BaseTest {
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
         logger.info("Har = " + SeleniumDriver.getInstance().getProxy().getHar());
 
-        List<HarEntry> toosoEntries = AnalyticsUtils.filterByHostName(har.getLog().getEntries(),"analytics.api.tooso.ai");
+        List<HarEntry> toosoEntries = AnalyticsUtils.filterByHostName(har.getLog().getEntries(), ReadPropertiesFile.getProperty("tooso.hostname"));
 
         Assert.assertTrue(toosoEntries.size() == 1);
 
@@ -65,7 +66,7 @@ public class ToosoPageViewTest extends BaseTest {
 
         HashMap<String, String> expectedValuesMap = (HashMap<String, String>) testData.get("expectedValues");
 
-        List<NameValuePair> urlNameValuePairs = URLEncodedUtils.parse(new URI(url), Charset.forName("UTF-8"));
+        List<NameValuePair> urlNameValuePairs = URLEncodedUtils.parse(new URI(url), Charset.forName(Constants.Encode.UTF_8));
 
         AnalyticsUtils.checkQueryParams(urlNameValuePairs, expectedValuesMap);
 

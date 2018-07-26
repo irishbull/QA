@@ -25,6 +25,12 @@ public class AnalyticsUtils {
         return entries.stream().filter(p -> p.getRequest().getUrl().contains(hostname)).collect(Collectors.toList());
     }
 
+    /**
+     *  check if actual values are equal to expected values
+     *
+     * @param actualNameValuePairs
+     * @param expectedValuesMap
+     */
     public static void checkQueryParams(List<NameValuePair> actualNameValuePairs, Map<String, String> expectedValuesMap) {
 
         for (NameValuePair pair : actualNameValuePairs) {
