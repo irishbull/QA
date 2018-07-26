@@ -18,7 +18,6 @@ import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
@@ -44,7 +43,6 @@ public class ToosoPageViewTest extends BaseTest {
     public void tc_001_verifyPageViewRequest(JSONObject testData) throws Exception {
 
         logger.info(testData.get("description").toString());
-        logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
@@ -69,14 +67,7 @@ public class ToosoPageViewTest extends BaseTest {
 
         List<NameValuePair> urlNameValuePairs = URLEncodedUtils.parse(new URI(url), Charset.forName("UTF-8"));
 
-        for (NameValuePair pair : urlNameValuePairs) {
-            logger.info("query param [{}]={}", pair.getName(), pair.getValue());
-            String expectedValue = expectedValuesMap.get(pair.getName());
-            if(Objects.nonNull(expectedValue)) {
-                logger.info("Assert expected[{}] = current[{}]", pair.getValue(), expectedValue);
-                Assert.assertEquals(pair.getValue(), expectedValue, "Query param "  + pair.getName());
-            }
-        }
+        AnalyticsUtils.checkQueryParams(urlNameValuePairs, expectedValuesMap);
 
         logger.info("Test completed");
     }

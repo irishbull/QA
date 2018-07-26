@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite-1">
+<suite name="ExampleTestSuite">
 
     <test name = "signUpFormTest">
         <parameter name="json-path"  value="src/test/java/ta/test/json/SignUpFormTest.json"/>

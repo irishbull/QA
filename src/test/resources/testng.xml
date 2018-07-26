@@ -10,9 +10,9 @@
     </listeners>
 
     <suite-files>
-        <!-- <suite-file path="testng-1.xml"/> -->
-        <!-- <suite-file path="testng-2.xml"/> -->
-        <suite-file path="testng-3.xml"/>
+        <!--<suite-file path="suites/example-test-suite.xml"/>-->
+        <suite-file path="suites/tooso-test-suite.xml"/>
+        <suite-file path="suites/functional-test-suite.xml"/>
     </suite-files>
 
 </suite>
