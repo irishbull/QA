@@ -1,0 +1,35 @@
+{
+  "tc_001_verifySuggestRequest": [
+    {
+      "rowID": "tc_001_verifySuggestRequest.01",
+      "description": "validate suggest GET parameters - homepage",
+      "path": "/",
+      "mandatoryValues": {
+        "tid": "TA-8787580432",
+        "v": "1",
+        "dl": "https://www.leroymerlin.it/",
+        "de": "UTF-8",
+        "ul": "it-IT",
+        "dt": "Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
+        "cu": "EUR",
+        "dp": "/",
+        "t": "event",
+        "ec": "suggestions",
+        "ea": "selected"
+      },
+      "notEmptyValues": {
+        "sr": "",
+        "sd": "",
+        "cid": "",
+        "tm": "",
+        "z": "",
+        "el": ""
+      },
+      "optionalValues": {
+        "debug": "",
+        "cd0": ""
+      }
+    }
+  ]
+}
+

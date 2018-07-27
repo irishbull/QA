@@ -5,10 +5,17 @@
 
     <parameter name="isProxyRequired" value= "true"/>
 
-    <test name = "PageViewTest">
+<!--    <test name = "PageViewTest">
         <parameter name="json-path" value="src/test/java/ta/test/json/tooso/ToosoPageViewTest.json"/>
         <classes>
             <class name = "ta.test.impl.ToosoPageViewTest" />
+        </classes>
+    </test>-->
+
+    <test name = "SuggestTest">
+        <parameter name="json-path" value="src/test/java/ta/test/json/tooso/ToosoSuggestTest.json"/>
+        <classes>
+            <class name = "ta.test.impl.ToosoSuggestTest" />
         </classes>
     </test>
 
