@@ -21,15 +21,18 @@ public class AnalyticsUtils {
         throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);
     }
 
-    public static List<HarEntry> filterByHostName(List<HarEntry> entries, String hostname) {
-        return entries.stream().filter(p -> p.getRequest().getUrl().contains(hostname)).collect(Collectors.toList());
+    public static List<HarEntry> getPageViewRequests(List<HarEntry> entries) {
+        return entries.stream().filter(p -> isPageViewRequest(p.getRequest().getUrl())).collect(Collectors.toList());
     }
 
+    private static boolean isPageViewRequest(String url) {
+        return url.contains(ReadPropertiesFile.getProperty("tooso.hostname")) &&
+                url.contains(ReadPropertiesFile.getProperty("tooso.pageview.type"));
+    }
+
+
     /**
-     *  check if actual values are equal to expected values
-     *
-     * @param actualNameValuePairs
-     * @param expectedValuesMap
+     * check if actual values are equal to expected values
      */
     public static void checkQueryParams(List<NameValuePair> actualNameValuePairs, Map<String, String> expectedValuesMap) {
 

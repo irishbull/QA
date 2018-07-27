@@ -50,14 +50,14 @@ public class ToosoPageViewTest extends BaseTest {
         driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("path").toString());
 
 
-        //BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
+        //BrowserUtils.wait
         Thread.sleep(7000); //To remove
 
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
         logger.info("Har = " + SeleniumDriver.getInstance().getProxy().getHar());
 
-        List<HarEntry> toosoEntries = AnalyticsUtils.filterByHostName(har.getLog().getEntries(), ReadPropertiesFile.getProperty("tooso.hostname"));
+        List<HarEntry> toosoEntries = AnalyticsUtils.getPageViewRequests(har.getLog().getEntries());
 
         Assert.assertTrue(toosoEntries.size() == 1);
 
