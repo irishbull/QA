@@ -18,6 +18,7 @@ import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.HomePageSearchResultsPO;
 import ta.test.BaseTest;
 import ta.utilities.AnalyticsUtils;
+import ta.utilities.BrowserUtils;
 import ta.utilities.Constants;
 import ta.utilities.ReadPropertiesFile;
 
@@ -57,7 +58,9 @@ public class ToosoSuggestTest extends BaseTest {
 
         homePageSearchResultsPO.getFirstListElement().click();
 
-        Thread.sleep(7000);
+        logger.info(String.valueOf(BrowserUtils.elementIsInvisible(homePagePO.getSearchWrapper(), Constants.WaitTime.EXPLICIT_WAIT)));
+
+        //Thread.sleep(7000);
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
 

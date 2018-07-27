@@ -108,4 +108,6 @@ public class HomePagePO extends PageObject {
     public WebElement getAcceptCookiesButton() {
         return acceptCookiesButton;
     }
+
+    public WebElement getSearchWrapper() { return searchWrapper; }
 }

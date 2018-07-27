@@ -144,6 +144,27 @@ public class BrowserUtils {
 
 
     /**
+     * check if a webElement is invisible
+     *
+     * @param element
+     * @param timer
+     * @return
+     */
+    public static boolean elementIsInvisible(WebElement element, int timer) {
+        try {
+
+            WebDriverWait wait = new WebDriverWait(SeleniumDriver.getInstance().getDriver(), timer);
+
+            wait.until(ExpectedConditions.refreshed(ExpectedConditions.invisibilityOf(element)));
+
+            return true;
+        } catch (StaleElementReferenceException | TimeoutException | NoSuchElementException exc) {
+            return false;
+        }
+    }
+
+
+    /**
      * mouse over the specified element
      */
     public static void hover(WebElement element) {
