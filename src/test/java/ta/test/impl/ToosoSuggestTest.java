@@ -1,8 +1,8 @@
 package ta.test.impl;
 
-import io.qameta.allure.Description;
 import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.core.har.HarEntry;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.json.simple.JSONObject;
@@ -10,8 +10,20 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.lang.reflect.Method;
+import java.net.URI;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
@@ -20,14 +32,6 @@ import ta.test.BaseTest;
 import ta.utilities.AnalyticsUtils;
 import ta.utilities.Constants;
 import ta.utilities.ReadPropertiesFile;
-
-import java.lang.reflect.Method;
-import java.net.URI;
-import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 
 public class ToosoSuggestTest extends BaseTest {
@@ -40,12 +44,25 @@ public class ToosoSuggestTest extends BaseTest {
         logger.debug("Har {} created for method {}", SeleniumDriver.getInstance().getProxy().getHar(), method.getName());
     }
 
+    @AfterMethod
+    public void endHar(Method method) {
+
+        Har har = SeleniumDriver.getInstance().getProxy().getHar();
+
+        if (Objects.nonNull(har)) {
+            SeleniumDriver.getInstance().getProxy().endHar();
+            logger.debug("Har {} closed for method {}", har, method.getName());
+        }
+    }
+
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Verifica i valori dei parametri della richiesta GET")
     public void tc_001_verifySuggestRequest(JSONObject testData) throws Exception {
 
-        logger.info(testData.get("description").toString());
+        String description = testData.get("description").toString();
+
+        logger.info(description);
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
@@ -61,17 +78,17 @@ public class ToosoSuggestTest extends BaseTest {
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
 
-        logger.info("Har entries: {}",har.getLog().getEntries().size());
+        logger.info("Har entries: {}", har.getLog().getEntries().size());
 
-        logger.info("Har = " + SeleniumDriver.getInstance().getProxy().getHar());
+        logger.info("Har = {}", har);
 
         List<HarEntry> toosoEntries = AnalyticsUtils.getSuggestRequests(har.getLog().getEntries());
 
-        logger.info("toosoEntries size: {}",toosoEntries.size());
+        logger.info("toosoEntries size: {}", toosoEntries.size());
 
         Assert.assertTrue(toosoEntries.size() == 1);
 
-        String url  = toosoEntries.get(0).getRequest().getUrl();
+        String url = toosoEntries.get(0).getRequest().getUrl();
 
         logger.info("URL to be checked: {}", url);
 
@@ -82,7 +99,7 @@ public class ToosoSuggestTest extends BaseTest {
         List<NameValuePair> urlNameValuePairs = URLEncodedUtils.parse(new URI(url), Charset.forName(Constants.Encode.UTF_8));
 
         Map<String, String> mappedValues = urlNameValuePairs.stream().collect(
-            Collectors.toMap(NameValuePair::getName, NameValuePair::getValue));
+                Collectors.toMap(NameValuePair::getName, NameValuePair::getValue));
 
         AnalyticsUtils.checkMandatoryValues(mappedValues, mandatoryValues);
 

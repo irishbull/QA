@@ -4,6 +4,8 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
@@ -16,8 +18,11 @@ import ta.driver.SeleniumDriver;
 
 public class AllureScreenshotListener implements IInvokedMethodListener {
 
+    private static final Logger logger = LoggerFactory.getLogger(AllureScreenshotListener.class);
+
     @Override
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
+        // blank override
     }
 
     @Override
@@ -37,7 +42,7 @@ public class AllureScreenshotListener implements IInvokedMethodListener {
                             .readFileToByteArray(((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE))));
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Error executing attachScreenshot", e) ;
         }
 
     }

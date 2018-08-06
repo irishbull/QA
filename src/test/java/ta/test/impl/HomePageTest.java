@@ -40,7 +40,7 @@ public class HomePageTest extends BaseTest {
 
         int a = homePageSearchResultsPO.getResultsNumber();
 
-        logger.info("description from json file: {}", testData.get("description").toString());
+        logger.info("description from json file: {}", testData.get("description"));
         logger.info(String.valueOf(a));
 
         assertTrue(homePageSearchResultsPO.getResultsNumber() <= 3);
@@ -73,7 +73,7 @@ public class HomePageTest extends BaseTest {
         BrowserUtils.hover(homePagePO.getSauneSpan());
 
         logger.info("Navigate menu : Prodotti -> Bagno -> Docce -> Saune");
-        logger.info("description from json file: {}", testData.get("description").toString());
+        logger.info("description from json file: {}", testData.get("description"));
     }
 
 
@@ -94,7 +94,7 @@ public class HomePageTest extends BaseTest {
         // click link opening new tab
         IdeaPiuPO ideaPiuPO = homePagePO.clickIdeaPiuLink();
         logger.info("IdeaPiu link CLICKED");
-        logger.info("description from json file: {}", testData.get("description").toString());
+        logger.info("description from json file: {}", testData.get("description"));
 
 
         for (String winHandle : driver.getWindowHandles()) {
@@ -107,8 +107,6 @@ public class HomePageTest extends BaseTest {
 
 
         assertTrue(ideaPiuPO.getTitle().contains("Diventa Titolare Idea"));
-
-        assertTrue(ideaPiuPO.getUrl().contains(Constants.PathComponent.IDEAPIU));
 
         assertTrue(ideaPiuPO.getDivAttribute().equals("idea-piu"));
 

@@ -17,11 +17,27 @@ public class Constants {
         private Encode() { throw new IllegalStateException(CONSTRUCTION_FORBIDDEN); }
     }
 
-    public static class PathComponent {
-        public static final String IDEAPIU = "idea-piu";
+    public static class Url {
+        public static final String BASE_URL = ReadPropertiesFile.getProperty("base.url");
 
-        private PathComponent() { throw new IllegalStateException(CONSTRUCTION_FORBIDDEN); }
+        private Url() { throw new IllegalStateException(CONSTRUCTION_FORBIDDEN); }
     }
+
+    public static class Tooso {
+        public static final String HOSTNAME = ReadToosoPropertiesFile.getProperty("tooso.hostname");
+        public static final String TID = ReadToosoPropertiesFile.getProperty("tooso.tid");
+
+        public static final String PAGEVIEW_FILTER = ReadToosoPropertiesFile.getProperty("tooso.filter.pageview.type");
+        public static final String SUGGEST_EC_FILTER = ReadToosoPropertiesFile.getProperty("tooso.filter.suggest.ec");
+
+        public static final String V = ReadToosoPropertiesFile.getProperty("tooso.v");
+        public static final String DE = ReadToosoPropertiesFile.getProperty("tooso.de");
+        public static final String UL = ReadToosoPropertiesFile.getProperty("tooso.ul");
+        public static final String CU = ReadToosoPropertiesFile.getProperty("tooso.cu");
+
+        private Tooso() { throw new IllegalStateException(CONSTRUCTION_FORBIDDEN); }
+    }
+
     
     private Constants() {
         throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);

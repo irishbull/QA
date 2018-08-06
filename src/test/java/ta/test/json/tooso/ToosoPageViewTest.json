@@ -4,9 +4,8 @@
       "rowID":"tc_001_verifyPageViewRequest.01",
       "description":"validate PageView GET parameters",
       "path":"/",
-      "expectedValues": {
+      "mandatoryValues": {
         "dl":"https://www.leroymerlin.it/",
-        "de":"UTF-8",
         "t":"pageview"
         }
     },
@@ -14,9 +13,8 @@
       "rowID":"tc_001_verifyPageViewRequest.02",
       "description":"validate PageView GET parameters",
       "path":"/prodotti/piani-cucina-CAT1445-c",
-      "expectedValues": {
+      "mandatoryValues": {
         "dl":"https://www.leroymerlin.it/prodotti/piani-cucina-CAT1445-c",
-        "de":"UTF-8",
         "t":"pagev"
       }
     }

@@ -32,7 +32,9 @@ public class OrangeLoginTest extends BaseTest {
 
         OrangeWelcomePO orangeWelcomePO = loginPage.submit();
 
-        logger.info("Title = " + SeleniumDriver.getInstance().getDriver().getTitle());
+        String title = SeleniumDriver.getInstance().getDriver().getTitle();
+
+        logger.info("Title = {} ", title);
 
         assertTrue(SeleniumDriver.getInstance().getDriver().getTitle().contains("OrangeHRM"));
 

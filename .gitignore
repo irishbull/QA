@@ -174,6 +174,7 @@ gradle-app.setting
 
 # Dynamic project properties (created and updated by refreshTestEnvironment gradle task)
 /src/test/resources/project-config.properties
+/src/test/resources/tooso.properties
 
 # End of https://www.gitignore.io/api/java,gradle,eclipse,intellij
 

@@ -43,7 +43,9 @@ public class ToosoPageViewTest extends BaseTest {
     @Description("Verifica i valori dei parametri della richiesta GET")
     public void tc_001_verifyPageViewRequest(JSONObject testData) throws Exception {
 
-        logger.info(testData.get("description").toString());
+        String description = testData.get("description").toString();
+
+        logger.info(description);
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
@@ -55,7 +57,7 @@ public class ToosoPageViewTest extends BaseTest {
 
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
-        logger.info("Har = " + SeleniumDriver.getInstance().getProxy().getHar());
+        logger.info("Har = {}", har);
 
         List<HarEntry> toosoEntries = AnalyticsUtils.getPageViewRequests(har.getLog().getEntries());
 
@@ -64,7 +66,7 @@ public class ToosoPageViewTest extends BaseTest {
         String url  = toosoEntries.get(0).getRequest().getUrl();
         logger.info("URL to be checked: {}", url);
 
-        HashMap<String, String> expectedValuesMap = (HashMap<String, String>) testData.get("expectedValues");
+        HashMap<String, String> expectedValuesMap = (HashMap<String, String>) testData.get("mandatoryValues");
 
         List<NameValuePair> urlNameValuePairs = URLEncodedUtils.parse(new URI(url), Charset.forName(Constants.Encode.UTF_8));
 
