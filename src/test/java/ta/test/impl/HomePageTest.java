@@ -32,7 +32,7 @@ public class HomePageTest extends BaseTest {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("qa.auth.base.url"));
+        driver.get(ReadPropertiesFile.getProperty("base.url"));
 
         HomePagePO homePagePO = new HomePagePO();
 
@@ -55,7 +55,7 @@ public class HomePageTest extends BaseTest {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("qa.auth.base.url"));
+        driver.get(ReadPropertiesFile.getProperty("base.url"));
 
         HomePagePO homePagePO = new HomePagePO();
 
@@ -85,7 +85,7 @@ public class HomePageTest extends BaseTest {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("qa.auth.base.url"));
+        driver.get(ReadPropertiesFile.getProperty("base.url"));
 
         HomePagePO homePagePO = new HomePagePO();
 

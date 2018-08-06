@@ -18,7 +18,6 @@ import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.HomePageSearchResultsPO;
 import ta.test.BaseTest;
 import ta.utilities.AnalyticsUtils;
-import ta.utilities.BrowserUtils;
 import ta.utilities.Constants;
 import ta.utilities.ReadPropertiesFile;
 
@@ -58,9 +57,7 @@ public class ToosoSuggestTest extends BaseTest {
 
         homePageSearchResultsPO.getFirstListElement().click();
 
-        logger.info(String.valueOf(BrowserUtils.elementIsInvisible(homePagePO.getSearchWrapper(), Constants.WaitTime.EXPLICIT_WAIT)));
-
-        //Thread.sleep(7000);
+        Thread.sleep(7000);
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
 
@@ -82,8 +79,6 @@ public class ToosoSuggestTest extends BaseTest {
 
         HashMap<String, String> notEmptyValues = (HashMap<String, String>) testData.get("notEmptyValues");
 
-        HashMap<String, String> optionalValues = (HashMap<String, String>) testData.get("optionalValues");
-
         List<NameValuePair> urlNameValuePairs = URLEncodedUtils.parse(new URI(url), Charset.forName(Constants.Encode.UTF_8));
 
         Map<String, String> mappedValues = urlNameValuePairs.stream().collect(
@@ -91,9 +86,7 @@ public class ToosoSuggestTest extends BaseTest {
 
         AnalyticsUtils.checkMandatoryValues(mappedValues, mandatoryValues);
 
-        //AnalyticsUtils.checkNotEmptyValues(urlNameValuePairs, mandatoryValues);
-
-        // AnalyticsUtils.checkOptionalValues(urlNameValuePairs, mandatoryValues);
+        AnalyticsUtils.checkNotEmptyValues(mappedValues, notEmptyValues);
 
         logger.info("Test completed");
     }

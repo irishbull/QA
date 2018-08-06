@@ -27,7 +27,7 @@ public class LoginTest extends BaseTest {
     @BeforeMethod
     public void beforeTest() {
 
-        SeleniumDriver.getInstance().getDriver().get(ReadPropertiesFile.getProperty("qa.auth.base.url"));
+        SeleniumDriver.getInstance().getDriver().get(ReadPropertiesFile.getProperty("base.url"));
 
         HomePagePO homePagePO = new HomePagePO();
 

@@ -1,12 +1,14 @@
 package ta.utilities;
 
 import net.lightbody.bmp.core.har.HarEntry;
-import org.apache.http.NameValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class AnalyticsUtils {
@@ -46,13 +48,13 @@ public class AnalyticsUtils {
             String key = (String) entry.getKey();
 
             if (Objects.nonNull(actualValuesMap.get(key))) {
-
+                logger.info("Parameter {}",(String) entry.getKey());
                 Assert.assertEquals(entry.getValue(), actualValuesMap.get(key),
                     "Query param " + entry.getKey());
 
             } else {
-                logger.error("Parameter {} not founded", entry.getKey());
-                Assert.fail("Parameter not founded");
+                logger.error("Parameter {} not found", entry.getKey());
+                Assert.fail("Parameter not found");
             }
         }
     }
@@ -60,31 +62,18 @@ public class AnalyticsUtils {
     /**
      * verify not empty values condition
      */
-    public static void checkNotEmptyValues(List<NameValuePair> actualNameValuePairs, HashMap<String, String> expectedValuesMap) {
+    public static void checkNotEmptyValues(Map<String, String> actualValuesMap, HashMap<String, String> notEmptyValues) {
 
-        for (NameValuePair pair : actualNameValuePairs) {
-            logger.info("query param [{}]={}", pair.getName(), pair.getValue());
-            String expectedValue = expectedValuesMap.get(pair.getName());
-            if (Objects.nonNull(expectedValue)) {
-                logger.info("Assert expected[{}] = actual[{}]", pair.getValue(), expectedValue);
-                Assert.assertEquals(pair.getValue(), expectedValue,
-                    "Query param " + pair.getName());
-            }
-        }
-    }
+        for (Map.Entry entry : notEmptyValues.entrySet()) {
+            String key = (String) entry.getKey();
 
-    /**
-     * if params are present, check theirs not empty condition
-     */
-    public static void checkOptionalValues(List<NameValuePair> actualNameValuePairs, HashMap<String, String> expectedValuesMap) {
+            if (Objects.nonNull(actualValuesMap.get(key))) {
 
-        for (NameValuePair pair : actualNameValuePairs) {
-            logger.info("query param [{}]={}", pair.getName(), pair.getValue());
-            String expectedValue = expectedValuesMap.get(pair.getName());
-            if (Objects.nonNull(expectedValue)) {
-                logger.info("Assert expected[{}] = actual[{}]", pair.getValue(), expectedValue);
-                Assert.assertEquals(pair.getValue(), expectedValue,
-                    "Query param " + pair.getName());
+                Assert.assertTrue(!actualValuesMap.get(key).isEmpty());
+
+            } else {
+                logger.error("Parameter {} not found", entry.getKey());
+                Assert.fail("Parameter not found");
             }
         }
     }

@@ -5,7 +5,6 @@
       "description":"validate PageView GET parameters",
       "path":"/",
       "expectedValues": {
-        "tid":"TA-8787580432",
         "dl":"https://www.leroymerlin.it/",
         "de":"UTF-8",
         "t":"pageview"
@@ -16,7 +15,6 @@
       "description":"validate PageView GET parameters",
       "path":"/prodotti/piani-cucina-CAT1445-c",
       "expectedValues": {
-        "tid":"TA-8787580432",
         "dl":"https://www.leroymerlin.it/prodotti/piani-cucina-CAT1445-c",
         "de":"UTF-8",
         "t":"pagev"
