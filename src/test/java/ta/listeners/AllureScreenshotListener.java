@@ -28,7 +28,11 @@ public class AllureScreenshotListener implements IInvokedMethodListener {
 
     @Override
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
-        if (method.isTestMethod() && !testResult.isSuccess()) {
+
+        // Attach screenshot in case of failure only if the proxy is off
+        if (method.isTestMethod() && !testResult.isSuccess() &&
+                Objects.nonNull(SeleniumDriver.getInstance().getProxy()) && !SeleniumDriver.getInstance().getProxy().isStarted()) {
+
             attachScreenshot();
         }
     }
@@ -36,11 +40,6 @@ public class AllureScreenshotListener implements IInvokedMethodListener {
     private void attachScreenshot() {
 
         try {
-
-            // do not attach screenshot to Tooso/Analytics test results (proxy is started)
-            if (Objects.nonNull(SeleniumDriver.getInstance().getProxy()) && SeleniumDriver.getInstance().getProxy().isStarted()) {
-                return;
-            }
 
             WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
