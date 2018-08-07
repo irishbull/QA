@@ -32,7 +32,7 @@ public class JSONDataProvider {
 
 
         String dataFile = ctx.getCurrentXmlTest().getAllParameters().get("json-path");
-        logger.info(dataFile);
+        logger.debug(dataFile);
 
         JSONArray testData = (JSONArray) extractJSONData(dataFile).get(method.getName());
 

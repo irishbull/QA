@@ -14,8 +14,7 @@ import java.util.stream.Collectors;
 public class AnalyticsUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(AnalyticsUtils.class);
-    private static final String CONSTRUCTION_FORBIDDEN =
-            "AnalyticsUtils - Object construction is forbidden";
+    private static final String CONSTRUCTION_FORBIDDEN = "AnalyticsUtils - Object construction is forbidden";
 
     private AnalyticsUtils() {
         throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);
@@ -42,19 +41,18 @@ public class AnalyticsUtils {
     /**
      * check mandatory values consistency
      */
-    public static void checkMandatoryValues(Map<String, String> actualValuesMap, Map<String, String> mandatoryValues) {
+    public static void checkMandatoryValues(Map<String, String> actualValues, Map<String, String> expectedValues) {
 
-        for (Map.Entry entry : mandatoryValues.entrySet()) {
+        for (Map.Entry entry : expectedValues.entrySet()) {
             String key = (String) entry.getKey();
 
-            if (Objects.nonNull(actualValuesMap.get(key))) {
-                logger.info("Parameter {}", key);
-                Assert.assertEquals(actualValuesMap.get(key), entry.getValue(),
-                        "Query param " + key);
+            if (Objects.nonNull(actualValues.get(key))) {
+                logger.info("Query parameter [{}]: actual [{}] expected [{}]", key, actualValues.get(key), entry.getValue());
+                Assert.assertEquals(actualValues.get(key), entry.getValue(), "Query parameter [" + key + "]:");
 
             } else {
-                logger.error("Parameter {} not found", key);
-                Assert.fail("Parameter " + key + " not found");
+                logger.error("Expected parameter {} not found", key);
+                Assert.fail("Expected parameter " + key + " not found");
             }
         }
     }

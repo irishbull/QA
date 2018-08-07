@@ -11,13 +11,13 @@ public class SuiteListener implements ISuiteListener {
 
     @Override
     public void onStart(ISuite suite) {
-        logger.info("-------------------------- SUITE '{}' --------------------------",
+        logger.info("-------------------------- SUITE '{}' START --------------------------",
                 suite.getName());
     }
 
     @Override
     public void onFinish(ISuite suite) {
-        logger.info("-------------------------- SUITE '{}' --------------------------",
+        logger.info("-------------------------- SUITE '{}' END --------------------------",
                 suite.getName());
     }
 }

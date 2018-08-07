@@ -61,10 +61,10 @@ public class ToosoPageViewTest extends BaseTest {
 
         List<HarEntry> toosoEntries = AnalyticsUtils.getPageViewRequests(har.getLog().getEntries());
 
-        Assert.assertTrue(toosoEntries.size() == 1);
+        Assert.assertEquals(toosoEntries.size(), 1, "Number of pageview requests captured by proxy:");
 
         String url  = toosoEntries.get(0).getRequest().getUrl();
-        logger.info("URL to be checked: {}", url);
+        logger.info("URL to check: {}", url);
 
         HashMap<String, String> expectedValuesMap = (HashMap<String, String>) testData.get("mandatoryValues");
 

@@ -6,16 +6,14 @@ import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
 public class LogListener extends TestListenerAdapter {
-    private static final Logger logger = LoggerFactory.getLogger("");
+    private static final Logger logger = LoggerFactory.getLogger(LogListener.class);
 
     /**
      * onTestStart method
      */
     @Override
     public void onTestStart(ITestResult tr) {
-        logger.info("------------- Test '{}' -------------", tr.getName());
-        logger.info("START -> {}", tr.getName());
-
+        logger.info("{} - {} START", tr.getTestClass().getName(), tr.getName());
         super.onTestStart(tr);
     }
 
@@ -25,9 +23,7 @@ public class LogListener extends TestListenerAdapter {
      */
     @Override
     public void onTestSuccess(ITestResult tr) {
-        logger.info("PASSED");
-        logger.info("END -> {}", tr.getName());
-
+        logger.info("{} - {} PASSED", tr.getTestClass().getName(), tr.getName());
         super.onTestSuccess(tr);
     }
 
@@ -37,9 +33,8 @@ public class LogListener extends TestListenerAdapter {
      */
     @Override
     public void onTestFailure(ITestResult tr) {
-        logger.info("FAILED");
-        logger.info("END  -> {}", tr.getName());
-
+        logger.error(tr.getThrowable().getMessage());
+        logger.error("{} - {} FAILED", tr.getTestClass().getName(), tr.getName());
         super.onTestFailure(tr);
     }
 
@@ -49,10 +44,7 @@ public class LogListener extends TestListenerAdapter {
      */
     @Override
     public void onTestSkipped(ITestResult tr) {
-
-        logger.info("SKIPPED");
-        logger.info("END  -> {}", tr.getName());
-
+        logger.warn("{} - {} SKIPPED", tr.getTestClass().getName(), tr.getName());
         super.onTestSkipped(tr);
     }
 }

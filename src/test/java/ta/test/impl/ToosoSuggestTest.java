@@ -86,11 +86,11 @@ public class ToosoSuggestTest extends BaseTest {
 
         logger.info("toosoEntries size: {}", toosoEntries.size());
 
-        Assert.assertTrue(toosoEntries.size() == 1);
+        Assert.assertEquals(toosoEntries.size(), 1, "Number of suggest requests captured by proxy:");
 
         String url = toosoEntries.get(0).getRequest().getUrl();
 
-        logger.info("URL to be checked: {}", url);
+        logger.info("URL to check: {}", url);
 
         HashMap<String, String> mandatoryValues = (HashMap<String, String>) testData.get("mandatoryValues");
 

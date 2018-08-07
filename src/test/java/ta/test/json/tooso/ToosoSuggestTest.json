@@ -2,7 +2,7 @@
   "tc_001_verifySuggestRequest": [
     {
       "rowID": "tc_001_verifySuggestRequest.01",
-      "description": "validate suggest GET parameters - homepage",
+      "description": "validate GET Suggest - homepage",
       "path": "/",
       "mandatoryValues": {
         "dl": "https://www-react-qa.leroymerlin.it/",
@@ -27,7 +27,7 @@
     },
     {
       "rowID": "tc_001_verifySuggestRequest.02",
-      "description": "validate suggest GET parameters - category page",
+      "description": "validate GET Suggest - category page",
       "path": "/prodotti/forni-in-muratura-CAT1162-c",
       "mandatoryValues": {
         "dl": "https://www-react-qa.leroymerlin.it/prodotti/forni-in-muratura-CAT1162-c",

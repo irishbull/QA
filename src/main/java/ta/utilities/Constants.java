@@ -24,12 +24,16 @@ public class Constants {
     }
 
     public static class Tooso {
+
+        // Tooso environment values
         public static final String HOSTNAME = ReadToosoPropertiesFile.getProperty("tooso.hostname");
         public static final String TID = ReadToosoPropertiesFile.getProperty("tooso.tid");
 
+        // Tooso proxy filters
         public static final String PAGEVIEW_FILTER = ReadToosoPropertiesFile.getProperty("tooso.filter.pageview.type");
         public static final String SUGGEST_EC_FILTER = ReadToosoPropertiesFile.getProperty("tooso.filter.suggest.ec");
 
+        // Tooso constant query parameters values
         public static final String V = ReadToosoPropertiesFile.getProperty("tooso.v");
         public static final String DE = ReadToosoPropertiesFile.getProperty("tooso.de");
         public static final String UL = ReadToosoPropertiesFile.getProperty("tooso.ul");
