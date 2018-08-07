@@ -20,7 +20,7 @@ public class SignUpFormTest extends BaseTest {
 
     private static final Logger logger = LoggerFactory.getLogger(SignUpFormTest.class);
 
-    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, testName = "dataProvider.json")
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, testName = "DataProviderExample.json")
     @Description("Test sign up form submit")
     public void tc001_signUpFormTest(JSONObject testData) {
 

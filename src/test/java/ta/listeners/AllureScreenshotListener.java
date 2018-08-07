@@ -12,6 +12,7 @@ import org.testng.ITestResult;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.Objects;
 
 import io.qameta.allure.Allure;
 import ta.driver.SeleniumDriver;
@@ -36,13 +37,19 @@ public class AllureScreenshotListener implements IInvokedMethodListener {
 
         try {
 
+            // do not attach screenshot to Tooso/Analytics test results (proxy is started)
+            if (Objects.nonNull(SeleniumDriver.getInstance().getProxy()) && SeleniumDriver.getInstance().getProxy().isStarted()) {
+                return;
+            }
+
             WebDriver driver = SeleniumDriver.getInstance().getDriver();
+
             Allure
                     .addAttachment("Screenshot", new ByteArrayInputStream(FileUtils
                             .readFileToByteArray(((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE))));
 
         } catch (IOException e) {
-            logger.error("Error executing attachScreenshot", e) ;
+            logger.error("Error executing attachScreenshot", e);
         }
 
     }
