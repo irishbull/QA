@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import io.qameta.allure.Description;
@@ -89,21 +90,22 @@ public class ToosoSuggestTest extends BaseTest {
         Assert.assertEquals(toosoEntries.size(), 1, "Number of suggest requests captured by proxy:");
 
         String url = toosoEntries.get(0).getRequest().getUrl();
-
         logger.info("URL to check: {}", url);
 
-        HashMap<String, String> mandatoryValues = (HashMap<String, String>) testData.get("mandatoryValues");
+        // json mandatory parameters expected values
+        HashMap<String, String> jsonExpectedQueryParams = (HashMap<String, String>) testData.get("mandatoryValues");
 
-        HashMap<String, String> notEmptyValues = (HashMap<String, String>) testData.get("notEmptyValues");
+        // json parameters that should be not empty
+        Set<String> jsonNotEmptyParams = ((Map<String,String>)testData.get("notEmptyValues")).keySet();
 
+        // current request query parameters
         List<NameValuePair> urlNameValuePairs = URLEncodedUtils.parse(new URI(url), Charset.forName(Constants.Encode.UTF_8));
-
-        Map<String, String> mappedValues = urlNameValuePairs.stream().collect(
+        Map<String, String> actualQueryParams = urlNameValuePairs.stream().collect(
                 Collectors.toMap(NameValuePair::getName, NameValuePair::getValue));
 
-        AnalyticsUtils.checkMandatoryValues(mappedValues, mandatoryValues);
-
-        AnalyticsUtils.checkNotEmptyValues(mappedValues, notEmptyValues);
+        // check
+        AnalyticsUtils.checkMandatoryValues(actualQueryParams, jsonExpectedQueryParams);
+        AnalyticsUtils.checkNotEmptyValues(actualQueryParams, jsonNotEmptyParams);
 
         logger.info("Test completed");
     }

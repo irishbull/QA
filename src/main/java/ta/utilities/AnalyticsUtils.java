@@ -2,18 +2,15 @@ package ta.utilities;
 
 import net.lightbody.bmp.core.har.HarEntry;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class AnalyticsUtils {
 
-    private static final Logger logger = LoggerFactory.getLogger(AnalyticsUtils.class);
     private static final String CONSTRUCTION_FORBIDDEN = "AnalyticsUtils - Object construction is forbidden";
 
     private AnalyticsUtils() {
@@ -38,41 +35,34 @@ public class AnalyticsUtils {
                 && url.contains(Constants.Tooso.SUGGEST_EC_FILTER);
     }
 
-    /**
-     * check mandatory values consistency
-     */
-    public static void checkMandatoryValues(Map<String, String> actualValues, Map<String, String> expectedValues) {
 
-        for (Map.Entry entry : expectedValues.entrySet()) {
+    /**
+     *
+     * @param actual map containing the actual values to check
+     * @param expected map containing the expected values
+     */
+    public static void checkMandatoryValues(Map<String, String> actual, Map<String, String> expected) {
+
+        for (Map.Entry entry : expected.entrySet()) {
+
             String key = (String) entry.getKey();
 
-            if (Objects.nonNull(actualValues.get(key))) {
-                logger.info("Query parameter [{}]: actual [{}] expected [{}]", key, actualValues.get(key), entry.getValue());
-                Assert.assertEquals(actualValues.get(key), entry.getValue(), "Query parameter [" + key + "]:");
-
-            } else {
-                logger.error("Expected parameter {} not found", key);
-                Assert.fail("Expected parameter " + key + " not found");
-            }
+            Assert.assertTrue(actual.containsKey(key), "Request should contain the mandatory parameter [" + key + "]:");
+            Assert.assertEquals(actual.get(key), entry.getValue(), "Invalid query parameter value [" + key + "]:");
         }
     }
 
+
     /**
-     * verify not empty values condition
+     *
+     * @param actual map containing the actual values to check
+     * @param notEmptyParams set of parameters name to check
      */
-    public static void checkNotEmptyValues(Map<String, String> actualValuesMap, Map<String, String> notEmptyValues) {
+    public static void checkNotEmptyValues(Map<String, String> actual, Set<String> notEmptyParams) {
 
-        for (Map.Entry entry : notEmptyValues.entrySet()) {
-            String key = (String) entry.getKey();
-
-            if (Objects.nonNull(actualValuesMap.get(key))) {
-
-                Assert.assertTrue(!actualValuesMap.get(key).isEmpty());
-
-            } else {
-                logger.error("Parameter {} not found", key);
-                Assert.fail("Parameter " + key + " not found");
-            }
+        for (String param : notEmptyParams) {
+            Assert.assertTrue(actual.containsKey(param),"Request should contain the parameter [" + param + "]:");
+            Assert.assertFalse(actual.get(param).isEmpty(),"Query parameter [" + param + "] value is empty:");
         }
     }
 }

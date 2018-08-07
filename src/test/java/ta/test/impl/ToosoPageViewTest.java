@@ -25,6 +25,7 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -66,14 +67,20 @@ public class ToosoPageViewTest extends BaseTest {
         String url  = toosoEntries.get(0).getRequest().getUrl();
         logger.info("URL to check: {}", url);
 
-        HashMap<String, String> expectedValuesMap = (HashMap<String, String>) testData.get("mandatoryValues");
+        // json mandatory parameters expected values
+        HashMap<String, String> jsonExpectedQueryParams = (HashMap<String, String>) testData.get("mandatoryValues");
 
+        // json parameters that should be not empty
+        Set<String> jsonNotEmptyParams = ((Map<String,String>)testData.get("notEmptyValues")).keySet();
+
+        // current request query parameters
         List<NameValuePair> urlNameValuePairs = URLEncodedUtils.parse(new URI(url), Charset.forName(Constants.Encode.UTF_8));
-
-        Map<String, String> mappedValues = urlNameValuePairs.stream().collect(
+        Map<String, String> actualQueryParams = urlNameValuePairs.stream().collect(
             Collectors.toMap(NameValuePair::getName, NameValuePair::getValue));
 
-        AnalyticsUtils.checkMandatoryValues(mappedValues, expectedValuesMap);
+        // check
+        AnalyticsUtils.checkMandatoryValues(actualQueryParams, jsonExpectedQueryParams);
+        AnalyticsUtils.checkNotEmptyValues(actualQueryParams, jsonNotEmptyParams);
 
         logger.info("Test completed");
     }
