@@ -6,7 +6,6 @@ import org.testng.Assert;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class AnalyticsUtils {
@@ -56,13 +55,13 @@ public class AnalyticsUtils {
     /**
      *
      * @param actual map containing the actual values to check
-     * @param notEmptyParams set of parameters name to check
+     * @param notEmptyParams list of parameters name to check
      */
-    public static void checkNotEmptyValues(Map<String, String> actual, Set<String> notEmptyParams) {
+    public static void checkNotEmptyValues(Map<String, String> actual, List<String> notEmptyParams) {
 
         for (String param : notEmptyParams) {
-            Assert.assertTrue(actual.containsKey(param),"Request should contain the parameter [" + param + "]:");
-            Assert.assertFalse(actual.get(param).isEmpty(),"Query parameter [" + param + "] value is empty:");
+            Assert.assertTrue(actual.containsKey(param), "Request should contain the parameter [" + param + "]:");
+            Assert.assertFalse(actual.get(param).isEmpty(), "Query parameter [" + param + "] value is empty:");
         }
     }
 }

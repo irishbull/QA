@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import io.qameta.allure.Description;
@@ -96,7 +95,7 @@ public class ToosoSuggestTest extends BaseTest {
         HashMap<String, String> jsonExpectedQueryParams = (HashMap<String, String>) testData.get("mandatoryValues");
 
         // json parameters that should be not empty
-        Set<String> jsonNotEmptyParams = ((Map<String,String>)testData.get("notEmptyValues")).keySet();
+        List<String> jsonNotEmptyParams = (List<String>)testData.get("notEmptyValues");
 
         // current request query parameters
         List<NameValuePair> urlNameValuePairs = URLEncodedUtils.parse(new URI(url), Charset.forName(Constants.Encode.UTF_8));

@@ -1,21 +1,20 @@
 {
   "tc_001_verifyPageViewRequest": [
     {
-      "rowID":"tc_001_verifyPageViewRequest.01",
-      "description":"validate GET PageView - homepage",
-      "path":"/",
+      "rowID": "tc_001_verifyPageViewRequest.01",
+      "description": "validate GET PageView - homepage",
+      "path": "/",
       "mandatoryValues": {
-        "dl":"https://www.leroymerlin.it/",
-        "t":"pageview"
-        },
-      "notEmptyValues": {
-        "sr": "",
-        "sd": "",
-        "cid": "",
-        "tm": "",
-        "z": "",
-        "inventato":""
-      }
+        "dl": "https://www.leroymerlin.it/",
+        "t": "pageview"
+      },
+      "notEmptyValues": [
+        "sr",
+        "sd",
+        "cid",
+        "tm",
+        "z"
+      ]
     },
     {
       "rowID":"tc_001_verifyPageViewRequest.02",
@@ -25,13 +24,13 @@
         "dl":"https://www.leroymerlin.it/prodotti/piani-cucina-CAT1445-c",
         "t":"pageview"
       },
-      "notEmptyValues": {
-        "sr": "",
-        "sd": "",
-        "cid": "",
-        "tm": "",
-        "z": ""
-      }
+      "notEmptyValues": [
+        "sr",
+        "sd",
+        "cid",
+        "tm",
+        "z"
+      ]
     }
   ]
 }

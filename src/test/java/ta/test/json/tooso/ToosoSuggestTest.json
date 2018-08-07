@@ -12,14 +12,14 @@
         "ec": "suggestions",
         "ea": "select"
       },
-      "notEmptyValues": {
-        "sr": "",
-        "sd": "",
-        "cid": "",
-        "tm": "",
-        "z": "",
-        "el": ""
-      },
+      "notEmptyValues": [
+        "sr",
+        "sd",
+        "cid",
+        "tm",
+        "z",
+        "el"
+      ],
       "optionalValues": {
         "debug": "",
         "cd0": ""
@@ -37,14 +37,14 @@
         "ec": "suggestions",
         "ea": "select"
       },
-      "notEmptyValues": {
-        "sr": "",
-        "sd": "",
-        "cid": "",
-        "tm": "",
-        "z": "",
-        "el": ""
-      }
+      "notEmptyValues": [
+        "sr",
+        "sd",
+        "cid",
+        "tm",
+        "z",
+        "el"
+      ]
     }
   ]
 }
