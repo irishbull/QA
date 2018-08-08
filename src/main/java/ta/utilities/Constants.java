@@ -1,5 +1,11 @@
 package ta.utilities;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Constants {
 
     private static final String CONSTRUCTION_FORBIDDEN = "Constants class - Object construction is forbidden";
@@ -25,19 +31,48 @@ public class Constants {
 
     public static class Tooso {
 
+        // Tooso document location
+        public static final String DL = "dl";
+        // Tooso document path
+        public static final String DP = "dp";
+
         // Tooso environment values
-        public static final String HOSTNAME = ReadToosoPropertiesFile.getProperty("tooso.hostname");
-        public static final String TID = ReadToosoPropertiesFile.getProperty("tooso.tid");
+        public static final String HOSTNAME = ReadPropertiesFile.getProperty("tooso.hostname");
+        public static final String TID = ReadPropertiesFile.getProperty("tooso.tid");
 
         // Tooso proxy filters
-        public static final String PAGEVIEW_FILTER = ReadToosoPropertiesFile.getProperty("tooso.filter.pageview.type");
-        public static final String SUGGEST_EC_FILTER = ReadToosoPropertiesFile.getProperty("tooso.filter.suggest.ec");
+        public static final String PAGEVIEW_FILTER = "t=pageview";
+        public static final String SUGGEST_EC_FILTER = "ec=suggestions";
 
-        // Tooso constant query parameters values
-        public static final String V = ReadToosoPropertiesFile.getProperty("tooso.v");
-        public static final String DE = ReadToosoPropertiesFile.getProperty("tooso.de");
-        public static final String UL = ReadToosoPropertiesFile.getProperty("tooso.ul");
-        public static final String CU = ReadToosoPropertiesFile.getProperty("tooso.cu");
+
+        public static class Common {
+
+            // Assert equals common query params map
+            public static final Map<String, String> ASSERT_EQUALS_QUERY_PARAMS;
+            static {
+                Map<String, String> map = new HashMap<>();
+                map.put("tid", TID);
+                map.put("v", "1");
+                map.put("de", Encode.UTF_8);
+                map.put("ul", "it-IT");
+                map.put("cu", "EUR");
+                ASSERT_EQUALS_QUERY_PARAMS = Collections.unmodifiableMap(map);
+            }
+
+            // Assert not empty common query params list
+            public static final List<String> ASSERT_NOT_EMPTY_QUERY_PARAMS = Arrays.asList(
+                    "sr",
+                    "sd",
+                    "cid",
+                    "tm",
+                    "z"
+            );
+
+            private Common() { throw new IllegalStateException(CONSTRUCTION_FORBIDDEN); }
+        }
+
+
+
 
         private Tooso() { throw new IllegalStateException(CONSTRUCTION_FORBIDDEN); }
     }
