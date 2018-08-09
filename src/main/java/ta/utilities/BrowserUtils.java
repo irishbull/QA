@@ -24,7 +24,7 @@ public class BrowserUtils {
     /**
      * wait for page fully loaded
      */
-    public static void waitForPageFullyLoaded(int timeout) throws Exception {
+    public static void waitForPageFullyLoaded(int timeout) {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         ExpectedCondition<Boolean> pageLoadCondition = new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
@@ -40,7 +40,7 @@ public class BrowserUtils {
     /**
      * wait up before throwing exception (static locator)
      */
-    public static void waitForClickable(WebElement element, int timer) throws Exception {
+    public static void waitForClickable(WebElement element, int timer) {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
         // wait for the static element to appear
@@ -53,7 +53,7 @@ public class BrowserUtils {
     /**
      * wait up before throwing exception (static locator)
      */
-    public static void waitFor(WebElement element, int timer) throws Exception {
+    public static void waitFor(WebElement element, int timer) {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
         // wait for the static element to appear
@@ -66,7 +66,7 @@ public class BrowserUtils {
     /**
      * wait up before throwing exception (dynamic locator)
      */
-    public static void waitForClickable(By by, int timer) throws Exception {
+    public static void waitForClickable(By by, int timer) {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
         // wait for the dynamic element to appear
@@ -79,7 +79,7 @@ public class BrowserUtils {
     /**
      * wait up before throwing exception (dynamic locator)
      */
-    public static void waitFor(By by, int timer) throws Exception {
+    public static void waitFor(By by, int timer) {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
         // wait for the dynamic element to appear
@@ -92,7 +92,7 @@ public class BrowserUtils {
     /**
      * waitFor method to poll page title
      */
-    public static void waitForTitle(String title, int timer) throws Exception {
+    public static void waitForTitle(String title, int timer) {
 
         WebDriverWait wait = new WebDriverWait(SeleniumDriver.getInstance().getDriver(), timer);
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.titleContains(title)));
@@ -102,7 +102,7 @@ public class BrowserUtils {
     /**
      * waitForURLContains method to poll page URL
      */
-    public static void waitForURLContains(String url, int timer) throws Exception {
+    public static void waitForURLContains(String url, int timer) {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         WebDriverWait wait = new WebDriverWait(driver, timer);
@@ -114,7 +114,7 @@ public class BrowserUtils {
     /**
      * waitForURLMatches method to poll page that matches the specified URL
      */
-    public static void waitForURLMatches(String url, int timer) throws Exception {
+    public static void waitForURLMatches(String url, int timer) {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         WebDriverWait wait = new WebDriverWait(driver, timer);
@@ -145,10 +145,6 @@ public class BrowserUtils {
 
     /**
      * check if a webElement is invisible
-     *
-     * @param element
-     * @param timer
-     * @return
      */
     public static boolean elementIsInvisible(WebElement element, int timer) {
         try {

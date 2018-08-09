@@ -74,7 +74,7 @@ public class ToosoSuggestTest extends BaseTest {
 
         logger.info("Har = {}", har);
 
-        List<HarEntry> toosoEntries = AnalyticsUtils.getSuggestRequests(har.getLog().getEntries());
+        List<HarEntry> toosoEntries = AnalyticsUtils.getClickOnSuggestRequests(har.getLog().getEntries());
 
         logger.info("toosoEntries size: {}", toosoEntries.size());
 

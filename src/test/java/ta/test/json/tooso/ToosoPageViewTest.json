@@ -5,7 +5,8 @@
       "description": "validate GET PageView - homepage",
       "path": "/",
       "mandatoryAssertEquals": {
-        "t": "pageview"
+        "dt": "Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
+        "dp": "/"
       },
       "mandatoryAssertNotEmpty": []
     },
@@ -14,7 +15,8 @@
       "description": "validate GET PageView - category page",
       "path": "/prodotti/piani-cucina-CAT1445-c",
       "mandatoryAssertEquals": {
-        "t": "pageview"
+        "dt": "Top e Piani cucina, penisole, banconi da cucina: prezzi e offerte online",
+        "dp": "/prodotti/piani-cucina-CAT1445-c"
       },
       "mandatoryAssertNotEmpty": []
     }
