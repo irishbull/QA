@@ -67,9 +67,9 @@ public class HomePagePO extends PageObject {
         return new LoginPO();
     }
 
-    public HomePageSearchResultsPO clickOnSearch() {
+    public ToosoSearchPO clickOnSearchBar() {
         searchWrapper.click();
-        return new HomePageSearchResultsPO();
+        return new ToosoSearchPO();
     }
 
     // getter

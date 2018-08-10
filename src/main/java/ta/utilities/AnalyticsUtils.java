@@ -73,8 +73,11 @@ public class AnalyticsUtils {
      * @param entries to filter
      * @return suggest requests
      */
-    public static List<HarEntry> getSuggestRequests(List<HarEntry> entries) {
-        return filterEntries(entries, Constants.Tooso.PROXY_SUGGEST_BASE_URL, Collections.emptyList());
+    public static List<HarEntry> getSuggestRequestsSorted(List<HarEntry> entries) {
+        List<HarEntry> suggestEntries = filterEntries(entries, Constants.Tooso.PROXY_SUGGEST_BASE_URL, Collections.emptyList());
+        // entries are (Url Alphabetical Order)
+        suggestEntries.sort((e1, e2) -> e1.getRequest().getUrl().compareTo(e2.getRequest().getUrl()));
+        return suggestEntries;
     }
 
     /**
@@ -85,6 +88,17 @@ public class AnalyticsUtils {
         return filterEntries(entries, Constants.Tooso.PROXY_SEARCH_BASE_URL, Collections.emptyList());
     }
 
+    /**
+     *
+     * @param list to sort (url alphabetical order)
+     * @return
+     */
+    public static List<HarEntry> sortByUrlAlphabeticalOrder(List<HarEntry> list) {
+
+        list.sort((e1, e2) -> e1.getRequest().getUrl().compareTo(e2.getRequest().getUrl()));
+
+        return list;
+    }
 
     private static List<HarEntry> filterEntries(List<HarEntry> entries, String baseUrl, List<String> conditions) {
         return entries.stream().filter(p -> areConditionsVerified(p.getRequest(), baseUrl, conditions)).collect(Collectors.toList());
@@ -138,6 +152,25 @@ public class AnalyticsUtils {
         // add common mandatory parameters
         mandatoryAssertNotEmptyParams.addAll(Constants.Tooso.Common.ASSERT_NOT_EMPTY_QUERY_PARAMS);
         assertNotEmpty(urlQueryParams, mandatoryAssertNotEmptyParams);
+
+    }
+
+
+    /**
+     *
+     * @param url
+     * @param index
+     * @param word
+     * @throws URISyntaxException
+     */
+    public static void checkSuggestQueryParam(String url, int index, String word) throws URISyntaxException {
+
+        // request query parameters
+        Map<String, String> urlQueryParams = getQueryParams(url);
+
+        String actualQ = urlQueryParams.get("q");
+
+        Assert.assertEquals(actualQ, word.substring(0, index), "Suggest request - parameter [q]:");
 
     }
 

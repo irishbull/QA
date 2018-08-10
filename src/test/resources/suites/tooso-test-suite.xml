@@ -4,7 +4,7 @@
 <suite name="ToosoSuite">
 
     <parameter name="isProxyRequired" value= "true"/>
-
+<!--
     <test name = "PageViewTest">
         <parameter name="json-path" value="src/test/java/ta/test/json/tooso/ToosoPageViewTest.json"/>
         <classes>
@@ -12,10 +12,18 @@
         </classes>
     </test>
 
-    <test name = "SuggestTest">
+    <test name = "ClickOnSuggestedTest">
         <parameter name="json-path" value="src/test/java/ta/test/json/tooso/ToosoClickOnSuggestedTest.json"/>
         <classes>
             <class name = "ta.test.impl.tooso.ToosoClickOnSuggestedTest" />
+        </classes>
+    </test>
+-->
+
+    <test name = "SuggestTest">
+        <parameter name="json-path" value="src/test/java/ta/test/json/tooso/ToosoSuggestTest.json"/>
+        <classes>
+            <class name = "ta.test.impl.tooso.ToosoSuggestTest" />
         </classes>
     </test>
 

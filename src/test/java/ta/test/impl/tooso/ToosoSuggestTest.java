@@ -8,13 +8,11 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
 import java.util.List;
-import java.util.Objects;
 
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
@@ -25,10 +23,9 @@ import ta.test.BaseTest;
 import ta.utilities.AnalyticsUtils;
 import ta.utilities.ReadPropertiesFile;
 
+public class ToosoSuggestTest extends BaseTest {
 
-public class ToosoClickOnSuggestedTest extends BaseTest {
-
-    private static final Logger logger = LoggerFactory.getLogger(ToosoClickOnSuggestedTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(ToosoSuggestTest.class);
 
     @BeforeMethod
     public void createHar(Method method) {
@@ -36,21 +33,10 @@ public class ToosoClickOnSuggestedTest extends BaseTest {
         logger.debug("Har {} created for method {}", SeleniumDriver.getInstance().getProxy().getHar(), method.getName());
     }
 
-    @AfterMethod
-    public void endHar(Method method) {
-
-        Har har = SeleniumDriver.getInstance().getProxy().getHar();
-
-        if (Objects.nonNull(har)) {
-            SeleniumDriver.getInstance().getProxy().endHar();
-            logger.debug("Har {} closed for method {}", har, method.getName());
-        }
-    }
-
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Verifica i valori dei parametri della richiesta GET")
-    public void tc_001_verifyClickOnSuggestRequest(JSONObject testData) throws Exception {
+    public void tc_001_verifySuggestRequest(JSONObject testData) throws Exception {
 
         String description = testData.get("description").toString();
 
@@ -60,31 +46,35 @@ public class ToosoClickOnSuggestedTest extends BaseTest {
 
         driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("path").toString());
 
+
         HomePagePO homePagePO = new HomePagePO();
 
         ToosoSearchPO toosoSearchPO = homePagePO.clickOnSearchBar();
 
-        toosoSearchPO.getFirstResultElement().click();
+        String word = testData.get("search").toString();
 
-        Thread.sleep(7000);
+        toosoSearchPO.enterWord(word);
+
+        toosoSearchPO.search();
+
+        //BrowserUtils.wait
+        Thread.sleep(7000); //To remove
+
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
-
-        logger.info("Har entries: {}", har.getLog().getEntries().size());
-
         logger.info("Har = {}", har);
 
-        List<HarEntry> toosoEntries = AnalyticsUtils.getClickOnSuggestRequests(har.getLog().getEntries());
+        List<HarEntry> toosoEntries = AnalyticsUtils.getSuggestRequestsSorted(har.getLog().getEntries());
 
-        logger.info("toosoEntries size: {}", toosoEntries.size());
+        Assert.assertEquals(toosoEntries.size(), word.length() + 1, "Number of suggest requests captured by proxy:");
 
-        Assert.assertEquals(toosoEntries.size(), 1, "Number of click on suggest requests captured by proxy:");
-
-        String url = toosoEntries.get(0).getRequest().getUrl();
-        logger.info("URL to check: {}", url);
-
-        // check
-        AnalyticsUtils.checkMandatoryValues(url, testData);
+        // start from index i = 1 to ignore * due to search click
+        for(int i = 1; i < toosoEntries.size(); i++) {
+            String url = toosoEntries.get(i).getRequest().getUrl();
+            logger.info("{} -> {}", i, url);
+            //AnalyticsUtils.checkMandatoryValues(url, testData);
+            AnalyticsUtils.checkSuggestQueryParam(url, i, word);
+        }
 
         logger.info("Test completed");
     }

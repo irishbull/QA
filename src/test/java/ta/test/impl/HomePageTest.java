@@ -10,7 +10,7 @@ import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
-import ta.pageobjects.impl.HomePageSearchResultsPO;
+import ta.pageobjects.impl.ToosoSearchPO;
 import ta.pageobjects.impl.IdeaPiuPO;
 import ta.test.BaseTest;
 import ta.utilities.BrowserUtils;
@@ -36,14 +36,14 @@ public class HomePageTest extends BaseTest {
 
         HomePagePO homePagePO = new HomePagePO();
 
-        HomePageSearchResultsPO homePageSearchResultsPO = homePagePO.clickOnSearch();
+        ToosoSearchPO toosoSearchPO = homePagePO.clickOnSearchBar();
 
-        int a = homePageSearchResultsPO.getResultsNumber();
+        int a = toosoSearchPO.getResultsNumber();
 
         logger.info("description from json file: {}", testData.get("description"));
         logger.info(String.valueOf(a));
 
-        assertTrue(homePageSearchResultsPO.getResultsNumber() <= 3);
+        assertTrue(toosoSearchPO.getResultsNumber() <= 3);
     }
 
 

@@ -1,0 +1,20 @@
+{
+  "tc_001_verifySuggestRequest": [
+    {
+      "rowID": "tc_001_verifySuggestRequest.01",
+      "description": "validate GET Suggest - homepage",
+      "path": "/",
+      "search":"*porta",
+      "mandatoryAssertEquals": {
+        "dt": "Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
+      },
+      "mandatoryAssertNotEmpty": [
+      "q",
+      "z",
+      "tm",
+      "cid",
+      "uid"
+      ]
+    }
+  ]
+}
