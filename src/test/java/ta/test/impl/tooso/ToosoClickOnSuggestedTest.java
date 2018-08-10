@@ -26,9 +26,9 @@ import ta.utilities.AnalyticsUtils;
 import ta.utilities.ReadPropertiesFile;
 
 
-public class ToosoSuggestTest extends BaseTest {
+public class ToosoClickOnSuggestedTest extends BaseTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(ToosoSuggestTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(ToosoClickOnSuggestedTest.class);
 
     @BeforeMethod
     public void createHar(Method method) {
@@ -50,7 +50,7 @@ public class ToosoSuggestTest extends BaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Verifica i valori dei parametri della richiesta GET")
-    public void tc_001_verifySuggestRequest(JSONObject testData) throws Exception {
+    public void tc_001_verifyClickOnSuggestRequest(JSONObject testData) throws Exception {
 
         String description = testData.get("description").toString();
 

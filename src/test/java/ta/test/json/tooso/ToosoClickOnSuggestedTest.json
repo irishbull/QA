@@ -1,7 +1,7 @@
 {
-  "tc_001_verifySuggestRequest": [
+  "tc_001_verifyClickOnSuggestRequest": [
     {
-      "rowID": "tc_001_verifySuggestRequest.01",
+      "rowID": "tc_001_verifyClickOnSuggestRequest.01",
       "description": "validate GET Suggest - homepage",
       "path": "/",
       "mandatoryAssertEquals": {
@@ -17,7 +17,7 @@
       ]
     },
     {
-      "rowID": "tc_001_verifySuggestRequest.02",
+      "rowID": "tc_001_verifyClickOnSuggestRequest.02",
       "description": "validate GET Suggest - category page",
       "path": "/prodotti/forni-in-muratura-CAT1162-c",
       "mandatoryAssertEquals": {
