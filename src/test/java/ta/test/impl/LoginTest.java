@@ -51,7 +51,7 @@ public class LoginTest extends BaseTest {
         homePagePO = loginPO.clickLoginButton();
 
         // after successful login user is redirected to homepage
-        assertEquals(SeleniumDriver.getInstance().getDriver().getCurrentUrl(), ReadPropertiesFile.getProperty("qa.base.url"), "Page url");
+        assertEquals(SeleniumDriver.getInstance().getDriver().getCurrentUrl(), ReadPropertiesFile.getProperty("base.url"), "Page url");
 
         BrowserUtils.waitFor(homePagePO.getUserFirstName(), Constants.WaitTime.EXPLICIT_WAIT);
 

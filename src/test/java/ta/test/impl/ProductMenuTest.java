@@ -28,7 +28,7 @@ public class ProductMenuTest extends BaseTest {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("qa.base.url"));
+        driver.get(ReadPropertiesFile.getProperty("base.url"));
 
         HomePagePO homePagePO = new HomePagePO();
 
