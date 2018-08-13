@@ -42,14 +42,16 @@ public class Constants {
         public static final String DL = "dl";
         // Tooso Document Path
         public static final String DP = "dp";
+        // Tooso suggest request prefix
+        public static final String PROXY_SUGGEST_PREFIX = "*";
 
         // Tooso environment values
         public static final String METHOD = "GET";
         public static final String BASE_URL = ReadPropertiesFile.getProperty("tooso.base.url");
         public static final String TID = ReadPropertiesFile.getProperty("tooso.tid");
+        public static final String PROXY_TID = ReadPropertiesFile.getProperty("tooso.proxy.tid");
         public static final String PROXY_SEARCH_BASE_URL = ReadPropertiesFile.getProperty("tooso.proxy.search.base.url");
         public static final String PROXY_SUGGEST_BASE_URL = ReadPropertiesFile.getProperty("tooso.proxy.suggest.base.url");
-        public static final String PROXY_TID = ReadPropertiesFile.getProperty("tooso.proxy.tid");
 
 
         // Tooso request filters

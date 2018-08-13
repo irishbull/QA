@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
@@ -21,6 +22,7 @@ import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.BaseTest;
 import ta.utilities.AnalyticsUtils;
+import ta.utilities.Constants;
 import ta.utilities.ReadPropertiesFile;
 
 public class ToosoSuggestTest extends BaseTest {
@@ -46,7 +48,6 @@ public class ToosoSuggestTest extends BaseTest {
 
         driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("path").toString());
 
-
         HomePagePO homePagePO = new HomePagePO();
 
         ToosoSearchPO toosoSearchPO = homePagePO.clickOnSearchBar();
@@ -55,20 +56,25 @@ public class ToosoSuggestTest extends BaseTest {
 
         toosoSearchPO.enterWord(word);
 
-        toosoSearchPO.search();
-
-        //BrowserUtils.wait
-        Thread.sleep(7000); //To remove
-
+        // wait for quiescence
+        SeleniumDriver.getInstance().getProxy().waitForQuiescence(2, 10, TimeUnit.SECONDS);
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
         logger.info("Har = {}", har);
 
         List<HarEntry> toosoEntries = AnalyticsUtils.getSuggestRequestsSorted(har.getLog().getEntries());
 
+        for(HarEntry entry : toosoEntries) {
+            logger.info(entry.getRequest().getUrl());
+        }
+
         Assert.assertEquals(toosoEntries.size(), word.length() + 1, "Number of suggest requests captured by proxy:");
 
-        // start from index i = 1 to ignore * due to search click
+        // suggest prefix
+        AnalyticsUtils.checkSuggestQueryParam(toosoEntries.get(0).getRequest().getUrl(), 1, Constants.Tooso.PROXY_SUGGEST_PREFIX);
+        //AnalyticsUtils.checkMandatoryValues(url, testData);
+
+        // start from index i = 1 to ignore prefix
         for(int i = 1; i < toosoEntries.size(); i++) {
             String url = toosoEntries.get(i).getRequest().getUrl();
             logger.info("{} -> {}", i, url);

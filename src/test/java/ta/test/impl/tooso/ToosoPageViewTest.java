@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
@@ -45,10 +46,8 @@ public class ToosoPageViewTest extends BaseTest {
 
         driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("path").toString());
 
-
-        //BrowserUtils.wait
-        Thread.sleep(7000); //To remove
-
+        // wait for quiescence
+        SeleniumDriver.getInstance().getProxy().waitForQuiescence(2, 10, TimeUnit.SECONDS);
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
         logger.info("Har = {}", har);

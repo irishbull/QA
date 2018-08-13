@@ -15,6 +15,7 @@ import org.testng.annotations.Test;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
@@ -66,7 +67,8 @@ public class ToosoClickOnSuggestedTest extends BaseTest {
 
         toosoSearchPO.getFirstResultElement().click();
 
-        Thread.sleep(7000);
+        // wait for quiescence
+        SeleniumDriver.getInstance().getProxy().waitForQuiescence(2, 10, TimeUnit.SECONDS);
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
 
