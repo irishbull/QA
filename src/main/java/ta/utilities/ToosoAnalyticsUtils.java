@@ -11,94 +11,81 @@ import org.testng.Assert;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static ta.utilities.Constants.Tooso.DL;
-import static ta.utilities.Constants.Tooso.DP;
-import static ta.utilities.Constants.Url.BASE_URL;
+import ta.utilities.constants.Constants;
+import ta.utilities.constants.ToosoConstants;
 
-public class AnalyticsUtils {
+import static ta.utilities.constants.Constants.Url.BASE_URL;
+import static ta.utilities.constants.ToosoConstants.DL;
+import static ta.utilities.constants.ToosoConstants.DP;
+import static ta.utilities.constants.ToosoConstants.RequestType;
 
-    private static final String CONSTRUCTION_FORBIDDEN = "AnalyticsUtils - Object construction is forbidden";
 
-    private AnalyticsUtils() {
-        throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);
-    }
+public class ToosoAnalyticsUtils {
 
-    /**
-     * @param entries to filter
-     * @return Pageview requests
-     */
-    public static List<HarEntry> getPageViewRequests(List<HarEntry> entries) {
-        return filterEntries(entries, Constants.Tooso.BASE_URL, Constants.Tooso.Filters.PAGEVIEW);
-    }
+    private static final String CONSTRUCTION_FORBIDDEN = "ToosoAnalyticsUtils - Object construction is forbidden";
+
 
     /**
      * @param entries to filter
-     * @return Pageview detail requests
      */
-    public static List<HarEntry> getPageViewDetailRequests(List<HarEntry> entries) {
-        return filterEntries(entries, Constants.Tooso.BASE_URL, Constants.Tooso.Filters.PAGEVIEW_DETAIL);
+    public static List<HarEntry> retrieveEntriesOfType(List<HarEntry> entries, RequestType type) {
+
+        List<HarEntry> result = new ArrayList<>();
+
+        switch (type) {
+
+            case SUGGEST:
+                result.addAll(filterEntries(entries, ToosoConstants.PROXY_SUGGEST_BASE_URL, Collections.emptyList()));
+                // sort (Url Alphabetical Order)
+                result.sort((e1, e2) -> e1.getRequest().getUrl().compareTo(e2.getRequest().getUrl()));
+                break;
+
+            case SEARCH:
+                result.addAll(filterEntries(entries, ToosoConstants.PROXY_SEARCH_BASE_URL, Collections.emptyList()));
+                break;
+
+            case PAGEVIEW:
+                result.addAll(filterEntries(entries, ToosoConstants.BASE_URL, ToosoConstants.Filters.PAGEVIEW));
+                break;
+
+            case PAGEVIEW_DETAIL:
+                result.addAll(filterEntries(entries, ToosoConstants.BASE_URL, ToosoConstants.Filters.PAGEVIEW_DETAIL));
+                break;
+
+            case PAGEVIEW_PURCHASE:
+                result.addAll(filterEntries(entries, ToosoConstants.BASE_URL, ToosoConstants.Filters.PAGEVIEW_PURCHASE));
+                break;
+
+            case CLICK_AFTER_SEARCH:
+                result.addAll(filterEntries(entries, ToosoConstants.BASE_URL, ToosoConstants.Filters.CLICK_AFTER_SEARCH));
+                break;
+
+            case CLICK_ON_SUGGESTED:
+                result.addAll(filterEntries(entries, ToosoConstants.BASE_URL, ToosoConstants.Filters.CLICK_ON_SUGGESTED));
+                break;
+
+            case ADD_TO_CART:
+                result.addAll(filterEntries(entries, ToosoConstants.BASE_URL, ToosoConstants.Filters.ADD_TO_CART));
+                break;
+
+            case REMOVE_FROM_CART:
+                result.addAll(filterEntries(entries, ToosoConstants.BASE_URL, ToosoConstants.Filters.REMOVE_FROM_CART));
+                break;
+
+            default:
+                break;
+        }
+
+        return result;
     }
 
-    /**
-     * @param entries to filter
-     * @return Pageview purchase requests
-     */
-    public static List<HarEntry> getPageViewPurchaseRequests(List<HarEntry> entries) {
-        return filterEntries(entries, Constants.Tooso.BASE_URL, Constants.Tooso.Filters.PAGEVIEW_PURCHASE);
-    }
-
-    /**
-     * @param entries to filter
-     * @return Click on suggested elem requests
-     */
-    public static List<HarEntry> getClickOnSuggestRequests(List<HarEntry> entries) {
-        return filterEntries(entries, Constants.Tooso.BASE_URL, Constants.Tooso.Filters.CLICK_ON_SUGGESTED);
-    }
-
-    /**
-     * @param entries to filter
-     * @return Add to cart requests
-     */
-    public static List<HarEntry> getAddToCartRequests(List<HarEntry> entries) {
-        return filterEntries(entries, Constants.Tooso.BASE_URL, Constants.Tooso.Filters.ADD_TO_CART);
-    }
-
-    /**
-     * @param entries to filter
-     * @return suggest requests
-     */
-    public static List<HarEntry> getSuggestRequestsSorted(List<HarEntry> entries) {
-        List<HarEntry> suggestEntries = filterEntries(entries, Constants.Tooso.PROXY_SUGGEST_BASE_URL, Collections.emptyList());
-        // entries are (Url Alphabetical Order)
-        suggestEntries.sort((e1, e2) -> e1.getRequest().getUrl().compareTo(e2.getRequest().getUrl()));
-        return suggestEntries;
-    }
-
-    /**
-     * @param entries to filter
-     * @return search requests
-     */
-    public static List<HarEntry> getSearchRequests(List<HarEntry> entries) {
-        return filterEntries(entries, Constants.Tooso.PROXY_SEARCH_BASE_URL, Collections.emptyList());
-    }
-
-    /**
-     *
-     * @param list to sort (url alphabetical order)
-     * @return
-     */
-    public static List<HarEntry> sortByUrlAlphabeticalOrder(List<HarEntry> list) {
-
-        list.sort((e1, e2) -> e1.getRequest().getUrl().compareTo(e2.getRequest().getUrl()));
-
-        return list;
-    }
 
     private static List<HarEntry> filterEntries(List<HarEntry> entries, String baseUrl, List<String> conditions) {
         return entries.stream().filter(p -> areConditionsVerified(p.getRequest(), baseUrl, conditions)).collect(Collectors.toList());
@@ -108,7 +95,7 @@ public class AnalyticsUtils {
     private static boolean areConditionsVerified(HarRequest request, String baseUrl, List<String> params) {
 
         // filter by request method
-        if (!Constants.Tooso.METHOD.equalsIgnoreCase(request.getMethod())) {
+        if (!ToosoConstants.METHOD.equalsIgnoreCase(request.getMethod())) {
             return false;
         }
 
@@ -136,21 +123,35 @@ public class AnalyticsUtils {
      * @param testData
      * @throws URISyntaxException
      */
-    public static void checkMandatoryValues(String url, JSONObject testData) throws URISyntaxException {
+    public static void checkMandatoryValues(String url, JSONObject testData, RequestType type) throws URISyntaxException {
 
         // request query parameters
-        Map<String, String> urlQueryParams = getQueryParams(url);
+        final Map<String, String> urlQueryParams = getQueryParams(url);
 
         // mandatory parameters(dynamically retrieved from json)
         HashMap<String, String> mandatoryAssertEqualsParams = (HashMap<String, String>) testData.get("mandatoryAssertEquals");
-        // add common mandatory parameters
-        mandatoryAssertEqualsParams.putAll(Constants.Tooso.Common.ASSERT_EQUALS_QUERY_PARAMS);
+
+        // mandatory parameters that should be NOT empty (dynamically retrieved from json)
+        List<String> mandatoryAssertNotEmptyParams = (List<String>) testData.get("mandatoryAssertNotEmpty");
+
+        // add common mandatory parameters according request type
+        switch (type) {
+
+            case SUGGEST:
+            case SEARCH:
+                mandatoryAssertEqualsParams.putAll(ToosoConstants.SearchAndSuggest.Common.ASSERT_EQUALS_QUERY_PARAMS);
+                mandatoryAssertNotEmptyParams.addAll(ToosoConstants.SearchAndSuggest.Common.ASSERT_NOT_EMPTY_QUERY_PARAMS);
+                break;
+
+            // Analytics
+            default:
+                mandatoryAssertEqualsParams.putAll(ToosoConstants.Analytics.Common.ASSERT_EQUALS_QUERY_PARAMS);
+                mandatoryAssertNotEmptyParams.addAll(ToosoConstants.Analytics.Common.ASSERT_NOT_EMPTY_QUERY_PARAMS);
+                break;
+        }
+
         assertEquals(urlQueryParams, mandatoryAssertEqualsParams);
 
-        // mandatory parameters that should be not empty (dynamically retrieved from json)
-        List<String> mandatoryAssertNotEmptyParams = (List<String>) testData.get("mandatoryAssertNotEmpty");
-        // add common mandatory parameters
-        mandatoryAssertNotEmptyParams.addAll(Constants.Tooso.Common.ASSERT_NOT_EMPTY_QUERY_PARAMS);
         assertNotEmpty(urlQueryParams, mandatoryAssertNotEmptyParams);
 
     }
@@ -205,5 +206,9 @@ public class AnalyticsUtils {
             Assert.assertTrue(actual.containsKey(param), "Request should contain the parameter [" + param + "]:");
             Assert.assertFalse(actual.get(param).isEmpty(), "Query parameter [" + param + "] value is empty:");
         }
+    }
+
+    private ToosoAnalyticsUtils() {
+        throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);
     }
 }

@@ -8,7 +8,7 @@ import org.openqa.selenium.support.How;
 
 import ta.pageobjects.PageObject;
 import ta.utilities.BrowserUtils;
-import ta.utilities.Constants;
+import ta.utilities.constants.Constants;
 
 public class ProductMenuPO extends PageObject {
 

@@ -7,7 +7,7 @@ import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.StoreLocatorPO;
 import ta.test.BaseTest;
 import ta.utilities.BrowserUtils;
-import ta.utilities.Constants;
+import ta.utilities.constants.Constants;
 import ta.utilities.ReadPropertiesFile;
 
 public class StoreLocatorTest extends BaseTest {

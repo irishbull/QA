@@ -14,7 +14,7 @@ import ta.pageobjects.impl.ToosoSearchPO;
 import ta.pageobjects.impl.IdeaPiuPO;
 import ta.test.BaseTest;
 import ta.utilities.BrowserUtils;
-import ta.utilities.Constants;
+import ta.utilities.constants.Constants;
 import ta.utilities.ReadPropertiesFile;
 
 import static org.testng.Assert.assertTrue;

@@ -19,8 +19,13 @@ import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.test.BaseTest;
-import ta.utilities.AnalyticsUtils;
+import ta.utilities.ToosoAnalyticsUtils;
 import ta.utilities.ReadPropertiesFile;
+import ta.utilities.constants.ToosoConstants;
+
+import static ta.utilities.constants.ToosoConstants.QUIET_PERIOD;
+import static ta.utilities.constants.ToosoConstants.RequestType.PAGEVIEW;
+import static ta.utilities.constants.ToosoConstants.TIMEOUT;
 
 
 public class ToosoPageViewTest extends BaseTest {
@@ -47,20 +52,20 @@ public class ToosoPageViewTest extends BaseTest {
         driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("path").toString());
 
         // wait for quiescence
-        SeleniumDriver.getInstance().getProxy().waitForQuiescence(2, 10, TimeUnit.SECONDS);
+        SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
         logger.info("Har = {}", har);
 
-        List<HarEntry> toosoEntries = AnalyticsUtils.getPageViewRequests(har.getLog().getEntries());
+        List<HarEntry> entriesToCheck = ToosoAnalyticsUtils.retrieveEntriesOfType(har.getLog().getEntries(), PAGEVIEW);
 
-        Assert.assertEquals(toosoEntries.size(), 1, "Number of pageview requests captured by proxy:");
+        Assert.assertEquals(entriesToCheck.size(), 1, "Number of pageview requests captured by proxy:");
 
-        String url  = toosoEntries.get(0).getRequest().getUrl();
+        String url  = entriesToCheck.get(0).getRequest().getUrl();
         logger.info("URL to check: {}", url);
 
         // check
-        AnalyticsUtils.checkMandatoryValues(url, testData);
+        ToosoAnalyticsUtils.checkMandatoryValues(url, testData, PAGEVIEW);
 
         logger.info("Test completed");
     }

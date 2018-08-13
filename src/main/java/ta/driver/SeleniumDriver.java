@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import ta.utilities.Constants;
+import ta.utilities.constants.Constants;
 import ta.utilities.ReadPropertiesFile;
 
 

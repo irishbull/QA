@@ -23,8 +23,13 @@ import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.BaseTest;
-import ta.utilities.AnalyticsUtils;
+import ta.utilities.ToosoAnalyticsUtils;
 import ta.utilities.ReadPropertiesFile;
+import ta.utilities.constants.ToosoConstants;
+
+import static ta.utilities.constants.ToosoConstants.QUIET_PERIOD;
+import static ta.utilities.constants.ToosoConstants.RequestType.CLICK_ON_SUGGESTED;
+import static ta.utilities.constants.ToosoConstants.TIMEOUT;
 
 
 public class ToosoClickOnSuggestedTest extends BaseTest {
@@ -68,7 +73,7 @@ public class ToosoClickOnSuggestedTest extends BaseTest {
         toosoSearchPO.getFirstResultElement().click();
 
         // wait for quiescence
-        SeleniumDriver.getInstance().getProxy().waitForQuiescence(2, 10, TimeUnit.SECONDS);
+        SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
 
@@ -76,17 +81,19 @@ public class ToosoClickOnSuggestedTest extends BaseTest {
 
         logger.info("Har = {}", har);
 
-        List<HarEntry> toosoEntries = AnalyticsUtils.getClickOnSuggestRequests(har.getLog().getEntries());
+        List<HarEntry> capturedEntries = har.getLog().getEntries();
 
-        logger.info("toosoEntries size: {}", toosoEntries.size());
+        List<HarEntry> entriesToCheck = ToosoAnalyticsUtils.retrieveEntriesOfType(capturedEntries, CLICK_ON_SUGGESTED);
 
-        Assert.assertEquals(toosoEntries.size(), 1, "Number of click on suggest requests captured by proxy:");
+        logger.info("entriesToCheck size: {}", entriesToCheck.size());
 
-        String url = toosoEntries.get(0).getRequest().getUrl();
+        Assert.assertEquals(entriesToCheck.size(), 1, "Number of click on suggest requests captured by proxy:");
+
+        String url = entriesToCheck.get(0).getRequest().getUrl();
         logger.info("URL to check: {}", url);
 
         // check
-        AnalyticsUtils.checkMandatoryValues(url, testData);
+        ToosoAnalyticsUtils.checkMandatoryValues(url, testData, CLICK_ON_SUGGESTED);
 
         logger.info("Test completed");
     }

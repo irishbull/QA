@@ -10,7 +10,7 @@ import ta.pageobjects.impl.OrangeLoginPO;
 import ta.pageobjects.impl.OrangeWelcomePO;
 import ta.test.BaseTest;
 import ta.utilities.BrowserUtils;
-import ta.utilities.Constants;
+import ta.utilities.constants.Constants;
 
 import static org.testng.Assert.assertTrue;
 

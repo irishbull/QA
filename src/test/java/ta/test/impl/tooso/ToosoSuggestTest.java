@@ -21,9 +21,13 @@ import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.BaseTest;
-import ta.utilities.AnalyticsUtils;
-import ta.utilities.Constants;
+import ta.utilities.ToosoAnalyticsUtils;
 import ta.utilities.ReadPropertiesFile;
+
+import static ta.utilities.constants.ToosoConstants.PROXY_SUGGEST_PREFIX;
+import static ta.utilities.constants.ToosoConstants.QUIET_PERIOD;
+import static ta.utilities.constants.ToosoConstants.RequestType.SUGGEST;
+import static ta.utilities.constants.ToosoConstants.TIMEOUT;
 
 public class ToosoSuggestTest extends BaseTest {
 
@@ -57,29 +61,31 @@ public class ToosoSuggestTest extends BaseTest {
         toosoSearchPO.enterWord(word);
 
         // wait for quiescence
-        SeleniumDriver.getInstance().getProxy().waitForQuiescence(2, 10, TimeUnit.SECONDS);
+        SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
         logger.info("Har = {}", har);
 
-        List<HarEntry> toosoEntries = AnalyticsUtils.getSuggestRequestsSorted(har.getLog().getEntries());
+        List<HarEntry> capturedEntries = har.getLog().getEntries();
 
-        for(HarEntry entry : toosoEntries) {
+        List<HarEntry> suggestEntries = ToosoAnalyticsUtils.retrieveEntriesOfType(capturedEntries, SUGGEST);
+
+        for(HarEntry entry : suggestEntries) {
             logger.info(entry.getRequest().getUrl());
         }
 
-        Assert.assertEquals(toosoEntries.size(), word.length() + 1, "Number of suggest requests captured by proxy:");
+        Assert.assertEquals(suggestEntries.size(), word.length() + 1, "Number of suggest requests captured by proxy:");
 
         // suggest prefix
-        AnalyticsUtils.checkSuggestQueryParam(toosoEntries.get(0).getRequest().getUrl(), 1, Constants.Tooso.PROXY_SUGGEST_PREFIX);
-        //AnalyticsUtils.checkMandatoryValues(url, testData);
+        ToosoAnalyticsUtils.checkMandatoryValues(suggestEntries.get(0).getRequest().getUrl(), testData, SUGGEST);
+        ToosoAnalyticsUtils.checkSuggestQueryParam(suggestEntries.get(0).getRequest().getUrl(), 1, PROXY_SUGGEST_PREFIX);
 
         // start from index i = 1 to ignore prefix
-        for(int i = 1; i < toosoEntries.size(); i++) {
-            String url = toosoEntries.get(i).getRequest().getUrl();
+        for(int i = 1; i < suggestEntries.size(); i++) {
+            String url = suggestEntries.get(i).getRequest().getUrl();
             logger.info("{} -> {}", i, url);
-            //AnalyticsUtils.checkMandatoryValues(url, testData);
-            AnalyticsUtils.checkSuggestQueryParam(url, i, word);
+            ToosoAnalyticsUtils.checkMandatoryValues(url, testData, SUGGEST);
+            ToosoAnalyticsUtils.checkSuggestQueryParam(url, i, word);
         }
 
         logger.info("Test completed");
