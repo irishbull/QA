@@ -13,8 +13,8 @@ import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.ProductMenuPO;
 import ta.test.BaseTest;
 import ta.utilities.BrowserUtils;
-import ta.utilities.constants.Constants;
 import ta.utilities.ReadPropertiesFile;
+import ta.utilities.constants.Constants;
 
 import static org.testng.Assert.assertTrue;
 

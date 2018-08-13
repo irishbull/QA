@@ -19,9 +19,8 @@ import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.test.BaseTest;
-import ta.utilities.ToosoAnalyticsUtils;
 import ta.utilities.ReadPropertiesFile;
-import ta.utilities.constants.ToosoConstants;
+import ta.utilities.ToosoAnalyticsUtils;
 
 import static ta.utilities.constants.ToosoConstants.QUIET_PERIOD;
 import static ta.utilities.constants.ToosoConstants.RequestType.PAGEVIEW;

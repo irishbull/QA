@@ -21,8 +21,8 @@ import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.BaseTest;
-import ta.utilities.ToosoAnalyticsUtils;
 import ta.utilities.ReadPropertiesFile;
+import ta.utilities.ToosoAnalyticsUtils;
 
 import static ta.utilities.constants.ToosoConstants.PROXY_SUGGEST_PREFIX;
 import static ta.utilities.constants.ToosoConstants.QUIET_PERIOD;

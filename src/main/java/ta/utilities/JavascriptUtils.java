@@ -52,16 +52,19 @@ public class JavascriptUtils {
 
     /**
      * method to execute a js click event
+     *
+     * @param element
      */
     public static void click(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) SeleniumDriver.getInstance().getDriver();
         js.executeScript("arguments[0].click();", element);
     }
 
+
     /**
      * modalClose method to poll page title
      */
-    public static void modalClose(By by) throws Exception {
+    public static void modalClose(By by) {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement elementToClick = driver.findElement(by);

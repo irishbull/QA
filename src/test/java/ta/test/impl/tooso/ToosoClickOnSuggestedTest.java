@@ -23,9 +23,8 @@ import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.BaseTest;
-import ta.utilities.ToosoAnalyticsUtils;
 import ta.utilities.ReadPropertiesFile;
-import ta.utilities.constants.ToosoConstants;
+import ta.utilities.ToosoAnalyticsUtils;
 
 import static ta.utilities.constants.ToosoConstants.QUIET_PERIOD;
 import static ta.utilities.constants.ToosoConstants.RequestType.CLICK_ON_SUGGESTED;
