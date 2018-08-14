@@ -18,7 +18,7 @@
     },
     {
       "rowID": "tc_001_navigateProductMenu.03",
-      "description" : "navigate the product menu : Ordine e sistemazione -> Scatole e contenitori -> Bauli",
+      "description" : "navigate the product menu : Illuminazione -> Smart Lighting -> Smart Lighting",
       "macroCategoryGroup" : "Illuminazione",
       "macroCategory" : "Smart Lighting",
       "category" : "Smart Lighting",

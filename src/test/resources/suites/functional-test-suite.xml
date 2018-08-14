@@ -3,12 +3,12 @@
 
 <suite name="FunctionalTestSuite">
 
-    <test name = "loginTest">
+    <!--<test name = "loginTest">
         <parameter name="json-path"  value="src/test/java/ta/test/json/LoginTest.json"/>
         <classes>
             <class name = "ta.test.impl.LoginTest" />
         </classes>
-    </test>
+    </test>-->
 
     <test name = "productMenuNavigation">
         <parameter name="json-path"  value="src/test/java/ta/test/json/ProductMenuTest.json"/>

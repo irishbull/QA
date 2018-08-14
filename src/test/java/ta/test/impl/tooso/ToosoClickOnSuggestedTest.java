@@ -8,13 +8,9 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.lang.reflect.Method;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import io.qameta.allure.Description;
@@ -22,7 +18,7 @@ import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.ToosoSearchPO;
-import ta.test.BaseTest;
+import ta.test.ToosoBaseTest;
 import ta.utilities.ReadPropertiesFile;
 import ta.utilities.ToosoAnalyticsUtils;
 
@@ -31,27 +27,9 @@ import static ta.utilities.constants.ToosoConstants.RequestType.CLICK_ON_SUGGEST
 import static ta.utilities.constants.ToosoConstants.TIMEOUT;
 
 
-public class ToosoClickOnSuggestedTest extends BaseTest {
+public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
 
     private static final Logger logger = LoggerFactory.getLogger(ToosoClickOnSuggestedTest.class);
-
-    @BeforeMethod
-    public void createHar(Method method) {
-        SeleniumDriver.getInstance().getProxy().newHar(method.getName());
-        logger.debug("Har {} created for method {}", SeleniumDriver.getInstance().getProxy().getHar(), method.getName());
-    }
-
-    @AfterMethod
-    public void endHar(Method method) {
-
-        Har har = SeleniumDriver.getInstance().getProxy().getHar();
-
-        if (Objects.nonNull(har)) {
-            SeleniumDriver.getInstance().getProxy().endHar();
-            logger.debug("Har {} closed for method {}", har, method.getName());
-        }
-    }
-
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Verifica i valori dei parametri della richiesta GET")
