@@ -30,7 +30,7 @@ public class ToosoPageViewTest extends ToosoBaseTest {
     private static final Logger logger = LoggerFactory.getLogger(ToosoPageViewTest.class);
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("Verifica i valori dei parametri della richiesta GET")
+    @Description("GET [type = PAGEVIEW] - validate request")
     public void tc_001_verifyPageViewRequest(JSONObject testData) throws Exception {
 
         String description = testData.get("description").toString();

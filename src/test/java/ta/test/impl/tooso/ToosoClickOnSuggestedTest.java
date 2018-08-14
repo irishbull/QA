@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit;
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
-import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.ToosoBaseTest;
 import ta.utilities.ReadPropertiesFile;
@@ -32,7 +31,7 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
     private static final Logger logger = LoggerFactory.getLogger(ToosoClickOnSuggestedTest.class);
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("Verifica i valori dei parametri della richiesta GET")
+    @Description("GET [type = CLICK ON SUGGESTED] - validate request")
     public void tc_001_verifyClickOnSuggestRequest(JSONObject testData) throws Exception {
 
         String description = testData.get("description").toString();
@@ -43,11 +42,11 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
 
         driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("path").toString());
 
-        HomePagePO homePagePO = new HomePagePO();
+        ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
 
-        ToosoSearchPO toosoSearchPO = homePagePO.clickOnSearchBar();
+        toosoSearchPO.clickOnSearchBar();
 
-        toosoSearchPO.getFirstResultElement().click();
+        toosoSearchPO.clickOnFirstResultElement();
 
         // wait for quiescence
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
@@ -64,7 +63,7 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
 
         logger.info("entriesToCheck size: {}", entriesToCheck.size());
 
-        Assert.assertEquals(entriesToCheck.size(), 1, "Number of click on suggest requests captured by proxy:");
+        Assert.assertEquals(entriesToCheck.size(), 1, "Number of requests [type = click on suggested] captured by proxy:");
 
         String url = entriesToCheck.get(0).getRequest().getUrl();
         logger.info("URL to check: {}", url);

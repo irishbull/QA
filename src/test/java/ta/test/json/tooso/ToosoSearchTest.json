@@ -1,0 +1,20 @@
+{
+  "tc_001_verifySearchRequest": [
+    {
+      "rowID": "tc_001_verifySearchRequest.01",
+      "description": "GET [type = SEARCH] - home(react) - validate request",
+      "path": "/",
+      "search":"luci",
+      "mandatoryAssertEquals": {},
+      "mandatoryAssertNotEmpty": []
+    },
+    {
+      "rowID": "tc_001_verifySearchRequest.02",
+      "description": "GET [type = SEARCH] - servizi(angular) - validate request",
+      "path": "/servizi",
+      "search":"luci",
+      "mandatoryAssertEquals": {},
+      "mandatoryAssertNotEmpty": []
+    }
+  ]
+}

@@ -44,10 +44,6 @@ public class HomePagePO extends PageObject {
     @FindBy(how = How.XPATH, xpath = "//div[@name='SELENIUM_PRODUCTS_MENU_CATEGORY_WRAPPER']/div/a/div/span[contains(text(), 'Sauneee')]")
     private WebElement sauneSpan;
 
-    @FindBy(how = How.NAME, using = "SELENIUM_SEARCH_TOP")
-    @CacheLookup
-    private WebElement searchWrapper;
-
     @FindBy(how = How.NAME, using = "SELENIUM_HEADER_MENU_LOGIN_ICON")
     private WebElement loginIcon;
 
@@ -65,11 +61,6 @@ public class HomePagePO extends PageObject {
     public LoginPO clickLoginIconLink() {
         loginIcon.click();
         return new LoginPO();
-    }
-
-    public ToosoSearchPO clickOnSearchBar() {
-        searchWrapper.click();
-        return new ToosoSearchPO();
     }
 
     // getter
@@ -109,5 +100,4 @@ public class HomePagePO extends PageObject {
         return acceptCookiesButton;
     }
 
-    public WebElement getSearchWrapper() { return searchWrapper; }
 }

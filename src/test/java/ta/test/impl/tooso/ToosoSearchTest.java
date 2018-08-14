@@ -21,18 +21,17 @@ import ta.test.ToosoBaseTest;
 import ta.utilities.ReadPropertiesFile;
 import ta.utilities.ToosoAnalyticsUtils;
 
-import static ta.utilities.constants.ToosoConstants.PROXY_SUGGEST_PREFIX;
 import static ta.utilities.constants.ToosoConstants.QUIET_PERIOD;
-import static ta.utilities.constants.ToosoConstants.RequestType.SUGGEST;
+import static ta.utilities.constants.ToosoConstants.RequestType.SEARCH;
 import static ta.utilities.constants.ToosoConstants.TIMEOUT;
 
-public class ToosoSuggestTest extends ToosoBaseTest {
+public class ToosoSearchTest extends ToosoBaseTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(ToosoSuggestTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(ToosoSearchTest.class);
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("GET [type = SUGGEST] - validate requests")
-    public void tc_001_verifySuggestRequest(JSONObject testData) throws Exception {
+    @Description("GET [type = SEARCH] - validate request")
+    public void tc_001_verifySearchRequest(JSONObject testData) throws Exception {
 
         String description = testData.get("description").toString();
 
@@ -50,6 +49,8 @@ public class ToosoSuggestTest extends ToosoBaseTest {
 
         toosoSearchPO.enterWord(word);
 
+        toosoSearchPO.search();
+
         // wait for quiescence
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
 
@@ -58,14 +59,21 @@ public class ToosoSuggestTest extends ToosoBaseTest {
 
         List<HarEntry> capturedEntries = har.getLog().getEntries();
 
-        List<HarEntry> suggestEntries = ToosoAnalyticsUtils.retrieveEntriesOfType(capturedEntries, SUGGEST);
+
+        for(int i = 1; i < capturedEntries.size(); i++) {
+            String url = capturedEntries.get(i).getRequest().getUrl();
+            logger.info("{} -> {}", i, url);
+        }
+
+        List<HarEntry> suggestEntries = ToosoAnalyticsUtils.retrieveEntriesOfType(capturedEntries, SEARCH);
 
         for(HarEntry entry : suggestEntries) {
             logger.info(entry.getRequest().getUrl());
         }
 
-        Assert.assertEquals(suggestEntries.size(), word.length() + 1, "Number of suggest requests captured by proxy:");
+        Assert.assertEquals(suggestEntries.size(),  1, "Number of requests [type = search] captured by proxy:");
 
+        /*
         // suggest prefix
         ToosoAnalyticsUtils.checkMandatoryValues(suggestEntries.get(0).getRequest().getUrl(), testData, SUGGEST);
         ToosoAnalyticsUtils.checkSuggestQueryParam(suggestEntries.get(0).getRequest().getUrl(), 1, PROXY_SUGGEST_PREFIX);
@@ -77,6 +85,7 @@ public class ToosoSuggestTest extends ToosoBaseTest {
             ToosoAnalyticsUtils.checkMandatoryValues(url, testData, SUGGEST);
             ToosoAnalyticsUtils.checkSuggestQueryParam(url, i, word);
         }
+        */
 
         logger.info("Test completed");
     }

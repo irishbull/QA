@@ -2,7 +2,7 @@
   "tc_001_verifySuggestRequest": [
     {
       "rowID": "tc_001_verifySuggestRequest.01",
-      "description": "validate GET Suggest - homepage",
+      "description": "GET [type = SUGGEST] - homepage - verify requests",
       "path": "/",
       "search":"porta",
       "mandatoryAssertEquals": {},

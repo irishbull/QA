@@ -34,9 +34,9 @@ public class HomePageTest extends BaseTest {
 
         driver.get(ReadPropertiesFile.getProperty("base.url"));
 
-        HomePagePO homePagePO = new HomePagePO();
+        ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
 
-        ToosoSearchPO toosoSearchPO = homePagePO.clickOnSearchBar();
+        toosoSearchPO.clickOnSearchBar();
 
         int a = toosoSearchPO.getResultsNumber();
 
