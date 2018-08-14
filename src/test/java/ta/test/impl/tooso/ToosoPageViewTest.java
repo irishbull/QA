@@ -45,18 +45,15 @@ public class ToosoPageViewTest extends ToosoBaseTest {
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
-        logger.info("Har = {}", har);
 
-        List<HarEntry> entriesToCheck = ToosoAnalyticsUtils.retrieveEntriesOfType(har.getLog().getEntries(), PAGEVIEW);
+        List<HarEntry> entriesOfPageViewType = ToosoAnalyticsUtils.retrieveEntriesOfType(har.getLog().getEntries(), PAGEVIEW);
 
-        Assert.assertEquals(entriesToCheck.size(), 1, "Number of pageview requests captured by proxy:");
+        Assert.assertEquals(entriesOfPageViewType.size(), 1, "Number of requests [type = PAGEVIEW] captured by proxy:");
 
-        String url  = entriesToCheck.get(0).getRequest().getUrl();
-        logger.info("URL to check: {}", url);
+        String urlToValidate  = entriesOfPageViewType.get(0).getRequest().getUrl();
+        logger.info("Request [type = {}] to validate -> {}", PAGEVIEW, urlToValidate);
 
         // check
-        ToosoAnalyticsUtils.checkMandatoryValues(url, testData, PAGEVIEW);
-
-        logger.info("Test completed");
+        ToosoAnalyticsUtils.checkMandatoryValues(urlToValidate, testData, PAGEVIEW);
     }
 }

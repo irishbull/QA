@@ -53,24 +53,16 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
 
-        logger.info("Har entries: {}", har.getLog().getEntries().size());
+        List<HarEntry> entriesCaptured = har.getLog().getEntries();
 
-        logger.info("Har = {}", har);
+        List<HarEntry> entriesToCheck = ToosoAnalyticsUtils.retrieveEntriesOfType(entriesCaptured, CLICK_ON_SUGGESTED);
 
-        List<HarEntry> capturedEntries = har.getLog().getEntries();
+        Assert.assertEquals(entriesToCheck.size(), 1, "Number of requests [type = CLICK ON SUGGESTED] captured by proxy:");
 
-        List<HarEntry> entriesToCheck = ToosoAnalyticsUtils.retrieveEntriesOfType(capturedEntries, CLICK_ON_SUGGESTED);
-
-        logger.info("entriesToCheck size: {}", entriesToCheck.size());
-
-        Assert.assertEquals(entriesToCheck.size(), 1, "Number of requests [type = click on suggested] captured by proxy:");
-
-        String url = entriesToCheck.get(0).getRequest().getUrl();
-        logger.info("URL to check: {}", url);
+        String urlToVerify = entriesToCheck.get(0).getRequest().getUrl();
+        logger.info("Request [type = {}] to validate -> {}", CLICK_ON_SUGGESTED,  urlToVerify);
 
         // check
-        ToosoAnalyticsUtils.checkMandatoryValues(url, testData, CLICK_ON_SUGGESTED);
-
-        logger.info("Test completed");
+        ToosoAnalyticsUtils.checkMandatoryValues(urlToVerify, testData, CLICK_ON_SUGGESTED);
     }
 }

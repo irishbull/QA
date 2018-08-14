@@ -36,8 +36,6 @@ public class ToosoSuggestTest extends ToosoBaseTest {
 
         String description = testData.get("description").toString();
 
-        logger.info(description);
-
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
         driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("path").toString());
@@ -54,30 +52,23 @@ public class ToosoSuggestTest extends ToosoBaseTest {
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
-        logger.info("Har = {}", har);
 
-        List<HarEntry> capturedEntries = har.getLog().getEntries();
+        List<HarEntry> entriesCaptured = har.getLog().getEntries();
 
-        List<HarEntry> suggestEntries = ToosoAnalyticsUtils.retrieveEntriesOfType(capturedEntries, SUGGEST);
+        List<HarEntry> entriesToValidate = ToosoAnalyticsUtils.retrieveEntriesOfType(entriesCaptured, SUGGEST);
 
-        for(HarEntry entry : suggestEntries) {
-            logger.info(entry.getRequest().getUrl());
-        }
+        Assert.assertEquals(entriesToValidate.size(), word.length() + 1, "Number of requests [type = SUGGEST] captured by proxy:");
 
-        Assert.assertEquals(suggestEntries.size(), word.length() + 1, "Number of suggest requests captured by proxy:");
+        // check the first entry (q=*)
+        ToosoAnalyticsUtils.checkMandatoryValues(entriesToValidate.get(0).getRequest().getUrl(), testData, SUGGEST);
+        ToosoAnalyticsUtils.checkSuggestQueryParam(entriesToValidate.get(0).getRequest().getUrl(), 1, PROXY_SUGGEST_PREFIX);
 
-        // suggest prefix
-        ToosoAnalyticsUtils.checkMandatoryValues(suggestEntries.get(0).getRequest().getUrl(), testData, SUGGEST);
-        ToosoAnalyticsUtils.checkSuggestQueryParam(suggestEntries.get(0).getRequest().getUrl(), 1, PROXY_SUGGEST_PREFIX);
-
-        // start from index i = 1 to ignore prefix
-        for(int i = 1; i < suggestEntries.size(); i++) {
-            String url = suggestEntries.get(i).getRequest().getUrl();
-            logger.info("{} -> {}", i, url);
+        // check the other entries
+        for(int i = 1; i < entriesToValidate.size(); i++) {
+            String url = entriesToValidate.get(i).getRequest().getUrl();
+            logger.info("{} Request [type = {}] to validate -> {}", i, SUGGEST, url);
             ToosoAnalyticsUtils.checkMandatoryValues(url, testData, SUGGEST);
             ToosoAnalyticsUtils.checkSuggestQueryParam(url, i, word);
         }
-
-        logger.info("Test completed");
     }
 }

@@ -55,38 +55,17 @@ public class ToosoSearchTest extends ToosoBaseTest {
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
-        logger.info("Har = {}", har);
 
-        List<HarEntry> capturedEntries = har.getLog().getEntries();
+        List<HarEntry> entriesCaptured = har.getLog().getEntries();
 
+        List<HarEntry> entriesToValidate = ToosoAnalyticsUtils.retrieveEntriesOfType(entriesCaptured, SEARCH);
 
-        for(int i = 1; i < capturedEntries.size(); i++) {
-            String url = capturedEntries.get(i).getRequest().getUrl();
-            logger.info("{} -> {}", i, url);
-        }
+        Assert.assertEquals(entriesToValidate.size(),  1, "Number of requests [type = SEARCH] captured by proxy:");
 
-        List<HarEntry> suggestEntries = ToosoAnalyticsUtils.retrieveEntriesOfType(capturedEntries, SEARCH);
+        String urlToValidate = entriesToValidate.get(0).getRequest().getUrl();
 
-        for(HarEntry entry : suggestEntries) {
-            logger.info(entry.getRequest().getUrl());
-        }
+        logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
 
-        Assert.assertEquals(suggestEntries.size(),  1, "Number of requests [type = search] captured by proxy:");
-
-        /*
-        // suggest prefix
-        ToosoAnalyticsUtils.checkMandatoryValues(suggestEntries.get(0).getRequest().getUrl(), testData, SUGGEST);
-        ToosoAnalyticsUtils.checkSuggestQueryParam(suggestEntries.get(0).getRequest().getUrl(), 1, PROXY_SUGGEST_PREFIX);
-
-        // start from index i = 1 to ignore prefix
-        for(int i = 1; i < suggestEntries.size(); i++) {
-            String url = suggestEntries.get(i).getRequest().getUrl();
-            logger.info("{} -> {}", i, url);
-            ToosoAnalyticsUtils.checkMandatoryValues(url, testData, SUGGEST);
-            ToosoAnalyticsUtils.checkSuggestQueryParam(url, i, word);
-        }
-        */
-
-        logger.info("Test completed");
+        ToosoAnalyticsUtils.checkMandatoryValues(urlToValidate, testData, SEARCH);
     }
 }
