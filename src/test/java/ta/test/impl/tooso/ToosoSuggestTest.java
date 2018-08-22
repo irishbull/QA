@@ -38,7 +38,7 @@ public class ToosoSuggestTest extends ToosoBaseTest {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("path").toString());
+        driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("pathAndQuery").toString());
 
         ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
 
