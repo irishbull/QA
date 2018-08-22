@@ -3,7 +3,7 @@
     {
       "rowID": "tc_001_verifySearchRequest.01",
       "description": "GET [type = SEARCH] - home(react) - validate request",
-      "path": "/",
+      "pathAndQuery": "/",
       "search":"luci",
       "mandatoryAssertEquals": {},
       "mandatoryAssertNotEmpty": []
@@ -11,7 +11,7 @@
     {
       "rowID": "tc_001_verifySearchRequest.02",
       "description": "GET [type = SEARCH] - servizi(angular) - validate request",
-      "path": "/servizi",
+      "pathAndQuery": "/servizi",
       "search":"luci",
       "mandatoryAssertEquals": {},
       "mandatoryAssertNotEmpty": []

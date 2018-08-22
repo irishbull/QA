@@ -189,14 +189,12 @@ public class ToosoAnalyticsUtils {
             String key = (String) entry.getKey();
 
             Assert.assertTrue(actual.containsKey(key), "Request should contain the mandatory parameter [" + key + "]:");
-            Assert.assertEquals(actual.get(key), entry.getValue(), "Invalid query parameter value [" + key + "]:");
+
+            // dl expected value should be equal to baseUrl and json dl concatenation
+            String expectedValue = key.equalsIgnoreCase(DL) ? BASE_URL.concat(entry.getValue().toString()) : entry.getValue().toString();
+
+            Assert.assertEquals(actual.get(key), expectedValue, "Invalid query parameter value [" + key + "]:");
         }
-
-
-        // dl is mandatory and it should be equal to baseUrl and dp concatenation
-        Assert.assertTrue(actual.containsKey(DL), "Request should contain the mandatory parameter [" + DL + "]:");
-        String dlExpectedValue = BASE_URL.concat(actual.get(DP));
-        Assert.assertEquals(actual.get(DL), dlExpectedValue, "Invalid query parameter value [" + DL + "]:");
     }
 
 

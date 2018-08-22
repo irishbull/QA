@@ -39,7 +39,7 @@ public class ToosoPageViewTest extends ToosoBaseTest {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("path").toString());
+        driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("pathAndQuery").toString());
 
         // wait for quiescence
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);

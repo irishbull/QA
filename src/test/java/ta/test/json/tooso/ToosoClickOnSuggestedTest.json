@@ -3,7 +3,7 @@
     {
       "rowID": "tc_001_verifyClickOnSuggestRequest.01",
       "description": "validate GET Suggest - homepage",
-      "path": "/",
+      "pathAndQuery": "/",
       "mandatoryAssertEquals": {
         "dt": "Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
         "dp": "/"
@@ -19,7 +19,7 @@
     {
       "rowID": "tc_001_verifyClickOnSuggestRequest.02",
       "description": "validate GET Suggest - category page",
-      "path": "/prodotti/forni-in-muratura-CAT1162-c",
+      "pathAndQuery": "/prodotti/forni-in-muratura-CAT1162-c",
       "mandatoryAssertEquals": {
         "dt": "Forni a legna: prezzi e offerte online | Leroy Merlin",
         "dp": "/prodotti/forni-in-muratura-CAT1162-c"

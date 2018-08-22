@@ -161,7 +161,8 @@ public class ToosoConstants {
                         "sd",
                         "cid",
                         "tm",
-                        "z"
+                        "z",
+                        "cd0"
                 ));
 
                 ASSERT_NOT_EMPTY_QUERY_PARAMS = Collections.unmodifiableList(list);
