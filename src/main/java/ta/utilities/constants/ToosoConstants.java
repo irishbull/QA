@@ -192,9 +192,6 @@ public class ToosoConstants {
 
             static {
                 Map<String, String> map = new HashMap<>();
-                map.put("tid", PROXY_TID);
-                map.put("v", "3");
-                map.put("ul", "it-IT");
                 ASSERT_EQUALS_QUERY_PARAMS = Collections.unmodifiableMap(map);
             }
 
@@ -203,9 +200,13 @@ public class ToosoConstants {
 
             static {
                 List<String> list = new ArrayList<>(Arrays.asList(
+                        "cid",
+                        "dl",
+                        "dr",
                         "q",
                         "tm",
-                        "cid",
+                        "ua",
+                        "uid",
                         "z"
                 ));
 

@@ -18,3 +18,17 @@
     }
   ]
 }
+
+
+/*
+
+Parameters will be added to JSON
+
+filter             will be constant in search with filters scenario
+page               ???
+parentSearchId     will must be equals to object id of previous response metadata
+typoCorrection     will be true o false depending on scenario
+sort               will be 0 or 1 depending on scenario
+
+*/
+
