@@ -6,6 +6,7 @@
     <parameter name="isProxyRequired" value= "true"/>
 
     <!-- Search and Suggest -->
+
     <test name = "SuggestTest">
         <parameter name="json-path" value="src/test/java/ta/test/json/tooso/ToosoSuggestTest.json"/>
         <classes>
@@ -13,28 +14,21 @@
         </classes>
     </test>
 
-    <test name = "SearchTest">
+   <!-- <test name = "SearchTest">
         <parameter name="json-path" value="src/test/java/ta/test/json/tooso/ToosoSearchTest.json"/>
         <classes>
             <class name = "ta.test.impl.tooso.ToosoSearchTest" />
         </classes>
-    </test>
+    </test>-->
 
 
     <!-- Analytics -->
-    <test name = "PageViewTest">
-        <parameter name="json-path" value="src/test/java/ta/test/json/tooso/ToosoPageViewTest.json"/>
-        <classes>
-            <class name = "ta.test.impl.tooso.ToosoPageViewTest" />
-        </classes>
-    </test>
+    <!--<test name = "ClickOnSuggestedTest">
+    <parameter name="json-path" value="src/test/java/ta/test/json/tooso/ToosoClickOnSuggestedTest.json"/>
 
-    <test name = "ClickOnSuggestedTest">
-        <parameter name="json-path" value="src/test/java/ta/test/json/tooso/ToosoClickOnSuggestedTest.json"/>
         <classes>
             <class name = "ta.test.impl.tooso.ToosoClickOnSuggestedTest" />
         </classes>
-    </test>
-
+    </test>-->
 
 </suite>

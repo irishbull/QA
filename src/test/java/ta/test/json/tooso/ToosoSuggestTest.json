@@ -2,11 +2,21 @@
   "tc_001_verifySuggestRequest": [
     {
       "rowID": "tc_001_verifySuggestRequest.01",
-      "description": "GET [type = SUGGEST] - homepage - verify requests",
+      "description": "GET [type = SUGGEST] - homepage (react) - verify requests",
       "pathAndQuery": "/",
       "search":"porta",
       "mandatoryAssertEquals": {},
       "mandatoryAssertNotEmpty": []
+    },
+  ],
+  "tc_002_verifyAngularSuggestRequest": [
+    {
+        "rowID": "tc_002_verifyAngularSuggestRequest.01",
+        "description": "GET [type = SUGGEST] - servizi (angular) - verify requests",
+        "pathAndQuery": "/servizi",
+        "search":"porta",
+        "mandatoryAssertEquals": {},
+        "mandatoryAssertNotEmpty": []
     }
   ]
 }
