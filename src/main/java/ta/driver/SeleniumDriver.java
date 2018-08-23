@@ -19,6 +19,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -168,6 +169,29 @@ public class SeleniumDriver {
                 capabilities = DesiredCapabilities.chrome();
                 capabilities.setCapability(ChromeOptions.CAPABILITY, chrOptions);
                 capabilities.setCapability("applicationCacheEnabled", false);
+
+
+                if(isProxyRequired) {
+
+                    // start the proxy
+                    proxy.set(new BrowserMobProxyServer());
+                    proxy.get().start(0);
+                    logger.debug("Proxy started");
+
+                    // get the Selenium proxy object
+                    Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy.get());
+
+                    proxy.get().enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
+
+                    // configure Proxy as a desired capability
+
+                    // ChromeDriver does not support the proxy capability directly
+                    ArrayList<String> switches = new ArrayList<String>();
+                    switches.add("--proxy-server=localhost:8080");
+                    capabilities.setCapability("chrome.switches", switches);
+
+                }
+
 
                 System.setProperty("webdriver.chrome.driver",
                         ReadPropertiesFile.getProperty("chrome.webdriver.path"));
