@@ -26,10 +26,11 @@ dependencies {
              'ch.qos.logback:logback-classic:1.0.9',
              'ch.qos.logback:logback-core:1.0.9',
              'org.testng:testng:6.10',
-             'com.googlecode.json-simple:json-simple:1.1',
-             'net.lightbody.bmp:browsermob-core:2.1.5',
-             'org.apache.httpcomponents:httpclient:4.5.5'
+             'com.googlecode.json-simple:json-simple:1.1'
     )
+
+    compile group: 'net.lightbody.bmp', name: 'browsermob-core', version: '2.1.5'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.5'
 
     testCompile('org.testng:testng:6.10'
     )
@@ -94,7 +95,7 @@ environments {
 
 test {
     testLogging {
-        // Logging test events in command-line output
+        // Show that tests are run in the command-line output
         events 'started', 'passed', 'skipped', 'failed'
 
         // Logging the exception stack trace
