@@ -19,19 +19,18 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import ta.utilities.constants.Constants;
 import ta.utilities.ReadPropertiesFile;
+import ta.utilities.constants.Constants;
 
 
 public class SeleniumDriver {
 
-    private final Logger logger = LoggerFactory.getLogger(SeleniumDriver.class);
     private static SeleniumDriver instance = new SeleniumDriver();
+    private final Logger logger = LoggerFactory.getLogger(SeleniumDriver.class);
     private ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
     private ThreadLocal<BrowserMobProxy> proxy = new ThreadLocal<>();
 
@@ -81,16 +80,14 @@ public class SeleniumDriver {
 
             case "firefox":
 
-                // Firefox options
-                FirefoxOptions ffxOpts = new FirefoxOptions();
-
                 // Firefox profile
                 FirefoxProfile ffProfile = new FirefoxProfile();
                 ffProfile.setPreference("browser.autofocus", true);
                 ffProfile.setPreference("browser.tabs.remote.autostart.2", false);
 
-                // option needed by Jenkins to work on Linux. This option avoid browser opening during test
-                // for local test comment this line
+                // Firefox options
+                FirefoxOptions ffxOpts = new FirefoxOptions();
+                // option needed by Jenkins to work on Linux. Avoid browser opening during test
                 ffxOpts.addArguments("--headless");
 
                 // Firefox capabilities
@@ -98,7 +95,7 @@ public class SeleniumDriver {
                 capabilities.setCapability(FirefoxDriver.PROFILE, ffProfile);
                 capabilities.setCapability("marionette", true);
 
-                if(isProxyRequired) {
+                if (isProxyRequired) {
 
                     // start the proxy
                     proxy.set(new BrowserMobProxyServer());
@@ -115,11 +112,9 @@ public class SeleniumDriver {
 
                 }
 
-                System.setProperty("webdriver.gecko.driver",
-                        ReadPropertiesFile.getProperty("firefox.webdriver.path"));
+                System.setProperty("webdriver.gecko.driver", ReadPropertiesFile.getProperty("firefox.webdriver.path"));
                 webDriver.set(new FirefoxDriver(ffxOpts.merge(capabilities)));
-                getDriver().manage().timeouts().implicitlyWait(Constants.WaitTime.IMPLICIT_WAIT,
-                        TimeUnit.SECONDS);
+                getDriver().manage().timeouts().implicitlyWait(Constants.WaitTime.IMPLICIT_WAIT, TimeUnit.SECONDS);
 
                 break;
 
@@ -139,11 +134,9 @@ public class SeleniumDriver {
                 capabilities.setCapability("allow-blocked-content", true);
                 capabilities.setCapability("allowBlockedContent", true);
 
-                System.setProperty("webdriver.ie.driver",
-                        ReadPropertiesFile.getProperty("iexplorer.webdriver.path"));
+                System.setProperty("webdriver.ie.driver", ReadPropertiesFile.getProperty("iexplorer.webdriver.path"));
                 webDriver.set(new InternetExplorerDriver(ieOpts.merge(capabilities)));
-                getDriver().manage().timeouts().implicitlyWait(Constants.WaitTime.IMPLICIT_WAIT,
-                        TimeUnit.SECONDS);
+                getDriver().manage().timeouts().implicitlyWait(Constants.WaitTime.IMPLICIT_WAIT, TimeUnit.SECONDS);
 
                 break;
 
@@ -158,11 +151,9 @@ public class SeleniumDriver {
                 // Chrome options
                 ChromeOptions chrOptions = new ChromeOptions();
                 chrOptions.setExperimentalOption("prefs", chromePrefs);
-                chrOptions.addArguments("--disable-plugins", "--disable-extensions",
-                        "--disable-popup-blocking");
+                chrOptions.addArguments("--disable-plugins", "--disable-extensions", "--disable-popup-blocking");
 
-                // option needed by Jenkins to work on Linux. This option avoid browser opening during test
-                // for local test comment this line
+                // option needed by Jenkins to work on Linux. Avoid browser opening during test
                 chrOptions.addArguments("--headless");
 
                 // Chrome desired capabilities
@@ -170,8 +161,7 @@ public class SeleniumDriver {
                 capabilities.setCapability(ChromeOptions.CAPABILITY, chrOptions);
                 capabilities.setCapability("applicationCacheEnabled", false);
 
-
-                if(isProxyRequired) {
+                if (isProxyRequired) {
 
                     // start the proxy
                     proxy.set(new BrowserMobProxyServer());
@@ -184,20 +174,16 @@ public class SeleniumDriver {
                     proxy.get().enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
 
                     // configure Proxy as a desired capability
+                    capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
 
-                    // ChromeDriver does not support the proxy capability directly
-                    ArrayList<String> switches = new ArrayList<String>();
-                    switches.add("--proxy-server=localhost:8080");
-                    capabilities.setCapability("chrome.switches", switches);
+                    // intercept https request with headless chrome
+                    capabilities.setAcceptInsecureCerts(true);
 
                 }
 
-
-                System.setProperty("webdriver.chrome.driver",
-                        ReadPropertiesFile.getProperty("chrome.webdriver.path"));
+                System.setProperty("webdriver.chrome.driver", ReadPropertiesFile.getProperty("chrome.webdriver.path"));
                 webDriver.set(new ChromeDriver(chrOptions.merge(capabilities)));
-                getDriver().manage().timeouts().implicitlyWait(Constants.WaitTime.IMPLICIT_WAIT,
-                        TimeUnit.SECONDS);
+                getDriver().manage().timeouts().implicitlyWait(Constants.WaitTime.IMPLICIT_WAIT, TimeUnit.SECONDS);
 
                 break;
         }
