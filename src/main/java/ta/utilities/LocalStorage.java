@@ -14,7 +14,7 @@ public class LocalStorage {
      * @return
      */
     public static boolean isItemPresentInLocalStorage(String item) {
-        return !(JavascriptUtils.execute(String.format("return window.localStorage.getItem('%s');", item)) == null);
+        return (JavascriptUtils.execute(String.format("return window.localStorage.getItem('%s');", item)) != null);
     }
 
     /**
@@ -70,7 +70,7 @@ public class LocalStorage {
      * Clear local storage
      */
     public static void clearLocalStorage() {
-        JavascriptUtils.execute(String.format("window.localStorage.clear();"));
+        JavascriptUtils.execute("window.localStorage.clear();");
     }
 
     private LocalStorage() { throw new IllegalStateException(CONSTRUCTION_FORBIDDEN); }
