@@ -22,7 +22,9 @@ public class BrowserUtils {
     private static final String CONSTRUCTION_FORBIDDEN = "BrowserUtils - Object construction is forbidden";
 
     /**
-     * wait for page fully loaded
+     * Wait for page fully loaded
+     *
+     * @param timeout
      */
     public static void waitForPageFullyLoaded(int timeout) {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
@@ -38,12 +40,14 @@ public class BrowserUtils {
 
 
     /**
-     * wait up before throwing exception (static locator)
+     * Wait up (clickable) before throwing exception (static locator)
+     *
+     * @param element
+     * @param timer
      */
     public static void waitForClickable(WebElement element, int timer) {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        // wait for the static element to appear
         WebDriverWait wait = new WebDriverWait(driver, timer);
 
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(element)));
@@ -51,25 +55,15 @@ public class BrowserUtils {
 
 
     /**
-     * wait up before throwing exception (static locator)
-     */
-    public static void waitFor(WebElement element, int timer) {
-        WebDriver driver = SeleniumDriver.getInstance().getDriver();
-
-        // wait for the static element to appear
-        WebDriverWait wait = new WebDriverWait(driver, timer);
-
-        wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)));
-    }
-
-
-    /**
-     * wait up before throwing exception (dynamic locator)
+     * Wait up (clickable) before throwing exception (dynamic locator)
+     *
+     * @param by
+     * @param timer
      */
     public static void waitForClickable(By by, int timer) {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        // wait for the dynamic element to appear
+        // wait for the dynamic element to be clickable
         WebDriverWait wait = new WebDriverWait(driver, timer);
 
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(by)));
@@ -77,12 +71,30 @@ public class BrowserUtils {
 
 
     /**
-     * wait up before throwing exception (dynamic locator)
+     * Wait up before throwing exception (static locator)
+     *
+     * @param element
+     * @param timer
+     */
+    public static void waitFor(WebElement element, int timer) {
+        WebDriver driver = SeleniumDriver.getInstance().getDriver();
+
+        WebDriverWait wait = new WebDriverWait(driver, timer);
+
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)));
+    }
+
+
+    /**
+     * Wait up before throwing exception (dynamic locator)
+     *
+     * @param by
+     * @param timer
      */
     public static void waitFor(By by, int timer) {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        // wait for the dynamic element to appear
+        // wait for the dynamic element to be visible
         WebDriverWait wait = new WebDriverWait(driver, timer);
 
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(by)));
@@ -90,7 +102,10 @@ public class BrowserUtils {
 
 
     /**
-     * waitFor method to poll page title
+     * Poll page with specified title
+     *
+     * @param title
+     * @param timer
      */
     public static void waitForTitle(String title, int timer) {
 
@@ -100,7 +115,10 @@ public class BrowserUtils {
 
 
     /**
-     * waitForURLContains method to poll page URL
+     * Poll page that contains the specified URL
+     *
+     * @param url
+     * @param timer
      */
     public static void waitForURLContains(String url, int timer) {
 
@@ -112,7 +130,10 @@ public class BrowserUtils {
 
 
     /**
-     * waitForURLMatches method to poll page that matches the specified URL
+     * Poll page that matches the specified URL
+     *
+     * @param url
+     * @param timer
      */
     public static void waitForURLMatches(String url, int timer) {
 
@@ -124,9 +145,11 @@ public class BrowserUtils {
 
 
     /**
-     * check if a webElement exists
+     * Check if element exists
      *
-     * @return true when the webElement exists
+     * @param element
+     * @param timer
+     * @return
      */
     public static boolean exists(WebElement element, int timer) {
 
@@ -144,7 +167,11 @@ public class BrowserUtils {
 
 
     /**
-     * check if a webElement is invisible
+     * Check if element is invisible
+     *
+     * @param element
+     * @param timer
+     * @return
      */
     public static boolean elementIsInvisible(WebElement element, int timer) {
         try {
@@ -161,7 +188,9 @@ public class BrowserUtils {
 
 
     /**
-     * mouse over the specified element
+     * Mouse over specified element
+     *
+     * @param element
      */
     public static void hover(WebElement element) {
         Actions action = new Actions(SeleniumDriver.getInstance().getDriver());

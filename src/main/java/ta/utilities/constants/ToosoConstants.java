@@ -146,7 +146,6 @@ public class ToosoConstants {
                 map.put("tid", TID);
                 map.put("v", "1");
                 map.put("de", Constants.Encode.UTF_8);
-                map.put("ul", "it-IT");
                 map.put("cu", "EUR");
                 ASSERT_EQUALS_QUERY_PARAMS = Collections.unmodifiableMap(map);
             }
@@ -156,6 +155,7 @@ public class ToosoConstants {
 
             static {
                 List<String> list = new ArrayList<>(Arrays.asList(
+                        "ul",
                         "sr",
                         "sd",
                         "cid",

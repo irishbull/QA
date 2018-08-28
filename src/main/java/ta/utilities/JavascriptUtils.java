@@ -12,12 +12,10 @@ import ta.driver.SeleniumDriver;
  */
 public class JavascriptUtils {
 
-    /*
-     * isPageReady - method to check if a page is completely rendered
+    /**
+     * Check if a page is completely rendered
      *
-     * @param driver
-     *
-     * @return boolean
+     * @return
      */
     public static boolean isPageReady() {
         JavascriptExecutor js = (JavascriptExecutor) SeleniumDriver.getInstance().getDriver();
@@ -25,23 +23,23 @@ public class JavascriptUtils {
     }
 
 
-    /*
-     * execute a non parameterized js command
+    /**
+     * Execute a js command
      *
-     * @param js command to execute
+     * @param command
+     * @return
      */
-    public static void execute(String command) {
+    public static Object execute(String command) {
 
         JavascriptExecutor js = (JavascriptExecutor) SeleniumDriver.getInstance().getDriver();
-        js.executeScript(command);
+        return js.executeScript(command);
     }
 
 
-    /*
-     * execute a parameterized js command on WebElement
+    /**
+     * Execute a parameterized js command on WebElement
      *
      * @param command
-     *
      * @param element
      */
     public static void execute(String command, WebElement element) {
@@ -51,7 +49,7 @@ public class JavascriptUtils {
 
 
     /**
-     * method to execute a js click event
+     * Execute a js click event
      *
      * @param element
      */
@@ -62,7 +60,9 @@ public class JavascriptUtils {
 
 
     /**
-     * modalClose method to poll page title
+     * Close modal
+     *
+     * @param by
      */
     public static void modalClose(By by) {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
