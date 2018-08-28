@@ -19,7 +19,7 @@ public class JavascriptUtils {
      */
     public static boolean isPageReady() {
         JavascriptExecutor js = (JavascriptExecutor) SeleniumDriver.getInstance().getDriver();
-        return (boolean) js.executeScript("return document.readyState").equals("complete");
+        return js.executeScript("return document.readyState").equals("complete");
     }
 
 

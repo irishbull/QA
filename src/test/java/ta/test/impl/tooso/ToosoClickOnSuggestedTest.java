@@ -4,12 +4,15 @@ import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.core.har.HarEntry;
 
 import org.json.simple.JSONObject;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -18,6 +21,7 @@ import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.ToosoBaseTest;
+import ta.utilities.LocalStorage;
 import ta.utilities.ReadPropertiesFile;
 import ta.utilities.ToosoAnalyticsUtils;
 
@@ -41,6 +45,25 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
         driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("pathAndQuery").toString());
+
+/*
+
+       Cookie cookie = new Cookie.Builder("_ta", "TA.bbde2581-72f5-44e9-89a0-12a4ed29fa07")
+                .domain(".leroymerlin.it")
+                .expiresOn(new GregorianCalendar(2030, Calendar.JANUARY, 1).getTime())
+                .path("/")
+                .isHttpOnly(false)
+                .isSecure(false)
+                .build();
+
+        driver.manage().addCookie(cookie);
+*/
+
+        Cookie cookie = driver.manage().getCookieNamed("_ta");
+        logger.info("COOKIE _TA = " + cookie.getValue());
+
+        logger.info("UID = " + LocalStorage.getItemFromLocalStorage("sessionID"));
+
 
         ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
 

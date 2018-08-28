@@ -1,11 +1,19 @@
 package ta.utilities;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import static ta.utilities.constants.Constants.EMPTY_STRING;
+
 /**
  * Selenium WebDriver Javascript execution for localStorage
  */
 public class LocalStorage {
 
-    private static final String CONSTRUCTION_FORBIDDEN = "BrowserUtils - Object construction is forbidden";
+    private static final Logger logger = LoggerFactory.getLogger(LocalStorage.class);
+    private static final String CONSTRUCTION_FORBIDDEN = "LocalStorage - Object construction is forbidden";
+    private static final String SESSION_ID = "sessionID";
+    private static final String UID_PREFIX = "web_";
 
     /**
      * Check if the item exists in local storage
@@ -71,6 +79,26 @@ public class LocalStorage {
      */
     public static void clearLocalStorage() {
         JavascriptUtils.execute("window.localStorage.clear();");
+    }
+
+
+    /**
+     * Retrieve the value of uid from local storage and remove prefix and "
+     *
+     * @return uid value
+     */
+    public static String getUidFromLocalStorage() {
+
+        if (isItemPresentInLocalStorage(SESSION_ID)) {
+
+            // remove prefix and (")
+            String uid = getItemFromLocalStorage(SESSION_ID).replace(UID_PREFIX, EMPTY_STRING);
+            return uid.substring(1, uid.length() - 1);
+
+        } else {
+            logger.warn("sessionId not found in localStorage");
+            return EMPTY_STRING;
+        }
     }
 
     private LocalStorage() { throw new IllegalStateException(CONSTRUCTION_FORBIDDEN); }
