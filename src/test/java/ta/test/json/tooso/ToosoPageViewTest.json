@@ -2,7 +2,7 @@
   "tc_001_verifyPageViewRequest": [
     {
       "rowID": "tc_001_verifyPageViewRequest.01",
-      "description": "validate GET PageView - homepage",
+      "description":"validate GET PageView - homepage",
       "pathAndQuery": "/",
       "mandatoryAssertEquals": {
         "dt": "Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
@@ -30,6 +30,105 @@
         "dt": "Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
         "dp": "/ricerca",
         "dl": "/ricerca?q=fiori&page=1"
+      },
+      "mandatoryAssertNotEmpty": []
+    },
+    {
+      "rowID": "tc_001_verifyPageViewRequest.04",
+      "description": "validate GET Mondo/Universo (MacroCategoryGroup)",
+      "pathAndQuery": "/bagno",
+      "mandatoryAssertEquals": {
+        "dt": "Empty",
+        "dp": "/bagno",
+        "dl": "/bagno"
+      },
+      "mandatoryAssertNotEmpty": []
+    },
+    {
+      "rowID": "tc_001_verifyPageViewRequest.05",
+      "description": "validate GET Offerte e Proposte (generica)",
+      "pathAndQuery": "/offerte?page=1",
+      "mandatoryAssertEquals": {
+        "dt": "Empty",
+        "dp": "/offerte?page=1",
+        "dl": "/offerte"
+      },
+      "mandatoryAssertNotEmpty": []
+    },
+    {
+      "rowID": "tc_001_verifyPageViewRequest.06",
+      "description": "validate GET Minisito negozio",
+      "pathAndQuery": "/negozi/milano-assago",
+      "mandatoryAssertEquals": {
+        "dt": "Empty",
+        "dp": "/negozi/milano-assago",
+        "dl": "/negozi/milano-assago"
+      },
+      "mandatoryAssertNotEmpty": []
+    },
+    {
+      "rowID": "tc_001_verifyPageViewRequest.07",
+      "description": "validate GET Pagina Aiuto ",
+      "pathAndQuery": "/aiuto",
+      "mandatoryAssertEquals": {
+        "dt": "Empty",
+        "dp": "/aiuto",
+        "dl": "/aiuto"
+      },
+      "mandatoryAssertNotEmpty": []
+    },
+    {
+      "rowID": "tc_001_verifyPageViewRequest.08",
+      "description": "validate GET Servizi ",
+      "pathAndQuery": "/servizi",
+      "mandatoryAssertEquals": {
+        "dt": "Empty",
+        "dp": "/servizi",
+        "dl": "/servizi"
+      },
+      "mandatoryAssertNotEmpty": []
+    },
+    {
+      "rowID": "tc_001_verifyPageViewRequest.09",
+      "description": "validate GET Ispirati e impara - Design fai da te	 ",
+      "pathAndQuery": "/design-lab",
+      "mandatoryAssertEquals": {
+        "dt": "Empty",
+        "dp": "/design-lab",
+        "dl": "/design-lab"
+      },
+      "mandatoryAssertNotEmpty": []
+    },
+    {
+      "rowID": "tc_001_verifyPageViewRequest.10",
+      "description": "validate GET Ispirati e Idee per la casa	 ",
+      "pathAndQuery": "/ispirati-impara/idee-progetti/",
+      "mandatoryAssertEquals": {
+        "dt": "Empty",
+        "dp": "/ispirati-impara/idee-progetti/",
+        "dl": "/ispirati-impara/idee-progetti/"
+      },
+      "mandatoryAssertNotEmpty": []
+    },
+    {
+      "rowID": "tc_001_verifyPageViewRequest.11",
+      "description": "validate GET Ispirati e Impara - Tutorial",
+      "pathAndQuery": "/ispirati-impara/tutorial/",
+      "mandatoryAssertEquals": {
+        "dt": "Empty",
+        "dp": "/ispirati-impara/tutorial/",
+        "dl": "/ispirati-impara/tutorial/"
+      },
+      "mandatoryAssertNotEmpty": []
+    },
+    {
+      "rowID": "tc_001_verifyPageViewRequest.12",
+      "description": "validate GET Ispirati e Impara ",
+      "pathAndQuery": "ispirati-impara",
+      "mandatoryAssertEquals": {
+        "dt": "Empty",
+        "dp": "/ispirati-impara",
+        "dl": "/ispirati-impara"
       },
       "mandatoryAssertNotEmpty": []
     }
