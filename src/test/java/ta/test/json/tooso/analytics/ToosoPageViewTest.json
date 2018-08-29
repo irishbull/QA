@@ -131,6 +131,17 @@
         "dl": "/ispirati-impara"
       },
       "mandatoryAssertNotEmpty": []
+    },
+    {
+      "rowID": "tc_001_verifyPageViewRequest.13",
+      "description": "validate GET Ispirati e Impara Corsi Gratuiti",
+      "pathAndQuery": "ispirati-impara/corsi-fai-da-te/",
+      "mandatoryAssertEquals": {
+        "dt": "Corsi fai da te gratuiti in negozio | Leroy Merlin",
+        "dp": "/ispirati-impara/corsi-fai-da-te/",
+        "dl": "/ispirati-impara/corsi-fai-da-te/"
+      },
+      "mandatoryAssertNotEmpty": []
     }
   ]
 }
