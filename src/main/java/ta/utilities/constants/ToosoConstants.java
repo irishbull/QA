@@ -31,6 +31,11 @@ public class ToosoConstants {
     public static final String DL = "dl";
     // Tooso Document Path
     public static final String DP = "dp";
+    // Tooso Client ID
+    public static final String CID = "cid";
+    // Tooso User ID
+    public static final String UID = "uid";
+
     // Tooso suggest request prefix
     public static final String PROXY_SUGGEST_PREFIX = "*";
     // Tooso quiet period
@@ -147,6 +152,8 @@ public class ToosoConstants {
                 map.put("v", "1");
                 map.put("de", Constants.Encode.UTF_8);
                 map.put("cu", "EUR");
+                map.put("cid", "from cookie _ta");
+                map.put("uid", "from sessionStorage.authData when user is logged-in, from localStorage.sessionID otherwise");
                 ASSERT_EQUALS_QUERY_PARAMS = Collections.unmodifiableMap(map);
             }
 
@@ -158,10 +165,9 @@ public class ToosoConstants {
                         "ul",
                         "sr",
                         "sd",
-                        "cid",
                         "tm",
-                        "z",
-                        "cd0"
+                        "z"
+                        //"cd0"
                 ));
 
                 ASSERT_NOT_EMPTY_QUERY_PARAMS = Collections.unmodifiableList(list);
@@ -191,6 +197,8 @@ public class ToosoConstants {
 
             static {
                 Map<String, String> map = new HashMap<>();
+                map.put("cid", "from cookie _ta");
+                map.put("uid", "from sessionStorage.authData when user is logged-in, from localStorage.sessionID otherwise");
                 ASSERT_EQUALS_QUERY_PARAMS = Collections.unmodifiableMap(map);
             }
 
@@ -199,13 +207,11 @@ public class ToosoConstants {
 
             static {
                 List<String> list = new ArrayList<>(Arrays.asList(
-                        "cid",
                         "dl",
-                        "dr",
+                       // "dr",  to fix front end
                         "q",
                         "tm",
                         "ua",
-                        "uid",
                         "z"
                 ));
 
