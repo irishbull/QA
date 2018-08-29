@@ -1,11 +1,15 @@
 {
   "tc_001_verifySuggestRequest": [
     {
-      "rowID": "tc_001_verifySuggestRequest.01",
-      "description": "GET [type = SUGGEST] - homepage (react) - verify requests",
-      "pathAndQuery": "/",
+      "rowID":"tc_001_verifySuggestRequest.01",
+      "description":"GET [type = SUGGEST] - homepage (react) - verify requests",
+      "pathAndQuery":"/",
       "search":"porta",
-      "mandatoryAssertEquals": {},
+      "mandatoryAssertEquals": {
+        "dt":"Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
+        "dl":"/",
+        "dr":""
+      },
       "mandatoryAssertNotEmpty": []
     }
   ],
@@ -15,7 +19,11 @@
       "description": "GET [type = SUGGEST] - servizi (angular) - verify requests",
       "pathAndQuery": "/servizi",
       "search":"porta",
-      "mandatoryAssertEquals": {},
+      "mandatoryAssertEquals": {
+        "dt":"Servizi per fare: i servizi di Leroy Merlin in negozio e online",
+        "dl":"/servizi",
+        "dr":""
+      },
       "mandatoryAssertNotEmpty": []
     }
   ]

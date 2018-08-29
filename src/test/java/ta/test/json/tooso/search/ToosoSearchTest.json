@@ -6,6 +6,10 @@
       "pathAndQuery": "/",
       "search":"luci",
       "mandatoryAssertEquals": {
+        "q":"luci",
+        "dl":"/",
+        "dr":"",
+        "typoCorrection":"true",
         "page":"0"
       },
       "mandatoryAssertNotEmpty": []
@@ -16,6 +20,10 @@
       "pathAndQuery": "/servizi",
       "search":"luci",
       "mandatoryAssertEquals": {
+        "q":"luci",
+        "dl":"/servizi",
+        "dr":"",
+        "typoCorrection":"true",
         "page":"0"
       },
       "mandatoryAssertNotEmpty": []

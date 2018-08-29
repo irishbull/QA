@@ -207,12 +207,9 @@ public class ToosoConstants {
 
             static {
                 List<String> list = new ArrayList<>(Arrays.asList(
-                        "dl",
-                       // "dr",  to fix front end
-                        "q",
                         "tm",
-                        "ua",
-                        "z"
+                        "z",
+                        "ua"
                 ));
 
                 ASSERT_NOT_EMPTY_QUERY_PARAMS = Collections.unmodifiableList(list);

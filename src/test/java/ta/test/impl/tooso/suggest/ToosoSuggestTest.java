@@ -63,14 +63,14 @@ public class ToosoSuggestTest extends ToosoBaseTest {
 
         // check the first entry (q=*)
         ToosoAnalyticsUtils.checkMandatoryValues(entriesToValidate.get(0).getRequest().getUrl(), testData, SUGGEST);
-        ToosoAnalyticsUtils.checkSuggestQueryParam(entriesToValidate.get(0).getRequest().getUrl(), 1, PROXY_SUGGEST_PREFIX);
+        ToosoAnalyticsUtils.checkSuggestQueryParamQ(entriesToValidate.get(0).getRequest().getUrl(), 1, PROXY_SUGGEST_PREFIX);
 
         // check the other entries
         for(int i = 1; i < entriesToValidate.size(); i++) {
             String url = entriesToValidate.get(i).getRequest().getUrl();
             logger.info("{} Request [type = {}] to validate -> {}", i, SUGGEST, url);
             ToosoAnalyticsUtils.checkMandatoryValues(url, testData, SUGGEST);
-            ToosoAnalyticsUtils.checkSuggestQueryParam(url, i, word);
+            ToosoAnalyticsUtils.checkSuggestQueryParamQ(url, i, word);
         }
     }
 
@@ -107,14 +107,14 @@ public class ToosoSuggestTest extends ToosoBaseTest {
 
         // check the first entry (q=*)
         ToosoAnalyticsUtils.checkMandatoryValues(entriesToValidate.get(0).getRequest().getUrl(), testData, SUGGEST);
-        ToosoAnalyticsUtils.checkSuggestQueryParam(entriesToValidate.get(0).getRequest().getUrl(), 1, PROXY_SUGGEST_PREFIX);
+        ToosoAnalyticsUtils.checkSuggestQueryParamQ(entriesToValidate.get(0).getRequest().getUrl(), 1, PROXY_SUGGEST_PREFIX);
 
         // check the other entries
         for(int i = 1; i < entriesToValidate.size(); i++) {
             String url = entriesToValidate.get(i).getRequest().getUrl();
             logger.info("{} Request [type = {}] to validate -> {}", i, SUGGEST, url);
             ToosoAnalyticsUtils.checkMandatoryValues(url, testData, SUGGEST);
-            ToosoAnalyticsUtils.checkSuggestQueryParam(url, i, word);
+            ToosoAnalyticsUtils.checkSuggestQueryParamQ(url, i, word);
         }
     }
 }

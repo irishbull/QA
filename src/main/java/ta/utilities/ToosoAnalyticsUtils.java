@@ -168,7 +168,7 @@ public class ToosoAnalyticsUtils {
      * @param word
      * @throws URISyntaxException
      */
-    public static void checkSuggestQueryParam(String url, int index, String word) throws URISyntaxException {
+    public static void checkSuggestQueryParamQ(String url, int index, String word) throws URISyntaxException {
 
         // request query parameters
         Map<String, String> urlQueryParams = getQueryParams(url);
