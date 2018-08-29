@@ -6,6 +6,8 @@ import net.lightbody.bmp.core.har.HarRequest;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import java.net.URI;
@@ -23,13 +25,15 @@ import ta.utilities.constants.ToosoConstants;
 
 import static ta.utilities.constants.Constants.Url.BASE_URL;
 import static ta.utilities.constants.ToosoConstants.DL;
-import static ta.utilities.constants.ToosoConstants.DP;
+import static ta.utilities.constants.ToosoConstants.CID;
+import static ta.utilities.constants.ToosoConstants.UID;
 import static ta.utilities.constants.ToosoConstants.RequestType;
 
 
 public class ToosoAnalyticsUtils {
 
     private static final String CONSTRUCTION_FORBIDDEN = "ToosoAnalyticsUtils - Object construction is forbidden";
+    private static final Logger logger = LoggerFactory.getLogger(ToosoAnalyticsUtils.class);
 
 
     /**
@@ -143,7 +147,7 @@ public class ToosoAnalyticsUtils {
                 mandatoryAssertNotEmptyParams.addAll(ToosoConstants.SearchAndSuggest.Common.ASSERT_NOT_EMPTY_QUERY_PARAMS);
                 break;
 
-            // Analytics
+            // Tooso Analytics
             default:
                 mandatoryAssertEqualsParams.putAll(ToosoConstants.Analytics.Common.ASSERT_EQUALS_QUERY_PARAMS);
                 mandatoryAssertNotEmptyParams.addAll(ToosoConstants.Analytics.Common.ASSERT_NOT_EMPTY_QUERY_PARAMS);
@@ -184,15 +188,33 @@ public class ToosoAnalyticsUtils {
 
     private static void assertEquals(Map<String, String> actual, Map<String, String> expected) {
 
+        String key;
+        String expectedValue;
+
         for (Map.Entry entry : expected.entrySet()) {
 
-            String key = (String) entry.getKey();
+            key = (String) entry.getKey();
 
             Assert.assertTrue(actual.containsKey(key), "Request should contain the mandatory parameter [" + key + "]:");
 
-            // dl expected value should be equal to baseUrl and json dl concatenation
-            String expectedValue = key.equalsIgnoreCase(DL) ? BASE_URL.concat(entry.getValue().toString()) : entry.getValue().toString();
+            switch (key) {
+                // dl expected value should be equal to baseUrl and json dl concatenation
+                case DL:
+                    expectedValue = BASE_URL.concat(entry.getValue().toString());
+                    break;
+                // cid expected value should be equal to cid value stored in the cookie _ta
+                case CID:
+                    expectedValue = CookiesUtils.getCidValueFromCookieTA();
+                    break;
+                case UID:
+                    // TODO  get uid from sessionStorage when user is logged-in otherwise get uid from local storage
+                    expectedValue = LocalStorage.getUidFromLocalStorage();
+                    break;
+                default:
+                    expectedValue = entry.getValue().toString();
+            }
 
+            logger.info("{} : expected[{}] - found[{}]", key, expectedValue, actual.get(key));
             Assert.assertEquals(actual.get(key), expectedValue, "Invalid query parameter value [" + key + "]:");
         }
     }
@@ -203,6 +225,8 @@ public class ToosoAnalyticsUtils {
         for (String param : notEmptyParams) {
             Assert.assertTrue(actual.containsKey(param), "Request should contain the parameter [" + param + "]:");
             Assert.assertFalse(actual.get(param).isEmpty(), "Query parameter [" + param + "] value is empty:");
+
+            logger.info("{} : expected[not empty] - found[{}]", param, actual.get(param));
         }
     }
 

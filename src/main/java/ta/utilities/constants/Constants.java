@@ -6,6 +6,8 @@ public class Constants {
 
     private static final String CONSTRUCTION_FORBIDDEN = "Constants class - Constants construction is forbidden";
 
+    public static String EMPTY_STRING = "";
+
     public static class WaitTime {
         public static final Integer IMPLICIT_WAIT = 5;
         public static final Integer EXPLICIT_WAIT = 2;
