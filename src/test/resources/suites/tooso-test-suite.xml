@@ -8,16 +8,16 @@
     <!-- Search and Suggest -->
 
   <test name = "SuggestTest">
-        <parameter name="json-path" value="src/test/java/ta/test/json/tooso/ToosoSuggestTest.json"/>
+        <parameter name="json-path" value="src/test/java/ta/test/json/tooso/suggest/ToosoSuggestTest.json"/>
         <classes>
-            <class name = "ta.test.impl.tooso.ToosoSuggestTest" />
+            <class name = "ta.test.impl.tooso.suggest.ToosoSuggestTest" />
         </classes>
     </test>
 
    <test name = "SearchTest">
-        <parameter name="json-path" value="src/test/java/ta/test/json/tooso/ToosoSearchTest.json"/>
+        <parameter name="json-path" value="src/test/java/ta/test/json/tooso/search/ToosoSearchTest.json"/>
         <classes>
-            <class name = "ta.test.impl.tooso.ToosoSearchTest" />
+            <class name = "ta.test.impl.tooso.search.ToosoSearchTest" />
         </classes>
     </test>
 
@@ -25,18 +25,18 @@
     <!-- Analytics -->
 
     <test name = "PageView">
-        <parameter name="json-path" value="src/test/java/ta/test/json/tooso/ToosoPageViewTest.json"/>
+        <parameter name="json-path" value="src/test/java/ta/test/json/tooso/analytics/ToosoPageViewTest.json"/>
 
         <classes>
-            <class name = "ta.test.impl.tooso.ToosoPageViewTest" />
+            <class name = "ta.test.impl.tooso.analytics.ToosoPageViewTest" />
         </classes>
     </test>
 
     <test name = "ClickOnSuggestedTest">
-    <parameter name="json-path" value="src/test/java/ta/test/json/tooso/ToosoClickOnSuggestedTest.json"/>
+    <parameter name="json-path" value="src/test/java/ta/test/json/tooso/analytics/ToosoClickOnSuggestedTest.json"/>
 
         <classes>
-            <class name = "ta.test.impl.tooso.ToosoClickOnSuggestedTest" />
+            <class name = "ta.test.impl.tooso.analytics.ToosoClickOnSuggestedTest" />
         </classes>
     </test>
 

@@ -1,4 +1,4 @@
-package ta.test.impl.tooso;
+package ta.test.impl.tooso.suggest;
 
 import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.core.har.HarEntry;
