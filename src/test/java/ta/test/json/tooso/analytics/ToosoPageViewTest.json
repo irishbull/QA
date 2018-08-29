@@ -38,7 +38,7 @@
       "description": "validate GET Mondo/Universo (MacroCategoryGroup)",
       "pathAndQuery": "/bagno",
       "mandatoryAssertEquals": {
-        "dt": "Empty",
+        "dt": "Arredo bagno e sanitari: idee, offerte e prezzi per l'arredo bagno on line",
         "dp": "/bagno",
         "dl": "/bagno"
       },
@@ -49,7 +49,7 @@
       "description": "validate GET Offerte e Proposte (generica)",
       "pathAndQuery": "/offerte?page=1",
       "mandatoryAssertEquals": {
-        "dt": "Empty",
+        "dt": "Offerte Leroy Merlin: tanti prodotti in offerta online",
         "dp": "/offerte?page=1",
         "dl": "/offerte"
       },
@@ -60,7 +60,7 @@
       "description": "validate GET Minisito negozio",
       "pathAndQuery": "/negozi/milano-assago",
       "mandatoryAssertEquals": {
-        "dt": "Empty",
+        "dt": "Leroy Merlin Assago - acquista online e ritira gratuitamente in negozio dalle 2 ore successive.",
         "dp": "/negozi/milano-assago",
         "dl": "/negozi/milano-assago"
       },
@@ -71,7 +71,7 @@
       "description": "validate GET Pagina Aiuto ",
       "pathAndQuery": "/aiuto",
       "mandatoryAssertEquals": {
-        "dt": "Empty",
+        "dt": "Aiuto, contatti e faq Leroy Merlin",
         "dp": "/aiuto",
         "dl": "/aiuto"
       },
@@ -82,7 +82,7 @@
       "description": "validate GET Servizi ",
       "pathAndQuery": "/servizi",
       "mandatoryAssertEquals": {
-        "dt": "Empty",
+        "dt": "Servizi per fare: i servizi di Leroy Merlin in negozio e online",
         "dp": "/servizi",
         "dl": "/servizi"
       },
@@ -93,7 +93,7 @@
       "description": "validate GET Ispirati e impara - Design fai da te	 ",
       "pathAndQuery": "/design-lab",
       "mandatoryAssertEquals": {
-        "dt": "Empty",
+        "dt": "Design fai da te: il design lab di Leroy Merlin",
         "dp": "/design-lab",
         "dl": "/design-lab"
       },
@@ -104,7 +104,7 @@
       "description": "validate GET Ispirati e Idee per la casa	 ",
       "pathAndQuery": "/ispirati-impara/idee-progetti/",
       "mandatoryAssertEquals": {
-        "dt": "Empty",
+        "dt": "Arredare casa: idee arredamento e ristrutturazione fai da te | Leroy Merlin",
         "dp": "/ispirati-impara/idee-progetti/",
         "dl": "/ispirati-impara/idee-progetti/"
       },
@@ -115,7 +115,7 @@
       "description": "validate GET Ispirati e Impara - Tutorial",
       "pathAndQuery": "/ispirati-impara/tutorial/",
       "mandatoryAssertEquals": {
-        "dt": "Empty",
+        "dt": "Tutorial per arredare casa fai da te | Leroy Merlin",
         "dp": "/ispirati-impara/tutorial/",
         "dl": "/ispirati-impara/tutorial/"
       },
@@ -126,7 +126,7 @@
       "description": "validate GET Ispirati e Impara ",
       "pathAndQuery": "ispirati-impara",
       "mandatoryAssertEquals": {
-        "dt": "Empty",
+        "dt": "Idee fai da te, Tutorial per la casa e Corsi in negozio | Leroy Merlin",
         "dp": "/ispirati-impara",
         "dl": "/ispirati-impara"
       },
