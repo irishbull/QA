@@ -1,4 +1,4 @@
-package ta.test.impl.tooso;
+package ta.test.impl.tooso.analytics;
 
 import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.core.har.HarEntry;
@@ -16,22 +16,22 @@ import java.util.concurrent.TimeUnit;
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
-import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.ToosoBaseTest;
 import ta.utilities.ReadPropertiesFile;
 import ta.utilities.ToosoAnalyticsUtils;
 
 import static ta.utilities.constants.ToosoConstants.QUIET_PERIOD;
-import static ta.utilities.constants.ToosoConstants.RequestType.SEARCH;
+import static ta.utilities.constants.ToosoConstants.RequestType.PAGEVIEW;
 import static ta.utilities.constants.ToosoConstants.TIMEOUT;
 
-public class ToosoSearchTest extends ToosoBaseTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(ToosoSearchTest.class);
+public class ToosoPageViewTest extends ToosoBaseTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(ToosoPageViewTest.class);
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("GET [type = SEARCH] - validate request")
-    public void tc_001_verifySearchRequest(JSONObject testData) throws Exception {
+    @Description("GET [type = PAGEVIEW] - validate request")
+    public void tc_001_verifyPageViewRequest(JSONObject testData) throws Exception {
 
         String description = testData.get("description").toString();
 
@@ -41,31 +41,19 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("pathAndQuery").toString());
 
-        ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
-
-        toosoSearchPO.clickOnSearchBar();
-
-        String word = testData.get("search").toString();
-
-        toosoSearchPO.enterWord(word);
-
-        toosoSearchPO.search();
-
         // wait for quiescence
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
 
-        List<HarEntry> entriesCaptured = har.getLog().getEntries();
+        List<HarEntry> entriesOfPageViewType = ToosoAnalyticsUtils.retrieveEntriesOfType(har.getLog().getEntries(), PAGEVIEW);
 
-        List<HarEntry> entriesToValidate = ToosoAnalyticsUtils.retrieveEntriesOfType(entriesCaptured, SEARCH);
+        Assert.assertEquals(entriesOfPageViewType.size(), 1, "Number of requests [type = PAGEVIEW] captured by proxy:");
 
-        Assert.assertEquals(entriesToValidate.size(),  1, "Number of requests [type = SEARCH] captured by proxy:");
+        String urlToValidate  = entriesOfPageViewType.get(0).getRequest().getUrl();
+        logger.info("Request [type = {}] to validate -> {}", PAGEVIEW, urlToValidate);
 
-        String urlToValidate = entriesToValidate.get(0).getRequest().getUrl();
-
-        logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
-
-        ToosoAnalyticsUtils.checkMandatoryValues(urlToValidate, testData, SEARCH);
+        // check
+        ToosoAnalyticsUtils.checkMandatoryValues(urlToValidate, testData, PAGEVIEW);
     }
 }
