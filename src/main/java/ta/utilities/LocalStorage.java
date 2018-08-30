@@ -13,7 +13,7 @@ public class LocalStorage {
     private static final Logger logger = LoggerFactory.getLogger(LocalStorage.class);
     private static final String CONSTRUCTION_FORBIDDEN = "LocalStorage - Object construction is forbidden";
     private static final String SESSION_ID = "sessionID";
-    private static final String UID_PREFIX = "web_";
+    private static final String UID_PREFIX = "(?i)web_";
 
     /**
      * Check if the item exists in local storage
@@ -92,7 +92,7 @@ public class LocalStorage {
         if (isItemPresentInLocalStorage(SESSION_ID)) {
 
             // remove prefix and (")
-            String uid = getItemFromLocalStorage(SESSION_ID).replace(UID_PREFIX, EMPTY_STRING);
+            String uid = getItemFromLocalStorage(SESSION_ID).replaceAll(UID_PREFIX, EMPTY_STRING);
             return uid.substring(1, uid.length() - 1);
 
         } else {

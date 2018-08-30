@@ -11,6 +11,7 @@ import org.testng.annotations.Parameters;
 import java.util.Objects;
 
 import ta.driver.SeleniumDriver;
+import ta.utilities.LocalStorage;
 import ta.utilities.ReadPropertiesFile;
 
 
@@ -55,6 +56,9 @@ public abstract class BaseTest {
         }
 
         SeleniumDriver.getInstance().getDriver().manage().deleteAllCookies();
+
+        LocalStorage.clearLocalStorage();
+
         SeleniumDriver.getInstance().getDriver().quit();
     }
 }
