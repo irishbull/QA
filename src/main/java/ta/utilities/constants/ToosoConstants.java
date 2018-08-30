@@ -92,7 +92,8 @@ public class ToosoConstants {
             List<String> list = new ArrayList<>(Arrays.asList(
                     "t=event",
                     "ec=cart",
-                    "ea=click"
+                    "ea=click",
+                    "pa=click"
             ));
 
             CLICK_AFTER_SEARCH = Collections.unmodifiableList(list);
@@ -117,7 +118,8 @@ public class ToosoConstants {
             List<String> list = new ArrayList<>(Arrays.asList(
                     "t=event",
                     "ec=cart",
-                    "ea=add"
+                    "ea=add",
+                    "pa=add"
             ));
             ADD_TO_CART = Collections.unmodifiableList(list);
         }
@@ -129,7 +131,8 @@ public class ToosoConstants {
             List<String> list = new ArrayList<>(Arrays.asList(
                     "t=event",
                     "ec=cart",
-                    "ea=remove"
+                    "ea=remove",
+                    "pa=remove"
             ));
             REMOVE_FROM_CART = Collections.unmodifiableList(list);
         }
