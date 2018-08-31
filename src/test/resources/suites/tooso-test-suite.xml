@@ -26,7 +26,6 @@
 
     <test name = "PageView">
         <parameter name="json-path" value="src/test/java/ta/test/json/tooso/analytics/ToosoPageViewTest.json"/>
-
         <classes>
             <class name = "ta.test.impl.tooso.analytics.ToosoPageViewTest" />
         </classes>
@@ -34,9 +33,14 @@
 
     <test name = "ClickOnSuggestedTest">
     <parameter name="json-path" value="src/test/java/ta/test/json/tooso/analytics/ToosoClickOnSuggestedTest.json"/>
-
         <classes>
             <class name = "ta.test.impl.tooso.analytics.ToosoClickOnSuggestedTest" />
+        </classes>
+    </test>
+
+    <test name = "ClickOnSuggestedTest">
+        <classes>
+            <class name = "ta.test.impl.tooso.analytics.ToosoClickAfterSearch" />
         </classes>
     </test>
 
