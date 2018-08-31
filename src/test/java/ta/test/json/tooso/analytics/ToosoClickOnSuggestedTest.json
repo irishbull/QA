@@ -2,34 +2,28 @@
   "tc_001_verifyClickOnSuggestRequest": [
     {
       "rowID": "tc_001_verifyClickOnSuggestRequest.01",
-      "description": "validate GET Suggest - homepage",
+      "description":"validate GET Suggested Product - homepage (react)",
       "pathAndQuery": "/",
       "mandatoryAssertEquals": {
-        "dt": "Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
-        "dp": "/"
+        "dl":"/",
+        "dt":"Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
+        "dp":"/"
       },
       "mandatoryAssertNotEmpty": [
         "el"
-      ],
-      "optionalAssertNotEmpty": [
-        "debug",
-        "cd0"
       ]
     },
     {
       "rowID": "tc_001_verifyClickOnSuggestRequest.02",
-      "description": "validate GET Suggest - category page",
-      "pathAndQuery": "/prodotti/forni-in-muratura-CAT1162-c",
+      "description": "validate GET Suggested Product - offerte (angular)",
+      "pathAndQuery": "/offerte",
       "mandatoryAssertEquals": {
-        "dt": "Forni a legna: prezzi e offerte online | Leroy Merlin",
-        "dp": "/prodotti/forni-in-muratura-CAT1162-c"
+        "dl":"/",
+        "dt": "Offerte Leroy Merlin: tanti prodotti in offerta online",
+        "dp": "/offerte"
       },
       "mandatoryAssertNotEmpty": [
         "el"
-      ],
-      "optionalAssertNotEmpty": [
-        "debug",
-        "cd0"
       ]
     }
   ]

@@ -38,7 +38,7 @@
         </classes>
     </test>
 
-    <test name = "ClickOnSuggestedTest">
+    <test name = "ClickAfterSearch">
         <classes>
             <class name = "ta.test.impl.tooso.analytics.ToosoClickAfterSearch" />
         </classes>
