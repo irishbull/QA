@@ -1,26 +1,28 @@
 {
   "tc_001_verifyClickOnSuggestRequest": [
     {
-      "rowID": "tc_001_verifyClickOnSuggestRequest.01",
+      "rowID":"tc_001_verifyClickOnSuggestRequest.01",
       "description":"validate GET Suggested Product - homepage (react)",
-      "pathAndQuery": "/",
+      "pathAndQuery":"/",
       "mandatoryAssertEquals": {
         "dl":"/",
-        "dt":"Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
-        "dp":"/"
+        "dp":"/",
+        "dr":"",
+        "dt":"Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin"
       },
       "mandatoryAssertNotEmpty": [
         "el"
       ]
     },
     {
-      "rowID": "tc_001_verifyClickOnSuggestRequest.02",
-      "description": "validate GET Suggested Product - offerte (angular)",
-      "pathAndQuery": "/offerte",
+      "rowID":"tc_001_verifyClickOnSuggestRequest.02",
+      "description":"validate GET Suggested Product - offerte (angular)",
+      "pathAndQuery":"/offerte",
       "mandatoryAssertEquals": {
-        "dl":"/",
-        "dt": "Offerte Leroy Merlin: tanti prodotti in offerta online",
-        "dp": "/offerte"
+        "dl":"/offerte",
+        "dp":"/offerte",
+        "dr":"",
+        "dt":"Offerte Leroy Merlin: tanti prodotti in offerta online"
       },
       "mandatoryAssertNotEmpty": [
         "el"
