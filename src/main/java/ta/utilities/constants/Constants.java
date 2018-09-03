@@ -8,6 +8,10 @@ public class Constants {
 
     public static String EMPTY_STRING = "";
 
+    private Constants() {
+        throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);
+    }
+
     public static class WaitTime {
         public static final Integer IMPLICIT_WAIT = 5;
         public static final Integer EXPLICIT_WAIT = 2;
@@ -33,7 +37,21 @@ public class Constants {
         }
     }
 
-    private Constants() {
-        throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);
+    public static class Cookies {
+
+        private Cookies() {
+            throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);
+        }
+
+        public static class CurrentCustomerStore {
+            public static final String NAME = "currentCustomerStore";
+            public static final String VALUE = ReadPropertiesFile.getProperty("current.customer.store.value");
+            public static final String DOMAIN = ReadPropertiesFile.getProperty("current.customer.store.domain");
+            public static final String PATH = ReadPropertiesFile.getProperty("current.customer.store.path");
+
+            private CurrentCustomerStore() {
+                throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);
+            }
+        }
     }
 }
