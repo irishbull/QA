@@ -8,7 +8,8 @@ import ta.pageobjects.impl.StoreLocatorPO;
 import ta.test.BaseTest;
 import ta.utilities.BrowserUtils;
 import ta.utilities.constants.Constants;
-import ta.utilities.ReadPropertiesFile;
+
+import static ta.utilities.constants.Constants.Url.BASE_URL;
 
 public class StoreLocatorTest extends BaseTest {
 
@@ -17,7 +18,7 @@ public class StoreLocatorTest extends BaseTest {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("base.url"));
+        driver.get(BASE_URL);
 
         StoreLocatorPO storeLocatorPO = new StoreLocatorPO();
 

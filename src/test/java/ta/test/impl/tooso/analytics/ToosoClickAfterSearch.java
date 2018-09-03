@@ -1,20 +1,18 @@
 package ta.test.impl.tooso.analytics;
 
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.html5.LocalStorage;
-import org.openqa.selenium.html5.WebStorage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import io.qameta.allure.Description;
-
 import ta.driver.SeleniumDriver;
 import ta.test.ToosoBaseTest;
+import ta.utilities.CookiesUtils;
+import ta.utilities.LocalStorage;
+import ta.utilities.constants.Constants;
+
+import static ta.utilities.constants.Constants.Url.BASE_URL;
 
 
 public class ToosoClickAfterSearch extends ToosoBaseTest {
@@ -25,37 +23,17 @@ public class ToosoClickAfterSearch extends ToosoBaseTest {
     @Description("GET [type = CLICK ON SUGGESTED] - validate request")
     public void tc_001_verifyClickOnSuggestRequest() throws Exception {
 
-
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get("https://www-react-qa.leroymerlin.it/");
+        driver.get(BASE_URL);
 
-        WebStorage webStorage = (WebStorage) driver;
-        LocalStorage localStorage = webStorage.getLocalStorage();
-        for(String key : localStorage.keySet()) {
-            logger.info("key [{}] : value [{}]", key, localStorage.getItem(key));
+        logger.info("-----------------------------------------------------------------------");
+
+        logger.info("CURRENT CUSTOMER STORE {}", CookiesUtils.getCookieValue(Constants.Cookies.CurrentCustomerStore.VALUE));
+
+        for( int i=0; i< Math.toIntExact(LocalStorage.getLocalStorageLength()); i++) {
+            logger.info("localStorage[{}] = {}", LocalStorage.getKey(i), LocalStorage.getItem(LocalStorage.getKey(i)));
         }
 
-
-       /*
-
-        LocalStorage.setItemInLocalStorage("storeConsent", "true");
-        LocalStorage.setItemInLocalStorage("currentCustomerStore", "7");
-
-
-        Cookie cookie = new Cookie.Builder("currentCustomerStore", "7")
-                .domain("www-react-qa.leroymerlin.it")
-                .expiresOn(new GregorianCalendar(2030, Calendar.JANUARY, 1).getTime())
-                .path("/")
-                .build();
-
-        driver.manage().addCookie(cookie);
-
-*/
-        Thread.sleep(20_000);
-
-
     }
-
-
 }

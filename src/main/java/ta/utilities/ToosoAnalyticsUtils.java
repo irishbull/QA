@@ -24,11 +24,10 @@ import ta.utilities.constants.Constants;
 import ta.utilities.constants.ToosoConstants;
 
 import static ta.utilities.constants.Constants.Url.BASE_URL;
-import static ta.utilities.constants.ToosoConstants.DL;
 import static ta.utilities.constants.ToosoConstants.CID;
-import static ta.utilities.constants.ToosoConstants.DP;
-import static ta.utilities.constants.ToosoConstants.UID;
+import static ta.utilities.constants.ToosoConstants.DL;
 import static ta.utilities.constants.ToosoConstants.RequestType;
+import static ta.utilities.constants.ToosoConstants.UID;
 
 
 public class ToosoAnalyticsUtils {
@@ -209,7 +208,7 @@ public class ToosoAnalyticsUtils {
                     break;
                 case UID:
                     // TODO  get uid from sessionStorage when user is logged-in otherwise get uid from local storage
-                    expectedValue = LocalStorage.getUidFromLocalStorage();
+                    expectedValue = LocalStorage.getUid();
                     break;
                 default:
                     expectedValue = entry.getValue().toString();

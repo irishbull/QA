@@ -13,10 +13,10 @@ import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.ProductMenuPO;
 import ta.test.BaseTest;
 import ta.utilities.BrowserUtils;
-import ta.utilities.ReadPropertiesFile;
 import ta.utilities.constants.Constants;
 
 import static org.testng.Assert.assertTrue;
+import static ta.utilities.constants.Constants.Url.BASE_URL;
 
 public class ProductMenuTest extends BaseTest {
 
@@ -28,7 +28,7 @@ public class ProductMenuTest extends BaseTest {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("base.url"));
+        driver.get(BASE_URL);
 
         HomePagePO homePagePO = new HomePagePO();
 

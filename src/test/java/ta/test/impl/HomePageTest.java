@@ -10,14 +10,14 @@ import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
-import ta.pageobjects.impl.ToosoSearchPO;
 import ta.pageobjects.impl.IdeaPiuPO;
+import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.BaseTest;
 import ta.utilities.BrowserUtils;
 import ta.utilities.constants.Constants;
-import ta.utilities.ReadPropertiesFile;
 
 import static org.testng.Assert.assertTrue;
+import static ta.utilities.constants.Constants.Url.BASE_URL;
 
 public class HomePageTest extends BaseTest {
 
@@ -32,7 +32,7 @@ public class HomePageTest extends BaseTest {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("base.url"));
+        driver.get(BASE_URL);
 
         ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
 
@@ -55,7 +55,7 @@ public class HomePageTest extends BaseTest {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("base.url"));
+        driver.get(BASE_URL);
 
         HomePagePO homePagePO = new HomePagePO();
 
@@ -85,7 +85,7 @@ public class HomePageTest extends BaseTest {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("base.url"));
+        driver.get(BASE_URL);
 
         HomePagePO homePagePO = new HomePagePO();
 

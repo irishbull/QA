@@ -6,7 +6,7 @@ public class Constants {
 
     private static final String CONSTRUCTION_FORBIDDEN = "Constants class - Constants construction is forbidden";
 
-    public static String EMPTY_STRING = "";
+    public static final String EMPTY_STRING = "";
 
     private Constants() {
         throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);
@@ -53,5 +53,17 @@ public class Constants {
                 throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);
             }
         }
+    }
+
+    public static class LocalStorage {
+        private LocalStorage() {
+            throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);
+        }
+
+        public static final String CURRENT_CUSTOMER_STORE = "currentCustomerStore";
+        public static final String CURRENT_CUSTOMER_STORE_VALUE = "7";
+        public static final String STORE_CONSENT = "storeConsent";
+        public static final String ACCEPT = "true";
+        public static final String DENY = "false";
     }
 }

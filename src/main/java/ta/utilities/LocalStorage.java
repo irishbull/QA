@@ -21,7 +21,7 @@ public class LocalStorage {
      * @param item
      * @return
      */
-    public static boolean isItemPresentInLocalStorage(String item) {
+    public static boolean isItemPresent(String item) {
         return (JavascriptUtils.execute(String.format("return window.localStorage.getItem('%s');", item)) != null);
     }
 
@@ -31,7 +31,7 @@ public class LocalStorage {
      * @param key
      * @return
      */
-    public static String getItemFromLocalStorage(String key) {
+    public static String getItem(String key) {
         return (String) JavascriptUtils.execute(String.format("return window.localStorage.getItem('%s');", key));
     }
 
@@ -41,7 +41,7 @@ public class LocalStorage {
      * @param key
      * @return
      */
-    public static String getKeyFromLocalStorage(int key) {
+    public static String getKey(int key) {
         return (String) JavascriptUtils.execute(String.format("return window.localStorage.key('%s');", key));
     }
 
@@ -50,8 +50,8 @@ public class LocalStorage {
      *
      * @return
      */
-    public static int getLocalStorageLength() {
-        return (int) JavascriptUtils.execute("return window.localStorage.length;");
+    public static long getLocalStorageLength() {
+        return (long) JavascriptUtils.execute("return window.localStorage.length;");
     }
 
     /**
@@ -60,7 +60,7 @@ public class LocalStorage {
      * @param item
      * @param value
      */
-    public static void setItemInLocalStorage(String item, String value) {
+    public static void setItem(String item, String value) {
         JavascriptUtils.execute(String.format("window.localStorage.setItem('%s','%s');", item, value));
     }
 
@@ -69,7 +69,7 @@ public class LocalStorage {
      *
      * @param item
      */
-    public static void removeItemFromLocalStorage(String item) {
+    public static void removeItem(String item) {
         JavascriptUtils.execute(String.format("window.localStorage.removeItem('%s');", item));
     }
 
@@ -77,7 +77,7 @@ public class LocalStorage {
     /**
      * Clear local storage
      */
-    public static void clearLocalStorage() {
+    public static void clear() {
         JavascriptUtils.execute("window.localStorage.clear();");
     }
 
@@ -87,12 +87,12 @@ public class LocalStorage {
      *
      * @return uid value
      */
-    public static String getUidFromLocalStorage() {
+    public static String getUid() {
 
-        if (isItemPresentInLocalStorage(SESSION_ID)) {
+        if (isItemPresent(SESSION_ID)) {
 
             // remove prefix and (")
-            String uid = getItemFromLocalStorage(SESSION_ID).replaceAll(UID_PREFIX, EMPTY_STRING);
+            String uid = getItem(SESSION_ID).replaceAll(UID_PREFIX, EMPTY_STRING);
             return uid.substring(1, uid.length() - 1);
 
         } else {

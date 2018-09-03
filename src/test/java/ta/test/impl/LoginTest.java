@@ -14,10 +14,10 @@ import ta.pageobjects.impl.LoginPO;
 import ta.test.BaseTest;
 import ta.utilities.BrowserUtils;
 import ta.utilities.constants.Constants;
-import ta.utilities.ReadPropertiesFile;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static ta.utilities.constants.Constants.Url.BASE_URL;
 
 public class LoginTest extends BaseTest {
 
@@ -27,7 +27,7 @@ public class LoginTest extends BaseTest {
     @BeforeMethod
     public void beforeTest() {
 
-        SeleniumDriver.getInstance().getDriver().get(ReadPropertiesFile.getProperty("base.url"));
+        SeleniumDriver.getInstance().getDriver().get(BASE_URL);
 
         HomePagePO homePagePO = new HomePagePO();
 
@@ -51,7 +51,7 @@ public class LoginTest extends BaseTest {
         homePagePO = loginPO.clickLoginButton();
 
         // after successful login user is redirected to homepage
-        assertEquals(SeleniumDriver.getInstance().getDriver().getCurrentUrl(), ReadPropertiesFile.getProperty("base.url"), "Page url");
+        assertEquals(SeleniumDriver.getInstance().getDriver().getCurrentUrl(), BASE_URL, "Page url");
 
         BrowserUtils.waitFor(homePagePO.getUserFirstName(), Constants.WaitTime.EXPLICIT_WAIT);
 

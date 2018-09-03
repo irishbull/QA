@@ -11,8 +11,15 @@ import org.testng.annotations.Parameters;
 import java.util.Objects;
 
 import ta.driver.SeleniumDriver;
+import ta.utilities.CookiesUtils;
 import ta.utilities.LocalStorage;
 import ta.utilities.ReadPropertiesFile;
+
+import static ta.utilities.constants.Constants.LocalStorage.ACCEPT;
+import static ta.utilities.constants.Constants.LocalStorage.CURRENT_CUSTOMER_STORE;
+import static ta.utilities.constants.Constants.LocalStorage.CURRENT_CUSTOMER_STORE_VALUE;
+import static ta.utilities.constants.Constants.LocalStorage.STORE_CONSENT;
+import static ta.utilities.constants.Constants.Url.BASE_URL;
 
 
 public abstract class BaseTest {
@@ -41,6 +48,12 @@ public abstract class BaseTest {
         logger.info("Driver instance {}", SeleniumDriver.getInstance().toString());
 
         SeleniumDriver.getInstance().getDriver().manage().window().maximize();
+
+        // set current customer store
+        SeleniumDriver.getInstance().getDriver().get(BASE_URL);
+        CookiesUtils.addCurrentCustomerStore();
+        LocalStorage.setItem(CURRENT_CUSTOMER_STORE, CURRENT_CUSTOMER_STORE_VALUE);
+        LocalStorage.setItem(STORE_CONSENT, ACCEPT);
     }
 
 
@@ -50,14 +63,13 @@ public abstract class BaseTest {
         logger.info("Suite tear down");
         logger.info("Driver instance {}", SeleniumDriver.getInstance().toString());
 
-        if(isProxyRequired && Objects.nonNull(SeleniumDriver.getInstance().getProxy())) {
+        if (isProxyRequired && Objects.nonNull(SeleniumDriver.getInstance().getProxy())) {
             SeleniumDriver.getInstance().getProxy().stop();
             logger.info("Proxy stopped");
         }
 
         SeleniumDriver.getInstance().getDriver().manage().deleteAllCookies();
-
-        LocalStorage.clearLocalStorage();
+        LocalStorage.clear();
 
         SeleniumDriver.getInstance().getDriver().quit();
     }

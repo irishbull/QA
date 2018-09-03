@@ -19,9 +19,9 @@ import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.ToosoSearchAngularPO;
 import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.ToosoBaseTest;
-import ta.utilities.ReadPropertiesFile;
 import ta.utilities.ToosoAnalyticsUtils;
 
+import static ta.utilities.constants.Constants.Url.BASE_URL;
 import static ta.utilities.constants.ToosoConstants.PROXY_SUGGEST_PREFIX;
 import static ta.utilities.constants.ToosoConstants.QUIET_PERIOD;
 import static ta.utilities.constants.ToosoConstants.RequestType.SUGGEST;
@@ -36,11 +36,9 @@ public class ToosoSuggestTest extends ToosoBaseTest {
     @Description("GET [type = SUGGEST] - validate requests")
     public void tc_001_verifySuggestRequest(JSONObject testData) throws Exception {
 
-        String description = testData.get("description").toString();
-
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("pathAndQuery").toString());
+        driver.get(BASE_URL + testData.get("pathAndQuery").toString());
 
         ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
 
@@ -80,11 +78,9 @@ public class ToosoSuggestTest extends ToosoBaseTest {
     @Description("GET [type = SUGGEST] - validate requests")
     public void tc_002_verifyAngularSuggestRequest(JSONObject testData) throws Exception {
 
-        String description = testData.get("description").toString();
-
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("pathAndQuery").toString());
+        driver.get(BASE_URL + testData.get("pathAndQuery").toString());
 
         ToosoSearchAngularPO toosoSearchPO = new ToosoSearchAngularPO();
 

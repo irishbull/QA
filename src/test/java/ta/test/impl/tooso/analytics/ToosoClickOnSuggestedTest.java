@@ -20,9 +20,9 @@ import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.ToosoBaseTest;
 import ta.utilities.LocalStorage;
-import ta.utilities.ReadPropertiesFile;
 import ta.utilities.ToosoAnalyticsUtils;
 
+import static ta.utilities.constants.Constants.Url.BASE_URL;
 import static ta.utilities.constants.ToosoConstants.QUIET_PERIOD;
 import static ta.utilities.constants.ToosoConstants.RequestType.CLICK_ON_SUGGESTED;
 import static ta.utilities.constants.ToosoConstants.TIMEOUT;
@@ -42,26 +42,12 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("pathAndQuery").toString());
-
-/*
-
-       Cookie cookie = new Cookie.Builder("_ta", "TA.bbde2581-72f5-44e9-89a0-12a4ed29fa07")
-                .domain(".leroymerlin.it")
-                .expiresOn(new GregorianCalendar(2030, Calendar.JANUARY, 1).getTime())
-                .path("/")
-                .isHttpOnly(false)
-                .isSecure(false)
-                .build();
-
-        driver.manage().addCookie(cookie);
-*/
+        driver.get(BASE_URL + testData.get("pathAndQuery").toString());
 
         Cookie cookie = driver.manage().getCookieNamed("_ta");
         logger.info("COOKIE _TA = " + cookie.getValue());
 
-        logger.info("UID = " + LocalStorage.getItemFromLocalStorage("sessionID"));
-
+        logger.info("UID = " + LocalStorage.getItem("sessionID"));
 
         ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
 

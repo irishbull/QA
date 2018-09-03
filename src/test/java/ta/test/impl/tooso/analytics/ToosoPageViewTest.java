@@ -17,9 +17,9 @@ import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.test.ToosoBaseTest;
-import ta.utilities.ReadPropertiesFile;
 import ta.utilities.ToosoAnalyticsUtils;
 
+import static ta.utilities.constants.Constants.Url.BASE_URL;
 import static ta.utilities.constants.ToosoConstants.QUIET_PERIOD;
 import static ta.utilities.constants.ToosoConstants.RequestType.PAGEVIEW;
 import static ta.utilities.constants.ToosoConstants.TIMEOUT;
@@ -39,7 +39,7 @@ public class ToosoPageViewTest extends ToosoBaseTest {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(ReadPropertiesFile.getProperty("base.url") + testData.get("pathAndQuery").toString());
+        driver.get(BASE_URL + testData.get("pathAndQuery").toString());
 
         // wait for quiescence
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
