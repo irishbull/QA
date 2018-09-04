@@ -7,8 +7,8 @@
       "search":"luci",
       "mandatoryAssertEquals": {
         "q":"luci",
-        "dl":"/",
-        "dr":"",
+        "dl":"/ricerca?q=luci&page=1",
+        "dr":"/",
         "typoCorrection":"true",
         "page":"0"
       },
