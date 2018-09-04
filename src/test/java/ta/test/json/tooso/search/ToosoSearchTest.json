@@ -4,10 +4,10 @@
       "rowID": "tc_001_verifySearchRequest.01",
       "description": "GET [type = SEARCH] - home(react) - validate request",
       "pathAndQuery": "/",
-      "search":"luci",
+      "search":"pitture",
       "mandatoryAssertEquals": {
         "q":"luci",
-        "dl":"/ricerca?q=luci&page=1",
+        "dl":"/ricerca?q=pitture&page=1",
         "dr":"/",
         "typoCorrection":"true",
         "page":"0"
