@@ -7,7 +7,8 @@
       "mandatoryAssertEquals": {
         "dt": "Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
         "dp": "/",
-        "dl": "/"
+        "dl": "/",
+        "dr": ""
       },
       "mandatoryAssertNotEmpty": []
     },
@@ -18,7 +19,8 @@
       "mandatoryAssertEquals": {
         "dt": "Top e Piani cucina, penisole, banconi da cucina: prezzi e offerte online",
         "dp": "/prodotti/piani-cucina-CAT1445-c",
-        "dl": "/prodotti/piani-cucina-CAT1445-c"
+        "dl": "/prodotti/piani-cucina-CAT1445-c",
+        "dr": ""
       },
       "mandatoryAssertNotEmpty": []
     },
@@ -28,8 +30,9 @@
       "pathAndQuery": "/ricerca?q=fiori&page=1",
       "mandatoryAssertEquals": {
         "dt": "Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
-        "dp": "/ricerca",
-        "dl": "/ricerca?q=fiori&page=1"
+        "dp": "/ricerca?q=fiori&page=1",
+        "dl": "/ricerca?q=fiori&page=1",
+        "dr": ""
       },
       "mandatoryAssertNotEmpty": []
     },
@@ -40,7 +43,8 @@
       "mandatoryAssertEquals": {
         "dt": "Arredo bagno e sanitari: idee, offerte e prezzi per l'arredo bagno on line",
         "dp": "/bagno",
-        "dl": "/bagno"
+        "dl": "/bagno",
+        "dr": ""
       },
       "mandatoryAssertNotEmpty": []
     },
@@ -51,7 +55,8 @@
       "mandatoryAssertEquals": {
         "dt": "Offerte Leroy Merlin: tanti prodotti in offerta online",
         "dp": "/offerte?page=1",
-        "dl": "/offerte"
+        "dl": "/offerte?page=1",
+        "dr": ""
       },
       "mandatoryAssertNotEmpty": []
     },
@@ -62,7 +67,8 @@
       "mandatoryAssertEquals": {
         "dt": "Leroy Merlin Assago - acquista online e ritira gratuitamente in negozio dalle 2 ore successive.",
         "dp": "/negozi/milano-assago",
-        "dl": "/negozi/milano-assago"
+        "dl": "/negozi/milano-assago",
+        "dr": ""
       },
       "mandatoryAssertNotEmpty": []
     },
@@ -73,7 +79,8 @@
       "mandatoryAssertEquals": {
         "dt": "Aiuto, contatti e faq Leroy Merlin",
         "dp": "/aiuto",
-        "dl": "/aiuto"
+        "dl": "/aiuto",
+        "dr": ""
       },
       "mandatoryAssertNotEmpty": []
     },
@@ -84,7 +91,8 @@
       "mandatoryAssertEquals": {
         "dt": "Servizi per fare: i servizi di Leroy Merlin in negozio e online",
         "dp": "/servizi",
-        "dl": "/servizi"
+        "dl": "/servizi",
+        "dr": ""
       },
       "mandatoryAssertNotEmpty": []
     },
@@ -95,7 +103,8 @@
       "mandatoryAssertEquals": {
         "dt": "Design fai da te: il design lab di Leroy Merlin",
         "dp": "/design-lab",
-        "dl": "/design-lab"
+        "dl": "/design-lab",
+        "dr": ""
       },
       "mandatoryAssertNotEmpty": []
     },
@@ -106,7 +115,8 @@
       "mandatoryAssertEquals": {
         "dt": "Arredare casa: idee arredamento e ristrutturazione fai da te | Leroy Merlin",
         "dp": "/ispirati-impara/idee-progetti/",
-        "dl": "/ispirati-impara/idee-progetti/"
+        "dl": "/ispirati-impara/idee-progetti/",
+        "dr": ""
       },
       "mandatoryAssertNotEmpty": []
     },
@@ -117,7 +127,8 @@
       "mandatoryAssertEquals": {
         "dt": "Tutorial per arredare casa fai da te | Leroy Merlin",
         "dp": "/ispirati-impara/tutorial/",
-        "dl": "/ispirati-impara/tutorial/"
+        "dl": "/ispirati-impara/tutorial/",
+        "dr": ""
       },
       "mandatoryAssertNotEmpty": []
     },
@@ -128,7 +139,8 @@
       "mandatoryAssertEquals": {
         "dt": "Idee fai da te, Tutorial per la casa e Corsi in negozio | Leroy Merlin",
         "dp": "/ispirati-impara",
-        "dl": "/ispirati-impara"
+        "dl": "/ispirati-impara",
+        "dr": ""
       },
       "mandatoryAssertNotEmpty": []
     },
@@ -139,7 +151,8 @@
       "mandatoryAssertEquals": {
         "dt": "Corsi fai da te gratuiti in negozio | Leroy Merlin",
         "dp": "/ispirati-impara/corsi-fai-da-te/",
-        "dl": "/ispirati-impara/corsi-fai-da-te/"
+        "dl": "/ispirati-impara/corsi-fai-da-te/",
+        "dr": ""
       },
       "mandatoryAssertNotEmpty": []
     }
