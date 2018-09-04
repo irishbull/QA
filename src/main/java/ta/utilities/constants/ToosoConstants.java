@@ -29,6 +29,8 @@ public class ToosoConstants {
 
     // Tooso Document Location
     public static final String DL = "dl";
+    // Tooso Document Referrer
+    public static final String DR = "dr";
     // Tooso Document Path
     public static final String DP = "dp";
     // Tooso Client ID

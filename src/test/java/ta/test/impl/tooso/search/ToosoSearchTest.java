@@ -47,6 +47,8 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         String word = testData.get("search").toString();
 
+        toosoSearchPO.eraseSearchInput();
+
         toosoSearchPO.enterWord(word);
 
         toosoSearchPO.search();

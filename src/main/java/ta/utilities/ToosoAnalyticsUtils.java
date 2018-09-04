@@ -26,6 +26,7 @@ import ta.utilities.constants.ToosoConstants;
 import static ta.utilities.constants.Constants.Url.BASE_URL;
 import static ta.utilities.constants.ToosoConstants.CID;
 import static ta.utilities.constants.ToosoConstants.DL;
+import static ta.utilities.constants.ToosoConstants.DR;
 import static ta.utilities.constants.ToosoConstants.RequestType;
 import static ta.utilities.constants.ToosoConstants.UID;
 
@@ -198,8 +199,9 @@ public class ToosoAnalyticsUtils {
             Assert.assertTrue(actual.containsKey(key), "Request should contain the mandatory parameter [" + key + "]:");
 
             switch (key) {
-                // dl expected value should be equal to baseUrl and json dl concatenation
+                // dl and dr expected values should be equal to baseUrl and json dl concatenation
                 case DL:
+                case DR:
                     expectedValue = BASE_URL.concat(entry.getValue().toString());
                     break;
                 // cid expected value should be equal to cid value stored in the cookie _ta
