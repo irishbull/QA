@@ -199,9 +199,12 @@ public class ToosoAnalyticsUtils {
             Assert.assertTrue(actual.containsKey(key), "Request should contain the mandatory parameter [" + key + "]:");
 
             switch (key) {
-                // dl and dr expected values should be equal to baseUrl and json dl concatenation
-                case DL:
+                // dr expected value should be equal to baseUrl and json dl concatenation when json dr is not empty
                 case DR:
+                    expectedValue = entry.getValue().toString().isEmpty() ? entry.getValue().toString() : BASE_URL.concat(entry.getValue().toString());
+                    break;
+                // dl expected value should be equal to baseUrl and json dl
+                case DL:
                     expectedValue = BASE_URL.concat(entry.getValue().toString());
                     break;
                 // cid expected value should be equal to cid value stored in the cookie _ta
