@@ -28,7 +28,7 @@ public class ToosoSearchPO extends PageObject {
 
     @FindBy(how = How.NAME, using = "SELENIUM_PRODUCT_CARD_0")
     private WebElement firstProductCard;
-    
+
     public void clickOnSearchTopBar() {
         searchTopBar.click();
     }
