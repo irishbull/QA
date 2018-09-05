@@ -18,7 +18,7 @@ public class ToosoSearchPO extends PageObject {
 
     @FindBy(how = How.NAME, using = "SELENIUM_SEARCH_TOP")
     @CacheLookup
-    private WebElement searchWrapper;
+    private WebElement searchTopBar;
 
     @FindBy(how = How.NAME, using = "SELENIUM_POPUP_SEARCH_INPUT")
     private WebElement popupSearchInput;
@@ -26,11 +26,14 @@ public class ToosoSearchPO extends PageObject {
     @FindBy(how = How.NAME, using = "SELENIUM_SEARCH_RESULTS_WRAPPER")
     private WebElement searchResultsWrapper;
 
-    public void clickOnSearchBar() {
-        searchWrapper.click();
+    @FindBy(how = How.NAME, using = "SELENIUM_PRODUCT_CARD_0")
+    private WebElement firstProductCard;
+    
+    public void clickOnSearchTopBar() {
+        searchTopBar.click();
     }
 
-    public void eraseSearchInput() {
+    public void erasePopupSearchInput() {
         // note: ChromeDriver.clear does not clear text input fields
         while (StringUtils.isNotEmpty(popupSearchInput.getAttribute("value"))) {
             popupSearchInput.sendKeys(Keys.BACK_SPACE);
@@ -38,14 +41,14 @@ public class ToosoSearchPO extends PageObject {
     }
 
     public void enterWord(String word) {
-        this.popupSearchInput.sendKeys(word);
+        popupSearchInput.sendKeys(word);
     }
 
     public void search() {
-        this.popupSearchInput.sendKeys(Keys.ENTER);
+        popupSearchInput.sendKeys(Keys.ENTER);
     }
 
-    public int getResultsNumber() {
+    public int getSearchResultsNumber() {
         List<WebElement> liElems = searchResultsWrapper.findElements(By.tagName("li"));
         return liElems.size();
     }
@@ -53,5 +56,9 @@ public class ToosoSearchPO extends PageObject {
     public void clickOnFirstResultElement() {
         List<WebElement> liElems = searchResultsWrapper.findElements(By.tagName("li"));
         liElems.get(0).click();
+    }
+
+    public void clickOnFirstProduct() {
+        firstProductCard.findElement(By.tagName("img")).click();
     }
 }

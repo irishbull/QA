@@ -1,0 +1,18 @@
+{
+  "tc_001_verifyClickAfterSearchRequest": [
+    {
+      "rowID":"tc_001_verifyClickAfterSearchRequest.01",
+      "description":"validate GET Click After Search - homepage",
+      "pathAndQuery":"/",
+      "search":"pitture",
+      "mandatoryAssertEquals": {
+        "dl":"/ricerca?q=pitture&page=1",
+        "dp":"/ricerca?q=pitture&page=1",
+        "dr":"/",
+        "dt":"Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin"
+      },
+      "mandatoryAssertNotEmpty":[]
+    }
+  ]
+}
+

@@ -1,39 +1,77 @@
 package ta.test.impl.tooso.analytics;
 
+import net.lightbody.bmp.core.har.Har;
+import net.lightbody.bmp.core.har.HarEntry;
+
+import org.json.simple.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import io.qameta.allure.Description;
+import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
+import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.ToosoBaseTest;
-import ta.utilities.CookiesUtils;
-import ta.utilities.LocalStorage;
-import ta.utilities.constants.Constants;
+import ta.utilities.ToosoAnalyticsUtils;
+
 
 import static ta.utilities.constants.Constants.Url.BASE_URL;
+import static ta.utilities.constants.ToosoConstants.QUIET_PERIOD;
+import static ta.utilities.constants.ToosoConstants.RequestType.CLICK_AFTER_SEARCH;
+
+import static ta.utilities.constants.ToosoConstants.TIMEOUT;
 
 
 public class ToosoClickAfterSearch extends ToosoBaseTest {
 
     private static final Logger logger = LoggerFactory.getLogger(ToosoClickAfterSearch.class);
 
-    @Test
-    @Description("GET [type = CLICK ON SUGGESTED] - validate request")
-    public void tc_001_verifyClickOnSuggestRequest() throws Exception {
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Description("GET [type = PRODUCT CLICK AFTER SEARCH] - validate request")
+    public void tc_001_verifyClickAfterSearchRequest(JSONObject testData) throws Exception {
+
+        String description = testData.get("description").toString();
+
+        logger.info(description);
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(BASE_URL);
+        driver.get(BASE_URL + testData.get("pathAndQuery").toString());
 
-        logger.info("-----------------------------------------------------------------------");
+        ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
 
-        logger.info("CURRENT CUSTOMER STORE {}", CookiesUtils.getCookieValue(Constants.Cookies.CurrentCustomerStore.VALUE));
+        toosoSearchPO.clickOnSearchTopBar();
 
-        for( int i=0; i< Math.toIntExact(LocalStorage.getLocalStorageLength()); i++) {
-            logger.info("localStorage[{}] = {}", LocalStorage.getKey(i), LocalStorage.getItem(LocalStorage.getKey(i)));
-        }
+        String word = testData.get("search").toString();
+
+        toosoSearchPO.erasePopupSearchInput();
+
+        toosoSearchPO.enterWord(word);
+
+        toosoSearchPO.search();
+
+        toosoSearchPO.clickOnFirstProduct();
+
+        // wait for quiescence
+        SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
+
+        Har har = SeleniumDriver.getInstance().getProxy().getHar();
+
+        List<HarEntry> entriesOfPageViewType = ToosoAnalyticsUtils.retrieveEntriesOfType(har.getLog().getEntries(), CLICK_AFTER_SEARCH);
+
+        Assert.assertEquals(entriesOfPageViewType.size(), 1, "Number of requests [type = CLICK_AFTER_SEARCH] captured by proxy:");
+
+        String urlToValidate  = entriesOfPageViewType.get(0).getRequest().getUrl();
+        logger.info("Request [type = {}] to validate -> {}", CLICK_AFTER_SEARCH, urlToValidate);
+
+        // check
+        ToosoAnalyticsUtils.checkMandatoryValues(urlToValidate, testData, CLICK_AFTER_SEARCH);
 
     }
 }

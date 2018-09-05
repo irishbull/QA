@@ -4,7 +4,6 @@ import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.core.har.HarEntry;
 
 import org.json.simple.JSONObject;
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +18,6 @@ import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.ToosoBaseTest;
-import ta.utilities.LocalStorage;
 import ta.utilities.ToosoAnalyticsUtils;
 
 import static ta.utilities.constants.Constants.Url.BASE_URL;
@@ -44,14 +42,9 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
 
         driver.get(BASE_URL + testData.get("pathAndQuery").toString());
 
-        Cookie cookie = driver.manage().getCookieNamed("_ta");
-        logger.info("COOKIE _TA = " + cookie.getValue());
-
-        logger.info("UID = " + LocalStorage.getItem("sessionID"));
-
         ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
 
-        toosoSearchPO.clickOnSearchBar();
+        toosoSearchPO.clickOnSearchTopBar();
 
         toosoSearchPO.clickOnFirstResultElement();
 

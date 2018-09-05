@@ -36,14 +36,14 @@ public class HomePageTest extends BaseTest {
 
         ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
 
-        toosoSearchPO.clickOnSearchBar();
+        toosoSearchPO.clickOnSearchTopBar();
 
-        int a = toosoSearchPO.getResultsNumber();
+        int a = toosoSearchPO.getSearchResultsNumber();
 
         logger.info("description from json file: {}", testData.get("description"));
         logger.info(String.valueOf(a));
 
-        assertTrue(toosoSearchPO.getResultsNumber() <= 3);
+        assertTrue(toosoSearchPO.getSearchResultsNumber() <= 3);
     }
 
 

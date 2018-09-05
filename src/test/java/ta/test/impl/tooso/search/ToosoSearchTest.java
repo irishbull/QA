@@ -43,11 +43,11 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
 
-        toosoSearchPO.clickOnSearchBar();
+        toosoSearchPO.clickOnSearchTopBar();
 
         String word = testData.get("search").toString();
 
-        toosoSearchPO.eraseSearchInput();
+        toosoSearchPO.erasePopupSearchInput();
 
         toosoSearchPO.enterWord(word);
 

@@ -42,7 +42,7 @@ public class ToosoSuggestTest extends ToosoBaseTest {
 
         ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
 
-        toosoSearchPO.clickOnSearchBar();
+        toosoSearchPO.clickOnSearchTopBar();
 
         String word = testData.get("search").toString();
 
