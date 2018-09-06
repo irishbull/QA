@@ -34,9 +34,7 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
     @Description("GET [type = CLICK ON SUGGESTED] - validate request")
     public void tc_001_verifyClickOnSuggestRequest(JSONObject testData) throws Exception {
 
-        String description = testData.get("description").toString();
-
-        logger.info(description);
+        logger.info(testData.get("description").toString());
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
@@ -63,6 +61,6 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
         logger.info("Request [type = {}] to validate -> {}", CLICK_ON_SUGGESTED,  urlToVerify);
 
         // check
-        ToosoAnalyticsUtils.checkMandatoryValues(urlToVerify, testData, CLICK_ON_SUGGESTED);
+        ToosoAnalyticsUtils.checkParameters(urlToVerify, testData, CLICK_ON_SUGGESTED);
     }
 }

@@ -4,13 +4,13 @@
       "rowID":"tc_001_verifyClickOnSuggestRequest.01",
       "description":"validate GET Suggested Product - homepage (react)",
       "pathAndQuery":"/",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dl":"/",
         "dp":"/",
         "dr":"",
         "dt":"Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin"
       },
-      "mandatoryAssertNotEmpty": [
+      "expectedNotEmpty": [
         "el"
       ]
     },
@@ -18,13 +18,13 @@
       "rowID":"tc_001_verifyClickOnSuggestRequest.02",
       "description":"validate GET Suggested Product - offerte (angular)",
       "pathAndQuery":"/offerte",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dl":"/offerte",
         "dp":"/offerte",
         "dr":"",
         "dt":"Offerte Leroy Merlin: tanti prodotti in offerta online"
       },
-      "mandatoryAssertNotEmpty": [
+      "expectedNotEmpty": [
         "el"
       ]
     }

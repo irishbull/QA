@@ -36,9 +36,7 @@ public class ToosoClickAfterSearch extends ToosoBaseTest {
     @Description("GET [type = PRODUCT CLICK AFTER SEARCH] - validate request")
     public void tc_001_verifyClickAfterSearchRequest(JSONObject testData) throws Exception {
 
-        String description = testData.get("description").toString();
-
-        logger.info(description);
+        logger.info(testData.get("description").toString());
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
@@ -71,7 +69,7 @@ public class ToosoClickAfterSearch extends ToosoBaseTest {
         logger.info("Request [type = {}] to validate -> {}", CLICK_AFTER_SEARCH, urlToValidate);
 
         // check
-        ToosoAnalyticsUtils.checkMandatoryValues(urlToValidate, testData, CLICK_AFTER_SEARCH);
+        ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, CLICK_AFTER_SEARCH);
 
     }
 }

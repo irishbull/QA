@@ -33,9 +33,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
     @Description("GET [type = SEARCH] - validate request")
     public void tc_001_verifySearchRequest(JSONObject testData) throws Exception {
 
-        String description = testData.get("description").toString();
-
-        logger.info(description);
+        logger.info(testData.get("description").toString());
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
@@ -68,6 +66,6 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
 
-        ToosoAnalyticsUtils.checkMandatoryValues(urlToValidate, testData, SEARCH);
+        ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, SEARCH);
     }
 }

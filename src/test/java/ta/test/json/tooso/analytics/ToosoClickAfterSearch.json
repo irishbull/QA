@@ -5,26 +5,26 @@
       "description":"validate GET Click After Search - homepage",
       "pathAndQuery":"/",
       "search":"pitture",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dl":"/ricerca?q=pitture&page=1",
         "dp":"/ricerca?q=pitture&page=1",
         "dr":"/",
         "dt":"Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin"
       },
-      "mandatoryAssertNotEmpty":[]
+      "expectedNotEmpty":[]
     },
     {
       "rowID":"tc_001_verifyClickAfterSearchRequest.02",
       "description":"validate GET Click After Search - serp",
       "pathAndQuery":"/ricerca?q=pitture&page=1",
       "search":"casette",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dl":"/ricerca?q=casette&page=1",
         "dp":"/ricerca?q=casette&page=1",
         "dr":"/ricerca?q=casette&page=1",
         "dt":"Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin"
       },
-      "mandatoryAssertNotEmpty":[]
+      "expectedNotEmpty":[]
     }
   ]
 }

@@ -36,6 +36,8 @@ public class ToosoSuggestTest extends ToosoBaseTest {
     @Description("GET [type = SUGGEST] - validate requests")
     public void tc_001_verifySuggestRequest(JSONObject testData) throws Exception {
 
+        logger.info(testData.get("description").toString());
+
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
         driver.get(BASE_URL + testData.get("pathAndQuery").toString());
@@ -60,14 +62,14 @@ public class ToosoSuggestTest extends ToosoBaseTest {
         Assert.assertEquals(entriesToValidate.size(), word.length() + 1, "Number of requests [type = SUGGEST] captured by proxy:");
 
         // check the first entry (q=*)
-        ToosoAnalyticsUtils.checkMandatoryValues(entriesToValidate.get(0).getRequest().getUrl(), testData, SUGGEST);
+        ToosoAnalyticsUtils.checkParameters(entriesToValidate.get(0).getRequest().getUrl(), testData, SUGGEST);
         ToosoAnalyticsUtils.checkSuggestQueryParamQ(entriesToValidate.get(0).getRequest().getUrl(), 1, PROXY_SUGGEST_PREFIX);
 
         // check the other entries
         for(int i = 1; i < entriesToValidate.size(); i++) {
             String url = entriesToValidate.get(i).getRequest().getUrl();
-            logger.info("{} Request [type = {}] to validate -> {}", i, SUGGEST, url);
-            ToosoAnalyticsUtils.checkMandatoryValues(url, testData, SUGGEST);
+            logger.info("{} - Request [type = {}] to validate -> {}", i, SUGGEST, url);
+            ToosoAnalyticsUtils.checkParameters(url, testData, SUGGEST);
             ToosoAnalyticsUtils.checkSuggestQueryParamQ(url, i, word);
         }
     }
@@ -102,14 +104,14 @@ public class ToosoSuggestTest extends ToosoBaseTest {
         Assert.assertEquals(entriesToValidate.size(), word.length() + 1, "Number of requests [type = SUGGEST] captured by proxy:");
 
         // check the first entry (q=*)
-        ToosoAnalyticsUtils.checkMandatoryValues(entriesToValidate.get(0).getRequest().getUrl(), testData, SUGGEST);
+        ToosoAnalyticsUtils.checkParameters(entriesToValidate.get(0).getRequest().getUrl(), testData, SUGGEST);
         ToosoAnalyticsUtils.checkSuggestQueryParamQ(entriesToValidate.get(0).getRequest().getUrl(), 1, PROXY_SUGGEST_PREFIX);
 
         // check the other entries
         for(int i = 1; i < entriesToValidate.size(); i++) {
             String url = entriesToValidate.get(i).getRequest().getUrl();
-            logger.info("{} Request [type = {}] to validate -> {}", i, SUGGEST, url);
-            ToosoAnalyticsUtils.checkMandatoryValues(url, testData, SUGGEST);
+            logger.info("{} - Request [type = {}] to validate -> {}", i, SUGGEST, url);
+            ToosoAnalyticsUtils.checkParameters(url, testData, SUGGEST);
             ToosoAnalyticsUtils.checkSuggestQueryParamQ(url, i, word);
         }
     }

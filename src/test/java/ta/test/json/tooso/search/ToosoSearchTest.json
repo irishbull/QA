@@ -5,28 +5,28 @@
       "description": "GET [type = SEARCH] - home(react) - validate request",
       "pathAndQuery": "/",
       "search":"pitture",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "q":"pitture",
         "dl":"/ricerca?q=pitture&page=1",
         "dr":"/",
         "typoCorrection":"true",
         "page":"0"
       },
-      "mandatoryAssertNotEmpty": []
+      "expectedNotEmpty": []
     },
     {
       "rowID": "tc_001_verifySearchRequest.02",
       "description": "GET [type = SEARCH] - serp - validate request",
       "pathAndQuery": "/ricerca?q=porta&page=1",
       "search":"pitture",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "q":"pitture",
         "dl":"/ricerca?q=pitture&page=1",
         "dr":"/ricerca?q=porta&page=1",
         "typoCorrection":"true",
         "page":"0"
       },
-      "mandatoryAssertNotEmpty": []
+      "expectedNotEmpty": []
     }
   ]
 }

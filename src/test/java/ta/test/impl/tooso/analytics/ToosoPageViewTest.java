@@ -33,9 +33,7 @@ public class ToosoPageViewTest extends ToosoBaseTest {
     @Description("GET [type = PAGEVIEW] - validate request")
     public void tc_001_verifyPageViewRequest(JSONObject testData) throws Exception {
 
-        String description = testData.get("description").toString();
-
-        logger.info(description);
+        logger.info(testData.get("description").toString());
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
@@ -54,6 +52,6 @@ public class ToosoPageViewTest extends ToosoBaseTest {
         logger.info("Request [type = {}] to validate -> {}", PAGEVIEW, urlToValidate);
 
         // check
-        ToosoAnalyticsUtils.checkMandatoryValues(urlToValidate, testData, PAGEVIEW);
+        ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, PAGEVIEW);
     }
 }

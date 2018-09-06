@@ -38,7 +38,10 @@ public class ToosoAnalyticsUtils {
 
 
     /**
-     * @param entries to filter
+     *
+     * @param entries
+     * @param type
+     * @return
      */
     public static List<HarEntry> retrieveEntriesOfType(List<HarEntry> entries, RequestType type) {
 
@@ -128,36 +131,36 @@ public class ToosoAnalyticsUtils {
      * @param testData
      * @throws URISyntaxException
      */
-    public static void checkMandatoryValues(String url, JSONObject testData, RequestType type) throws URISyntaxException {
+    public static void checkParameters(String url, JSONObject testData, RequestType type) throws URISyntaxException {
 
-        // request query parameters
+        // query parameters to check
         final Map<String, String> urlQueryParams = getQueryParams(url);
 
-        // mandatory parameters(dynamically retrieved from json)
-        HashMap<String, String> mandatoryAssertEqualsParams = (HashMap<String, String>) testData.get("mandatoryAssertEquals");
+        // map containing parameters <name, value> (dynamically retrieved from json) for EQUALITY check
+        HashMap<String, String> expectedEqual = (HashMap<String, String>) testData.get("expectedEqual");
 
-        // mandatory parameters that should be NOT empty (dynamically retrieved from json)
-        List<String> mandatoryAssertNotEmptyParams = (List<String>) testData.get("mandatoryAssertNotEmpty");
+        // list containing parameters <name> (dynamically retrieved from json) that should be NOT EMPTY
+        List<String> expectedNotEmpty = (List<String>) testData.get("expectedNotEmpty");
 
-        // add common mandatory parameters according request type
+        // add common parameters according request type
         switch (type) {
 
             case SUGGEST:
             case SEARCH:
-                mandatoryAssertEqualsParams.putAll(ToosoConstants.SearchAndSuggest.Common.ASSERT_EQUALS_QUERY_PARAMS);
-                mandatoryAssertNotEmptyParams.addAll(ToosoConstants.SearchAndSuggest.Common.ASSERT_NOT_EMPTY_QUERY_PARAMS);
+                expectedEqual.putAll(ToosoConstants.SearchAndSuggest.Common.ASSERT_EQUALS_QUERY_PARAMS);
+                expectedNotEmpty.addAll(ToosoConstants.SearchAndSuggest.Common.ASSERT_NOT_EMPTY_QUERY_PARAMS);
                 break;
 
             // Tooso Analytics
             default:
-                mandatoryAssertEqualsParams.putAll(ToosoConstants.Analytics.Common.ASSERT_EQUALS_QUERY_PARAMS);
-                mandatoryAssertNotEmptyParams.addAll(ToosoConstants.Analytics.Common.ASSERT_NOT_EMPTY_QUERY_PARAMS);
+                expectedEqual.putAll(ToosoConstants.Analytics.Common.ASSERT_EQUALS_QUERY_PARAMS);
+                expectedNotEmpty.addAll(ToosoConstants.Analytics.Common.ASSERT_NOT_EMPTY_QUERY_PARAMS);
                 break;
         }
 
-        assertEquals(urlQueryParams, mandatoryAssertEqualsParams);
+        assertEquals(urlQueryParams, expectedEqual);
 
-        assertNotEmpty(urlQueryParams, mandatoryAssertNotEmptyParams);
+        assertNotEmpty(urlQueryParams, expectedNotEmpty);
 
     }
 
@@ -196,7 +199,7 @@ public class ToosoAnalyticsUtils {
 
             key = (String) entry.getKey();
 
-            Assert.assertTrue(actual.containsKey(key), "Request should contain the mandatory parameter [" + key + "]:");
+            Assert.assertTrue(actual.containsKey(key), String.format("Request should contain the mandatory parameter [%s]:", key));
 
             switch (key) {
                 // dr expected value should be equal to baseUrl and json dl concatenation when json dr is not empty
@@ -220,7 +223,7 @@ public class ToosoAnalyticsUtils {
             }
 
             logger.info("{} : expected[{}] - found[{}]", key, expectedValue, actual.get(key));
-            Assert.assertEquals(actual.get(key), expectedValue, "Invalid query parameter value [" + key + "]:");
+            Assert.assertEquals(actual.get(key), expectedValue, String.format("Invalid query parameter value [%s]:", key));
         }
     }
 
@@ -228,8 +231,8 @@ public class ToosoAnalyticsUtils {
     private static void assertNotEmpty(Map<String, String> actual, List<String> notEmptyParams) {
 
         for (String param : notEmptyParams) {
-            Assert.assertTrue(actual.containsKey(param), "Request should contain the parameter [" + param + "]:");
-            Assert.assertFalse(actual.get(param).isEmpty(), "Query parameter [" + param + "] value is empty:");
+            Assert.assertTrue(actual.containsKey(param), String.format("Request should contain the mandatory parameter [%s]:", param));
+            Assert.assertFalse(actual.get(param).isEmpty(), String.format("Query parameter [%s] value is empty:", param));
 
             logger.info("{} : expected[not empty] - found[{}]", param, actual.get(param));
         }
