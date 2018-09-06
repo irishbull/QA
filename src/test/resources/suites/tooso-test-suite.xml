@@ -39,6 +39,7 @@
     </test>
 
     <test name = "ClickAfterSearch">
+        <parameter name="json-path" value="src/test/java/ta/test/json/tooso/analytics/ToosoClickAfterSearch.json"/>
         <classes>
             <class name = "ta.test.impl.tooso.analytics.ToosoClickAfterSearch" />
         </classes>

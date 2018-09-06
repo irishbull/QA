@@ -10,9 +10,9 @@
     </listeners>
 
     <suite-files>
-        <!--<suite-file path="suites/example-test-suite.xml"/>-->
+        <suite-file path="suites/example-test-suite.xml"/>
         <suite-file path="suites/tooso-test-suite.xml"/>
-        <!--<suite-file path="suites/functional-test-suite.xml"/>-->
+        <suite-file path="suites/functional-test-suite.xml"/>
     </suite-files>
 
 </suite>

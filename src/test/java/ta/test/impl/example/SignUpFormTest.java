@@ -8,8 +8,8 @@ import org.testng.annotations.Test;
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
-import ta.pageobjects.impl.ReceiptPO;
-import ta.pageobjects.impl.SignUpPO;
+import ta.pageobjects.impl.example.ReceiptPO;
+import ta.pageobjects.impl.example.SignUpPO;
 import ta.test.BaseTest;
 
 import static org.testng.Assert.assertEquals;

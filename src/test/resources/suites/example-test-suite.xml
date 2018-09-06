@@ -4,14 +4,14 @@
 <suite name="ExampleTestSuite">
 
     <test name = "signUpFormTest">
-        <parameter name="json-path"  value="src/test/java/ta/test/json/SignUpFormTest.json"/>
+        <parameter name="json-path"  value="src/test/java/ta/test/json/example/SignUpFormTest.json"/>
         <classes>
             <class name = "ta.test.impl.example.SignUpFormTest" />
         </classes>
     </test>
 
     <test name="homePageTest">
-        <parameter name="json-path"  value="src/test/java/ta/test/json/HomePageTest.json"/>
+        <parameter name="json-path"  value="src/test/java/ta/test/json/example/HomePageTest.json"/>
         <classes>
             <class name="ta.test.impl.example.HomePageTest"/>
         </classes>

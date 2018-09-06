@@ -1,4 +1,4 @@
-package ta.pageobjects.impl;
+package ta.pageobjects.impl.example;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;

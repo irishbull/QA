@@ -6,8 +6,8 @@ import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
 import ta.driver.SeleniumDriver;
-import ta.pageobjects.impl.OrangeLoginPO;
-import ta.pageobjects.impl.OrangeWelcomePO;
+import ta.pageobjects.impl.example.OrangeLoginPO;
+import ta.pageobjects.impl.example.OrangeWelcomePO;
 import ta.test.BaseTest;
 import ta.utilities.BrowserUtils;
 import ta.utilities.constants.Constants;
