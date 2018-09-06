@@ -4,157 +4,157 @@
       "rowID": "tc_001_verifyPageViewRequest.01",
       "description":"validate GET PageView - homepage",
       "pathAndQuery": "/",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dt": "Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
         "dp": "/",
         "dl": "/",
         "dr": ""
       },
-      "mandatoryAssertNotEmpty": []
+      "expectedNotEmpty": []
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.02",
       "description": "validate GET PageView - category page",
       "pathAndQuery": "/prodotti/piani-cucina-CAT1445-c",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dt": "Top e Piani cucina, penisole, banconi da cucina: prezzi e offerte online",
         "dp": "/prodotti/piani-cucina-CAT1445-c",
         "dl": "/prodotti/piani-cucina-CAT1445-c",
         "dr": ""
       },
-      "mandatoryAssertNotEmpty": []
+      "expectedNotEmpty": []
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.03",
       "description": "validate GET PageView - SERP",
       "pathAndQuery": "/ricerca?q=fiori&page=1",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dt": "Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
         "dp": "/ricerca?q=fiori&page=1",
         "dl": "/ricerca?q=fiori&page=1",
         "dr": ""
       },
-      "mandatoryAssertNotEmpty": []
+      "expectedNotEmpty": []
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.04",
       "description": "validate GET Mondo/Universo (MacroCategoryGroup)",
       "pathAndQuery": "/bagno",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dt": "Arredo bagno e sanitari: idee, offerte e prezzi per l'arredo bagno on line",
         "dp": "/bagno",
         "dl": "/bagno",
         "dr": ""
       },
-      "mandatoryAssertNotEmpty": []
+      "expectedNotEmpty": []
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.05",
       "description": "validate GET Offerte e Proposte (generica)",
       "pathAndQuery": "/offerte",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dt": "Offerte Leroy Merlin: tanti prodotti in offerta online",
         "dp": "/offerte",
         "dl": "/offerte",
         "dr": ""
       },
-      "mandatoryAssertNotEmpty": []
+      "expectedNotEmpty": []
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.06",
       "description": "validate GET Minisito negozio",
       "pathAndQuery": "/negozi/milano-assago",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dt": "Leroy Merlin Assago - acquista online e ritira gratuitamente in negozio dalle 2 ore successive.",
         "dp": "/negozi/milano-assago",
         "dl": "/negozi/milano-assago",
         "dr": ""
       },
-      "mandatoryAssertNotEmpty": []
+      "expectedNotEmpty": []
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.07",
       "description": "validate GET Pagina Aiuto ",
       "pathAndQuery": "/aiuto",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dt": "Aiuto, contatti e faq Leroy Merlin",
         "dp": "/aiuto",
         "dl": "/aiuto",
         "dr": ""
       },
-      "mandatoryAssertNotEmpty": []
+      "expectedNotEmpty": []
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.08",
       "description": "validate GET Servizi ",
       "pathAndQuery": "/servizi",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dt": "Servizi per fare: i servizi di Leroy Merlin in negozio e online",
         "dp": "/servizi",
         "dl": "/servizi",
         "dr": ""
       },
-      "mandatoryAssertNotEmpty": []
+      "expectedNotEmpty": []
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.09",
       "description": "validate GET Ispirati e impara - Design fai da te	 ",
       "pathAndQuery": "/design-lab",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dt": "Design fai da te: il design lab di Leroy Merlin",
         "dp": "/design-lab",
         "dl": "/design-lab",
         "dr": ""
       },
-      "mandatoryAssertNotEmpty": []
+      "expectedNotEmpty": []
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.10",
       "description": "validate GET Ispirati e Idee per la casa	 ",
       "pathAndQuery": "/ispirati-impara/idee-progetti/",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dt": "Arredare casa: idee arredamento e ristrutturazione fai da te | Leroy Merlin",
         "dp": "/ispirati-impara/idee-progetti/",
         "dl": "/ispirati-impara/idee-progetti/",
         "dr": ""
       },
-      "mandatoryAssertNotEmpty": []
+      "expectedNotEmpty": []
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.11",
       "description": "validate GET Ispirati e Impara - Tutorial",
       "pathAndQuery": "/ispirati-impara/tutorial/",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dt": "Tutorial per arredare casa fai da te | Leroy Merlin",
         "dp": "/ispirati-impara/tutorial/",
         "dl": "/ispirati-impara/tutorial/",
         "dr": ""
       },
-      "mandatoryAssertNotEmpty": []
+      "expectedNotEmpty": []
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.12",
       "description": "validate GET Ispirati e Impara ",
       "pathAndQuery": "/ispirati-impara",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dt": "Idee fai da te, Tutorial per la casa e Corsi in negozio | Leroy Merlin",
         "dp": "/ispirati-impara",
         "dl": "/ispirati-impara",
         "dr": ""
       },
-      "mandatoryAssertNotEmpty": []
+      "expectedNotEmpty": []
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.13",
       "description": "validate GET Ispirati e Impara Corsi Gratuiti",
       "pathAndQuery": "/ispirati-impara/corsi-fai-da-te/",
-      "mandatoryAssertEquals": {
+      "expectedEqual": {
         "dt": "Corsi fai da te gratuiti in negozio | Leroy Merlin",
         "dp": "/ispirati-impara/corsi-fai-da-te/",
         "dl": "/ispirati-impara/corsi-fai-da-te/",
         "dr": ""
       },
-      "mandatoryAssertNotEmpty": []
+      "expectedNotEmpty": []
     }
   ]
 }
