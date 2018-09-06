@@ -51,11 +51,11 @@
     {
       "rowID": "tc_001_verifyPageViewRequest.05",
       "description": "validate GET Offerte e Proposte (generica)",
-      "pathAndQuery": "/offerte?page=1",
+      "pathAndQuery": "/offerte",
       "mandatoryAssertEquals": {
         "dt": "Offerte Leroy Merlin: tanti prodotti in offerta online",
-        "dp": "/offerte?page=1",
-        "dl": "/offerte?page=1",
+        "dp": "/offerte",
+        "dl": "/offerte",
         "dr": ""
       },
       "mandatoryAssertNotEmpty": []
@@ -135,7 +135,7 @@
     {
       "rowID": "tc_001_verifyPageViewRequest.12",
       "description": "validate GET Ispirati e Impara ",
-      "pathAndQuery": "ispirati-impara",
+      "pathAndQuery": "/ispirati-impara",
       "mandatoryAssertEquals": {
         "dt": "Idee fai da te, Tutorial per la casa e Corsi in negozio | Leroy Merlin",
         "dp": "/ispirati-impara",
@@ -147,7 +147,7 @@
     {
       "rowID": "tc_001_verifyPageViewRequest.13",
       "description": "validate GET Ispirati e Impara Corsi Gratuiti",
-      "pathAndQuery": "ispirati-impara/corsi-fai-da-te/",
+      "pathAndQuery": "/ispirati-impara/corsi-fai-da-te/",
       "mandatoryAssertEquals": {
         "dt": "Corsi fai da te gratuiti in negozio | Leroy Merlin",
         "dp": "/ispirati-impara/corsi-fai-da-te/",
