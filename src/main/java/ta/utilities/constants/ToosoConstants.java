@@ -172,7 +172,7 @@ public class ToosoConstants {
                         "sd",
                         "tm",
                         "z"
-                        //"cd0"
+                        //"cd0"  geolocation needed
                 ));
 
                 ASSERT_NOT_EMPTY_QUERY_PARAMS = Collections.unmodifiableList(list);

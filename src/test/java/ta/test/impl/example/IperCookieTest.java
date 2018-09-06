@@ -1,4 +1,4 @@
-package ta.test.impl;
+package ta.test.impl.example;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
