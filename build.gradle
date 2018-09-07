@@ -28,7 +28,6 @@ dependencies {
              'org.testng:testng:6.10',
              'com.googlecode.json-simple:json-simple:1.1',
              'net.lightbody.bmp:browsermob-core:2.1.5',
-             'net.lightbody.bmp:browsermob-core:2.1.5',
              'org.apache.httpcomponents:httpclient: 4.5.5'
     )
 
