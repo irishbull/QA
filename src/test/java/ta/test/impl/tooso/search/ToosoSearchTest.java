@@ -84,6 +84,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         toosoSearchPO.goToNextPage();
 
+        // wait for quiescence
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
@@ -119,6 +120,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         productNavBarPO.applyFilter();
 
+        // wait for quiescence
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
 
         Har har = SeleniumDriver.getInstance().getProxy().getHar();

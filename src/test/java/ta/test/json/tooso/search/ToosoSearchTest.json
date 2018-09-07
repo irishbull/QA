@@ -2,7 +2,7 @@
   "tc_001_verifyFirstSearchRequest": [
     {
       "rowID": "tc_001_verifyFirstSearchRequest.01",
-      "description": "GET [type = SEARCH] - validate search request from homepage",
+      "description": "Validate request [type = SEARCH] from homepage. Event; search",
       "pathAndQuery": "/",
       "search":"porta",
       "expectedEqual": {
@@ -18,7 +18,7 @@
   "tc_002_verifySecondSearchRequest": [
     {
       "rowID": "tc_002_verifySecondSearchRequest.01",
-      "description": "GET [type = SEARCH] - validate second search request (go to page 2)",
+      "description": "Validate request [type = SEARCH] from serp. Event: go to next result page",
       "pathAndQuery": "",
       "search":"porta",
       "expectedEqual": {
@@ -34,7 +34,7 @@
   "tc_003_verifyThirdSearchRequest": [
     {
       "rowID": "tc_003_verifyThirdSearchRequest.01",
-      "description": "GET [type = SEARCH] - validate third search request (apply category filter)",
+      "description": "Validate request [type = SEARCH] from serp. Event: apply category filter",
       "pathAndQuery": "",
       "search":"",
       "expectedEqual": {
