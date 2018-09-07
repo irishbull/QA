@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
+import ta.pageobjects.impl.ProductNavBarPO;
 import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.ToosoBaseTest;
 import ta.utilities.ToosoAnalyticsUtils;
@@ -31,7 +32,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("GET [type = SEARCH] - validate request")
-    public void tc_001_verifySearchRequest(JSONObject testData) throws Exception {
+    public void tc_001_verifyFirstSearchRequest(JSONObject testData) throws Exception {
 
         logger.info(testData.get("description").toString());
 
@@ -67,5 +68,75 @@ public class ToosoSearchTest extends ToosoBaseTest {
         logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
 
         ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, SEARCH);
+
     }
+
+
+    @Test(dependsOnMethods = {"tc_001_verifyFirstSearchRequest"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Description("GET [type = SEARCH] - validate request")
+    public void tc_002_verifySecondSearchRequest(JSONObject testData) throws Exception {
+
+        logger.info(testData.get("description").toString());
+
+        ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
+
+        toosoSearchPO.scrollToNextPageButton();
+
+        toosoSearchPO.goToNextPage();
+
+        SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
+
+        Har har = SeleniumDriver.getInstance().getProxy().getHar();
+
+        List<HarEntry> entriesCaptured = har.getLog().getEntries();
+
+        logger.info("Captured = " + entriesCaptured.size());
+
+        List<HarEntry> entriesToValidate = ToosoAnalyticsUtils.retrieveEntriesOfType(entriesCaptured, SEARCH);
+
+        Assert.assertEquals(entriesToValidate.size(),  1, "Number of requests [type = SEARCH] captured by proxy:");
+
+        String urlToValidate = entriesToValidate.get(0).getRequest().getUrl();
+
+        logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
+
+        ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, SEARCH);
+
+    }
+
+
+    @Test(dependsOnMethods = {"tc_002_verifySecondSearchRequest"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Description("GET [type = SEARCH] - validate request")
+    public void tc_003_verifyThirdSearchRequest(JSONObject testData) throws Exception {
+
+        logger.info(testData.get("description").toString());
+
+        ProductNavBarPO productNavBarPO = new ProductNavBarPO();
+
+        productNavBarPO.clickOnCategoria();
+
+        productNavBarPO.clickOnPorteInterne();
+
+        productNavBarPO.applyFilter();
+
+        SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
+
+        Har har = SeleniumDriver.getInstance().getProxy().getHar();
+
+        List<HarEntry> entriesCaptured = har.getLog().getEntries();
+
+        logger.info("Captured = " + entriesCaptured.size());
+
+        List<HarEntry> entriesToValidate = ToosoAnalyticsUtils.retrieveEntriesOfType(entriesCaptured, SEARCH);
+
+        Assert.assertEquals(entriesToValidate.size(),  1, "Number of requests [type = SEARCH] captured by proxy:");
+
+        String urlToValidate = entriesToValidate.get(0).getRequest().getUrl();
+
+        logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
+
+        ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, SEARCH);
+
+    }
+
 }

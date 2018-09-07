@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 import ta.pageobjects.PageObject;
+import ta.utilities.JavascriptUtils;
 
 import java.util.List;
 
@@ -28,6 +29,10 @@ public class ToosoSearchPO extends PageObject {
 
     @FindBy(how = How.NAME, using = "SELENIUM_PRODUCT_CARD_0")
     private WebElement firstProductCard;
+
+    @FindBy(how = How.LINK_TEXT, using ="Successiva")
+    private WebElement nextPageLink;
+
 
     public void clickOnSearchTopBar() {
         searchTopBar.click();
@@ -60,5 +65,16 @@ public class ToosoSearchPO extends PageObject {
 
     public void clickOnFirstProduct() {
         firstProductCard.findElement(By.tagName("img")).click();
+    }
+
+    public void scrollToNextPageButton() {
+        int y = nextPageLink.getLocation().getY();
+        // to avoid element not clickable
+        y = y-100;
+        JavascriptUtils.execute(String.format("window.scrollTo(0, %s)", String.valueOf(y)));
+    }
+
+    public void goToNextPage() {
+        nextPageLink.click();
     }
 }

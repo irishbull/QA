@@ -1,28 +1,46 @@
 {
-  "tc_001_verifySearchRequest": [
+  "tc_001_verifyFirstSearchRequest": [
     {
-      "rowID": "tc_001_verifySearchRequest.01",
-      "description": "GET [type = SEARCH] - home(react) - validate request",
+      "rowID": "tc_001_verifyFirstSearchRequest.01",
+      "description": "GET [type = SEARCH] - validate search request from homepage",
       "pathAndQuery": "/",
-      "search":"pitture",
+      "search":"porta",
       "expectedEqual": {
-        "q":"pitture",
-        "dl":"/ricerca?q=pitture&page=1",
+        "q":"porta",
+        "dl":"/ricerca?q=porta&page=1",
         "dr":"/",
         "typoCorrection":"true",
         "page":"0"
       },
       "expectedNotEmpty": []
-    },
+    }
+  ],
+  "tc_002_verifySecondSearchRequest": [
     {
-      "rowID": "tc_001_verifySearchRequest.02",
-      "description": "GET [type = SEARCH] - serp - validate request",
-      "pathAndQuery": "/ricerca?q=porta&page=1",
-      "search":"pitture",
+      "rowID": "tc_002_verifySecondSearchRequest.01",
+      "description": "GET [type = SEARCH] - validate second search request (go to page 2)",
+      "pathAndQuery": "",
+      "search":"porta",
       "expectedEqual": {
-        "q":"pitture",
-        "dl":"/ricerca?q=pitture&page=1",
+        "q":"porta",
+        "dl":"/ricerca?q=porta&page=2",
         "dr":"/ricerca?q=porta&page=1",
+        "typoCorrection":"true",
+        "page":"1"
+      },
+      "expectedNotEmpty": []
+    }
+  ],
+  "tc_003_verifyThirdSearchRequest": [
+    {
+      "rowID": "tc_003_verifyThirdSearchRequest.01",
+      "description": "GET [type = SEARCH] - validate third search request (apply category filter)",
+      "pathAndQuery": "",
+      "search":"",
+      "expectedEqual": {
+        "q":"porta",
+        "dl":"/ricerca?q=porta&activeFilter=CategoryName%3APorte%2520interne",
+        "dr":"/ricerca?q=porta&page=2",
         "typoCorrection":"true",
         "page":"0"
       },
@@ -30,5 +48,4 @@
     }
   ]
 }
-
 
