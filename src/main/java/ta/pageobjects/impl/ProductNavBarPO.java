@@ -14,8 +14,8 @@ public class ProductNavBarPO extends PageObject {
     @FindBy(how = How.NAME, using = "productsNavBar")
     private WebElement productsNavBar;
 
-    public void clickOnCategoria() {
-        productsNavBar.findElement(By.xpath("//*[contains(text(), 'Categoria')]")).click();
+    public void clickOnFilterFacet(String filterType) {
+        productsNavBar.findElement(By.xpath(String.format("//*[contains(text(), '%s')]", filterType))).click();
     }
 
     public void selectFilter(String dataFilterId) {

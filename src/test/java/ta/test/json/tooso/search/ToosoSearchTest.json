@@ -37,6 +37,7 @@
       "description": "Validate request [type = SEARCH] from serp. Event: apply category filter",
       "pathAndQuery": "",
       "search":"",
+      "filterType":"Categoria",
       "filterId":"Porte interne",
       "expectedEqual": {
         "q":"porta",
