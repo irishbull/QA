@@ -5,12 +5,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import java.util.List;
+
 import ta.pageobjects.PageObject;
 import ta.utilities.BrowserUtils;
 import ta.utilities.constants.Constants;
 
 public class ProductNavBarPO extends PageObject {
-
+    
     @FindBy(how = How.NAME, using = "productsNavBar")
     private WebElement productsNavBar;
 
@@ -19,12 +21,17 @@ public class ProductNavBarPO extends PageObject {
     }
 
     public void selectFilter(String dataFilterId) {
-        productsNavBar.findElement(By.xpath(String.format("//div[@data-filter-id='%s']", dataFilterId))).click();
+        WebElement filter = productsNavBar.findElement(By.xpath(String.format("//div[@data-filter-id='%s']", dataFilterId)));
+        BrowserUtils.waitFor(filter, Constants.WaitTime.EXPLICIT_WAIT);
+        filter.click();
     }
 
     public void applyFilter() {
-        WebElement applyButton = productsNavBar.findElement(By.xpath("//*[contains(text(), 'APPLICA')]"));
-        BrowserUtils.waitFor(applyButton, Constants.WaitTime.EXPLICIT_WAIT);
+        List<WebElement> applyButtonList = productsNavBar.findElements(By.xpath("//*[contains(text(), 'APPLICA')]"));
+
+        // TODO remove xpath - Note: DOM contains more than one button APPLICA
+        WebElement applyButton = applyButtonList.stream().filter(x -> x.isDisplayed()).findFirst().orElse(null);
+
         applyButton.click();
     }
 }

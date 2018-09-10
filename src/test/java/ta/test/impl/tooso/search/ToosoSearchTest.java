@@ -31,7 +31,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
     private static final Logger logger = LoggerFactory.getLogger(ToosoSearchTest.class);
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("GET [type = SEARCH] - validate request")
+    @Description("Validate request [type = SEARCH] from homepage. Event; search")
     public void tc_001_verifyFirstSearchRequest(JSONObject testData) throws Exception {
 
         logger.info(testData.get("description").toString());
@@ -73,7 +73,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
 
     @Test(dependsOnMethods = {"tc_001_verifyFirstSearchRequest"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("GET [type = SEARCH] - validate request")
+    @Description("Validate request [type = SEARCH] from serp. Event: go to next result page")
     public void tc_002_verifySecondSearchRequest(JSONObject testData) throws Exception {
 
         logger.info(testData.get("description").toString());
@@ -107,7 +107,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
 
     @Test(dependsOnMethods = {"tc_002_verifySecondSearchRequest"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("GET [type = SEARCH] - validate request")
+    @Description("Validate request [type = SEARCH] from serp. Event: apply category filter")
     public void tc_003_verifyThirdSearchRequest(JSONObject testData) throws Exception {
 
         logger.info(testData.get("description").toString());

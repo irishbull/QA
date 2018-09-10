@@ -48,7 +48,25 @@
         "filter":"CategoryName:Porte interne:storeCode:7"
       },
       "expectedNotEmpty": []
+    },
+    {
+      "rowID": "tc_003_verifyThirdSearchRequest.02",
+      "description": "Validate request [type = SEARCH] from serp. Event: apply category filter",
+      "pathAndQuery": "",
+      "search":"",
+      "filterType":"Prezzo",
+      "filterId":"100.0-200.0",
+      "expectedEqual": {
+        "q":"porta",
+        "dl":"/ricerca?q=porta&activeFilter=CategoryName%3APorte%2520interne%3ArangePriceFilter%3A100.0%3ArangePriceFilter%3A200.0",
+        "dr":"/ricerca?q=porta&activeFilter=CategoryName%3APorte%2520interne",
+        "typoCorrection":"true",
+        "page":"0",
+        "filter":"CategoryName:Porte interne:rangePriceFilter:100.0:rangePriceFilter:200.0:storeCode:7"
+      },
+      "expectedNotEmpty": []
     }
+
   ]
 }
 
