@@ -12,7 +12,7 @@ import ta.utilities.BrowserUtils;
 import ta.utilities.constants.Constants;
 
 public class ProductNavBarPO extends PageObject {
-    
+
     @FindBy(how = How.NAME, using = "productsNavBar")
     private WebElement productsNavBar;
 
@@ -30,7 +30,7 @@ public class ProductNavBarPO extends PageObject {
         List<WebElement> applyButtonList = productsNavBar.findElements(By.xpath("//*[contains(text(), 'APPLICA')]"));
 
         // TODO remove xpath - Note: DOM contains more than one button APPLICA
-        WebElement applyButton = applyButtonList.stream().filter(x -> x.isDisplayed()).findFirst().orElse(null);
+        WebElement applyButton = applyButtonList.stream().filter(x -> x.isDisplayed()).findFirst().orElse(applyButtonList.get(0));
 
         applyButton.click();
     }

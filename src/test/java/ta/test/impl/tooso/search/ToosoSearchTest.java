@@ -107,8 +107,8 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
 
     @Test(dependsOnMethods = {"tc_002_verifySecondSearchRequest"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("Validate request [type = SEARCH] from serp. Event: apply category filter")
-    public void tc_003_verifyThirdSearchRequest(JSONObject testData) throws Exception {
+    @Description("Validate request [type = SEARCH] from serp. Event: apply filter")
+    public void tc_003_verifySearchRequestWithFilter(JSONObject testData) throws Exception {
 
         logger.info(testData.get("description").toString());
 

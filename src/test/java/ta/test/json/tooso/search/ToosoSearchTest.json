@@ -4,10 +4,10 @@
       "rowID": "tc_001_verifyFirstSearchRequest.01",
       "description": "Validate request [type = SEARCH] from homepage. Event; search",
       "pathAndQuery": "/",
-      "search":"porta",
+      "search":"lampade",
       "expectedEqual": {
-        "q":"porta",
-        "dl":"/ricerca?q=porta&page=1",
+        "q":"lampade",
+        "dl":"/ricerca?q=lampade&page=1",
         "dr":"/",
         "typoCorrection":"true",
         "page":"0"
@@ -20,53 +20,69 @@
       "rowID": "tc_002_verifySecondSearchRequest.01",
       "description": "Validate request [type = SEARCH] from serp. Event: go to next result page",
       "pathAndQuery": "",
-      "search":"porta",
+      "search":"lampade",
       "expectedEqual": {
-        "q":"porta",
-        "dl":"/ricerca?q=porta&page=2",
-        "dr":"/ricerca?q=porta&page=1",
+        "q":"lampade",
+        "dl":"/ricerca?q=lampade&page=2",
+        "dr":"/ricerca?q=lampade&page=1",
         "typoCorrection":"true",
         "page":"1"
       },
       "expectedNotEmpty": []
     }
   ],
-  "tc_003_verifyThirdSearchRequest": [
+  "tc_003_verifySearchRequestWithFilter": [
     {
-      "rowID": "tc_003_verifyThirdSearchRequest.01",
-      "description": "Validate request [type = SEARCH] from serp. Event: apply category filter",
+      "rowID": "tc_003_verifySearchRequestWithFilter.01",
+      "description": "Validate request [type = SEARCH] from serp. Event: apply filter 'categoria'",
       "pathAndQuery": "",
       "search":"",
       "filterType":"Categoria",
-      "filterId":"Porte interne",
+      "filterId":"Lampade da tavolo",
       "expectedEqual": {
-        "q":"porta",
-        "dl":"/ricerca?q=porta&activeFilter=CategoryName%3APorte%2520interne",
-        "dr":"/ricerca?q=porta&page=2",
+        "q":"lampade",
+        "dl":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo",
+        "dr":"/ricerca?q=lampade&page=2",
         "typoCorrection":"true",
         "page":"0",
-        "filter":"CategoryName:Porte interne:storeCode:7"
+        "filter":"CategoryName:Lampade da tavolo:storeCode:7"
       },
       "expectedNotEmpty": []
     },
     {
-      "rowID": "tc_003_verifyThirdSearchRequest.02",
-      "description": "Validate request [type = SEARCH] from serp. Event: apply category filter",
+      "rowID": "tc_003_verifySearchRequestWithFilter.02",
+      "description": "Validate request [type = SEARCH] from serp. Event: apply filter 'marca'",
+      "pathAndQuery": "",
+      "search":"",
+      "filterType":"Marca",
+      "filterId":"Inspire",
+      "expectedEqual": {
+        "q":"lampade",
+        "dl":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%3ABrand%3AInspire",
+        "dr":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo",
+        "typoCorrection":"true",
+        "page":"0",
+        "filter":"CategoryName:Lampade da tavolo:Brand:Inspire:storeCode:7"
+      },
+      "expectedNotEmpty": []
+    },
+    {
+      "rowID": "tc_003_verifySearchRequestWithFilter.03",
+      "description": "Validate request [type = SEARCH] from serp. Event: apply filter 'prezzo'",
       "pathAndQuery": "",
       "search":"",
       "filterType":"Prezzo",
-      "filterId":"100.0-200.0",
+      "filterId":"20.0-50.0",
       "expectedEqual": {
-        "q":"porta",
-        "dl":"/ricerca?q=porta&activeFilter=CategoryName%3APorte%2520interne%3ArangePriceFilter%3A100.0%3ArangePriceFilter%3A200.0",
-        "dr":"/ricerca?q=porta&activeFilter=CategoryName%3APorte%2520interne",
+        "q":"lampade",
+        "dl":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%3ABrand%3AInspire%3ArangePriceFilter%3A20.0%3ArangePriceFilter%3A50.0",
+        "dr":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%3ABrand%3AInspire",
         "typoCorrection":"true",
         "page":"0",
-        "filter":"CategoryName:Porte interne:rangePriceFilter:100.0:rangePriceFilter:200.0:storeCode:7"
+        "filter":"CategoryName:Lampade da tavolo:Brand:Inspire:rangePriceFilter:20.0:rangePriceFilter:50.0:storeCode:7"
       },
       "expectedNotEmpty": []
     }
-
   ]
 }
 
