@@ -116,7 +116,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         productNavBarPO.clickOnCategoria();
 
-        productNavBarPO.clickOnPorteInterne();
+        productNavBarPO.selectFilter(testData.get("filterId").toString());
 
         productNavBarPO.applyFilter();
 

@@ -37,12 +37,14 @@
       "description": "Validate request [type = SEARCH] from serp. Event: apply category filter",
       "pathAndQuery": "",
       "search":"",
+      "filterId":"Porte interne",
       "expectedEqual": {
         "q":"porta",
         "dl":"/ricerca?q=porta&activeFilter=CategoryName%3APorte%2520interne",
         "dr":"/ricerca?q=porta&page=2",
         "typoCorrection":"true",
-        "page":"0"
+        "page":"0",
+        "filter":"CategoryName:Porte interne:storeCode:7"
       },
       "expectedNotEmpty": []
     }
