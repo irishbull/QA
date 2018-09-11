@@ -38,7 +38,7 @@
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.04",
-      "description": "validate GET Mondo/Universo (MacroCategoryGroup)",
+      "description": "validate GET PageView - Mondo/Universo (MacroCategoryGroup)",
       "pathAndQuery": "/bagno",
       "expectedEqual": {
         "dt": "Arredo bagno e sanitari: idee, offerte e prezzi per l'arredo bagno on line",
@@ -50,7 +50,7 @@
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.05",
-      "description": "validate GET Offerte e Proposte (generica)",
+      "description": "validate GET PageView - Offerte e Proposte (generica)",
       "pathAndQuery": "/offerte",
       "expectedEqual": {
         "dt": "Offerte Leroy Merlin: tanti prodotti in offerta online",
@@ -62,7 +62,7 @@
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.06",
-      "description": "validate GET Minisito negozio",
+      "description": "validate GET PageView - Minisito negozio",
       "pathAndQuery": "/negozi/milano-assago",
       "expectedEqual": {
         "dt": "Leroy Merlin Assago - acquista online e ritira gratuitamente in negozio dalle 2 ore successive.",
@@ -74,7 +74,7 @@
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.07",
-      "description": "validate GET Pagina Aiuto ",
+      "description": "validate GET PageView - Pagina Aiuto",
       "pathAndQuery": "/aiuto",
       "expectedEqual": {
         "dt": "Aiuto, contatti e faq Leroy Merlin",
@@ -86,7 +86,7 @@
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.08",
-      "description": "validate GET Servizi ",
+      "description": "validate GET PageView - Servizi",
       "pathAndQuery": "/servizi",
       "expectedEqual": {
         "dt": "Servizi per fare: i servizi di Leroy Merlin in negozio e online",
@@ -98,7 +98,7 @@
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.09",
-      "description": "validate GET Ispirati e impara - Design fai da te	 ",
+      "description": "validate GET PageView - Ispirati e impara - Design fai da te",
       "pathAndQuery": "/design-lab",
       "expectedEqual": {
         "dt": "Design fai da te: il design lab di Leroy Merlin",
@@ -110,7 +110,7 @@
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.10",
-      "description": "validate GET Ispirati e Idee per la casa	 ",
+      "description": "validate GET PageView - Ispirati e Idee per la casa",
       "pathAndQuery": "/ispirati-impara/idee-progetti/",
       "expectedEqual": {
         "dt": "Arredare casa: idee arredamento e ristrutturazione fai da te | Leroy Merlin",
@@ -122,7 +122,7 @@
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.11",
-      "description": "validate GET Ispirati e Impara - Tutorial",
+      "description": "validate GET PageView - Ispirati e Impara - Tutorial",
       "pathAndQuery": "/ispirati-impara/tutorial/",
       "expectedEqual": {
         "dt": "Tutorial per arredare casa fai da te | Leroy Merlin",
@@ -134,7 +134,7 @@
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.12",
-      "description": "validate GET Ispirati e Impara ",
+      "description": "validate GET PageView - Ispirati e Impara",
       "pathAndQuery": "/ispirati-impara",
       "expectedEqual": {
         "dt": "Idee fai da te, Tutorial per la casa e Corsi in negozio | Leroy Merlin",
@@ -146,7 +146,7 @@
     },
     {
       "rowID": "tc_001_verifyPageViewRequest.13",
-      "description": "validate GET Ispirati e Impara Corsi Gratuiti",
+      "description": "validate GET PageView - Ispirati e Impara Corsi Gratuiti",
       "pathAndQuery": "/ispirati-impara/corsi-fai-da-te/",
       "expectedEqual": {
         "dt": "Corsi fai da te gratuiti in negozio | Leroy Merlin",
