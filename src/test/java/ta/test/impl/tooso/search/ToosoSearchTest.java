@@ -91,8 +91,6 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         List<HarEntry> entriesCaptured = har.getLog().getEntries();
 
-        logger.info("Captured = " + entriesCaptured.size());
-
         List<HarEntry> entriesToValidate = ToosoAnalyticsUtils.retrieveEntriesOfType(entriesCaptured, SEARCH);
 
         Assert.assertEquals(entriesToValidate.size(),  1, "Number of requests [type = SEARCH] captured by proxy:");
@@ -114,11 +112,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         ProductNavBarPO productNavBarPO = new ProductNavBarPO();
 
-        productNavBarPO.clickOnFilterFacet(testData.get("filterType").toString());
-
-        productNavBarPO.selectFilter(testData.get("filterId").toString());
-
-        productNavBarPO.applyFilter();
+        productNavBarPO.applyFilter(testData.get("filterType").toString(), testData.get("filterId").toString());
 
         // wait for quiescence
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
@@ -126,8 +120,6 @@ public class ToosoSearchTest extends ToosoBaseTest {
         Har har = SeleniumDriver.getInstance().getProxy().getHar();
 
         List<HarEntry> entriesCaptured = har.getLog().getEntries();
-
-        logger.info("Captured = " + entriesCaptured.size());
 
         List<HarEntry> entriesToValidate = ToosoAnalyticsUtils.retrieveEntriesOfType(entriesCaptured, SEARCH);
 

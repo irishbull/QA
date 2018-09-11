@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import java.util.List;
-
 import ta.pageobjects.PageObject;
 import ta.utilities.BrowserUtils;
 import ta.utilities.constants.Constants;
@@ -16,22 +14,59 @@ public class ProductNavBarPO extends PageObject {
     @FindBy(how = How.NAME, using = "productsNavBar")
     private WebElement productsNavBar;
 
-    public void clickOnFilterFacet(String filterType) {
-        productsNavBar.findElement(By.xpath(String.format("//*[contains(text(), '%s')]", filterType))).click();
-    }
+    @FindBy(how = How.NAME, using = "SELENIUM_FILTER_CATEGORYNAME_CONTAINER")
+    private WebElement categoryFilterContainer;
 
-    public void selectFilter(String dataFilterId) {
-        WebElement filter = productsNavBar.findElement(By.xpath(String.format("//div[@data-filter-id='%s']", dataFilterId)));
+    @FindBy(how = How.NAME, using = "SELENIUM_FILTER_BRAND_CONTAINER")
+    private WebElement brandFilterContainer;
+
+    @FindBy(how = How.NAME, using = "SELENIUM_FILTER_RANGEPRICEFILTER_CONTAINER")
+    private WebElement priceFilterContainer;
+
+    @FindBy(how = How.NAME, using = "SELENIUM_FILTER_CATEGORYNAME_APPLY")
+    private WebElement categoryFilterApplyButton;
+
+    @FindBy(how = How.NAME, using = "SELENIUM_FILTER_BRAND_APPLY")
+    private WebElement brandFilterApplyButton;
+
+    @FindBy(how = How.NAME, using = "SELENIUM_FILTER_RANGEPRICEFILTER_APPLY")
+    private WebElement priceFilterApplyButton;
+
+    public void applyFilter(String filterType, String filterId) {
+
+        WebElement filterContainer;
+        WebElement applyButton;
+
+        switch (filterType) {
+            case "Categoria":
+                filterContainer = categoryFilterContainer;
+                applyButton = categoryFilterApplyButton;
+                break;
+
+            case "Marca":
+                filterContainer = brandFilterContainer;
+                applyButton = brandFilterApplyButton;
+                break;
+
+            case "Prezzo":
+                filterContainer = priceFilterContainer;
+                applyButton = priceFilterApplyButton;
+                break;
+
+            default:
+                throw new IllegalArgumentException(String.format("Serp filter type [%s] is not valid", filterType));
+        }
+
+        // open menù
+        filterContainer.click();
+
+        // select filter by filterId
+        WebElement filter = filterContainer.findElement(By.xpath(String.format(".//div[@data-filter-id='%s']", filterId)));
         BrowserUtils.waitFor(filter, Constants.WaitTime.EXPLICIT_WAIT);
         filter.click();
-    }
 
-    public void applyFilter() {
-        List<WebElement> applyButtonList = productsNavBar.findElements(By.xpath("//*[contains(text(), 'APPLICA')]"));
-
-        // TODO remove xpath - Note: DOM contains more than one button APPLICA
-        WebElement applyButton = applyButtonList.stream().filter(x -> x.isDisplayed()).findFirst().orElse(applyButtonList.get(0));
-
+        // apply filter
+        BrowserUtils.waitFor(applyButton, Constants.WaitTime.EXPLICIT_WAIT);
         applyButton.click();
     }
 }
