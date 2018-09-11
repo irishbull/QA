@@ -44,6 +44,7 @@ public class LogListener extends TestListenerAdapter {
      */
     @Override
     public void onTestSkipped(ITestResult tr) {
+        logger.warn(tr.getThrowable().getMessage());
         logger.warn("{} - {} SKIPPED", tr.getTestClass().getName(), tr.getName());
         super.onTestSkipped(tr);
     }
