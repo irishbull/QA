@@ -4,7 +4,7 @@ import java.util.ResourceBundle;
 
 public class ReadPropertiesFile {
 
-    private static ResourceBundle rb = ResourceBundle.getBundle("project-config");
+    private static ResourceBundle rb = ResourceBundle.getBundle("environment");
 
     private ReadPropertiesFile() {
         throw new IllegalStateException("ReadPropertiesFile - Object construction is forbidden");
