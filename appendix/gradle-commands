@@ -6,11 +6,11 @@ Refresh the test environment and run the task test
 ----------------------
 Generate allure report
 ----------------------
-    gradle allureReport -PBrowser={browser}
+    gradle allureReport -PEnv={environment} -PBrowser={browser}
 
 
 where {environment} is one of:
- - development **
+ - development *
  - integration
  - production
 
@@ -20,5 +20,4 @@ where {browser} is one of:
  - firefox
  - iexplorer
 
-*  default value
-** default value (plugin)
+*  default value when the property is not specified
