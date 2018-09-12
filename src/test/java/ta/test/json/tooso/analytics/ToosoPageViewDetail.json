@@ -1,0 +1,25 @@
+{
+  "tc_001_verifyPageViewDetail": [
+    {
+      "rowID": "tc_001_verifyPageViewRequest.01",
+      "description": "validate GET - PageViewDetail ",
+      "pathAndQuery": "/ricerca?q=Fiocchi&page=1",
+      "expectedEqual": {
+        "dt": "Fiocco a campana: prezzi e offerte online",
+        "dp": "/catalogo/fiocco-a-campana-34329120-p",
+        "dl": "/catalogo/fiocco-a-campana-34329120-p",
+        "dr": "/ricerca?q=Fiocchi&page=1",
+        "pr1id":"35839636",
+        "pr1ca":"CAT992",
+        "pr1br":"",
+        "pr1nm":"Fiocco a campana",
+        "pr1va:":"",
+        "pr1pr":"8.65",
+        "pr1storeid":"7",
+        "pr1qt":"1",
+        "pr1ps":"1"
+      },
+      "expectedNotEmpty": []
+    }
+  ]
+}
