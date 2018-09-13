@@ -20,15 +20,15 @@ repositories {
 
 dependencies {
     compile( 'com.google.guava:guava:20.0',
-             'org.seleniumhq.selenium:selenium-java:3.11.0',
-             'commons-io:commons-io:2.4',
-             'org.slf4j:slf4j-api:1.7.2',
-             'ch.qos.logback:logback-classic:1.0.9',
-             'ch.qos.logback:logback-core:1.0.9',
-             'org.testng:testng:6.10',
-             'com.googlecode.json-simple:json-simple:1.1',
-             'net.lightbody.bmp:browsermob-core:2.1.5',
-             'org.apache.httpcomponents:httpclient: 4.5.5'
+            'org.seleniumhq.selenium:selenium-java:3.11.0',
+            'commons-io:commons-io:2.4',
+            'org.slf4j:slf4j-api:1.7.2',
+            'ch.qos.logback:logback-classic:1.0.9',
+            'ch.qos.logback:logback-core:1.0.9',
+            'org.testng:testng:6.10',
+            'com.googlecode.json-simple:json-simple:1.1',
+            'net.lightbody.bmp:browsermob-core:2.1.5',
+            'org.apache.httpcomponents:httpclient: 4.5.5'
     )
 
     testCompile('org.testng:testng:6.10'
@@ -105,8 +105,11 @@ test {
         useDefaultListeners = true
         suites 'src/test/resources/testng.xml'
 
-        // add browser to use to system property
-        systemProperty "browser", project.getProperty("Browser")
+        // Default browser = chrome
+        def selectedBrowser = project.hasProperty('Browser') ? project.getProperty('Browser') : 'chrome'
+
+        // Set the property selectedBrowser in systemProperty
+        systemProperty "selectedBrowser", selectedBrowser
     }
 }
 
@@ -114,21 +117,21 @@ allure {
     version = '2.2.1'
     autoconfigure = true
 
-    def browser = project.getProperty('Browser')
+    def selectedBrowser = project.hasProperty('Browser') ? project.getProperty('Browser') : 'chrome'
+    def environment = project.hasProperty('Environment') ? project.getProperty('Environment') : 'development'
 
-    switch(browser){
-        case "firefox":
-            resultsDir = file('./allure-results/firefox')
-            reportDir = file('./allure-report/firefox')
-            break;
-        case "iexplorer":
-            resultsDir = file('./allure-results/iexplorer')
-            reportDir = file('./allure-report/iexplorer')
-            break;
-        default:
-            //chrome
-            resultsDir = file('./allure-results/chrome')
-            reportDir = file('./allure-report/chrome')
+    String resultsPath = "./allure-results/${selectedBrowser}"
+    String reportPath = "./allure-report/${selectedBrowser}"
+
+    // Customize resultsDir and reportDir
+    resultsDir = file(resultsPath)
+    reportDir = file(reportPath)
+
+
+    // Copy environment.xml to resultsDir
+    copy {
+        from "${rootProject.projectDir}/src/test/environments/${environment}/environment.properties"
+        into resultsDir
     }
 }
 

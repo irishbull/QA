@@ -36,11 +36,11 @@ public abstract class BaseTest {
         Assert.assertNotNull(environment, "Required property 'environment' not found");
         logger.info("Environment = [{}]", environment);
 
-        String browser = System.getProperty("browser");
+        String browser = System.getProperty("selectedBrowser");
         Assert.assertNotNull(browser, "Required parameter 'Browser' is missing");
 
         /* debug locally
-        String browser = System.getProperty("browser", "chrome");
+        String browser = System.getProperty("selectedBrowser", "chrome");
         logger.info("Browser [{}]", browser);
         */
 
