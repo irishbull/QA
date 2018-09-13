@@ -33,8 +33,8 @@ public class LogListener extends TestListenerAdapter {
      */
     @Override
     public void onTestFailure(ITestResult tr) {
-        logger.error(tr.getThrowable().getMessage(), tr);
         logger.error("{} - {} FAILED", tr.getTestClass().getName(), tr.getName());
+        logger.error("Cause: {} {}", tr.getThrowable().getMessage(), tr);
         super.onTestFailure(tr);
     }
 
@@ -44,8 +44,8 @@ public class LogListener extends TestListenerAdapter {
      */
     @Override
     public void onTestSkipped(ITestResult tr) {
-        logger.warn(tr.getThrowable().getMessage(), tr);
         logger.warn("{} - {} SKIPPED", tr.getTestClass().getName(), tr.getName());
+        logger.warn("Cause: {} {}", tr.getThrowable().getMessage(), tr);
         super.onTestSkipped(tr);
     }
 }
