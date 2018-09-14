@@ -1,9 +1,9 @@
 {
   "tc_001_verifyFirstSearchRequest": [
     {
-      "rowID": "tc_001_verifyFirstSearchRequest.01",
-      "description": "Validate request [type = SEARCH] from homepage. Event; search",
-      "pathAndQuery": "/",
+      "rowID":"tc_001_verifyFirstSearchRequest.01",
+      "description": "Validate request [type = SEARCH] from homepage. Event: search",
+      "pathAndQuery":"/",
       "search":"lampade",
       "expectedEqual": {
         "q":"lampade",
@@ -17,9 +17,8 @@
   ],
   "tc_002_verifySecondSearchRequest": [
     {
-      "rowID": "tc_002_verifySecondSearchRequest.01",
-      "description": "Validate request [type = SEARCH] from serp. Event: go to next result page",
-      "pathAndQuery": "",
+      "rowID":"tc_002_verifySecondSearchRequest.01",
+      "description":"Validate request [type = SEARCH] from serp. Event: go to next result page",
       "search":"lampade",
       "expectedEqual": {
         "q":"lampade",
@@ -33,10 +32,8 @@
   ],
   "tc_003_verifySearchRequestWithFilter": [
     {
-      "rowID": "tc_003_verifySearchRequestWithFilter.01",
-      "description": "Validate request [type = SEARCH] from serp. Event: apply filter 'categoria'",
-      "pathAndQuery": "",
-      "search":"",
+      "rowID":"tc_003_verifySearchRequestWithFilter.01",
+      "description":"Validate request [type = SEARCH] from serp. Event: apply filter 'categoria'",
       "filterType":"Categoria",
       "filterId":"Lampade da tavolo",
       "expectedEqual": {
@@ -50,10 +47,8 @@
       "expectedNotEmpty": []
     },
     {
-      "rowID": "tc_003_verifySearchRequestWithFilter.02",
-      "description": "Validate request [type = SEARCH] from serp. Event: apply filter 'marca'",
-      "pathAndQuery": "",
-      "search":"",
+      "rowID":"tc_003_verifySearchRequestWithFilter.02",
+      "description":"Validate request [type = SEARCH] from serp. Event: apply filter 'marca'",
       "filterType":"Marca",
       "filterId":"Inspire",
       "expectedEqual": {
@@ -67,16 +62,31 @@
       "expectedNotEmpty": []
     },
     {
-      "rowID": "tc_003_verifySearchRequestWithFilter.03",
-      "description": "Validate request [type = SEARCH] from serp. Event: apply filter 'prezzo'",
-      "pathAndQuery": "",
-      "search":"",
+      "rowID":"tc_003_verifySearchRequestWithFilter.03",
+      "description":"Validate request [type = SEARCH] from serp. Event: apply filter 'prezzo'",
       "filterType":"Prezzo",
       "filterId":"20.0-50.0",
       "expectedEqual": {
         "q":"lampade",
         "dl":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%3ABrand%3AInspire%3ArangePriceFilter%3A20.0%3ArangePriceFilter%3A50.0",
         "dr":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%3ABrand%3AInspire",
+        "typoCorrection":"true",
+        "page":"0",
+        "filter":"CategoryName:Lampade da tavolo:Brand:Inspire:rangePriceFilter:20.0:rangePriceFilter:50.0:storeCode:7"
+      },
+      "expectedNotEmpty": []
+    }
+  ],
+  "tc_004_verifySearchRequestWithSorting": [
+    {
+      "rowID":"tc_004_verifySearchRequestWithSorting.01",
+      "description":"Validate request [type = SEARCH] from serp. Event: sort by 'Prezzo crescente'",
+      "sortingType":"Prezzo crescente",
+      "expectedEqual": {
+        "q":"lampade",
+        "dl":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%3ABrand%3AInspire%3ArangePriceFilter%3A20.0%3ArangePriceFilter%3A50.0&sort=price-asc",
+        "dr":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%3ABrand%3AInspire%3ArangePriceFilter%3A20.0%3ArangePriceFilter%3A50.0",
+        "sort":"price-asc",
         "typoCorrection":"true",
         "page":"0",
         "filter":"CategoryName:Lampade da tavolo:Brand:Inspire:rangePriceFilter:20.0:rangePriceFilter:50.0:storeCode:7"

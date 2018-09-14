@@ -133,4 +133,34 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
     }
 
+
+    @Test(dependsOnMethods = {"tc_003_verifySearchRequestWithFilter"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Description("Validate request [type = SEARCH] from serp. Event: apply sorting")
+    public void tc_004_verifySearchRequestWithSorting(JSONObject testData) throws Exception {
+
+        logger.info(testData.get("description").toString());
+
+        ProductNavBarPO productNavBarPO = new ProductNavBarPO();
+
+        productNavBarPO.sortBy(testData.get("sortingType").toString());
+
+        // wait for quiescence
+        SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
+
+        Har har = SeleniumDriver.getInstance().getProxy().getHar();
+
+        List<HarEntry> entriesCaptured = har.getLog().getEntries();
+
+        List<HarEntry> entriesToValidate = ToosoAnalyticsUtils.retrieveEntriesOfType(entriesCaptured, SEARCH);
+
+        Assert.assertEquals(entriesToValidate.size(),  1, "Number of requests [type = SEARCH] captured by proxy:");
+
+        String urlToValidate = entriesToValidate.get(0).getRequest().getUrl();
+
+        logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
+
+        ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, SEARCH);
+
+    }
+
 }

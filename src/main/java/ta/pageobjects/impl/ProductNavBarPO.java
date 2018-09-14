@@ -32,6 +32,10 @@ public class ProductNavBarPO extends PageObject {
     @FindBy(how = How.NAME, using = "SELENIUM_FILTER_RANGEPRICEFILTER_APPLY")
     private WebElement priceFilterApplyButton;
 
+    @FindBy(how = How.NAME, using = "SELENIUM_ORDER_BY")
+    private WebElement sorting;
+
+
     public void applyFilter(String filterType, String filterId) {
 
         WebElement filterContainer;
@@ -69,4 +73,21 @@ public class ProductNavBarPO extends PageObject {
         BrowserUtils.waitFor(applyButton, Constants.WaitTime.EXPLICIT_WAIT);
         applyButton.click();
     }
+
+
+    public void sortBy(String sortingType) {
+
+        // open menù
+        sorting.click();
+
+        // select the sorting type
+        String xpath = String.format(".//*[contains(text(), '%s')]", sortingType);
+        WebElement myElem = sorting.findElement(By.xpath(xpath));
+
+        // apply sorting
+        BrowserUtils.waitFor(myElem, Constants.WaitTime.EXPLICIT_WAIT);
+        myElem.click();
+
+    }
+
 }
