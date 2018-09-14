@@ -68,7 +68,6 @@ public class ToosoSearchTest extends ToosoBaseTest {
         logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
 
         ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, SEARCH);
-
     }
 
 
@@ -100,7 +99,6 @@ public class ToosoSearchTest extends ToosoBaseTest {
         logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
 
         ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, SEARCH);
-
     }
 
 
@@ -130,7 +128,6 @@ public class ToosoSearchTest extends ToosoBaseTest {
         logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
 
         ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, SEARCH);
-
     }
 
 
@@ -160,7 +157,52 @@ public class ToosoSearchTest extends ToosoBaseTest {
         logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
 
         ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, SEARCH);
+    }
 
+
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Description("Validate request [type = SEARCH] with typoCorrection = false")
+    public void tc_005_verifySearchRequestWithTypoCorrection(JSONObject testData) throws Exception {
+
+        logger.info(testData.get("description").toString());
+
+        WebDriver driver = SeleniumDriver.getInstance().getDriver();
+
+        driver.get(BASE_URL + testData.get("pathAndQuery").toString());
+
+        ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
+
+        toosoSearchPO.clickOnSearchTopBar();
+
+        String typoError = testData.get("search").toString();
+
+        toosoSearchPO.erasePopupSearchInput();
+
+        toosoSearchPO.enterWord(typoError);
+
+        toosoSearchPO.search();
+
+        ProductNavBarPO productNavBarPO = new ProductNavBarPO();
+
+        productNavBarPO.searchWithTypoCorrectionDisabled(testData.get("search").toString());
+
+        // wait for quiescence
+        SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
+
+        Har har = SeleniumDriver.getInstance().getProxy().getHar();
+
+        List<HarEntry> entriesCaptured = har.getLog().getEntries();
+
+        List<HarEntry> sortedEntriesToValidate = ToosoAnalyticsUtils.retrieveEntriesOfType(entriesCaptured, SEARCH);
+
+        Assert.assertEquals(sortedEntriesToValidate.size(),  2, "Number of requests [type = SEARCH] captured by proxy:");
+
+        // validate only the first request (request with typoCorrection=false comes first in alphabetical order)
+        String urlToValidate = sortedEntriesToValidate.get(0).getRequest().getUrl();
+
+        logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
+
+        ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, SEARCH);
     }
 
 }

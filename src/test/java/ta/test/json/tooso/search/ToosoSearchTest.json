@@ -93,6 +93,24 @@
       },
       "expectedNotEmpty": []
     }
+  ],
+  "tc_005_verifySearchRequestWithTypoCorrection": [
+    {
+      "rowID":"tc_005_verifySearchRequestWithTypoCorrection.01",
+      "description": "Validate request [type = SEARCH] with typoCorrection = false",
+      "pathAndQuery":"/",
+      "search":"lampda",
+      "expectedEqual": {
+        "q":"lampda",
+        "dl":"/ricerca?q=lampda&page=1",
+        "dr":"/",
+        "typoCorrection":"false",
+        "page":"0"
+      },
+      "expectedNotEmpty": [
+        "parentSearchId"
+      ]
+    }
   ]
 }
 

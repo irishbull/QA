@@ -57,6 +57,8 @@ public class ToosoAnalyticsUtils {
 
             case SEARCH:
                 result.addAll(filterEntries(entries, ToosoConstants.PROXY_SEARCH_BASE_URL, Collections.emptyList()));
+                // sort (Url Alphabetical Order)
+                result.sort((e1, e2) -> e1.getRequest().getUrl().compareTo(e2.getRequest().getUrl()));
                 break;
 
             case PAGEVIEW:
