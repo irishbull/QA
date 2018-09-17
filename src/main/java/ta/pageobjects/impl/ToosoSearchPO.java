@@ -4,15 +4,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import ta.pageobjects.PageObject;
-import ta.utilities.JavascriptUtils;
-
 import java.util.List;
+
+import ta.pageobjects.PageObject;
 
 
 public class ToosoSearchPO extends PageObject {
@@ -26,12 +24,6 @@ public class ToosoSearchPO extends PageObject {
 
     @FindBy(how = How.NAME, using = "SELENIUM_SEARCH_RESULTS_WRAPPER")
     private WebElement searchResultsWrapper;
-
-    @FindBy(how = How.NAME, using = "SELENIUM_PRODUCT_CARD_0")
-    private WebElement firstProductCard;
-
-    @FindBy(how = How.LINK_TEXT, using ="Successiva")
-    private WebElement nextPageLink;
 
 
     public void clickOnSearchTopBar() {
@@ -49,8 +41,9 @@ public class ToosoSearchPO extends PageObject {
         popupSearchInput.sendKeys(word);
     }
 
-    public void search() {
+    public SerpPO search() {
         popupSearchInput.sendKeys(Keys.ENTER);
+        return new SerpPO();
     }
 
     public int getSearchResultsNumber() {
@@ -61,20 +54,5 @@ public class ToosoSearchPO extends PageObject {
     public void clickOnFirstResultElement() {
         List<WebElement> liElems = searchResultsWrapper.findElements(By.tagName("li"));
         liElems.get(0).click();
-    }
-
-    public void clickOnFirstProduct() {
-        firstProductCard.findElement(By.tagName("img")).click();
-    }
-
-    public void scrollToNextPageButton() {
-        int y = nextPageLink.getLocation().getY();
-        // to avoid element not clickable
-        y = y-100;
-        JavascriptUtils.execute(String.format("window.scrollTo(0, %s)", String.valueOf(y)));
-    }
-
-    public void goToNextPage() {
-        nextPageLink.click();
     }
 }

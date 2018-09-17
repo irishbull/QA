@@ -86,7 +86,7 @@ public class ToosoSuggestTest extends ToosoBaseTest {
 
         ToosoSearchAngularPO toosoSearchPO = new ToosoSearchAngularPO();
 
-        toosoSearchPO.clickOnSearchBar();
+        toosoSearchPO.clickOnSearchTopBar();
 
         String word = testData.get("search").toString();
 

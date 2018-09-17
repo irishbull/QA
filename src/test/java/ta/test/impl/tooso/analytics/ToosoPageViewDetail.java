@@ -1,22 +1,24 @@
 package ta.test.impl.tooso.analytics;
 
-import io.qameta.allure.Description;
 import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.core.har.HarEntry;
+
 import org.json.simple.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ta.dataproviders.JSONDataProvider;
-import ta.driver.SeleniumDriver;
-import ta.pageobjects.impl.ToosoSearchPO;
-import ta.test.ToosoBaseTest;
-import ta.utilities.ToosoAnalyticsUtils;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import io.qameta.allure.Description;
+import ta.dataproviders.JSONDataProvider;
+import ta.driver.SeleniumDriver;
+import ta.pageobjects.impl.SerpPO;
+import ta.test.ToosoBaseTest;
+import ta.utilities.ToosoAnalyticsUtils;
 
 import static ta.utilities.constants.Constants.Url.BASE_URL;
 import static ta.utilities.constants.ToosoConstants.QUIET_PERIOD;
@@ -28,8 +30,7 @@ public class ToosoPageViewDetail extends ToosoBaseTest {
     private static Logger logger = LoggerFactory.getLogger(ToosoPageViewDetail.class);
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-
-
+    @Description("Validate request [type = PAGEVIEW DETAIL]")
     private void tc_001_verifyPageViewDetail(JSONObject testData) throws Exception{
 
         logger.info(testData.get("description").toString());
@@ -38,10 +39,9 @@ public class ToosoPageViewDetail extends ToosoBaseTest {
 
         driver.get((BASE_URL) + testData.get("pathAndQuery").toString());
 
-        ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
+        SerpPO serpPO = new SerpPO();
 
-        toosoSearchPO.clickOnFirstProduct();
-
+        serpPO.clickOnProductCard(testData.get("productCardIndex").toString());
 
         // wait for quiescence
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
@@ -59,6 +59,4 @@ public class ToosoPageViewDetail extends ToosoBaseTest {
         ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, PAGEVIEW_DETAIL);
 
     }
-
 }
-

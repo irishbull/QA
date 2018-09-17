@@ -16,15 +16,14 @@ import java.util.concurrent.TimeUnit;
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
+import ta.pageobjects.impl.SerpPO;
 import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.ToosoBaseTest;
 import ta.utilities.ToosoAnalyticsUtils;
 
-
 import static ta.utilities.constants.Constants.Url.BASE_URL;
 import static ta.utilities.constants.ToosoConstants.QUIET_PERIOD;
 import static ta.utilities.constants.ToosoConstants.RequestType.CLICK_AFTER_SEARCH;
-
 import static ta.utilities.constants.ToosoConstants.TIMEOUT;
 
 
@@ -33,7 +32,7 @@ public class ToosoClickAfterSearch extends ToosoBaseTest {
     private static final Logger logger = LoggerFactory.getLogger(ToosoClickAfterSearch.class);
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("GET [type = PRODUCT CLICK AFTER SEARCH] - validate request")
+    @Description("Validate request [type = PRODUCT CLICK AFTER SEARCH] - product without variant")
     public void tc_001_verifyClickAfterSearchRequest(JSONObject testData) throws Exception {
 
         logger.info(testData.get("description").toString());
@@ -52,9 +51,9 @@ public class ToosoClickAfterSearch extends ToosoBaseTest {
 
         toosoSearchPO.enterWord(word);
 
-        toosoSearchPO.search();
+        SerpPO serpPO = toosoSearchPO.search();
 
-        toosoSearchPO.clickOnFirstProduct();
+        serpPO.clickOnProductCard(testData.get("productCardIndex").toString());
 
         // wait for quiescence
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);

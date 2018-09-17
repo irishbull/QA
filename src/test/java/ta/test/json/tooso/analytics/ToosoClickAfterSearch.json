@@ -2,26 +2,14 @@
   "tc_001_verifyClickAfterSearchRequest": [
     {
       "rowID":"tc_001_verifyClickAfterSearchRequest.01",
-      "description":"validate GET Click After Search - homepage",
+      "description":"Validate request [type = PRODUCT CLICK AFTER SEARCH] - product without variant",
       "pathAndQuery":"/",
-      "search":"pitture",
+      "search":"fiori",
+      "productCardIndex":"3",
       "expectedEqual": {
-        "dl":"/ricerca?q=pitture&page=1",
-        "dp":"/ricerca?q=pitture&page=1",
+        "dl":"/ricerca?q=fiori&page=1",
+        "dp":"/ricerca?q=fiori&page=1",
         "dr":"/",
-        "dt":"Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin"
-      },
-      "expectedNotEmpty":[]
-    },
-    {
-      "rowID":"tc_001_verifyClickAfterSearchRequest.02",
-      "description":"validate GET Click After Search - serp",
-      "pathAndQuery":"/ricerca?q=pitture&page=1",
-      "search":"casette",
-      "expectedEqual": {
-        "dl":"/ricerca?q=casette&page=1",
-        "dp":"/ricerca?q=casette&page=1",
-        "dr":"/ricerca?q=casette&page=1",
         "dt":"Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin"
       },
       "expectedNotEmpty":[]

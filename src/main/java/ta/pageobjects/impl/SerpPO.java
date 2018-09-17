@@ -5,11 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import ta.driver.SeleniumDriver;
 import ta.pageobjects.PageObject;
 import ta.utilities.BrowserUtils;
+import ta.utilities.JavascriptUtils;
 import ta.utilities.constants.Constants;
 
-public class ProductNavBarPO extends PageObject {
+public class SerpPO extends PageObject {
 
     @FindBy(how = How.NAME, using = "productsNavBar")
     private WebElement productsNavBar;
@@ -34,6 +36,9 @@ public class ProductNavBarPO extends PageObject {
 
     @FindBy(how = How.NAME, using = "SELENIUM_ORDER_BY")
     private WebElement sortingMenuContainer;
+
+    @FindBy(how = How.LINK_TEXT, using ="Successiva")
+    private WebElement nextPageLink;
 
 
     public void applyFilter(String filterType, String filterId) {
@@ -98,6 +103,30 @@ public class ProductNavBarPO extends PageObject {
 
         // search
         elem.click();
+    }
+
+
+    public void scrollToNextPageButton() {
+        int y = nextPageLink.getLocation().getY();
+        // to avoid element not clickable
+        y = y-100;
+        JavascriptUtils.execute(String.format("window.scrollTo(0, %s)", String.valueOf(y)));
+    }
+
+
+    public void goToNextPage() {
+        nextPageLink.click();
+    }
+
+
+    public void clickOnProductCard(String index) {
+        WebElement productCard = findProductCard(index);
+        productCard.findElement(By.tagName("img")).click();
+    }
+
+    public WebElement findProductCard(String index) {
+        String productCardName = String.format("SELENIUM_PRODUCT_CARD_%s", index);
+        return SeleniumDriver.getInstance().getDriver().findElement(By.name(productCardName));
     }
 
 }

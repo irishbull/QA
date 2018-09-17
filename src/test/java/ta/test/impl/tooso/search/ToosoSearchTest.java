@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
-import ta.pageobjects.impl.ProductNavBarPO;
+import ta.pageobjects.impl.SerpPO;
 import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.ToosoBaseTest;
 import ta.utilities.ToosoAnalyticsUtils;
@@ -77,11 +77,11 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         logger.info(testData.get("description").toString());
 
-        ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
+        SerpPO serpPO = new SerpPO();
 
-        toosoSearchPO.scrollToNextPageButton();
+        serpPO.scrollToNextPageButton();
 
-        toosoSearchPO.goToNextPage();
+        serpPO.goToNextPage();
 
         // wait for quiescence
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
@@ -108,9 +108,9 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         logger.info(testData.get("description").toString());
 
-        ProductNavBarPO productNavBarPO = new ProductNavBarPO();
+        SerpPO serpPO = new SerpPO();
 
-        productNavBarPO.applyFilter(testData.get("filterType").toString(), testData.get("filterId").toString());
+        serpPO.applyFilter(testData.get("filterType").toString(), testData.get("filterId").toString());
 
         // wait for quiescence
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
@@ -137,9 +137,9 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         logger.info(testData.get("description").toString());
 
-        ProductNavBarPO productNavBarPO = new ProductNavBarPO();
+        SerpPO serpPO = new SerpPO();
 
-        productNavBarPO.sortBy(testData.get("sortingType").toString());
+        serpPO.sortBy(testData.get("sortingType").toString());
 
         // wait for quiescence
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
@@ -180,11 +180,9 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         toosoSearchPO.enterWord(typoError);
 
-        toosoSearchPO.search();
+        SerpPO serpPO = toosoSearchPO.search();
 
-        ProductNavBarPO productNavBarPO = new ProductNavBarPO();
-
-        productNavBarPO.searchWithTypoCorrectionDisabled(testData.get("search").toString());
+        serpPO.searchWithTypoCorrectionDisabled(testData.get("search").toString());
 
         // wait for quiescence
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);

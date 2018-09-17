@@ -23,7 +23,6 @@
 
 
     <!-- Analytics -->
-
     <test name = "PageView">
         <parameter name="json-path" value="src/test/java/ta/test/json/tooso/analytics/ToosoPageViewTest.json"/>
         <classes>
@@ -42,6 +41,13 @@
         <parameter name="json-path" value="src/test/java/ta/test/json/tooso/analytics/ToosoClickAfterSearch.json"/>
         <classes>
             <class name = "ta.test.impl.tooso.analytics.ToosoClickAfterSearch" />
+        </classes>
+    </test>
+
+    <test name = "PageviewDetail">
+        <parameter name="json-path" value="src/test/java/ta/test/json/tooso/analytics/ToosoPageViewDetail.json"/>
+        <classes>
+            <class name = "ta.test.impl.tooso.analytics.ToosoPageViewDetail" />
         </classes>
     </test>
 
