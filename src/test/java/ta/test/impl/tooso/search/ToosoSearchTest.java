@@ -30,7 +30,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
     private static final Logger logger = LoggerFactory.getLogger(ToosoSearchTest.class);
 
-    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Test(priority = 1, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Validate request [type = SEARCH] from homepage. Event; search")
     public void tc_001_verifyFirstSearchRequest(JSONObject testData) throws Exception {
 
@@ -71,7 +71,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
     }
 
 
-    @Test(dependsOnMethods = {"tc_001_verifyFirstSearchRequest"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Test(priority = 2, dependsOnMethods = {"tc_001_verifyFirstSearchRequest"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Validate request [type = SEARCH] from serp. Event: go to next result page")
     public void tc_002_verifySecondSearchRequest(JSONObject testData) throws Exception {
 
@@ -102,7 +102,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
     }
 
 
-    @Test(dependsOnMethods = {"tc_002_verifySecondSearchRequest"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Test(priority = 3, dependsOnMethods = {"tc_002_verifySecondSearchRequest"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Validate request [type = SEARCH] from serp. Event: apply filter")
     public void tc_003_verifySearchRequestWithFilter(JSONObject testData) throws Exception {
 
@@ -131,7 +131,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
     }
 
 
-    @Test(dependsOnMethods = {"tc_003_verifySearchRequestWithFilter"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Test(priority = 4, dependsOnMethods = {"tc_003_verifySearchRequestWithFilter"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Validate request [type = SEARCH] from serp. Event: apply sorting")
     public void tc_004_verifySearchRequestWithSorting(JSONObject testData) throws Exception {
 
@@ -160,7 +160,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
     }
 
 
-    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Test(priority = 5, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Validate request [type = SEARCH] with typoCorrection = false")
     public void tc_005_verifySearchRequestWithTypoCorrection(JSONObject testData) throws Exception {
 
