@@ -29,8 +29,7 @@ public class ToosoPageViewDetail extends ToosoBaseTest {
     private static Logger logger = LoggerFactory.getLogger(ToosoPageViewDetail.class);
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("Validate request [type = PAGEVIEW DETAIL]")
-
+    @Description("Validate request [type = PAGEVIEW DETAIL] - without variant")
     private void tc_001_verifyPageViewDetail(JSONObject testData) throws Exception{
 
         logger.info(testData.get("description").toString());
@@ -48,8 +47,7 @@ public class ToosoPageViewDetail extends ToosoBaseTest {
     }
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("Validate request [type = PAGEVIEW DETAIL WITH VARIANT]")
-
+    @Description("Validate request [type = PAGEVIEW DETAIL] -  with variant")
     private void tc_002_verifyPageViewDetail (JSONObject testData) throws Exception{
 
         logger.info(testData.get("description").toString());
