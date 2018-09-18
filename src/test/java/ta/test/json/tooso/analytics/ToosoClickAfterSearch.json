@@ -5,7 +5,7 @@
       "description":"Validate request [type = PRODUCT CLICK AFTER SEARCH] - product without variant",
       "pathAndQuery":"/",
       "search":"fiori",
-      "productCardIndex":"3",
+      "productCardIndex":"2",
       "expectedEqual": {
         "dl":"/ricerca?q=fiori&page=1",
         "dp":"/ricerca?q=fiori&page=1",

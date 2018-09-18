@@ -13,8 +13,6 @@ import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.IdeaPiuPO;
 import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.BaseTest;
-import ta.utilities.BrowserUtils;
-import ta.utilities.constants.Constants;
 
 import static org.testng.Assert.assertTrue;
 import static ta.utilities.constants.Constants.Url.BASE_URL;
@@ -25,7 +23,7 @@ public class HomePageTest extends BaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Verifica che la ricerca (string vuota) restuisce al piu' tre risultati")
-    public void tc_001_searchReturnsAtMost3Results(JSONObject testData) throws Exception {
+    public void tc_001_searchReturnsAtMost3Results(JSONObject testData) {
 
         logger.info(testData.get("description").toString());
         logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
@@ -48,38 +46,8 @@ public class HomePageTest extends BaseTest {
 
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("Verifica la navigazione del menu : Prodotti -> Bagno -> Docce -> Saune")
-    public void tc_002_navigateProductMenu(JSONObject testData) throws Exception {
-
-        logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
-
-        WebDriver driver = SeleniumDriver.getInstance().getDriver();
-
-        driver.get(BASE_URL);
-
-        HomePagePO homePagePO = new HomePagePO();
-
-        BrowserUtils.hover(homePagePO.getProductMenu());
-
-        BrowserUtils.waitFor(homePagePO.getMacroCategoryGroup(), Constants.WaitTime.EXPLICIT_WAIT);
-        BrowserUtils.hover(homePagePO.getMacroCategoryGroup());
-
-        BrowserUtils.hover(homePagePO.getBagnoLink());
-
-        BrowserUtils.waitFor(homePagePO.getMacroCategory(), Constants.WaitTime.EXPLICIT_WAIT);
-        BrowserUtils.hover(homePagePO.getDocceSpan());
-
-        BrowserUtils.waitFor(homePagePO.getCategory(), Constants.WaitTime.EXPLICIT_WAIT);
-        BrowserUtils.hover(homePagePO.getSauneSpan());
-
-        logger.info("Navigate menu : Prodotti -> Bagno -> Docce -> Saune");
-        logger.info("description from json file: {}", testData.get("description"));
-    }
-
-
-    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Verifica il corretto funzionamento del link idea-piu")
-    public void tc_003_ideaPiuLinkTest(JSONObject testData) throws Exception {
+    public void tc_002_ideaPiuLinkTest(JSONObject testData) throws Exception {
 
         logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
 
