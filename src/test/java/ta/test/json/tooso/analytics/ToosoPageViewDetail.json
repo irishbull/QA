@@ -1,26 +1,55 @@
 {
   "tc_001_verifyPageViewDetail": [
     {
-      "rowID":"tc_001_verifyPageViewRequest.01",
-      "description":"Validate request [type = PAGEVIEW DETAIL] - product without variant",
-      "pathAndQuery":"/ricerca?q=Fiocchi&page=1",
-      "productCardIndex":"0",
+      "rowID": "tc_001_verifyPageViewDetail.01",
+      "description": "Validate request [type = PAGEVIEW DETAIL] - product without variant",
+      "pathAndQuery": "/ricerca?q=Fiocchi&page=1",
+      "productCardIndex": "0",
       "expectedEqual": {
-        "dt":"Fiocco a campana: prezzi e offerte online",
-        "dp":"/catalogo/fiocco-a-campana-34329120-p",
-        "dl":"/catalogo/fiocco-a-campana-34329120-p",
-        "dr":"/ricerca?q=Fiocchi&page=1",
-        "pr1id":"35839636",
-        "pr1ca":"CAT992",
-        "pr1br":"",
-        "pr1nm":"Fiocco a campana",
-        "pr1va:":"",
-        "pr1pr":"8.65",
-        "pr1storeid":"7",
-        "pr1qt":"1",
-        "pr1ps":"1"
+        "dt": "Fiocco a campana: prezzi e offerte online",
+        "dp": "/catalogo/fiocco-a-campana-34329120-p",
+        "dl": "/catalogo/fiocco-a-campana-34329120-p",
+        "dr": "/ricerca?q=Fiocchi&page=1",
+        "pr1id": "35839636",
+        "pr1ca": "CAT992",
+        "pr1br": "",
+        "pr1nm": "Fiocco a campana",
+        "pr1va:": "",
+        "pr1pr": "8.65",
+        "pr1storeid": "7",
+        "pr1qt": "1",
+        "pr1ps": "1"
+      },
+      "expectedNotEmpty": []
+    }
+  ],
+
+  "tc_002_verifyPageViewDetail": [
+    {
+      "rowID": "tc_002_verifyPageViewDetail.02",
+      "description": "Validate request [type = PAGEVIEW DETAIL] - product variant MENSOLA SPACEO NERO L 56 X P 20, SP 1,8 CM",
+      "pathAndQuery": "/",
+      "productCardIndex": "1",
+      "search": "Mensola Spaceo nero L 56",
+      "expectedEqual": {
+        "dt": "Mensola Spaceo nero L 56 x P 15,5, sp 1,8 cm: prezzi e offerte online",
+        "dp": "/catalogo/mensola-spaceo-nero-l-56-x-p-155-sp-18-cm-36074542-p",
+        "dl": "/catalogo/mensola-spaceo-nero-l-56-x-p-155-sp-18-cm-36074542-p",
+        "dr": "https://www-react-qa.leroymerlin.it/",
+        "pr1id": "36074542",
+        "pr1ca": "CAT101",
+        "pr1br": "MC_Spaceo",
+        "pr1nm": "Mensola Spaceo nero L 56 x P 15,5, sp 1,8 cm",
+        "pr1va:": "36074542_36074556",
+        "pr1pr": "7.99",
+        "pr1storeid": "7",
+        "pr1qt": "1",
+        "pr1ps": "2"
       },
       "expectedNotEmpty": []
     }
   ]
 }
+
+
+
