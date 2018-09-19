@@ -17,9 +17,9 @@ import java.util.Objects;
 import io.qameta.allure.Allure;
 import ta.driver.SeleniumDriver;
 
-public class AllureScreenshotListener implements IInvokedMethodListener {
+public class AllureScreenShotListener implements IInvokedMethodListener {
 
-    private static final Logger logger = LoggerFactory.getLogger(AllureScreenshotListener.class);
+    private static final Logger logger = LoggerFactory.getLogger(AllureScreenShotListener.class);
 
     @Override
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
@@ -30,14 +30,23 @@ public class AllureScreenshotListener implements IInvokedMethodListener {
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
 
         // Attach screenshot in case of failure only if the proxy is off
-        if (method.isTestMethod() && !testResult.isSuccess() &&
-                Objects.nonNull(SeleniumDriver.getInstance().getProxy()) && !SeleniumDriver.getInstance().getProxy().isStarted()) {
+        if (method.isTestMethod() && !testResult.isSuccess() && isScreenShotRequired(method)) {
 
-            attachScreenshot();
+            attachScreenShot();
         }
     }
 
-    private void attachScreenshot() {
+
+    private boolean isScreenShotRequired(IInvokedMethod method) {
+        // Screen-shot is required when proxy is NOT required (suite parameter isProxyRequire = false or missing)
+        boolean isProxyRequired = Objects.isNull(method.getTestMethod().getXmlTest().getSuite().getParameter("isProxyRequired")) ?
+                false : Boolean.valueOf(method.getTestMethod().getXmlTest().getSuite().getParameter("isProxyRequired"));
+
+        return !isProxyRequired;
+    }
+
+
+    private void attachScreenShot() {
 
         try {
 
@@ -48,7 +57,7 @@ public class AllureScreenshotListener implements IInvokedMethodListener {
                             .readFileToByteArray(((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE))));
 
         } catch (IOException e) {
-            logger.error("Error executing attachScreenshot", e);
+            logger.error("Error executing attachScreenShot", e);
         }
 
     }
