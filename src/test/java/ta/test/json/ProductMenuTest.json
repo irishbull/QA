@@ -18,11 +18,11 @@
     },
     {
       "rowID": "tc_001_navigateProductMenu.03",
-      "description" : "navigate the product menu : Illuminazione -> Smart Lighting -> Smart Lighting",
-      "macroCategoryGroup" : "Illuminazione",
-      "macroCategory" : "Smart Lighting",
-      "category" : "Smart Lighting",
-      "pagePath" : "/prodotti/smart-lighting-CAT4174-c"
+      "description" : "navigate the product menu : Cucina -> Piani cucina -> Alzatine",
+      "macroCategoryGroup" : "Cucina",
+      "macroCategory" : "Piani cucina",
+      "category" : "Alzatine",
+      "pagePath" : "/alzatine--CAT4144-c"
     }
   ]
 }

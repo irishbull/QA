@@ -41,11 +41,11 @@ public class ProductMenuTest extends BaseTest {
         BrowserUtils.hover(productMenuPO.getProductMenuWrapper());
 
         // MacroCategoryGroup
-        productMenuPO.mouseEnterMacroCategoryGroup(testData.get("macroCategoryGroup").toString());
+        productMenuPO.mouseHoverMacroCategoryGroup(testData.get("macroCategoryGroup").toString());
         logger.debug("MacroCategoryGroup {} OK", testData.get("macroCategoryGroup"));
 
         // MacroCategory
-        productMenuPO.mouseEnterMacroCategory(testData.get("macroCategory").toString());
+        productMenuPO.mouseHoverMacroCategory(testData.get("macroCategory").toString());
         logger.debug("MacroCategory {} OK", testData.get("macroCategory"));
 
         // Category

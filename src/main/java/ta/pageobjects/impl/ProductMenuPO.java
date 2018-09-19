@@ -30,12 +30,13 @@ public class ProductMenuPO extends PageObject {
     }
 
     protected WebElement findMacroCategoryLink(String str) {
-        String xpathMC = String.format("//div[@name='SELENIUM_PRODUCTS_MENU_MACROCATEGORY_WRAPPER']/div/div/span[contains(text(), '%s')]", str);
+        String xpathMC = String.format(".//div/div/span[contains(text(), '%s')]", str);
         return macroCategoryWrapper.findElement(By.xpath(xpathMC));
     }
 
     protected WebElement findCategoryLink(String str) {
-        String xpathC = String.format("//div[@name='SELENIUM_PRODUCTS_MENU_CATEGORY_WRAPPER']/div/a/div/span[contains(text(), '%s')]", str);
+        String xpathC = String.format(".//div/a/div/span[contains(text(), '%s')]", str);
+        BrowserUtils.waitFor(categoryWrapper, Constants.WaitTime.EXPLICIT_WAIT);
         return categoryWrapper.findElement(By.xpath(xpathC));
     }
 
@@ -49,7 +50,7 @@ public class ProductMenuPO extends PageObject {
     }
 
     // actions
-    public void mouseEnterMacroCategoryGroup(String str) throws Exception {
+    public void mouseHoverMacroCategoryGroup(String str) throws Exception {
 
         WebElement link = findMacroCategoryGroupLink(str);
         WebElement ancestor = getFirstAncestorDiv(link);
@@ -57,7 +58,7 @@ public class ProductMenuPO extends PageObject {
         BrowserUtils.hover(ancestor);
     }
 
-    public void mouseEnterMacroCategory(String str) throws Exception {
+    public void mouseHoverMacroCategory(String str) throws Exception {
 
         WebElement link = findMacroCategoryLink(str);
         WebElement ancestor = getFirstAncestorDiv(link);
@@ -67,6 +68,7 @@ public class ProductMenuPO extends PageObject {
 
     public void clickCategory(String str) {
         WebElement link = findCategoryLink(str);
+        BrowserUtils.waitForClickable(link, Constants.WaitTime.EXPLICIT_WAIT);
         link.click();
     }
 }
