@@ -10,14 +10,6 @@
     },
     {
       "rowID": "tc_001_navigateProductMenu.02",
-      "description" : "navigate the product menu : Cucina -> Lavelli -> Lavelli cucina",
-      "macroCategoryGroup" : "Cucina",
-      "macroCategory" : "Lavelli",
-      "category" : "Lavelli cucina",
-      "pagePath" : "/prodotti/lavelli-cucina-CAT63-c"
-    },
-    {
-      "rowID": "tc_001_navigateProductMenu.03",
       "description" : "navigate the product menu : Cucina -> Piani cucina -> Alzatine",
       "macroCategoryGroup" : "Cucina",
       "macroCategory" : "Piani cucina",
