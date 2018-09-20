@@ -33,7 +33,7 @@ public class ToosoSuggestTest extends ToosoBaseTest {
 
     // REACT
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("GET [type = SUGGEST] - validate requests")
+    @Description("GET [type = SUGGEST] - validate requests (react)")
     public void tc_001_verifySuggestRequest(JSONObject testData) throws Exception {
 
         logger.info(testData.get("description").toString());
@@ -77,7 +77,7 @@ public class ToosoSuggestTest extends ToosoBaseTest {
 
     // ANGULAR
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("GET [type = SUGGEST] - validate requests")
+    @Description("GET [type = SUGGEST] - validate requests (angular)")
     public void tc_002_verifyAngularSuggestRequest(JSONObject testData) throws Exception {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();

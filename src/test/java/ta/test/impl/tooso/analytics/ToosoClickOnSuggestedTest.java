@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
+import ta.pageobjects.impl.ToosoSearchAngularPO;
 import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.ToosoBaseTest;
 import ta.utilities.ToosoAnalyticsUtils;
@@ -30,8 +31,9 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
 
     private static final Logger logger = LoggerFactory.getLogger(ToosoClickOnSuggestedTest.class);
 
+    // REACT
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("GET [type = CLICK ON SUGGESTED] - validate request")
+    @Description("GET [type = CLICK ON SUGGESTED] - validate request (react)")
     public void tc_001_verifyClickOnSuggestRequest(JSONObject testData) throws Exception {
 
         logger.info(testData.get("description").toString());
@@ -41,6 +43,41 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
         driver.get(BASE_URL + testData.get("pathAndQuery").toString());
 
         ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
+
+        toosoSearchPO.clickOnSearchTopBar();
+
+        toosoSearchPO.clickOnFirstResultElement();
+
+        // wait for quiescence
+        SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
+
+        Har har = SeleniumDriver.getInstance().getProxy().getHar();
+
+        List<HarEntry> entriesCaptured = har.getLog().getEntries();
+
+        List<HarEntry> entriesToCheck = ToosoAnalyticsUtils.retrieveEntriesOfType(entriesCaptured, CLICK_ON_SUGGESTED);
+
+        Assert.assertEquals(entriesToCheck.size(), 1, "Number of requests [type = CLICK ON SUGGESTED] captured by proxy:");
+
+        String urlToVerify = entriesToCheck.get(0).getRequest().getUrl();
+        logger.info("Request [type = {}] to validate -> {}", CLICK_ON_SUGGESTED,  urlToVerify);
+
+        // check
+        ToosoAnalyticsUtils.checkParameters(urlToVerify, testData, CLICK_ON_SUGGESTED);
+    }
+
+    // ANGULAR
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Description("GET [type = CLICK ON SUGGESTED] - validate request (angular)")
+    public void tc_002_verifyAngularClickOnSuggestRequest(JSONObject testData) throws Exception {
+
+        logger.info(testData.get("description").toString());
+
+        WebDriver driver = SeleniumDriver.getInstance().getDriver();
+
+        driver.get(BASE_URL + testData.get("pathAndQuery").toString());
+
+        ToosoSearchAngularPO toosoSearchPO = new ToosoSearchAngularPO();
 
         toosoSearchPO.clickOnSearchTopBar();
 
