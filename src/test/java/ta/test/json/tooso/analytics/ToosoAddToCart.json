@@ -1,0 +1,26 @@
+{
+  "tc_001_verifyAddToCartFromPdp": [
+    {
+      "rowID":"tc_001_verifyAddToCartFromPdp.01",
+      "description":"Validate request [type = ADD TO CART] - from serp",
+      "pathAndQuery":"/",
+      "search":"fiori",
+      "productCardIndex":"0",
+      "expectedEqual": {
+        "dl":"/ricerca?q=fiori&page=1",
+        "dp":"/ricerca?q=fiori&page=1",
+        "dr":"/",
+        "dt":"Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
+        "pr1qt":"1",
+        "pr1ps":"1",
+        "pr1storeid":"7"
+      },
+      "expectedNotEmpty":[
+        "pr1id",
+        "pr1nm",
+        "pr1ca",
+        "pr1pr"
+      ]
+    }
+  ]
+}

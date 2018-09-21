@@ -51,4 +51,11 @@
         </classes>
     </test>
 
+    <test name = "AddToCart">
+        <parameter name="json-path" value="src/test/java/ta/test/json/tooso/analytics/ToosoAddToCart.json"/>
+        <classes>
+            <class name = "ta.test.impl.tooso.analytics.ToosoAddToRemoveFromCart" />
+        </classes>
+    </test>
+
 </suite>

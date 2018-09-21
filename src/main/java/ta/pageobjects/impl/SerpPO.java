@@ -119,14 +119,21 @@ public class SerpPO extends PageObject {
     }
 
 
+    public AddToCartOverlayPO addToCart(String index) {
+        WebElement productCard = findProductCard(index);
+        productCard.findElement(By.tagName("button")).click();
+        return new AddToCartOverlayPO();
+    }
+
+
     public void clickOnProductCard(String index) {
         WebElement productCard = findProductCard(index);
         productCard.findElement(By.tagName("img")).click();
     }
 
+
     public WebElement findProductCard(String index) {
         String productCardName = String.format("SELENIUM_PRODUCT_CARD_%s", index);
         return SeleniumDriver.getInstance().getDriver().findElement(By.name(productCardName));
     }
-
 }
