@@ -1,18 +1,18 @@
 {
-  "tc_001_verifyAddToCartFromPdp": [
+  "tc_001_verifyAddToCartFromSerp": [
     {
-      "rowID":"tc_001_verifyAddToCartFromPdp.01",
+      "rowID":"tc_001_verifyAddToCartFromSerp.01",
       "description":"Validate request [type = ADD TO CART] - from serp",
       "pathAndQuery":"/",
-      "search":"fiori",
-      "productCardIndex":"0",
+      "search":"lampade",
+      "productCardIndex":"1",
       "expectedEqual": {
-        "dl":"/ricerca?q=fiori&page=1",
-        "dp":"/ricerca?q=fiori&page=1",
+        "dl":"/ricerca?q=lampade&page=1",
+        "dp":"/ricerca?q=lampade&page=1",
         "dr":"/",
         "dt":"Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
         "pr1qt":"1",
-        "pr1ps":"1",
+        "pr1ps":"2",
         "pr1storeid":"7"
       },
       "expectedNotEmpty":[

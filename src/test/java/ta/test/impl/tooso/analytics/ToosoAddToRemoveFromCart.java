@@ -32,7 +32,7 @@ public class ToosoAddToRemoveFromCart extends ToosoBaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Validate request [type = ADD TO CART] - from serp")
-    public void tc_001_verifyAddToCartFromPdp(JSONObject testData) throws Exception {
+    public void tc_001_verifyAddToCartFromSerp(JSONObject testData) throws Exception {
 
         logger.info(testData.get("description").toString());
 

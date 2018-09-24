@@ -11,17 +11,15 @@
         "dp":"/ricerca?q=fiori&page=1",
         "dr":"/",
         "dt":"Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
-        "pr1id":"?",
-        "pr1nm":"Fiore su pinza bianco",
-        "pr1ca":"Fermatenda e calamite per tenda",
-        "pr1br":"",
-        "pr1va":"",
-        "pr1pr":"5.99",
         "pr1qt":"1",
         "pr1ps":"1",
         "pr1storeid":"7"
       },
       "expectedNotEmpty":[
+        "pr1id",
+        "pr1pr",
+        "pr1nm",
+        "pr1ca",
         "pal"
       ]
     }
