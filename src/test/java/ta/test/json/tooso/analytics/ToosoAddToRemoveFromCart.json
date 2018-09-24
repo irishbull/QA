@@ -22,5 +22,26 @@
         "pr1pr"
       ]
     }
+  ],
+  "tc_002_verifyRemoveFromCart": [
+    {
+      "rowID":"tc_002_verifyRemoveFromCart.01",
+      "description":"Validate request [type = REMOVE FROM CART]",
+      "expectedEqual": {
+        "dl":"/checkout/carrello",
+        "dp":"/checkout/carrello",
+        "dr":"/ricerca?q=lampade&page=1",
+        "dt":"",
+        "pr1qt":"1",
+        "pr1ps":"1",
+        "pr1storeid":"7"
+      },
+      "expectedNotEmpty":[
+        "pr1id",
+        "pr1nm",
+        "pr1ca",
+        "pr1pr"
+      ]
+    }
   ]
 }

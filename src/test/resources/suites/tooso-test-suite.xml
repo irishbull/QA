@@ -6,7 +6,6 @@
     <parameter name="isProxyRequired" value= "true"/>
 
     <!-- Search and Suggest -->
-
   <test name = "SuggestTest">
         <parameter name="json-path" value="src/test/java/ta/test/json/tooso/suggest/ToosoSuggestTest.json"/>
         <classes>
@@ -51,8 +50,8 @@
         </classes>
     </test>
 
-    <test name = "AddToCart">
-        <parameter name="json-path" value="src/test/java/ta/test/json/tooso/analytics/ToosoAddToCart.json"/>
+    <test name = "AddToAndRemoveFromCart">
+        <parameter name="json-path" value="src/test/java/ta/test/json/tooso/analytics/ToosoAddToRemoveFromCart.json"/>
         <classes>
             <class name = "ta.test.impl.tooso.analytics.ToosoAddToRemoveFromCart" />
         </classes>
