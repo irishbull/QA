@@ -18,6 +18,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import ta.utilities.constants.Constants;
@@ -33,8 +36,9 @@ import static ta.utilities.constants.ToosoConstants.UID;
 
 public class ToosoAnalyticsUtils {
 
-    private static final String CONSTRUCTION_FORBIDDEN = "ToosoAnalyticsUtils - Object construction is forbidden";
     private static final Logger logger = LoggerFactory.getLogger(ToosoAnalyticsUtils.class);
+    private static final String CONSTRUCTION_FORBIDDEN = "ToosoAnalyticsUtils - Object construction is forbidden";
+    private static final String ASSERT_MANDATORY_MESSAGE = "Request should contain the mandatory parameter [%s]:";
 
 
     /**
@@ -139,7 +143,7 @@ public class ToosoAnalyticsUtils {
         final Map<String, String> urlQueryParams = getQueryParams(url);
 
         // map containing parameters <name, value> (dynamically retrieved from json) for EQUALITY check
-        HashMap<String, String> expectedEqual = (HashMap<String, String>) testData.get("expectedEqual");
+        Map<String, String> expectedEqual = (HashMap<String, String>) testData.get("expectedEqual");
 
         // list containing parameters <name> (dynamically retrieved from json) that should be NOT EMPTY
         List<String> expectedNotEmpty = (List<String>) testData.get("expectedNotEmpty");
@@ -153,7 +157,7 @@ public class ToosoAnalyticsUtils {
                 expectedNotEmpty.addAll(ToosoConstants.SearchAndSuggest.Common.ASSERT_NOT_EMPTY_QUERY_PARAMS);
                 break;
 
-            // Tooso Analytics
+           // Tooso Analytics
             default:
                 expectedEqual.putAll(ToosoConstants.Analytics.Common.ASSERT_EQUALS_QUERY_PARAMS);
                 expectedNotEmpty.addAll(ToosoConstants.Analytics.Common.ASSERT_NOT_EMPTY_QUERY_PARAMS);
@@ -161,9 +165,13 @@ public class ToosoAnalyticsUtils {
         }
 
         assertEquals(urlQueryParams, expectedEqual);
-
         assertNotEmpty(urlQueryParams, expectedNotEmpty);
 
+        // map containing <name, pattern> (dynamically retrieved from json)
+        // the pattern is used to create a Matcher object that can match parameter value against the regular expression
+        Map<String, String> paramsPatterns = Objects.nonNull(testData.get("expectedMatch")) ? (HashMap<String, String>) testData.get("expectedMatch") : Collections.emptyMap();
+
+        validateAgainstRegex(urlQueryParams, paramsPatterns);
     }
 
 
@@ -201,7 +209,7 @@ public class ToosoAnalyticsUtils {
 
             key = (String) entry.getKey();
 
-            Assert.assertTrue(actual.containsKey(key), String.format("Request should contain the mandatory parameter [%s]:", key));
+            Assert.assertTrue(actual.containsKey(key), String.format(ASSERT_MANDATORY_MESSAGE, key));
 
             switch (key) {
                 // dr expected value should be equal to baseUrl and json dl concatenation when json dr is not empty
@@ -233,12 +241,36 @@ public class ToosoAnalyticsUtils {
     private static void assertNotEmpty(Map<String, String> actual, List<String> notEmptyParams) {
 
         for (String param : notEmptyParams) {
-            Assert.assertTrue(actual.containsKey(param), String.format("Request should contain the mandatory parameter [%s]:", param));
+            Assert.assertTrue(actual.containsKey(param), String.format(ASSERT_MANDATORY_MESSAGE, param));
             Assert.assertFalse(actual.get(param).isEmpty(), String.format("Query parameter [%s] value is empty:", param));
 
             logger.info("{} : expected[not empty] - found[{}]", param, actual.get(param));
         }
     }
+
+
+    private static void validateAgainstRegex(Map<String, String> actual, Map<String, String> paramsPatterns) {
+
+        String key;
+        String pattern;
+
+        for (Map.Entry entry : paramsPatterns.entrySet()) {
+
+            key = entry.getKey().toString();
+            pattern = entry.getValue().toString();
+
+            Assert.assertTrue(actual.containsKey(key), String.format(ASSERT_MANDATORY_MESSAGE, key));
+
+            Pattern p = Pattern.compile(pattern);
+            Matcher m = p.matcher(actual.get(key));
+            boolean match = m.matches();
+
+            logger.info("Validate the parameter [{} = {}] against the regular expression [{}]  ", key, actual.get(key), pattern);
+            Assert.assertTrue(match, String.format("The regular expression [%s] matches the parameter [%s = %s]", pattern, key, actual.get(key)));
+
+        }
+    }
+
 
     private ToosoAnalyticsUtils() {
         throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);
