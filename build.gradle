@@ -118,7 +118,7 @@ allure {
     autoconfigure = true
 
     def selectedBrowser = project.hasProperty('Browser') ? project.getProperty('Browser') : 'chrome'
-    def environment = project.hasProperty('Environment') ? project.getProperty('Environment') : 'development'
+    def environment = project.hasProperty('Env') ? project.getProperty('Env') : 'development'
 
     String resultsPath = "./allure-results/${selectedBrowser}"
     String reportPath = "./allure-report/${selectedBrowser}"
