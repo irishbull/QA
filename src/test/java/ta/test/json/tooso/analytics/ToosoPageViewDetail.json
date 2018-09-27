@@ -33,9 +33,9 @@
       "search": "Mensola Spaceo nero L 56",
       "expectedEqual": {
         "dt": "Mensola Spaceo nero L 56 x P 15,5, sp 1,8 cm: prezzi e offerte online",
-        "dp": "/ricerca?q=Mensola%20Spaceo%20nero%20L%2056&page=1",
-        "dl": "/ricerca?q=Mensola%20Spaceo%20nero%20L%2056&page=1",
-        "dr": "/",
+        "dp": "/catalogo/mensola-spaceo-nero-l-56-x-p-155-sp-18-cm-36074542-p",
+        "dl": "/catalogo/mensola-spaceo-nero-l-56-x-p-155-sp-18-cm-36074542-p",
+        "dr": "/ricerca?q=Mensola%20Spaceo%20nero%20L%2056&page=1",
         "pr1id": "36074542",
         "pr1ca": "CAT101",
         "pr1br": "MC_Spaceo",
