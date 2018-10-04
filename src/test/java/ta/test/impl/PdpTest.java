@@ -12,8 +12,7 @@ import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.PdpPO;
-import ta.pageobjects.impl.ChangeStoreModalPO;
-
+import ta.pageobjects.impl.SelectStoreModalPO;
 import ta.pageobjects.impl.StoreLocatorPO;
 import ta.test.BaseTest;
 import ta.utilities.CookiesUtils;
@@ -40,9 +39,9 @@ public class PdpTest extends BaseTest {
 
         PdpPO pdpPO = new PdpPO();
 
-        ChangeStoreModalPO modalPO = pdpPO.openChangeStoreModal();
+        SelectStoreModalPO modalPO = pdpPO.openSelectStoreModal();
 
-        StoreLocatorPO storeLocatorPO = modalPO.changeStore();
+        StoreLocatorPO storeLocatorPO = modalPO.selectStore(testData.get("storeId").toString());
 
         boolean isStoreLocationValid = storeLocatorPO.isStoreLocationValid(testData.get("storeLocation").toString());
 

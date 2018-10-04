@@ -4,15 +4,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import ta.pageobjects.impl.ChangeStoreModalPO;
+import ta.pageobjects.impl.SelectStoreModalPO;
 
 public class PdpPO extends PageObject {
 
-    @FindBy(how = How.XPATH, xpath = "//span[contains(text(), 'Cambia negozio')]")
-    private WebElement changeStoreDiv;
+    @FindBy(how = How.NAME, using = "CATALOG_PAGE_CHANGE_STORE")
+    private WebElement changeStore;
 
-    public ChangeStoreModalPO openChangeStoreModal() {
-        changeStoreDiv.click();
-        return new ChangeStoreModalPO();
+    @FindBy(how = How.NAME, using = "CATALOG_PAGE_SELECT_STORE")
+    private WebElement selectStore;
+
+    public SelectStoreModalPO openSelectStoreModal() {
+        changeStore.click();
+        return new SelectStoreModalPO();
     }
 }
