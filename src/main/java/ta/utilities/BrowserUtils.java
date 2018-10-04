@@ -188,6 +188,28 @@ public class BrowserUtils {
 
 
     /**
+     * Check if element contains text
+     *
+     * @param element
+     * @param timer
+     * @param text
+     * @return
+     */
+    public static boolean elementContainsText(WebElement element, int timer, String text) {
+        try {
+
+            WebDriverWait wait = new WebDriverWait(SeleniumDriver.getInstance().getDriver(), timer);
+
+            wait.until(ExpectedConditions.refreshed(ExpectedConditions.textToBePresentInElement(element, text)));
+
+            return true;
+        } catch (StaleElementReferenceException | TimeoutException | NoSuchElementException exc) {
+            return false;
+        }
+    }
+
+
+    /**
      * Mouse over specified element
      *
      * @param element
@@ -196,6 +218,20 @@ public class BrowserUtils {
         Actions action = new Actions(SeleniumDriver.getInstance().getDriver());
         action.moveToElement(element).perform();
     }
+
+
+    /**
+     * Scroll to element
+     *
+     * @param element
+     */
+    public static void scrollToElement(WebElement element) {
+        int y = element.getLocation().getY();
+        // to avoid element not clickable
+        y = y-100;
+        JavascriptUtils.execute(String.format("window.scrollTo(0, %s)", String.valueOf(y)));
+    }
+
 
     private BrowserUtils() {
         throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);

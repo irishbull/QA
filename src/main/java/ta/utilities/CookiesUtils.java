@@ -40,21 +40,54 @@ public class CookiesUtils {
         return value.isEmpty() ? value : value.substring(value.lastIndexOf('.') + 1);
     }
 
+
     /**
-     * Add the current customer store cookie (only if it does not exist)
+     * Add the current customer store cookie (default storeid)
      */
     public static void addCurrentCustomerStore() {
-        if(getCookieValue(Constants.Cookies.CurrentCustomerStore.NAME).isEmpty()){
+        addCurrentCustomerStore(Constants.Cookies.CurrentCustomerStore.DEFAULT_VALUE);
+    }
 
-            Cookie cookie = new Cookie.Builder(Constants.Cookies.CurrentCustomerStore.NAME, Constants.Cookies.CurrentCustomerStore.VALUE)
-                    .domain(Constants.Cookies.CurrentCustomerStore.DOMAIN)
-                    .path(Constants.Cookies.CurrentCustomerStore.PATH)
-                    .expiresOn(calculateExpiryDate())
 
-                    .build();
+    /**
+     * Add the current customer cookie
+     *
+     * @param storeId
+     */
+    public static void addCurrentCustomerStore(String storeId) {
 
-            SeleniumDriver.getInstance().getDriver().manage().addCookie(cookie);
+        Cookie cookie = new Cookie.Builder(Constants.Cookies.CurrentCustomerStore.NAME, storeId)
+                .domain(Constants.Cookies.CurrentCustomerStore.DOMAIN)
+                .path(Constants.Cookies.CurrentCustomerStore.PATH)
+                .expiresOn(calculateExpiryDate())
+                .build();
+
+        SeleniumDriver.getInstance().getDriver().manage().addCookie(cookie);
+    }
+
+
+    /**
+     * Replace the current customer cookie
+     *
+     * @param storeId
+     */
+    public static void replaceCurrentCustomerStore(String storeId) {
+
+        WebDriver driver = SeleniumDriver.getInstance().getDriver();
+        Cookie oldCookie = driver.manage().getCookieNamed(Constants.Cookies.CurrentCustomerStore.NAME);
+
+        if(Objects.nonNull(oldCookie)) {
+            driver.manage().deleteCookieNamed(Constants.Cookies.CurrentCustomerStore.NAME);
         }
+
+        addCurrentCustomerStore(storeId);
+    }
+
+    /**
+     * Replace the current customer cookie (default storeId)
+     */
+    public static void replaceCurrentCustomerStore() {
+        replaceCurrentCustomerStore(Constants.Cookies.CurrentCustomerStore.DEFAULT_VALUE);
     }
 
 

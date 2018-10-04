@@ -1,0 +1,11 @@
+{
+  "tc_001_changeStore": [
+    {
+      "rowID" : "tc_001_changeStore.01",
+      "description" : "Change store",
+      "pathAndQuery" : "/catalogo/climatizzatore-fisso-inverter-dualsplit-mitsubishi-kirigamine-zen-2.5-%2B-2.5-kw-35881384-p",
+      "storeId" : "6",
+      "storeLocation" : "Marghera"
+    }
+  ]
+}

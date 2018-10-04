@@ -17,4 +17,11 @@
         </classes>
     </test>
 
+    <test name = "productDetailPage">
+        <parameter name="json-path"  value="src/test/java/ta/test/json/PdpTest.json"/>
+        <classes>
+            <class name = "ta.test.impl.PdpTest" />
+        </classes>
+    </test>
+
 </suite>
