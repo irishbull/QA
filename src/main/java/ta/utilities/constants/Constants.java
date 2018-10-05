@@ -66,4 +66,10 @@ public class Constants {
         public static final String ACCEPT = "true";
         public static final String DENY = "false";
     }
+
+    public static class SessionStorage {
+        private SessionStorage() {throw new IllegalStateException(CONSTRUCTION_FORBIDDEN); }
+
+        public static final String CART_CODE = "cartCode";
+    }
 }

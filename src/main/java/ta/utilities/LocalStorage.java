@@ -47,11 +47,11 @@ public class LocalStorage {
     }
 
     /**
-     * Retrieve the number of item in local storage
+     * Retrieve the number of items in local storage
      *
      * @return
      */
-    public static long getLocalStorageLength() {
+    public static long length() {
         return (long) JavascriptUtils.execute("return window.localStorage.length;");
     }
 
@@ -66,7 +66,7 @@ public class LocalStorage {
     }
 
     /**
-     * Remove iteme from local storage
+     * Remove item from local storage
      *
      * @param item
      */
