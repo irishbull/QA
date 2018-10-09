@@ -1,6 +1,5 @@
 package ta.pageobjects.impl;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -22,6 +21,9 @@ public class StoreLocatorPO extends PageObject {
     @FindBy(how = How.XPATH, xpath = "//div[@name='SELENIUM_STORE_LOCATOR_POPUP']/div/div/div/div/a")
     private WebElement seeOnMapLink;
 
+    @FindBy(how = How.NAME, using = "HEADER_SELECTED_STORE_NAME")
+    private WebElement storeLocation;
+
     // getter
     public WebElement getStoreLocatorDiv() {
         return storeLocatorDiv;
@@ -36,8 +38,6 @@ public class StoreLocatorPO extends PageObject {
     }
 
     public boolean isStoreLocationValid(String expectedValue) {
-        //TODO webElement SELENIUM_STORE_LOCATOR_DESKTOP/div/div/div/div/div[@class='jss63']/span
-        WebElement storeLocation = storeLocatorDiv.findElement(By.xpath("./div/div/div/div/div[@class='jss63']/span"));
         return BrowserUtils.elementContainsText(storeLocation, Constants.WaitTime.EXPLICIT_WAIT, expectedValue);
     }
 
