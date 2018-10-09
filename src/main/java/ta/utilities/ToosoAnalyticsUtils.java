@@ -137,6 +137,7 @@ public class ToosoAnalyticsUtils {
      * @param testData
      * @throws URISyntaxException
      */
+    @SuppressWarnings("unchecked")
     public static void checkParameters(String url, JSONObject testData, RequestType type) throws URISyntaxException {
 
         // query parameters to check
