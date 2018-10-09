@@ -14,7 +14,21 @@ public class AddToCartOverlayPO extends PageObject {
     private WebElement buttonContinue;
 
     @FindBy(how = How.NAME, using = "ADD_TO_CART_OVERLAY_ADD_TO_CART_BUTTON")
-    private WebElement buttonCart;
+    private WebElement buttonNavToCart;
+
+    @FindBy(how = How.NAME, using = "PRODUCT_QUANTITY")
+    private WebElement quantity;
+
+    @FindBy(how = How.NAME, using = "ADD_TO_CART_LABEL")
+    private WebElement cartLabel;
+
+    public String getProductQuantity() {
+        return quantity.getText();
+    }
+
+    public String getCartLabelText() {
+        return cartLabel.getText();
+    }
 
     public void continueShopping() {
         BrowserUtils.waitFor(buttonContinue, Constants.WaitTime.EXPLICIT_WAIT);
@@ -22,7 +36,7 @@ public class AddToCartOverlayPO extends PageObject {
     }
 
     public void goToCart() {
-        BrowserUtils.waitFor(buttonCart, Constants.WaitTime.EXPLICIT_WAIT);
-        buttonCart.click();
+        BrowserUtils.waitFor(buttonNavToCart, Constants.WaitTime.EXPLICIT_WAIT);
+        buttonNavToCart.click();
     }
 }

@@ -54,7 +54,15 @@ public class PdpTest extends BaseTest {
 
         PdpPO pdpPO = new PdpPO();
 
+        // increment quantity
+        pdpPO.incrementQuantity(Integer.valueOf(testData.get("incrementQt").toString()));
+        // decrement quantity
+        pdpPO.decrementQuantity(Integer.valueOf(testData.get("decrementQt").toString()));
+
         AddToCartOverlayPO addToCartOverlayPO = pdpPO.addToCart();
+
+        Assert.assertEquals(addToCartOverlayPO.getCartLabelText(), testData.get("expectedCartLabel").toString(), "Cart label:");
+        Assert.assertEquals(addToCartOverlayPO.getProductQuantity(), testData.get("expectedQuantity"), "Quantity:");
 
         addToCartOverlayPO.continueShopping();
 
@@ -82,6 +90,6 @@ public class PdpTest extends BaseTest {
 
         Assert.assertTrue(isStoreLocationValid, "Store location is valid");
         Assert.assertEquals(localStorageCurrentCustomerStore, testData.get("storeId").toString(), "[LocalStorage] current customer store value");
-        Assert.assertEquals(cookieCurrentCustomerStore, testData.get("storeId").toString(), "[Cookie] current customer store value" );
+        Assert.assertEquals(cookieCurrentCustomerStore, testData.get("storeId").toString(), "[Cookie] current customer store value");
     }
 }

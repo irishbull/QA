@@ -17,9 +17,15 @@ public class PdpPO extends PageObject {
     @FindBy(how = How.NAME, using = "CATALOG_PAGE_SELECT_STORE")
     private WebElement selectStore;
 
-    //TODO name without article code
-    @FindBy(how = How.NAME, using = "ARTICLE_35881384_ADD_TO_CART_BUTTON")
+    @FindBy(how = How.NAME, using = "ARTICLE_ADD_TO_CART_BUTTON")
     private WebElement addToCartButton;
+
+    @FindBy(how = How.NAME, using = "COUNTER_INCREMENT")
+    private WebElement incrementQuantityButton;
+
+    @FindBy(how = How.NAME, using = "COUNTER_DECREMENT")
+    private WebElement decrementQuantityButton;
+
 
     public SelectStoreModalPO openSelectStoreModal() {
         BrowserUtils.waitForClickable(changeStore, Constants.WaitTime.EXPLICIT_WAIT);
@@ -31,5 +37,19 @@ public class PdpPO extends PageObject {
         BrowserUtils.waitForClickable(addToCartButton, Constants.WaitTime.EXPLICIT_WAIT);
         addToCartButton.click();
         return new AddToCartOverlayPO();
+    }
+
+    public void incrementQuantity(int qt) {
+        for (int i = 0; i < qt; i++) {
+            BrowserUtils.waitForClickable(incrementQuantityButton, Constants.WaitTime.EXPLICIT_WAIT);
+            incrementQuantityButton.click();
+        }
+    }
+
+    public void decrementQuantity(int qt) {
+        for (int i = 0; i < qt; i++) {
+            BrowserUtils.waitForClickable(decrementQuantityButton, Constants.WaitTime.EXPLICIT_WAIT);
+            decrementQuantityButton.click();
+        }
     }
 }
