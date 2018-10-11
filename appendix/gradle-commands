@@ -1,7 +1,8 @@
 --------------------------------------------------
 Refresh the test environment and run the task test
 --------------------------------------------------
-    gradle refreshTestEnvironment -PEnv={environment} -PBrowser={browser} test
+    gradle clean refreshTestEnvironment -PEnv={environment} -PBrowser={browser} test
+
 
 ----------------------
 Generate allure report
@@ -13,6 +14,7 @@ where {environment} is one of:
  - development *
  - integration
  - production
+ - catalogo
 
 
 where {browser} is one of:
