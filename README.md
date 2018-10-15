@@ -13,14 +13,12 @@ In order to utilise this project you need to have installed locally:
 ## Usage
 
 ### Run tests 
-...
 `gradle clean refreshTestEnvironment -PEnv={environment} -PBrowser={browser} test`
-...
+
 
 ### Generate report
-...
 `gradle allureReport -PEnv={environment} -PBrowser={browser}`
-...
+
 
 where `{environment}` is one of:
  - `development` *
