@@ -88,7 +88,7 @@ public class SeleniumDriver {
                 // Firefox options
                 FirefoxOptions ffxOpts = new FirefoxOptions();
                 // option needed by Jenkins to work on Linux. Avoid browser opening during test
-                ffxOpts.addArguments("--headless");
+                //  ffxOpts.addArguments("--headless");
 
                 // Firefox capabilities
                 capabilities = DesiredCapabilities.firefox();
@@ -154,7 +154,7 @@ public class SeleniumDriver {
                 chrOptions.addArguments("--disable-plugins", "--disable-extensions", "--disable-popup-blocking");
 
                 // option needed by Jenkins to work on Linux. Avoid browser opening during test
-                chrOptions.addArguments("--headless");
+                //chrOptions.addArguments("--headless");
 
                 // Chrome desired capabilities
                 capabilities = DesiredCapabilities.chrome();

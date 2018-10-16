@@ -1,0 +1,37 @@
+{
+  "tc_001_newAccount": [
+    { "rowID": "tc_001_newAccount.01",
+      "landingurl":"benvenuto",
+      "nome": "Denzel",
+      "cognome":"Washington",
+      "email":"Denzel@Leroy",
+      "password":"#Giuseppe123456789",
+      "numeroditelefono":"55571146582",
+      "cap":"76121"
+    },
+     {
+      "rowID": "tc_001_newAccount.02",
+      "landingurl":"vantaggi",
+      "nome": "Diletta",
+      "cognome":"Leotta",
+      "email":"Diletta@Leotta",
+      "password":"$RichGirl1$",
+      "numeroditelefono":"00393271146582",
+      "cap":"70100"
+    },{
+      "rowID": "tc_001_newAccount.03",
+      "landingurl":"benvenuto",
+      "nome": "Christian",
+      "cognome":"Vieri",
+      "email":"SerieA@Ibiza",
+      "password":"nicolòA^2ٸٸﷻ",
+      "numeroditelefono":"00393271146582",
+      "cap":"99999"
+
+    }
+  ]
+}
+
+
+
+

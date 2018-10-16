@@ -17,7 +17,7 @@
         BrowserMobProxy is not currently meant to be stopped and restarted.
         Tooso test suite needs proxy therefore it should be run as the last.
         -->
-        <suite-file path="suites/tooso-test-suite.xml"/>
+     <!--   <suite-file path="suites/tooso-test-suite.xml"/>-->
     </suite-files>
 
 </suite>

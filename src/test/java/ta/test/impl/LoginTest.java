@@ -54,7 +54,6 @@ public class LoginTest extends BaseTest {
         assertEquals(SeleniumDriver.getInstance().getDriver().getCurrentUrl(), BASE_URL, "Page url");
 
         BrowserUtils.waitFor(homePagePO.getUserFirstName(), Constants.WaitTime.EXPLICIT_WAIT);
-
         // after successful user firstName has the expected value
         assertEquals(homePagePO.getUserFirstName().getText(), testData.get("firstName").toString(), "User first name");
     }

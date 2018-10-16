@@ -50,6 +50,12 @@ public class HomePagePO extends PageObject {
     @FindBy(how = How.NAME, using = "SELENIUM_HEADER_MENU_LOGIN_TEXT")
     private WebElement userFirstName;
 
+    @FindBy(how = How.CLASS_NAME, using="icon-logout bold" )
+    private WebElement logout;
+
+    @FindBy (how = How.CLASS_NAME, using="customer-info-name")
+    private WebElement customerName;
+
     @FindBy(how = How.ID, using = "consent_prompt_submit")
     private WebElement acceptCookiesButton;
 
@@ -58,8 +64,7 @@ public class HomePagePO extends PageObject {
         return new IdeaPiuPO();
     }
 
-    public LoginPO clickLoginIconLink() {
-        loginIcon.click();
+    public LoginPO clickLoginIconLink() { loginIcon.click();
         return new LoginPO();
     }
 
@@ -96,8 +101,22 @@ public class HomePagePO extends PageObject {
         return userFirstName;
     }
 
+    public void clickLogin() { userFirstName.click(); }
+
+    public WebElement getUserFromHomePage() {
+        return loginIcon;
+    }
+
+    public WebElement getCustomerName() {
+        return customerName;
+    }
+
     public WebElement getAcceptCookiesButton() {
         return acceptCookiesButton;
+    }
+
+    public WebElement logout() {
+        return logout;
     }
 
 }

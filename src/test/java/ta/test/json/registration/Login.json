@@ -1,0 +1,24 @@
+{
+  "tc_001_loginSuccess": [
+    {
+      "rowID": "tc_001_loginSuccess.01",
+      "description": "Login test with valid username and password",
+      "username": "fabio@fazio.it",
+      "password": "fabio@fazio.it",
+      "firstName": "Fabio"
+    }
+  ] ,
+  "tc_002_loginFailure":[
+    {
+      "rowID" : "tc_002_loginFailure.01",
+      "description" : "Login test with valid username and wrong password",
+      "username" : "pluto@leroymerlin.com",
+      "password" : "wrong-password",
+      "expectedValue": "Accedi"
+    }
+    ]
+}
+
+
+
+
