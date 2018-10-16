@@ -1,11 +1,11 @@
 LM-TestAutomation
-
 Java project for test automation
 
 -------------
 Prerequisites
 -------------
     In order to utilise this project you need to have installed locally:
+    - Chromium/Chrome and Firefox
     - Java 8
     - Gradle 4.7
 

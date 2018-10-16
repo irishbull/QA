@@ -6,6 +6,7 @@ Java project for test automation
 ## Prerequisites
 In order to utilise this project you need to have installed locally: 
 
+1. Chromium/Chrome and Firefox
 1. Java 8 
 1. Gradle 4.7
 
