@@ -99,6 +99,10 @@ public class SeleniumDriver {
 
                     // start the proxy
                     proxy.set(new BrowserMobProxyServer());
+
+                    // ignore untrusted certificate warnings
+                    proxy.get().setTrustAllServers(true);
+
                     proxy.get().start(0);
                     logger.debug("Proxy started");
 
@@ -165,6 +169,10 @@ public class SeleniumDriver {
 
                     // start the proxy
                     proxy.set(new BrowserMobProxyServer());
+
+                    // ignore untrusted certificate warnings
+                    proxy.get().setTrustAllServers(true);
+                    
                     proxy.get().start(0);
                     logger.debug("Proxy started");
 
