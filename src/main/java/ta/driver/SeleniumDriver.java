@@ -87,7 +87,6 @@ public class SeleniumDriver {
 
                 // Firefox options
                 FirefoxOptions ffxOpts = new FirefoxOptions();
-                // option needed by Jenkins to work on Linux. Avoid browser opening during test
                 ffxOpts.addArguments("--headless");
 
                 // Firefox capabilities
@@ -157,7 +156,6 @@ public class SeleniumDriver {
                 chrOptions.setExperimentalOption("prefs", chromePrefs);
                 chrOptions.addArguments("--disable-plugins", "--disable-extensions", "--disable-popup-blocking");
 
-                // option needed by Jenkins to work on Linux. Avoid browser opening during test
                 chrOptions.addArguments("--headless");
 
                 // Chrome desired capabilities
@@ -172,7 +170,7 @@ public class SeleniumDriver {
 
                     // ignore untrusted certificate warnings
                     proxy.get().setTrustAllServers(true);
-                    
+
                     proxy.get().start(0);
                     logger.debug("Proxy started");
 
