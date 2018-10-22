@@ -11,8 +11,16 @@ import ta.utilities.constants.Constants;
 
 public class PdpPO extends PageObject {
 
+    /* TODO waiting fix
     @FindBy(how = How.NAME, using = "CATALOG_PAGE_CHANGE_STORE")
     private WebElement changeStore;
+    */
+    // TODO remove
+    @FindBy(how = How.XPATH, using = "//span[text()='Cambia negozio']")
+    private WebElement changeStore;
+
+    @FindBy(how = How.NAME, using ="CATALOG_PAGE_CURRENT_STORE")
+    private WebElement currentStore;
 
     @FindBy(how = How.NAME, using = "CATALOG_PAGE_SELECT_STORE")
     private WebElement selectStore;
@@ -28,7 +36,11 @@ public class PdpPO extends PageObject {
 
 
     public SelectStoreModalPO openSelectStoreModal() {
-        BrowserUtils.waitForClickable(changeStore, Constants.WaitTime.EXPLICIT_WAIT);
+        BrowserUtils.scrollToElement(changeStore);
+
+        //TODO use change store (CATALOG_PAGE_CHANGE_STORE)
+
+        //BrowserUtils.waitForClickable(changeStore, Constants.WaitTime.EXPLICIT_WAIT);
         changeStore.click();
         return new SelectStoreModalPO();
     }

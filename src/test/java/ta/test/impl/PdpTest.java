@@ -13,6 +13,7 @@ import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.PdpPO;
 import ta.pageobjects.impl.AddToCartOverlayPO;
+import ta.pageobjects.impl.HeaderPO;
 import ta.pageobjects.impl.SelectStoreModalPO;
 import ta.pageobjects.impl.StoreLocatorPO;
 import ta.test.BaseTest;
@@ -61,12 +62,16 @@ public class PdpTest extends BaseTest {
 
         AddToCartOverlayPO addToCartOverlayPO = pdpPO.addToCart();
 
-        Assert.assertEquals(addToCartOverlayPO.getCartLabelText(), testData.get("expectedCartLabel").toString(), "Cart label:");
-        Assert.assertEquals(addToCartOverlayPO.getProductQuantity(), testData.get("expectedQuantity"), "Quantity:");
+        // check overlay content
+        Assert.assertEquals(addToCartOverlayPO.getCartLabelText(), testData.get("overlayExpectedCartLabel").toString(), "Overlay - cart label:");
+        Assert.assertEquals(addToCartOverlayPO.getProductQuantity(), testData.get("overlayExpectedQuantity"), "Overlay - quantity counter:");
 
         addToCartOverlayPO.continueShopping();
 
-        //TODO assert
+        // check quantity counter (cart icon)
+        HeaderPO headerPO = new HeaderPO();
+        Assert.assertEquals(headerPO.getCartQuantity(), testData.get("cartQuantityCounter"), "Cart icon - quantity counter:");
+
     }
 
 
@@ -87,6 +92,8 @@ public class PdpTest extends BaseTest {
         boolean isStoreLocationValid = storeLocatorPO.isStoreLocationValid(testData.get("storeLocation").toString());
         String localStorageCurrentCustomerStore = LocalStorage.getCurrentCustomerStore();
         String cookieCurrentCustomerStore = CookiesUtils.getCookieValue(Constants.Cookies.CurrentCustomerStore.NAME);
+
+        logger.info("localStorage: currentStore {} - cookie: currentStore {}", localStorageCurrentCustomerStore, cookieCurrentCustomerStore);
 
         Assert.assertTrue(isStoreLocationValid, "Store location is valid");
         Assert.assertEquals(localStorageCurrentCustomerStore, testData.get("storeId").toString(), "[LocalStorage] current customer store value");

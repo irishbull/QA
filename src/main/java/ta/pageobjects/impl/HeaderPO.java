@@ -19,5 +19,9 @@ public class HeaderPO extends PageObject {
 */
 
     @FindBy(how = How.NAME, using = "QUANTITY_COUNTER")
-    WebElement cartQuantityCounter;
+    private WebElement cartQuantityCounter;
+
+    public String getCartQuantity() {
+        return cartQuantityCounter.getText();
+    }
 }

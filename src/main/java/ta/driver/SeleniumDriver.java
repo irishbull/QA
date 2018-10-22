@@ -161,7 +161,7 @@ public class SeleniumDriver {
                 // Chrome desired capabilities
                 capabilities = DesiredCapabilities.chrome();
                 capabilities.setCapability(ChromeOptions.CAPABILITY, chrOptions);
-                capabilities.setCapability("applicationCacheEnabled", false);
+                capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 
                 if (isProxyRequired) {
 

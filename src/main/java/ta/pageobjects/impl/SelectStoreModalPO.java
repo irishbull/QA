@@ -14,18 +14,18 @@ public class SelectStoreModalPO extends PageObject {
     @FindBy(how = How.NAME, using = "MODAL_STORE_STOCK")
     private WebElement modal;
 
-    @FindBy(how = How.ID_OR_NAME, using = "storeSelect")
-    private WebElement selectStore;
+    @FindBy(how = How.ID_OR_NAME, using = "storeStockSelect")
+    private WebElement storeStockSelect;
 
     @FindBy(how = How.NAME, using = "SELECT_OPTIONS_CONTAINER")
     private WebElement optionsContainer;
 
     public StoreLocatorPO selectStore(String storeId) {
 
-        BrowserUtils.waitForClickable(selectStore, Constants.WaitTime.EXPLICIT_WAIT);
-        selectStore.click();
+        BrowserUtils.waitForClickable(storeStockSelect, Constants.WaitTime.EXPLICIT_WAIT);
+        storeStockSelect.click();
 
-        String xpath = String.format("./div[(@data-name='storeSelect') and (@data-value='%s')]", storeId);
+        String xpath = String.format("./div[(@data-name='storeStockSelect') and (@data-value='%s')]", storeId);
 
         WebElement selectedStore = optionsContainer.findElement(By.xpath(xpath));
 

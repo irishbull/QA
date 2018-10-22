@@ -6,8 +6,9 @@
       "pathAndQuery" : "/catalogo/climatizzatore-fisso-inverter-dualsplit-mitsubishi-kirigamine-zen-2.5-%2B-2.5-kw-35881384-p",
       "incrementQt" : "3",
       "decrementQt" : "2",
-      "expectedCartLabel" : "2 prodotti aggiunti al carrello",
-      "expectedQuantity" : "x2"
+      "overlayExpectedCartLabel" : "2 prodotti aggiunti al carrello",
+      "overlayExpectedQuantity" : "x2",
+      "cartQuantityCounter" : "2"
     }
   ],
   "tc_002_changeStore": [
