@@ -1,6 +1,10 @@
 // -----------  START PLUGIN SECTION -----------
 
 apply plugin: 'java'
+tasks.withType(JavaCompile) {
+    options.compilerArgs << '-Xlint:unchecked'
+    options.deprecation = true
+}
 apply plugin: 'environments'
 apply plugin: 'io.qameta.allure'
 

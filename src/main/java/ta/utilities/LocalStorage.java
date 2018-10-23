@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static ta.utilities.constants.Constants.EMPTY_STRING;
+import static ta.utilities.constants.Constants.LocalStorage.CURRENT_CUSTOMER_STORE;
 
 /**
  * Selenium WebDriver Javascript execution for localStorage
@@ -46,11 +47,11 @@ public class LocalStorage {
     }
 
     /**
-     * Retrieve the number of item in local storage
+     * Retrieve the number of items in local storage
      *
      * @return
      */
-    public static long getLocalStorageLength() {
+    public static long length() {
         return (long) JavascriptUtils.execute("return window.localStorage.length;");
     }
 
@@ -65,7 +66,7 @@ public class LocalStorage {
     }
 
     /**
-     * Remove iteme from local storage
+     * Remove item from local storage
      *
      * @param item
      */
@@ -91,12 +92,30 @@ public class LocalStorage {
 
         if (isItemPresent(SESSION_ID)) {
 
-            // remove prefix and (")
+            // remove prefix, leading and trailing quotes (")
             String uid = getItem(SESSION_ID).replaceAll(UID_PREFIX, EMPTY_STRING);
             return uid.substring(1, uid.length() - 1);
 
         } else {
             logger.warn("sessionId not found in localStorage");
+            return EMPTY_STRING;
+        }
+    }
+
+
+    /**
+     * Retrieve the value of current customer store
+     *
+     * @return
+     */
+    public static String getCurrentCustomerStore() {
+
+        if(isItemPresent(CURRENT_CUSTOMER_STORE)) {
+            String currentCustomerStore = getItem(CURRENT_CUSTOMER_STORE);
+            // remove leading and trailing quotes (")
+            return currentCustomerStore.substring(1, currentCustomerStore.length() - 1);
+        } else {
+            logger.warn("current customer store not found in localStorage");
             return EMPTY_STRING;
         }
     }

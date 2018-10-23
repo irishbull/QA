@@ -45,9 +45,9 @@ public class Constants {
 
         public static class CurrentCustomerStore {
             public static final String NAME = "currentCustomerStore";
-            public static final String VALUE = ReadPropertiesFile.getProperty("current.customer.store.value");
-            public static final String DOMAIN = ReadPropertiesFile.getProperty("current.customer.store.domain");
-            public static final String PATH = ReadPropertiesFile.getProperty("current.customer.store.path");
+            public static final String DEFAULT_VALUE = ReadPropertiesFile.getProperty("current.customer.store.cookie.default.value");
+            public static final String DOMAIN = ReadPropertiesFile.getProperty("current.customer.store.cookie.domain");
+            public static final String PATH = ReadPropertiesFile.getProperty("current.customer.store.cookie.path");
 
             private CurrentCustomerStore() {
                 throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);
@@ -65,5 +65,11 @@ public class Constants {
         public static final String STORE_CONSENT = "storeConsent";
         public static final String ACCEPT = "true";
         public static final String DENY = "false";
+    }
+
+    public static class SessionStorage {
+        private SessionStorage() {throw new IllegalStateException(CONSTRUCTION_FORBIDDEN); }
+
+        public static final String CART_CODE = "cartCode";
     }
 }

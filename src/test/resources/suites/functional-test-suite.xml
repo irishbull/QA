@@ -2,14 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="FunctionalTestSuite">
-    <parameter name="isProxyRequired" value= "false"/>
-
-    <!--<test name = "loginTest">
-        <parameter name="json-path"  value="src/test/java/ta/test/json/LoginTest.json"/>
-        <classes>
-            <class name = "ta.test.impl.LoginTest" />
-        </classes>
-    </test>
 
     <test name = "productMenuNavigation">
         <parameter name="json-path"  value="src/test/java/ta/test/json/ProductMenuTest.json"/>
@@ -18,22 +10,25 @@
         </classes>
     </test>
 
--->
-    <!--
-    <test name = "Login">
+    <test name = "productDetailPage">
+        <parameter name="json-path"  value="src/test/java/ta/test/json/PdpTest.json"/>
+        <classes>
+            <class name = "ta.test.impl.PdpTest" />
+        </classes>
+    </test>
+
+    <test name = "login">
         <parameter name="json-path"  value="src/test/java/ta/test/json/registration/Login.json"/>
         <classes>
             <class name = "ta.test.impl.registration.Login" />
         </classes>
     </test>
 
--->
-    <test name = "Create Account">
+    <test name = "createAccount">
         <parameter name="json-path" value="src/test/java/ta/test/json/registration/NewAccount.json"/>
         <classes>
             <class name = "ta.test.impl.registration.NewAccount" />
         </classes>
     </test>
-
 
 </suite>
