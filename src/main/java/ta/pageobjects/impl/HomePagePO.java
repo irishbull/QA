@@ -68,7 +68,6 @@ public class HomePagePO extends PageObject {
         return new LoginPO();
     }
 
-    // getter
     public WebElement getProductMenu() {
         return productMenu;
     }

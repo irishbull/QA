@@ -5,7 +5,7 @@
       "nome": "Denzel",
       "cognome":"Washington",
       "email":"Denzel@Leroy",
-      "password":"#Giuseppe123456789",
+      "password":"òGiuseppe123456789",
       "numeroditelefono":"55571146582",
       "cap":"76121"
     },
@@ -27,7 +27,18 @@
       "password":"nicolòA^2ٸٸﷻ",
       "numeroditelefono":"00393271146582",
       "cap":"99999"
-
+    }
+  ],
+  "tc_002_newAccount": [
+    { "rowID": "tc_001_newAccount.02",
+      "landingurl":"benevenuto",
+      "ragioneSociale":"LeroyMerlin S.P.A",
+      "nome": "Vasco",
+      "cognome":"Rossi",
+      "email":"Vasco@Coca",
+      "password":"bollici8999Ane",
+      "numeroditelefono":"55571146582",
+      "cap":"76121"
     }
   ]
 }

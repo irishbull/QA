@@ -8,6 +8,7 @@ import org.openqa.selenium.support.How;
 import ta.pageobjects.PageObject;
 
 
+
 public class RegisterPO extends PageObject {
 
     @FindBy(how = How.NAME, using = "_REGISTRATI")
@@ -15,11 +16,27 @@ public class RegisterPO extends PageObject {
 
     @FindBy(how = How.ID_OR_NAME, using = "_gender")
     private WebElement gender;
+
     @FindBy(how = How.ID, using = "menu-gender")
     private WebElement menugender;
 
     @FindBy(how = How.NAME, using = "_PRIVATO")
     private WebElement privato;
+
+    @FindBy (how = How.NAME, using ="organizationName")
+    private WebElement ragioneSociale;
+
+    @FindBy (how = How.ID_OR_NAME, using ="menu-sector")
+    private WebElement menu_sector;
+
+    @FindBy(how = How.NAME, using = "_AZIENDA")
+    private WebElement azienda;
+
+    @FindBy(how = How.XPATH, xpath = "/html/body/div[1]/div/div[6]/div/div[2]/div/form/div[3]/div[1]/div[2]/div/div/label")
+    private WebElement forma;
+
+    @FindBy(how = How.ID_OR_NAME, using="_sector")
+    private WebElement settore;
 
     @FindBy(how = How.XPATH, xpath = "/html/body/div[3]/div[2]/ul/li[1]")
     private WebElement male;
@@ -74,6 +91,7 @@ public class RegisterPO extends PageObject {
     public void setProfiling(){
         profiling.click();
     }
+
     public void concludiRegistrazione(){
         concludiRegistrazione.click();
     }
@@ -88,15 +106,13 @@ public class RegisterPO extends PageObject {
         privato.click();
     }
 
-    public void continueClick(){
-        prosegui.click();
-    }
+    public void aziendaClick(){ azienda.click(); }
 
-    public void genderClick(){
-        gender.click();
-    }
+    public void settoreClick(){ settore.click(); }
 
+    public void continueClick(){ prosegui.click(); }
 
+    public void genderClick(){ gender.click(); }
     public void maleClick(){
         WebElement genderSelected = menugender.findElement(By.xpath(".//div/ul/li[@data-value=\"MALE\"]"));
             genderSelected.click();
@@ -112,7 +128,6 @@ public class RegisterPO extends PageObject {
     public void selectStore(){
         storeCode.click();
         livornoShop.click();
-
     }
 
     public void enterUsernameAndPassword(String nome, String cognome,  String email, String password ,String telefono, String cap) throws Exception {
@@ -124,15 +139,15 @@ public class RegisterPO extends PageObject {
         this.cap.sendKeys(cap);
     }
 
+    public void enterFormCompany(String ragioneSociale, String nome, String cognome, String email, String password ,String telefono, String cap) throws Exception {
+        this.ragioneSociale.sendKeys(ragioneSociale);
+        this.name.sendKeys(nome);
+        this.cognome.sendKeys(cognome);
+        this.telefono.sendKeys(telefono);
+        this.email.sendKeys(email);
+        this.password.sendKeys(password);
+        this.cap.sendKeys(cap);
 
-    /*
-    protected WebElement findCategoryLink(String str) {
-        String xpathC = String.format(".//div/a/div/span[contains(text(), '%s')]", str);
-        BrowserUtils.waitFor(categoryWrapper, Constants.WaitTime.EXPLICIT_WAIT);
-        return categoryWrapper.findElement(By.xpath(xpathC));
-    }*/
-
-
-
+    }
 
 }

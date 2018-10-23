@@ -31,10 +31,10 @@ public class Login extends BaseTest {
         loginPO.clickAccedi();
         BrowserUtils.waitFor(homePagePO.getUserFromHomePage(), Constants.WaitTime.EXPLICIT_WAIT);
         assertEquals(homePagePO.getCustomerName().getText(), testData.get("firstName").toString(), "User first name" );
-
+        loginPO.logout();
     }
 
-/*   @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+   @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Login test with NOT valid username and password")
     public void tc_002_loginFailure (JSONObject testData) throws Exception {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
@@ -42,10 +42,9 @@ public class Login extends BaseTest {
         HomePagePO homePagePO = new HomePagePO();
         LoginPO loginPO = homePagePO.clickLoginIconLink();
         loginPO.enterUsernameAndPassword(testData.get("username").toString(), testData.get("password").toString());
-        loginPO.clickcookie();
         loginPO.clickAccedi();
         BrowserUtils.waitFor(homePagePO.getUserFromHomePage(), Constants.WaitTime.EXPLICIT_WAIT);
         // after successful user firstName has the expected value
         assertEquals(homePagePO.getUserFromHomePage().getText(), testData.get("firstName").toString(), "User first name");
-    }*/
+    }
 }
