@@ -12,6 +12,7 @@
     <suite-files>
        <!-- <suite-file path="suites/example-test-suite.xml"/> -->
         <suite-file path="suites/functional-test-suite.xml"/>
+        <suite-file path="suites/seo-test-suite.xml"/>
         <!--
         Proxy tests are slower than non-proxy tests.
         BrowserMobProxy is not currently meant to be stopped and restarted.
