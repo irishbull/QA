@@ -149,13 +149,13 @@ public class RegisterPO extends PageObject {
     }
 
     public void enterFormCompany(String ragioneSociale, String nome, String cognome, String email, String password ,String telefono, String cap) throws Exception {
-        this.ragioneSociale.sendKeys(ragioneSociale);
-        this.name.sendKeys(nome);
-        this.cognome.sendKeys(cognome);
-        this.telefono.sendKeys(telefono);
-        this.email.sendKeys(email);
-        this.password.sendKeys(password);
-        this.cap.sendKeys(cap);
+        this.ragioneSociale.sendKeys(converterToUtf(ragioneSociale));
+        this.name.sendKeys(converterToUtf(nome));
+        this.cognome.sendKeys(converterToUtf(cognome));
+        this.telefono.sendKeys(converterToUtf(telefono));
+        this.email.sendKeys(converterToUtf(email));
+        this.password.sendKeys(converterToUtf(password));
+        this.cap.sendKeys(converterToUtf(cap));
 
     }
 
