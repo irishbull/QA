@@ -1,12 +1,11 @@
 package ta.pageobjects.impl;
-
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import ta.pageobjects.PageObject;
 
+import java.io.UnsupportedEncodingException;
 
 
 public class RegisterPO extends PageObject {
@@ -34,6 +33,9 @@ public class RegisterPO extends PageObject {
 
     @FindBy(how = How.XPATH, xpath = "/html/body/div[1]/div/div[6]/div/div[2]/div/form/div[3]/div[1]/div[2]/div/div/label")
     private WebElement forma;
+
+    @FindBy(how = How.XPATH, xpath = "/html/body/div[1]/div/div[6]/div/div/div[5]/button/span[1]")
+    private WebElement goProfile;
 
     @FindBy(how = How.ID_OR_NAME, using="_sector")
     private WebElement settore;
@@ -112,6 +114,8 @@ public class RegisterPO extends PageObject {
 
     public void continueClick(){ prosegui.click(); }
 
+    public void goProfileButton(){ goProfile.click(); }
+
     public void genderClick(){ gender.click(); }
     public void maleClick(){
         WebElement genderSelected = menugender.findElement(By.xpath(".//div/ul/li[@data-value=\"MALE\"]"));
@@ -130,13 +134,18 @@ public class RegisterPO extends PageObject {
         livornoShop.click();
     }
 
-    public void enterUsernameAndPassword(String nome, String cognome,  String email, String password ,String telefono, String cap) throws Exception {
-        this.name.sendKeys(nome);
-        this.cognome.sendKeys(cognome);
-        this.telefono.sendKeys(telefono);
-        this.email.sendKeys(email);
-        this.password.sendKeys(password);
-        this.cap.sendKeys(cap);
+
+   public String converterToUtf(String toEncode) throws UnsupportedEncodingException {
+        return new String (toEncode.getBytes(), "UTF-8");
+ }
+
+    public void enterUsernameAndPassword(String nome, String cognome, String email, String password , String telefono, String cap) throws Exception {
+        this.name.sendKeys(converterToUtf(nome));
+        this.cognome.sendKeys(converterToUtf(cognome));
+        this.telefono.sendKeys(converterToUtf(telefono));
+        this.email.sendKeys(converterToUtf(email));
+        this.password.sendKeys(converterToUtf(password));
+        this.cap.sendKeys(converterToUtf(cap));
     }
 
     public void enterFormCompany(String ragioneSociale, String nome, String cognome, String email, String password ,String telefono, String cap) throws Exception {
