@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+import sun.rmi.runtime.Log;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
@@ -56,19 +57,21 @@ public class NewAccount extends BaseTest {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         RegisterPO register = new RegisterPO();
         HomePagePO gologin = new HomePagePO();
+        LoginPO user = new LoginPO();
         gologin.clickLogin();
         register.registratiClick();
         register.aziendaClick();
         register.genderClick();
         register.maleClick();
         register.settoreClick();
-        Thread.sleep(5000);
         register.enterFormCompany(testData.get("ragioneSociale").toString(), testData.get("nome").toString(), testData.get("cognome").toString(),
             timestamp.getDateTime() + testData.get("email").toString() + ".it", testData.get("password").toString(), testData.get("numeroditelefono").toString(), testData.get("cap").toString());
         register.selectStore();
-        Thread.sleep(6000);
         register.concludiRegistrazione();
-
+        register.goProfileButton();
+        new WebDriverWait(driver, 20).until(ExpectedConditions.urlContains("mylm"));
+        assertEquals(SeleniumDriver.getInstance().getDriver().getCurrentUrl(), BASE_URL + testData.get("landingurl"), "Page url");
+        user.logout();
     }
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 2)
     @Description("Create New Account Private Failed ")
@@ -78,19 +81,21 @@ public class NewAccount extends BaseTest {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         RegisterPO register = new RegisterPO();
         HomePagePO gologin = new HomePagePO();
+        LoginPO user = new LoginPO();
         gologin.clickLogin();
         register.registratiClick();
         register.aziendaClick();
         register.genderClick();
         register.maleClick();
         register.settoreClick();
-        Thread.sleep(5000);
         register.enterFormCompany(testData.get("ragioneSociale").toString(), testData.get("nome").toString(), testData.get("cognome").toString(),
             timestamp.getDateTime() + testData.get("email").toString() + ".it", testData.get("password").toString(), testData.get("numeroditelefono").toString(), testData.get("cap").toString());
         register.selectStore();
-        Thread.sleep(6000);
         register.concludiRegistrazione();
-
+        register.goProfileButton();
+        new WebDriverWait(driver, 20).until(ExpectedConditions.urlContains("mylm"));
+        assertEquals(SeleniumDriver.getInstance().getDriver().getCurrentUrl(), BASE_URL + testData.get("landingurl"), "Page url");
+        user.logout();
     }
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 4)
     @Description("Create New Account Company Failed ")
@@ -101,6 +106,7 @@ public class NewAccount extends BaseTest {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         RegisterPO register = new RegisterPO();
         HomePagePO gologin = new HomePagePO();
+        LoginPO user = new LoginPO();
         gologin.clickLogin();
         register.registratiClick();
         register.aziendaClick();
@@ -113,8 +119,10 @@ public class NewAccount extends BaseTest {
         register.selectStore();
         Thread.sleep(6000);
         register.concludiRegistrazione();
-
+        register.goProfileButton();
+        new WebDriverWait(driver, 20).until(ExpectedConditions.urlContains("mylm"));
+        assertEquals(SeleniumDriver.getInstance().getDriver().getCurrentUrl(), BASE_URL + testData.get("landingurl"), "Page url");
+        user.logout();
     }
-
 
 }
