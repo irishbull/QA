@@ -1,7 +1,7 @@
 {
   "tc_001_newAccount": [
     { "rowID": "tc_001_newAccount.01",
-      "landingurl":"/mylm",
+      "landingurl":"mylm",
       "nome": "Denòàzel",
       "cognome":"Wòashington",
       "email":"Denzel@Leroy",
