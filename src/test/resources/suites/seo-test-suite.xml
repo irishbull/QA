@@ -3,11 +3,12 @@
 
 <suite name="SeoSuite">
 
-    <parameter name="isProxyRequired" value= "true"/>
+    <parameter name="isProxyRequired" value="true"/>
 
-    <test name = "SuggestTest">
+    <test name="SeoTest">
+        <parameter name="json-path" value="src/test/java/ta/test/json/seo/SeoTest.json"/>
         <classes>
-            <class name = "ta.test.impl.seo.SeoTest" />
+            <class name="ta.test.impl.seo.SeoTest"/>
         </classes>
     </test>
 

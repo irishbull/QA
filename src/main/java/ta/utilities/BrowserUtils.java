@@ -38,6 +38,15 @@ public class BrowserUtils {
         wait.until(pageLoadCondition);
     }
 
+    /**
+     * Get the rendered page
+     *
+     * @return String
+     */
+    public static String getRenderedPage() {
+        return JavascriptUtils.execute("return document.getElementsByTagName('html')[0].innerHTML").toString();
+    }
+
 
     /**
      * Wait up (clickable) before throwing exception (static locator)
