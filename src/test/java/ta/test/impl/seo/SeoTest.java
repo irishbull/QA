@@ -32,11 +32,11 @@ public class SeoTest extends ToosoBaseTest {
     private static final Logger logger = LoggerFactory.getLogger(SeoTest.class);
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("SEO test")
-    public void tc_001(JSONObject testData) throws IOException {
+    @Description("SEO test - analyse source and rendered document")
+    public void tc_001_seoTest(JSONObject testData) throws IOException {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
-
+        
         String url = BASE_URL + testData.get("pagePath").toString();
         logger.info("Analyse page with url {}", url);
 
@@ -54,14 +54,11 @@ public class SeoTest extends ToosoBaseTest {
 
         Set<SeoValidationStrategy> strategies = new LinkedHashSet<>();
 
-        /*
         strategies.add(HtmlSeoValidationStrategy.TITLE);
         strategies.add(HtmlSeoValidationStrategy.HEADER1);
         strategies.add(HtmlSeoValidationStrategy.META_DESCRIPTION);
         strategies.add(HtmlSeoValidationStrategy.REL_CANONICAL);
         strategies.add(HtmlSeoValidationStrategy.ANCHOR);
-        */
-
         strategies.add(HtmlSeoValidationStrategy.NOINDEX);
 
         SeoValidationContext seoValidationContext = new SeoValidationContext(strategies);

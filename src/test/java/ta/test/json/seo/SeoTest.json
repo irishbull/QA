@@ -1,12 +1,28 @@
 {
-  "tc_001": [
+  "tc_001_seoTest": [
     {
-      "rowID" : "tc_001",
+      "rowID" : "tc_001_seoTest.01",
       "description" : "SEO automated testing example",
       "pagePath" : "/catalogo/porta-doccia-battente-elba-68-72-h-185-cm-cristallo-3-mm-piumato-bianco-lucido-30556932-p",
       "title" : "Porta doccia battente Elba 68-72, H 185 cm cristallo 3 mm piumato/bianco lucido prezzi e offerte online | Leroy Merlin",
       "h1" : "Porta doccia battente Elba 68-72, H 185 cm cristallo 3 mm piumato/bianco lucido",
       "metaDescription" : "Scopri tutti i prodotti e le offerte Leroy Merlin per l'arredo della tua casa e il bricolage. Un vastissimo catalogo da acquistare online o in negozio!"
+    },
+    {
+      "rowID" : "tc_001_seoTest.02",
+      "description" : "Pagina categoria - List Page",
+      "pagePath" : "/prodotti/barbecue-CAT667-c",
+      "title" : "Barbecue: prezzi e offerte BBQ a gas, legna, carbone ed elettrici",
+      "h1" : "Barbecue",
+      "metaDescription" : "Scopri il catalogo di barbecue Leroy Merlin: BBQ a gas, legna, carbone, elettrici, con pietra lavica. Acquista online o in negozio!"
+    },
+    {
+      "rowID" : "tc_001_seoTest.03",
+      "description" : "Pagina categoria - SEO",
+      "pagePath" : "/prodotti/barbecue-elettrici",
+      "title" : "Barbecue elettrici: prezzi e offerte online.",
+      "h1" : "Barbecue elettrici",
+      "metaDescription" : "Scopri prezzi e offerte della gamma di barbecue elettrici in vendita presso Leroy Merlin: acquista online o in negozio!"
     }
   ]
 }
