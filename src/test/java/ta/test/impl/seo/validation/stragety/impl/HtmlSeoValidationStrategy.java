@@ -39,9 +39,11 @@ public enum HtmlSeoValidationStrategy implements SeoValidationStrategy {
         public <T extends SeoData> void validate(T data) {
             Elements metaDescriptions = data.getDocument().select("meta[name=\"description\"]");
             Assert.assertEquals(metaDescriptions.size(), 1, "META_DESCRIPTION validation failed. Meta description should be unique. Number of meta description");
-            String metaDescription =  metaDescriptions.get(0).attr("content");
-            String expectedMetaDescription = data.getExpectedData().get("metaDescription").toString();
-            Assert.assertNotEquals(metaDescription, expectedMetaDescription, String.format("META_DESCRIPTION validation failed. Expected[%s] but found[%s]", expectedMetaDescription, metaDescription));
+            String metaDescription =  metaDescriptions.get(0).attr("content").trim();
+            logger.info("meta description found: {}", metaDescription);
+            String expectedMetaDescription = data.getExpectedData().get("metaDescription").toString().trim();
+            logger.info("meta description expected: {}", expectedMetaDescription);
+            Assert.assertEquals(metaDescription, expectedMetaDescription, "META_DESCRIPTION validation failed.");
         }
     },
 

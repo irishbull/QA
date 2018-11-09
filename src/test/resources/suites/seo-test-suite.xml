@@ -5,10 +5,19 @@
 
     <parameter name="isProxyRequired" value="true"/>
 
-    <test name="SeoTest">
-        <parameter name="json-path" value="src/test/java/ta/test/json/seo/SeoTest.json"/>
+   <!-- <test name="SeoTest">
+        <parameter name="json-path" value="src/test/java/ta/test/json/seo/SeoTest-UTF-8.json"/>
         <classes>
             <class name="ta.test.impl.seo.SeoTest"/>
+        </classes>
+    </test>-->
+
+
+    <test name="ListPageTest">
+        <parameter name="pagePath" value="/prodotti/barbecue-CAT667-c"/>
+        <parameter name="json-path" value="src/test/java/ta/test/json/seo/ListPageTest.json"/>
+        <classes>
+            <class name="ta.test.impl.seo.ListPageTest"/>
         </classes>
     </test>
 
