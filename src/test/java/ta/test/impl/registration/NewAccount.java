@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-import sun.rmi.runtime.Log;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
@@ -20,6 +19,7 @@ import static ta.utilities.constants.Constants.Url.BASE_URL;
 
 public class NewAccount extends BaseTest {
 
+
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 0)
     @Description("Create New Account Private ")
     public void tc_001_newAccount(JSONObject testData) throws Exception {
@@ -28,8 +28,8 @@ public class NewAccount extends BaseTest {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         RegisterPO register = new RegisterPO();
         LoginPO user = new LoginPO();
-        HomePagePO gologin = new HomePagePO();
-        gologin.clickLogin();
+        HomePagePO goLogin = new HomePagePO();
+        goLogin.clickLogin();
         register.registratiClick();
         register.selPrivatoClick();
         register.genderClick();
@@ -48,6 +48,7 @@ public class NewAccount extends BaseTest {
          user.logout();
     }
 
+
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class , priority = 1)
     @Description("Create New Account Azienda")
 
@@ -56,24 +57,24 @@ public class NewAccount extends BaseTest {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         RegisterPO register = new RegisterPO();
-        HomePagePO gologin = new HomePagePO();
+        HomePagePO goLogin = new HomePagePO();
         LoginPO user = new LoginPO();
-        gologin.clickLogin();
+        goLogin.clickLogin();
         register.registratiClick();
         register.aziendaClick();
         register.genderClick();
         register.maleClick();
-        register.settoreClick();
+       // register.settoreClick();
         register.enterFormCompany(testData.get("ragioneSociale").toString(), testData.get("nome").toString(), testData.get("cognome").toString(),
             timestamp.getDateTime() + testData.get("email").toString() + ".it", testData.get("password").toString(), testData.get("numeroditelefono").toString(), testData.get("cap").toString());
-        register.selectStore();
+       // register.selectStore();
         register.concludiRegistrazione();
         register.goProfileButton();
         new WebDriverWait(driver, 20).until(ExpectedConditions.urlContains("mylm"));
         assertEquals(SeleniumDriver.getInstance().getDriver().getCurrentUrl(), BASE_URL + testData.get("landingurl"), "Page url");
         user.logout();
     }
-    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 2)
+   /* @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 2)
     @Description("Create New Account Private Failed ")
     public void tc_003_newAccount(JSONObject testData) throws Exception {
 
@@ -105,9 +106,9 @@ public class NewAccount extends BaseTest {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         RegisterPO register = new RegisterPO();
-        HomePagePO gologin = new HomePagePO();
+        HomePagePO goLogin = new HomePagePO();
         LoginPO user = new LoginPO();
-        gologin.clickLogin();
+        goLogin.clickLogin();
         register.registratiClick();
         register.aziendaClick();
         register.genderClick();
@@ -124,5 +125,5 @@ public class NewAccount extends BaseTest {
         assertEquals(SeleniumDriver.getInstance().getDriver().getCurrentUrl(), BASE_URL + testData.get("landingurl"), "Page url");
         user.logout();
     }
-
+*/
 }

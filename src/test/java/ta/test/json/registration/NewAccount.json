@@ -9,27 +9,27 @@
       "numeroditelefono":"55571146582",
       "cap":"76121"
     },
-    { "rowID": "tc_001_newAccount.01",
+    { "rowID": "tc_001_newAccount.02",
       "landingurl":"mylm",
       "nome": "Li",
       "cognome":"Liang",
-      "email":"Liangà@Leroy.it",
+      "email":"liang@Leroy.it",
       "password":"~Li89shenzhen",
       "numeroditelefono":"55571146582",
       "cap":"85100"
     },
      {
-      "rowID": "tc_001_newAccount.02",
+      "rowID": "tc_001_newAccount.03",
       "landingurl":"mylm",
       "nome": "Diletta",
       "cognome":"Leotta",
-      "email":"Diletta@Leotta",
+      "email":"diletta@leotta",
       "password":"$RichGirl1$",
       "numeroditelefono":"00393271146582",
       "cap":"70100"
     },
     {
-      "rowID": "tc_001_newAccount.03",
+      "rowID": "tc_001_newAccount.04",
       "landingurl":"mylm",
       "nome": "Christian",
       "cognome":"Vieri",
@@ -41,7 +41,7 @@
   ],
   "tc_002_newAccount": [
     {
-      "rowID": "tc_001_newAccount.01",
+      "rowID": "tc_002_newAccount.01",
       "landingurl":"mylm",
       "ragioneSociale":"LeroyMerlin S.P.A",
       "nome": "Vasco",
@@ -51,7 +51,7 @@
       "numeroditelefono":"55571146582",
       "cap":"76121"
     },{
-      "rowID": "tc_01_newAccount.02",
+      "rowID": "tc_02_newAccount.02",
       "landingurl":"mylm",
       "ragioneSociale":"LeroyMerlin S.P.A",
       "nome": "Vasco",

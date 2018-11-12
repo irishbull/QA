@@ -1,0 +1,12 @@
+{
+  "tc_001_loginSuccess": [
+    {
+      "rowID": "tc_001_loginSuccess.01",
+      "description": "Test Profile - Fabio Fazio",
+      "username": "fabio@fazio.it",
+      "password": "fabio@fazio.it",
+      "firstName": "Fabio",
+      "urlProfile":"mylm/profilo"
+    }
+  ]
+}
