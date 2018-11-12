@@ -10,9 +10,6 @@ import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.LoginPO;
 import ta.pageobjects.impl.ProfilePO;
 import ta.test.BaseTest;
-import ta.utilities.BrowserUtils;
-import ta.utilities.constants.Constants;
-
 import static ta.utilities.constants.Constants.Url.BASE_URL;
 
 public class ProfileTest extends BaseTest {
