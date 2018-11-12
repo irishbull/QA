@@ -4,20 +4,44 @@
 <suite name="SeoSuite">
 
     <parameter name="isProxyRequired" value="true"/>
-
-   <!-- <test name="SeoTest">
-        <parameter name="json-path" value="src/test/java/ta/test/json/seo/SeoTest-UTF-8.json"/>
+    
+    <test name="HomePageTest">
+        <parameter name="pagePath" value="/"/>
+        <parameter name="json-path" value="src/test/java/ta/test/json/seo/HomePage.json"/>
         <classes>
             <class name="ta.test.impl.seo.SeoTest"/>
         </classes>
-    </test>-->
+    </test>
 
-
-    <test name="ListPageTest">
+    <test name="CategoryPage1Test">
         <parameter name="pagePath" value="/prodotti/barbecue-CAT667-c"/>
-        <parameter name="json-path" value="src/test/java/ta/test/json/seo/ListPageTest.json"/>
+        <parameter name="json-path" value="src/test/java/ta/test/json/seo/CategoryPage1Test.json"/>
         <classes>
-            <class name="ta.test.impl.seo.ListPageTest"/>
+            <class name="ta.test.impl.seo.SeoTest"/>
+        </classes>
+    </test>
+
+    <test name="CategoryPage3Test">
+        <parameter name="pagePath" value="/prodotti/barbecue-CAT667-c?page=3"/>
+        <parameter name="json-path" value="src/test/java/ta/test/json/seo/CategoryPage3Test.json"/>
+        <classes>
+            <class name="ta.test.impl.seo.SeoTest"/>
+        </classes>
+    </test>
+
+    <test name="CategoryPageSEOTest">
+        <parameter name="pagePath" value="/prodotti/barbecue-elettrici"/>
+        <parameter name="json-path" value="src/test/java/ta/test/json/seo/CategoryPageSEOTest.json"/>
+        <classes>
+            <class name="ta.test.impl.seo.SeoTest"/>
+        </classes>
+    </test>
+
+    <test name="ProductDetailsPageTest">
+        <parameter name="pagePath" value="/catalogo/mensola-pop-con-fermalibro-argento-36332030-p"/>
+        <parameter name="json-path" value="src/test/java/ta/test/json/seo/ProductDetailsPageTest.json"/>
+        <classes>
+            <class name="ta.test.impl.seo.SeoTest"/>
         </classes>
     </test>
 

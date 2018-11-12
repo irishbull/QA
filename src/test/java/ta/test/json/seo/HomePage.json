@@ -1,0 +1,30 @@
+{
+  "tc_001_title": [
+    {
+      "rowID" : "tc_001_title.01",
+      "description" : "Home page - test <title>",
+      "title" : "Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin"
+    }
+  ],
+  "tc_002_header1" : [
+    {
+      "rowID" : "tc_002_header1.01",
+      "description" : "Home - test <h1>",
+      "h1" : "Su Leroy Merlin"
+    }
+  ],
+  "tc_003_metaDescription" : [
+    {
+      "rowID" : "tc_003_metaDescription.01",
+      "description" : "Home page - test meta description",
+      "metaDescription" : "Per i vostri progetti di bricolage, giardinaggio e miglioramento della casa, LEROY MERLIN propone una grande scelta di marche al prezzo migliore. Tanti prodotti per tutta la casa: bagno, cucina, giardino, riscaldamento, elettricità, idraulica… Ritira in negozio o ricevi comodamente a casa."
+    }
+  ],
+  "tc_004_relCanonical" : [
+    {
+      "rowID" : "tc_004_relCanonical.01",
+      "description" : "Home page - test rel canonical",
+      "pagePath" : "/"
+    }
+  ]
+}

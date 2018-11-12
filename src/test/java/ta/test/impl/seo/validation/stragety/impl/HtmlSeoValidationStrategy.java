@@ -17,53 +17,55 @@ public enum HtmlSeoValidationStrategy implements SeoValidationStrategy {
     TITLE (SeoValidationType.TITLE) {
         @Override
         public <T extends SeoData> void validate(T data) {
+            String pageType = data.isRendered() ? "rendered" : "source";
             String title = data.getDocument().title();
             String expectedTitle = data.getExpectedData().get("title").toString();
-            Assert.assertNotEquals(title, "", "TITLE validation failed. Found empty title");
-            Assert.assertEquals(title, expectedTitle,  "TITLE validation failed. Title");
-            //Assert.assertNotEquals(title.trim(), "Leroy Merlin", "TITLE validation failed. Title should not be equal to Leroy Merlin");
+            Assert.assertNotEquals(title, "", String.format("Page type = %s. TITLE validation failed. Found empty title", pageType));
+            Assert.assertEquals(title, expectedTitle,  String.format("Page type = %s. TITLE validation failed. Title", pageType));
         }
     },
 
     HEADER1 (SeoValidationType.HEADER1) {
         @Override
         public <T extends SeoData> void validate(T data) {
+            String pageType = data.isRendered() ? "rendered" : "source";
             Elements headings = data.getDocument().getElementsByTag("h1");
-            Assert.assertEquals(headings.size(), 1, "HEADER1 validation failed. Tag <h1> should be unique. Number of <h1> tags");
-            Assert.assertEquals(headings.get(0).text(), data.getExpectedData().get("h1").toString(), "HEADER1 validation failed. <h1> text");
+            Assert.assertEquals(headings.size(), 1, String.format("Page type = %s. HEADER1 validation failed. Tag <h1> should be unique. Number of <h1> tags", pageType));
+            Assert.assertEquals(headings.get(0).text(), data.getExpectedData().get("h1").toString(), String.format("Page type = %s. HEADER1 validation failed. <h1> text", pageType));
         }
     },
 
     META_DESCRIPTION (SeoValidationType.META_DESCRIPTION) {
         @Override
         public <T extends SeoData> void validate(T data) {
+            String pageType = data.isRendered() ? "rendered" : "source";
             Elements metaDescriptions = data.getDocument().select("meta[name=\"description\"]");
-            Assert.assertEquals(metaDescriptions.size(), 1, "META_DESCRIPTION validation failed. Meta description should be unique. Number of meta description");
+            Assert.assertEquals(metaDescriptions.size(), 1,  String.format("Page type = %s. META_DESCRIPTION validation failed. Meta description should be unique. Number of meta description", pageType));
             String metaDescription =  metaDescriptions.get(0).attr("content").trim();
-            logger.info("meta description found: {}", metaDescription);
             String expectedMetaDescription = data.getExpectedData().get("metaDescription").toString().trim();
-            logger.info("meta description expected: {}", expectedMetaDescription);
-            Assert.assertEquals(metaDescription, expectedMetaDescription, "META_DESCRIPTION validation failed.");
+            Assert.assertEquals(metaDescription, expectedMetaDescription,  String.format("Page type = %s. META_DESCRIPTION validation failed.", pageType));
         }
     },
 
     REL_CANONICAL (SeoValidationType.REL_CANONICAL) {
         @Override
         public <T extends SeoData> void validate(T data) {
+            String pageType = data.isRendered() ? "rendered" : "source";
             Elements canonicals = data.getDocument().select("link[rel=\"canonical\"]");
-            Assert.assertTrue(canonicals.size() <= 1, "REL_CANONICAL validation failed. REL_CANONICAL is unique");
-            Assert.assertEquals(canonicals.get(0).attr("href"), BASE_URL + data.getExpectedData().get("pagePath").toString(), "REL_CANONICAL validation failed. Canonical href value");
+            Assert.assertTrue(canonicals.size() <= 1,  String.format("Page type = %s. REL_CANONICAL validation failed. REL_CANONICAL is unique", pageType));
+            Assert.assertEquals(canonicals.get(0).attr("href"), BASE_URL + data.getExpectedData().get("pagePath").toString(), String.format("Page type=[%s]. REL_CANONICAL validation failed. Canonical href value", pageType));
         }
     },
 
     ANCHOR (SeoValidationType.ANCHOR) {
         @Override
         public <T extends SeoData> void validate(T data) {
+            String pageType = data.isRendered() ? "rendered" : "source";
             Elements anchors = data.getDocument().getElementsByTag("a");
             for(Element anchor : anchors) {
                 String href = anchor.attr("href");
-                Assert.assertFalse(href.contains("undefined"), String.format("ANCHOR validation failed. Href contains the value 'undefined' -> [%s]", anchor));
-                Assert.assertFalse(href.startsWith("/"), String.format("ANCHOR validation failed: href value starts with '/' -> [%s]", anchor));
+                Assert.assertFalse(href.startsWith("/http"), String.format("Page type = %s. ANCHOR validation failed: href value starts with '/http' -> [%s]", pageType, anchor));
+                Assert.assertFalse(href.contains("undefined"), String.format("Page type = %s. ANCHOR validation failed: href contains the value 'undefined' -> [%s]", pageType, anchor));
             }
         }
     },
@@ -71,10 +73,11 @@ public enum HtmlSeoValidationStrategy implements SeoValidationStrategy {
     NOINDEX (SeoValidationType.NOINDEX) {
         @Override
         public <T extends SeoData> void validate(T data) {
+            String pageType = data.isRendered() ? "rendered" : "source";
             Elements noindex  = data.getDocument().getElementsByTag("noindex");
-            Assert.assertEquals(noindex.size(), 0, "NOINDEX validation failed. Number of tag <noindex>");
+            Assert.assertEquals(noindex.size(), 0, String.format("Page type = %s. NOINDEX validation failed. Number of tag <noindex>", pageType));
             Elements meta = data.getDocument().select("meta[content=\"noindex\"]");
-            Assert.assertEquals(meta.size(), 0, "Number of tag <meta content=\"noindex\">");
+            Assert.assertEquals(meta.size(), 0, String.format("Page type = %s. Number of tag <meta content=\"noindex\">", pageType));
         }
     },
 
