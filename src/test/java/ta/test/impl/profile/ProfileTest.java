@@ -30,7 +30,6 @@ public class ProfileTest extends BaseTest {
         loginPO.enterUsernameAndPassword(testData.get("username").toString(), testData.get("password").toString());
         loginPO.clickcookie();
         loginPO.clickAccedi();
-        Thread.sleep(5000);
         driver.navigate().to((BASE_URL)+ testData.get("urlProfile").toString());
         profile.clickChipProfile();
         profile.clickCodFiscale();
