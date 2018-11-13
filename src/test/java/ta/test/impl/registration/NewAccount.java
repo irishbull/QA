@@ -17,11 +17,8 @@ import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.LoginPO;
 import ta.pageobjects.impl.RegisterPO;
 import ta.test.BaseTest;
-
 import java.time.Duration;
 
-import static org.testng.Assert.assertEquals;
-import static ta.utilities.constants.Constants.Url.BASE_URL;
 
 public class NewAccount extends BaseTest {
 
@@ -68,7 +65,7 @@ public class NewAccount extends BaseTest {
         //goLogin.clickLogin(); menu dropdown!
         driver.navigate().to("https://www-qa3.leroymerlin.it/registrazione");
         register.aziendaClick();
-        autoComplete();
+        autoCompleteSelect();
         register.enterForCompany(testData.get("ragioneSociale").toString(),testData.get("cognome").toString(),testData.get("nome").toString(),
             timestamp.getDateTime() + testData.get("email").toString() + ".it",testData.get("password").toString(),testData.get("telefono").toString(),testData.get("cap").toString());
         register.selectStore();
@@ -83,7 +80,7 @@ public class NewAccount extends BaseTest {
         user.logout();
     }
 
-    private static void autoComplete() throws Exception{
+    private static void autoCompleteSelect() throws Exception{
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         logger.info("---> Select Click Start <----");
         Thread.sleep(1000);
