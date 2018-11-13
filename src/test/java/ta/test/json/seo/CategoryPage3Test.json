@@ -1,30 +1,42 @@
 {
-  "tc_001_title": [
+  "tc_001_category_page_3_title": [
     {
-      "rowID" : "tc_001_title.01",
-      "description" : "Category page list (page = 3) - test <title>",
-      "title" : "Barbecue prezzi e offerte online | Leroy Merlin 3"
+      "rowID": "tc_001_category_page_3_title.01",
+      "description": "Category page list (page = 3) - test <title>",
+      "title": "Barbecue prezzi e offerte online | Leroy Merlin 3"
     }
   ],
-  "tc_002_header1" : [
+  "tc_002_category_page_3_header1": [
     {
-      "rowID" : "tc_002_header1.01",
-      "description" : "Category page list (page = 3) - test <h1>",
-      "h1" : "Barbecue"
+      "rowID": "tc_002_category_page_3_header1.01",
+      "description": "Category page list (page = 3) - test <h1>",
+      "h1": "Barbecue"
     }
   ],
-  "tc_003_metaDescription" : [
+  "tc_003_category_page_3_metaDescription": [
     {
-      "rowID" : "tc_003_metaDescription.01",
-      "description" : "Category page list (page = 3) - test meta description",
-      "metaDescription" : ""
+      "rowID": "tc_003_category_page_3_metaDescription.01",
+      "description": "Category page list (page = 3) - test meta description",
+      "metaDescription": ""
     }
   ],
-  "tc_004_relCanonical" : [
+  "tc_004_category_page_3_relCanonical": [
     {
-      "rowID" : "tc_004_relCanonical.01",
-      "description" : "Category page list (page = 3) - test rel canonical",
-      "pagePath" : "/prodotti/barbecue-CAT667-c?page=3"
+      "rowID": "tc_004_category_page_3_relCanonical.01",
+      "description": "Category page list (page = 3) - test rel canonical",
+      "pagePath": "/prodotti/barbecue-CAT667-c?page=3"
+    }
+  ],
+  "tc_005_category_page_3_anchor": [
+    {
+      "rowID": "tc_005_category_page_3_anchor.01",
+      "description": "Product details page - test anchor"
+    }
+  ],
+  "tc_006_category_page_3_noindex": [
+    {
+      "rowID": "tc_006_category_page_3_noindex",
+      "description": "Product details page - test noindex"
     }
   ]
 }

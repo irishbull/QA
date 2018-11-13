@@ -15,7 +15,7 @@ import ta.driver.SeleniumDriver;
 
 public abstract class ToosoBaseTest extends BaseTest {
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     @BeforeMethod
     public void createHar(Method method) {

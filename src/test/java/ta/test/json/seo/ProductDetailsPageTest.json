@@ -10,7 +10,7 @@
     {
       "rowID" : "tc_002_header1.01",
       "description" : "Product details page - test <h1>",
-      "h1" : "MENSOLA POP CON FERMALIBRO ARGENTO"
+      "h1" : "Mensola Pop con fermalibro argento"
     }
   ],
   "tc_003_metaDescription" : [
@@ -25,6 +25,18 @@
       "rowID" : "tc_004_relCanonical.01",
       "description" : "Product details page - test rel canonical",
       "pagePath" : "/catalogo/mensola-pop-con-fermalibro-argento-36332030-p"
+    }
+  ],
+  "tc_005_anchor": [
+    {
+      "rowID": "tc_005_anchor.01",
+      "description": "Product details page - test anchor"
+    }
+  ],
+  "tc_006_noindex": [
+    {
+      "rowID": "tc_006_noindex",
+      "description": "Product details page - test noindex"
     }
   ]
 }

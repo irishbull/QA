@@ -4,45 +4,94 @@
 <suite name="SeoSuite">
 
     <parameter name="isProxyRequired" value="true"/>
-    
-    <test name="HomePageTest">
+
+    <!-- home page -->
+    <test name="HomePageTest-source">
         <parameter name="pagePath" value="/"/>
         <parameter name="json-path" value="src/test/java/ta/test/json/seo/HomePage.json"/>
         <classes>
-            <class name="ta.test.impl.seo.SeoTest"/>
+            <class name="ta.test.impl.seo.homepage.HomePageSourceTest"/>
         </classes>
     </test>
 
-    <test name="CategoryPage1Test">
+    <test name="HomePageTest-rendered">
+        <parameter name="pagePath" value="/"/>
+        <parameter name="json-path" value="src/test/java/ta/test/json/seo/HomePage.json"/>
+        <classes>
+            <class name="ta.test.impl.seo.homepage.HomePageRenderedTest"/>
+        </classes>
+    </test>
+
+
+    <!-- category page list 1 -->
+    <test name="CategoryPage1Test-source">
         <parameter name="pagePath" value="/prodotti/barbecue-CAT667-c"/>
         <parameter name="json-path" value="src/test/java/ta/test/json/seo/CategoryPage1Test.json"/>
         <classes>
-            <class name="ta.test.impl.seo.SeoTest"/>
+            <class name="ta.test.impl.seo.categorypage1.CategoryPage1SourceTest"/>
         </classes>
     </test>
 
-    <test name="CategoryPage3Test">
+    <test name="CategoryPage1Test-rendered">
+        <parameter name="pagePath" value="/prodotti/barbecue-CAT667-c"/>
+        <parameter name="json-path" value="src/test/java/ta/test/json/seo/CategoryPage1Test.json"/>
+        <classes>
+            <class name="ta.test.impl.seo.categorypage1.CategoryPage1RenderedTest"/>
+        </classes>
+    </test>
+
+
+    <!-- category page list 3 -->
+    <test name="CategoryPage3Test-source">
         <parameter name="pagePath" value="/prodotti/barbecue-CAT667-c?page=3"/>
         <parameter name="json-path" value="src/test/java/ta/test/json/seo/CategoryPage3Test.json"/>
         <classes>
-            <class name="ta.test.impl.seo.SeoTest"/>
+            <class name="ta.test.impl.seo.categorypage3.CategoryPage3SourceTest"/>
         </classes>
     </test>
 
-    <test name="CategoryPageSEOTest">
-        <parameter name="pagePath" value="/prodotti/barbecue-elettrici"/>
-        <parameter name="json-path" value="src/test/java/ta/test/json/seo/CategoryPageSEOTest.json"/>
+    <test name="CategoryPage3Test-rendered">
+        <parameter name="pagePath" value="/prodotti/barbecue-CAT667-c?page=3"/>
+        <parameter name="json-path" value="src/test/java/ta/test/json/seo/CategoryPage3Test.json"/>
         <classes>
-            <class name="ta.test.impl.seo.SeoTest"/>
+            <class name="ta.test.impl.seo.categorypage3.CategoryPage3RenderedTest"/>
         </classes>
     </test>
 
-    <test name="ProductDetailsPageTest">
+
+    <!-- category page seo -->
+    <test name="CategoryPageSeoTest-source">
+        <parameter name="pagePath" value="/prodotti/barbecue-elettrici"/>
+        <parameter name="json-path" value="src/test/java/ta/test/json/seo/CategoryPageSeoTest.json"/>
+        <classes>
+            <class name="ta.test.impl.seo.categoryseo.CategoryPageSeoSourceTest"/>
+        </classes>
+    </test>
+
+    <test name="CategoryPageSeoTest-rendered">
+        <parameter name="pagePath" value="/prodotti/barbecue-elettrici"/>
+        <parameter name="json-path" value="src/test/java/ta/test/json/seo/CategoryPageSeoTest.json"/>
+        <classes>
+            <class name="ta.test.impl.seo.categoryseo.CategoryPageSeoRenderedTest"/>
+        </classes>
+    </test>
+
+
+    <!--&lt;!&ndash; product details page &ndash;&gt;
+    <test name="ProductDetailsPageTest-source">
         <parameter name="pagePath" value="/catalogo/mensola-pop-con-fermalibro-argento-36332030-p"/>
         <parameter name="json-path" value="src/test/java/ta/test/json/seo/ProductDetailsPageTest.json"/>
         <classes>
-            <class name="ta.test.impl.seo.SeoTest"/>
+            <class name="ta.test.impl.seo.CategoryPage3SourceTest"/>
         </classes>
     </test>
+
+    <test name="ProductDetailsPageTest-rendered">
+        <parameter name="pagePath" value="/catalogo/mensola-pop-con-fermalibro-argento-36332030-p"/>
+        <parameter name="json-path" value="src/test/java/ta/test/json/seo/ProductDetailsPageTest.json"/>
+        <classes>
+            <class name="ta.test.impl.seo.CategoryPage3RenderedTest"/>
+        </classes>
+    </test>-->
 
 </suite>
