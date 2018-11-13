@@ -19,10 +19,10 @@ public class RegisterPO extends PageObject {
     @FindBy(how = How.ID, using = "menu-gender")
     private WebElement menugender;
 
-    @FindBy(how = How.NAME, using = "_PRIVATO")
+    @FindBy(how = How.XPATH, xpath = "(\"(.//*[normalize-space(text()) and normalize-space(.)='Privato'])[1]/following::div[3]\"))")
     private WebElement privato;
 
-    @FindBy (how = How.NAME, using ="organizationName")
+    @FindBy (how = How.ID, using ="id_organizationName")
     private WebElement ragioneSociale;
 
     @FindBy (how = How.ID_OR_NAME, using ="menu-sector")
@@ -49,11 +49,15 @@ public class RegisterPO extends PageObject {
     @FindBy(how = How.XPATH, xpath = "/html/body/div[1]/div/div[6]/div/div[14]/div/div[1]/div[1]/div")
     private WebElement accettaTermini;
 
+
+    @FindBy(how = How.XPATH, xpath = "/html/body/div[1]/div/div[6]/div/div[4]/div[2]/div")
+    private WebElement accettaButton;
+
     @FindBy(how = How.XPATH, xpath = "/html/body/div[1]/div/div[6]/div/div[14]/div/div[2]/div[1]/div")
     private WebElement profiloCheck;
 
     @FindBy(how = How.ID_OR_NAME, using = "name")
-    private WebElement name;
+    private WebElement nome;
 
     @FindBy(how = How.ID_OR_NAME, using = "emailAddress")
     private WebElement email;
@@ -90,7 +94,9 @@ public class RegisterPO extends PageObject {
     private WebElement profiling;
 
     public void checkconditions(){termsConditions.click();}
-    public void setProfiling(){
+    public void accettaButton(){accettaButton.click();}
+
+    public void profilingClick(){
         profiling.click();
     }
 
@@ -100,8 +106,7 @@ public class RegisterPO extends PageObject {
 
     public void registratiClick(){ registrati.click();}
 
-    public void accettaTermini(){
-        accettaTermini.click();
+    public void accettaTermini(){ accettaTermini.click();
     }
 
     public void selPrivatoClick(){
@@ -117,6 +122,7 @@ public class RegisterPO extends PageObject {
     public void goProfileButton(){ goProfile.click(); }
 
     public void genderClick(){ gender.click(); }
+
     public void maleClick(){
         WebElement genderSelected = menugender.findElement(By.xpath(".//div/ul/li[@data-value=\"MALE\"]"));
             genderSelected.click();
@@ -126,7 +132,7 @@ public class RegisterPO extends PageObject {
         rifiuto.click();
     }
 
-    public void profilo(){
+    public void accettaProfilazione(){
         profiloCheck.click();
     }
     public void selectStore(){
@@ -140,23 +146,49 @@ public class RegisterPO extends PageObject {
  }
 
     public void enterUsernameAndPassword(String nome, String cognome, String email, String password , String telefono, String cap) throws Exception {
-        this.name.sendKeys(converterToUtf(nome));
+        this.nome.click();
+        this.nome.clear();
+        this.nome.sendKeys(converterToUtf(nome));
+        this.cognome.click();
+        this.cognome.clear();
         this.cognome.sendKeys(converterToUtf(cognome));
+        this.telefono.click();
+        this.telefono.clear();
         this.telefono.sendKeys(converterToUtf(telefono));
+        this.email.click();
+        this.email.clear();
         this.email.sendKeys(converterToUtf(email));
+        this.password.click();
         this.password.sendKeys(converterToUtf(password));
+        this.cap.click();
+        this.cap.clear();
         this.cap.sendKeys(converterToUtf(cap));
     }
 
-    public void enterFormCompany(String ragioneSociale, String nome, String cognome, String email, String password ,String telefono, String cap) throws Exception {
+    public void enterForCompany(String ragioneSociale,String nome, String cognome, String email, String password , String telefono, String cap) throws Exception {
+        this.ragioneSociale.click();
+        this.ragioneSociale.clear();
         this.ragioneSociale.sendKeys(converterToUtf(ragioneSociale));
-        this.name.sendKeys(converterToUtf(nome));
+        this.nome.click();
+        this.nome.clear();
+        this.nome.sendKeys(converterToUtf(nome));
+        this.cognome.click();
+        this.cognome.clear();
         this.cognome.sendKeys(converterToUtf(cognome));
+        this.telefono.click();
+        this.telefono.clear();
+        this.telefono.click();
+        this.telefono.clear();
         this.telefono.sendKeys(converterToUtf(telefono));
+        this.email.click();
+        this.email.clear();
         this.email.sendKeys(converterToUtf(email));
+        this.password.click();
+        this.password.clear();
         this.password.sendKeys(converterToUtf(password));
+        this.cap.clear();
+        this.cap.click();
         this.cap.sendKeys(converterToUtf(cap));
-
     }
 
 }

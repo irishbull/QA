@@ -43,67 +43,23 @@
     {
       "rowID": "tc_002_newAccount.01",
       "landingurl":"mylm",
-      "ragioneSociale":"LeroyMerlin S.P.A",
+      "ragioneSociale":"LeroyMerlin S.P.A0",
       "nome": "Vasco",
       "cognome":"Rossi",
       "email":"Vasco@Coca",
-      "password":"bollici8999Ane",
-      "numeroditelefono":"55571146582",
+      "password":"Pippo89",
+      "telefono":"55571146582",
       "cap":"76121"
     },{
       "rowID": "tc_02_newAccount.02",
       "landingurl":"mylm",
-      "ragioneSociale":"LeroyMerlin S.P.A",
+      "ragioneSociale":"LeroyMerlin S.P.A1",
       "nome": "Vasco",
       "cognome":"Rossi",
       "email":"Vasco@Coca",
-      "password":"",
-      "numeroditelefono":"55571146582",
+      "password":"Pippo89",
+      "telefono":"55571146582",
       "cap":"76121"
-    }
-  ],  "tc_003_newAccount": [
-  {
-    "rowID": "tc_003_newAccount.01",
-    "landingurl":"mylm",
-    "ragioneSociale":"LeroyMerlin S.P.A",
-    "nome": "",
-    "cognome":"Rossi",
-    "email":"Vasco@Coca",
-    "password":"bollici8999Ane",
-    "numeroditelefono":"55571146582",
-    "cap":"76121"
-  },{
-    "rowID": "tc_03_newAccount.02",
-    "landingurl":"mylm",
-    "ragioneSociale":"LeroyMerlin S.P.A",
-    "nome": "Vasco",
-    "cognome":"Rossi",
-    "email":"Vasco@Coca",
-    "password":"",
-    "numeroditelefono":"55571146582",
-    "cap":"76121"
-    }
-  ],  "tc_004_newAccount": [
-  {
-    "rowID": "tc_004_newAccount.01",
-    "landingurl":"mylm",
-    "ragioneSociale":"LeroyMerlin S.P.A",
-    "nome": "",
-    "cognome":"Rossi",
-    "email":"Vasco@Coca",
-    "password":"bollici8999Ane",
-    "numeroditelefono":"",
-    "cap":"76121"
-  },{
-    "rowID": "tc_04_newAccount.02",
-    "landingurl":"mylm",
-    "ragioneSociale":"",
-    "nome": "Vasco",
-    "cognome":"Rossi",
-    "email":"Vasco@Coca",
-    "password":"",
-    "numeroditelefono":"55571146582",
-    "cap":"76121"
     }
   ]
 }
