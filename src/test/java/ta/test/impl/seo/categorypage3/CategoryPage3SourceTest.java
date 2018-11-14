@@ -8,13 +8,12 @@ import java.util.Set;
 
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
-import ta.test.SeoSourceTest;
+import ta.test.seo.SeoSourceTest;
 import ta.test.impl.seo.validation.SeoData;
 import ta.test.impl.seo.validation.SeoValidationContext;
 import ta.test.impl.seo.validation.stragety.SeoValidationStrategy;
 import ta.test.impl.seo.validation.stragety.impl.HtmlSeoValidationStrategy;
 
-;
 
 public class CategoryPage3SourceTest extends SeoSourceTest {
 

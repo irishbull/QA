@@ -1,9 +1,7 @@
-package ta.test;
+package ta.test.tooso;
 
 import net.lightbody.bmp.core.har.Har;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -11,11 +9,10 @@ import java.lang.reflect.Method;
 import java.util.Objects;
 
 import ta.driver.SeleniumDriver;
+import ta.test.BaseTest;
 
 
 public abstract class ToosoBaseTest extends BaseTest {
-
-    protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     @BeforeMethod
     public void createHar(Method method) {

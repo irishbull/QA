@@ -52,7 +52,7 @@ public enum HtmlSeoValidationStrategy implements SeoValidationStrategy {
         public <T extends SeoData> void validate(T data) {
             String pageType = data.isRendered() ? "rendered" : "source";
             Elements canonicals = data.getDocument().select("link[rel=\"canonical\"]");
-            Assert.assertTrue(canonicals.size() <= 1, String.format("Page type = %s. REL_CANONICAL validation failed. REL_CANONICAL is unique", pageType));
+            Assert.assertEquals(canonicals.size(),  1, String.format("Page type = %s. REL_CANONICAL validation failed. Rel canonical should be unique. Number of rel_canonical", pageType));
             Assert.assertEquals(canonicals.get(0).attr("href"), BASE_URL + data.getExpectedData().get("pagePath").toString(), String.format("Page type=[%s]. REL_CANONICAL validation failed. Canonical href value", pageType));
         }
     },
@@ -63,18 +63,27 @@ public enum HtmlSeoValidationStrategy implements SeoValidationStrategy {
             String pageType = data.isRendered() ? "rendered" : "source";
             Elements anchors = data.getDocument().getElementsByTag("a");
 
-            boolean areAnchorsValid = true;
-            Element invalidElem = null;
+            boolean areUrlsWellFormed = true;
+            boolean doUrlsNotContainUndefined = true;
 
+            // Check malformed urls
             for (Element anchor : anchors) {
-                if (anchor.attr("href").startsWith("/http") || anchor.attr("href").contains("undefined")) {
-                    invalidElem = anchor;
-                    areAnchorsValid = false;
+                if (anchor.attr("href").startsWith("/http")) {
+                    areUrlsWellFormed = false;
                     break;
                 }
             }
 
-            Assert.assertTrue(areAnchorsValid, String.format("Page type = %s. ANCHOR validation failed. Invalid anchor -> [%s]", pageType, invalidElem));
+            // Check undefined values
+            for (Element anchor : anchors) {
+                if (anchor.attr("href").contains("undefined")) {
+                    doUrlsNotContainUndefined = false;
+                    break;
+                }
+            }
+
+            Assert.assertTrue(areUrlsWellFormed && doUrlsNotContainUndefined,
+                    String.format("Page type = %s. ANCHOR validation failed. Urls are well formed = %s - Urls do not contain 'undefined' = %s. Anchors are valid", pageType, areUrlsWellFormed, doUrlsNotContainUndefined));
         }
     },
 

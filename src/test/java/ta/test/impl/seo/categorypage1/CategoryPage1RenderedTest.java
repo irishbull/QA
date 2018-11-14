@@ -8,15 +8,14 @@ import java.util.Set;
 
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
-import ta.test.SeoSourceTest;
+import ta.test.seo.SeoRenderedTest;
 import ta.test.impl.seo.validation.SeoData;
 import ta.test.impl.seo.validation.SeoValidationContext;
 import ta.test.impl.seo.validation.stragety.SeoValidationStrategy;
 import ta.test.impl.seo.validation.stragety.impl.HtmlSeoValidationStrategy;
 
-;
 
-public class CategoryPage1RenderedTest extends SeoSourceTest {
+public class CategoryPage1RenderedTest extends SeoRenderedTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("<p><code>&lt;title&gt;</code></p><ul><li>esiste</li><li>il suo valore è uguale a quello atteso</li></ul>")
@@ -29,7 +28,7 @@ public class CategoryPage1RenderedTest extends SeoSourceTest {
         SeoValidationContext seoValidationContext = new SeoValidationContext(strategies);
 
         logger.info("Page type[source] - validate[{}]", HtmlSeoValidationStrategy.TITLE);
-        SeoData sourceData = new SeoData(source, false, testData);
+        SeoData sourceData = new SeoData(rendered, true, testData);
         seoValidationContext.execute(sourceData);
     }
 
@@ -45,7 +44,7 @@ public class CategoryPage1RenderedTest extends SeoSourceTest {
         SeoValidationContext seoValidationContext = new SeoValidationContext(strategies);
 
         logger.info("Page type[source] - validate[{}]", HtmlSeoValidationStrategy.HEADER1);
-        SeoData sourceData = new SeoData(source, false, testData);
+        SeoData sourceData = new SeoData(rendered, true, testData);
         seoValidationContext.execute(sourceData);
     }
 
@@ -61,7 +60,7 @@ public class CategoryPage1RenderedTest extends SeoSourceTest {
         SeoValidationContext seoValidationContext = new SeoValidationContext(strategies);
 
         logger.info("Page type[source] - validate[{}]", HtmlSeoValidationStrategy.META_DESCRIPTION);
-        SeoData sourceData = new SeoData(source, false, testData);
+        SeoData sourceData = new SeoData(rendered, true, testData);
         seoValidationContext.execute(sourceData);
     }
 
@@ -77,7 +76,7 @@ public class CategoryPage1RenderedTest extends SeoSourceTest {
         SeoValidationContext seoValidationContext = new SeoValidationContext(strategies);
 
         logger.info("Page type[source] - validate[{}]", HtmlSeoValidationStrategy.REL_CANONICAL);
-        SeoData sourceData = new SeoData(source, false, testData);
+        SeoData sourceData = new SeoData(rendered, true, testData);
         seoValidationContext.execute(sourceData);
     }
 
@@ -93,7 +92,7 @@ public class CategoryPage1RenderedTest extends SeoSourceTest {
         SeoValidationContext seoValidationContext = new SeoValidationContext(strategies);
 
         logger.info("Page type[source] - validate[{}]", HtmlSeoValidationStrategy.ANCHOR);
-        SeoData sourceData = new SeoData(source, false);
+        SeoData sourceData = new SeoData(rendered, true);
         seoValidationContext.execute(sourceData);
     }
 
@@ -109,7 +108,7 @@ public class CategoryPage1RenderedTest extends SeoSourceTest {
         SeoValidationContext seoValidationContext = new SeoValidationContext(strategies);
 
         logger.info("Page type[source] - validate[{}]", HtmlSeoValidationStrategy.NOINDEX);
-        SeoData sourceData = new SeoData(source, false);
+        SeoData sourceData = new SeoData(rendered, true);
         seoValidationContext.execute(sourceData);
     }
 }

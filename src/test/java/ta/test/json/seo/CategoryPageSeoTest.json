@@ -26,17 +26,5 @@
       "description": "Category page SEO - test rel canonical",
       "pagePath": "/prodotti/barbecue-elettrici"
     }
-  ],
-  "tc_005_category_page_seo_anchor": [
-    {
-      "rowID": "tc_005_anchor.01",
-      "description": "Product details page - test anchor"
-    }
-  ],
-  "tc_006_category_page_seo_noindex": [
-    {
-      "rowID": "tc_006_category_page_seo_noindex",
-      "description": "Product details page - test noindex"
-    }
   ]
 }

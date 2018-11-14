@@ -1,4 +1,4 @@
-package ta.test.impl.seo;
+package ta.test.impl.seo.productdetailspage;
 
 import org.json.simple.JSONObject;
 import org.testng.annotations.Test;
@@ -8,19 +8,18 @@ import java.util.Set;
 
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
-import ta.test.SeoSourceTest;
+import ta.test.seo.SeoSourceTest;
 import ta.test.impl.seo.validation.SeoData;
 import ta.test.impl.seo.validation.SeoValidationContext;
 import ta.test.impl.seo.validation.stragety.SeoValidationStrategy;
 import ta.test.impl.seo.validation.stragety.impl.HtmlSeoValidationStrategy;
 
-;
 
-public class SourcePageTest extends SeoSourceTest {
+public class ProductDetailsSourceTest extends SeoSourceTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("<p><code>&lt;title&gt;</code></p><ul><li>esiste</li><li>il suo valore è uguale a quello atteso</li></ul>")
-    public void tc_001_title(JSONObject testData) {
+    public void tc_001_product_details_page_title(JSONObject testData) {
 
         Set<SeoValidationStrategy> strategies = new LinkedHashSet<>();
 
@@ -36,7 +35,7 @@ public class SourcePageTest extends SeoSourceTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("<p><code>&lt;h1&gt;</code></p><ul><li>esiste ed è unico</li><li>il suo valore è uguale a quello atteso</li></ul>")
-    public void tc_002_header1(JSONObject testData) {
+    public void tc_002_product_details_page_header1(JSONObject testData) {
 
         Set<SeoValidationStrategy> strategies = new LinkedHashSet<>();
 
@@ -52,7 +51,7 @@ public class SourcePageTest extends SeoSourceTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("<p><code>&lt;meta name=&#8220;description&#8221; content=&#8220;...&#8221;&gt;</code></p><ul><li>esiste ed è unico</li><li>il valore di <code>href</code> è uguale allo URL della pagina testata</li></ul>")
-    public void tc_003_metaDescription(JSONObject testData) {
+    public void tc_003_product_details_page_metaDescription(JSONObject testData) {
 
         Set<SeoValidationStrategy> strategies = new LinkedHashSet<>();
 
@@ -68,7 +67,7 @@ public class SourcePageTest extends SeoSourceTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("<p><code>&lt;link rel=&#8220;canonical&#8221; href=&#8220;...&#8221;&gt;</code></p><ul><li>esiste ed è unico</li><li>il valore di <code>href</code> è uguale a quello atteso</li></ul>")
-    public void tc_004_relCanonical(JSONObject testData) {
+    public void tc_004_product_details_page_relCanonical(JSONObject testData) {
 
         Set<SeoValidationStrategy> strategies = new LinkedHashSet<>();
 
@@ -84,7 +83,7 @@ public class SourcePageTest extends SeoSourceTest {
 
     @Test
     @Description("<p><code>&lt;a href=&#8220;...&#8221</code></p><ul><li>il valore di <code>href</code> non deve contenere <code>/undefined</code></li><li>il valore di <code>href</code> non deve iniziare con <code>/http</code></li></ul>")
-    public void tc_005_anchor() {
+    public void tc_005_product_details_page_anchor() {
 
         Set<SeoValidationStrategy> strategies = new LinkedHashSet<>();
 
@@ -100,7 +99,7 @@ public class SourcePageTest extends SeoSourceTest {
 
     @Test
     @Description("<p><code>&lt;index&gt;</code> e <code>&lt;meta ... content=&#8220;noindex&#8221&gt;</code></p><ul><li>non esistono nella pagina corrente</li></ul>")
-    public void tc_006_noindex() {
+    public void tc_006_product_details_page_noindex() {
 
         Set<SeoValidationStrategy> strategies = new LinkedHashSet<>();
 

@@ -1,16 +1,14 @@
-package ta.test;
+package ta.test.seo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeSuite;
 
 import java.nio.charset.Charset;
 import java.util.Locale;
 
+import ta.test.BaseTest;
+
 
 public abstract class SeoBaseTest extends BaseTest {
-
-    protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     @BeforeSuite
     public void encodeInfo() {

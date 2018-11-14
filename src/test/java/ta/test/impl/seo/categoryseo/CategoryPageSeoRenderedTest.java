@@ -8,13 +8,12 @@ import java.util.Set;
 
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
-import ta.test.SeoRenderedTest;
+import ta.test.seo.SeoRenderedTest;
 import ta.test.impl.seo.validation.SeoData;
 import ta.test.impl.seo.validation.SeoValidationContext;
 import ta.test.impl.seo.validation.stragety.SeoValidationStrategy;
 import ta.test.impl.seo.validation.stragety.impl.HtmlSeoValidationStrategy;
 
-;
 
 public class CategoryPageSeoRenderedTest extends SeoRenderedTest {
 
@@ -82,9 +81,9 @@ public class CategoryPageSeoRenderedTest extends SeoRenderedTest {
     }
 
 
-    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Test
     @Description("<p><code>&lt;a href=&#8220;...&#8221</code></p><ul><li>il valore di <code>href</code> non deve contenere <code>/undefined</code></li><li>il valore di <code>href</code> non deve iniziare con <code>/http</code></li></ul>")
-    public void tc_005_category_page_seo_anchor(JSONObject testData) {
+    public void tc_005_category_page_seo_anchor() {
 
         Set<SeoValidationStrategy> strategies = new LinkedHashSet<>();
 
@@ -93,14 +92,14 @@ public class CategoryPageSeoRenderedTest extends SeoRenderedTest {
         SeoValidationContext seoValidationContext = new SeoValidationContext(strategies);
 
         logger.info("Page type[rendered] - validate[{}]", HtmlSeoValidationStrategy.IMAGE);
-        SeoData renderedData = new SeoData(rendered, true, testData);
+        SeoData renderedData = new SeoData(rendered, true);
         seoValidationContext.execute(renderedData);
     }
 
 
-    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Test
     @Description("<p><code>&lt;index&gt;</code> e <code>&lt;meta ... content=&#8220;noindex&#8221&gt;</code></p><ul><li>non esistono nella pagina corrente</li></ul>")
-    public void tc_006_category_page_seo_noindex(JSONObject testData) {
+    public void tc_006_category_page_seo_noindex() {
 
         Set<SeoValidationStrategy> strategies = new LinkedHashSet<>();
 
@@ -109,7 +108,7 @@ public class CategoryPageSeoRenderedTest extends SeoRenderedTest {
         SeoValidationContext seoValidationContext = new SeoValidationContext(strategies);
 
         logger.info("Page type[rendered] - validate[{}]", HtmlSeoValidationStrategy.NOINDEX);
-        SeoData renderedData = new SeoData(rendered, true, testData);
+        SeoData renderedData = new SeoData(rendered, true);
         seoValidationContext.execute(renderedData);
     }
 }

@@ -24,19 +24,7 @@
     {
       "rowID": "tc_004_homepage_relCanonical.01",
       "description": "Home page - test rel canonical",
-      "pagePath": "/"
-    }
-  ],
-  "tc_005_homepage_anchor": [
-    {
-      "rowID": "tc_005_homepage_anchor.01",
-      "description": "Product details page - test anchor"
-    }
-  ],
-  "tc_006_homepage_noindex": [
-    {
-      "rowID": "tc_006_homepage_noindex",
-      "description": "Product details page - test noindex"
+      "pagePath": ""
     }
   ]
 }

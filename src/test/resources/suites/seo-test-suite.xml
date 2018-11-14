@@ -77,12 +77,12 @@
     </test>
 
 
-    <!--&lt;!&ndash; product details page &ndash;&gt;
+    <!-- product details page -->
     <test name="ProductDetailsPageTest-source">
         <parameter name="pagePath" value="/catalogo/mensola-pop-con-fermalibro-argento-36332030-p"/>
         <parameter name="json-path" value="src/test/java/ta/test/json/seo/ProductDetailsPageTest.json"/>
         <classes>
-            <class name="ta.test.impl.seo.CategoryPage3SourceTest"/>
+            <class name="ta.test.impl.seo.productdetailspage.ProductDetailsSourceTest"/>
         </classes>
     </test>
 
@@ -90,8 +90,8 @@
         <parameter name="pagePath" value="/catalogo/mensola-pop-con-fermalibro-argento-36332030-p"/>
         <parameter name="json-path" value="src/test/java/ta/test/json/seo/ProductDetailsPageTest.json"/>
         <classes>
-            <class name="ta.test.impl.seo.CategoryPage3RenderedTest"/>
+            <class name="ta.test.impl.seo.productdetailspage.ProductDetailsRenderedTest"/>
         </classes>
-    </test>-->
+    </test>
 
 </suite>

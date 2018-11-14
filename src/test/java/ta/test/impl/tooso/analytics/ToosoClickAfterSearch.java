@@ -18,7 +18,7 @@ import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.SerpPO;
 import ta.pageobjects.impl.ToosoSearchPO;
-import ta.test.ToosoBaseTest;
+import ta.test.tooso.ToosoBaseTest;
 import ta.utilities.ToosoAnalyticsUtils;
 
 import static ta.utilities.constants.Constants.Url.BASE_URL;

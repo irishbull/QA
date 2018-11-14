@@ -13,7 +13,7 @@ import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.SerpPO;
 import ta.pageobjects.impl.ToosoSearchPO;
-import ta.test.ToosoBaseTest;
+import ta.test.tooso.ToosoBaseTest;
 import ta.utilities.ToosoAnalyticsUtils;
 
 import java.util.List;

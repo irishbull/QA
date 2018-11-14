@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
-import ta.test.ToosoBaseTest;
+import ta.test.tooso.ToosoBaseTest;
 import ta.utilities.ToosoAnalyticsUtils;
 
 import static ta.utilities.constants.Constants.Url.BASE_URL;

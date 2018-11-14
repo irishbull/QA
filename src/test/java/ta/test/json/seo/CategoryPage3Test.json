@@ -26,17 +26,5 @@
       "description": "Category page list (page = 3) - test rel canonical",
       "pagePath": "/prodotti/barbecue-CAT667-c?page=3"
     }
-  ],
-  "tc_005_category_page_3_anchor": [
-    {
-      "rowID": "tc_005_category_page_3_anchor.01",
-      "description": "Product details page - test anchor"
-    }
-  ],
-  "tc_006_category_page_3_noindex": [
-    {
-      "rowID": "tc_006_category_page_3_noindex",
-      "description": "Product details page - test noindex"
-    }
   ]
 }
