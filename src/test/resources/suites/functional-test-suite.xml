@@ -4,7 +4,7 @@
 <suite name="FunctionalTestSuite" >
 
     <parameter name="isProxyRequired" value= "false"/>
-<!--
+
     <test name = "productMenuNavigation">
         <parameter name="json-path"  value="src/test/java/ta/test/json/ProductMenuTest.json"/>
         <classes>
@@ -18,7 +18,7 @@
             <class name = "ta.test.impl.PdpTest" />
         </classes>
     </test>
--->
+
     <test name = "login">
         <parameter name="json-path"  value="src\test\java\ta\test\json\LoginTest.json"/>
         <classes>
@@ -26,12 +26,20 @@
         </classes>
     </test>
 
-<!--
+
     <test name = "createAccount">
         <parameter name="json-path" value="src/test/java/ta/test/json/registration/NewAccount.json"/>
         <classes>
             <class name = "ta.test.impl.registration.NewAccount" />
         </classes>
     </test>
--->
+
+
+    <test name = "profileTest">
+         <parameter name="json-path" value="src/test/java/ta/test/json/profile/Profile.json"/>
+        <classes>
+            <class name = "ta.test.impl.profile.ProfileTest" />
+        </classes>
+    </test>
+
 </suite>
