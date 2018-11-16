@@ -1,5 +1,6 @@
 package ta.pageobjects.impl;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -7,7 +8,7 @@ import org.openqa.selenium.support.How;
 
 import ta.pageobjects.PageObject;
 
-public class LoginPO extends PageObject {
+public class AngularLoginPO extends PageObject {
 
     @FindBy(how = How.ID, using = "email")
     @CacheLookup
@@ -17,12 +18,13 @@ public class LoginPO extends PageObject {
     @CacheLookup
     private WebElement password;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[1]/main/div/div/div/div/div/div/div/div[1]/form/div[2]/div/button")
+    @FindBy(how = How.NAME, using = "loginForm")
     @CacheLookup
-    private WebElement loginButton;
+    private WebElement loginForm;
 
     @FindBy(how = How.CLASS_NAME, using = "error-login")
     private WebElement loginErrorMessageWrapper;
+
 
     public void enterUsernameAndPassword(String email, String password) {
         this.email.clear();
@@ -32,7 +34,7 @@ public class LoginPO extends PageObject {
     }
 
     public HomePagePO clickLoginButton() {
-        this.loginButton.submit();
+        this.loginForm.findElement(By.tagName("button")).click();
         return new HomePagePO();
     }
 
