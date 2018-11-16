@@ -14,7 +14,7 @@ In order to utilise this project you need to have installed locally:
 ## Usage
 
 ### Run tests 
-`gradle clean refreshTestEnvironment -PEnv={environment} -PBrowser={browser} test`
+`gradle clean refreshTestEnvironment -PEnv={environment} -PBrowser={browser} -Dfile.encoding=UTF-8 test`
 
 
 ### Generate report

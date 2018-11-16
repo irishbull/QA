@@ -1,0 +1,30 @@
+{
+  "tc_001_category_page_1_title": [
+    {
+      "rowID": "tc_001_title.01",
+      "description": "Category page list (page = 1) - test <title>",
+      "title": "Barbecue: prezzi e offerte BBQ a gas, legna, carbone ed elettrici"
+    }
+  ],
+  "tc_002_category_page_1_header1": [
+    {
+      "rowID": "tc_002_category_page_1_.01",
+      "description": "Category page list (page = 1) - test <h1>",
+      "h1": "Barbecue"
+    }
+  ],
+  "tc_003_category_page_1_metaDescription": [
+    {
+      "rowID": "tc_003_category_page_1_metaDescription.01",
+      "description": "Category page list (page = 1) - test meta description",
+      "metaDescription": "Scopri il catalogo di barbecue Leroy Merlin: BBQ a gas, legna, carbone, elettrici, con pietra lavica. Acquista online o in negozio!"
+    }
+  ],
+  "tc_004_category_page_1_relCanonical": [
+    {
+      "rowID": "tc_004_category_page_1_relCanonical.01",
+      "description": "Category page list (page = 1) - test rel canonical",
+      "pagePath": "/prodotti/barbecue-CAT667-c"
+    }
+  ]
+}

@@ -24,7 +24,7 @@ import static ta.utilities.constants.Constants.Url.BASE_URL;
 
 public abstract class BaseTest {
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Parameters("isProxyRequired")
     @BeforeSuite

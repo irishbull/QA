@@ -1,0 +1,31 @@
+{
+  "tc_001_product_details_page_title": [
+    {
+      "rowID" : "tc_001_product_details_page_title.01",
+      "description" : "Product details page - test <title>",
+      "title" : "Mensola Pop con fermalibro argento prezzi e offerte online | Leroy Merlin"
+    }
+  ],
+  "tc_002_product_details_page_header1" : [
+    {
+      "rowID" : "tc_002_product_details_page_header1.01",
+      "description" : "Product details page - test <h1>",
+      "h1" : "Mensola Pop con fermalibro argento"
+    }
+  ],
+  "tc_003_product_details_page_metaDescription" : [
+    {
+      "rowID" : "tc_003_product_details_page_metaDescription.01",
+      "description" : "Product details page - test meta description",
+      "metaDescription" : "Mensola Pop con fermalibro argento scopri tutte le caratteristiche, acquista online o trova il punto vendita più vicino per acquistare!"
+    }
+  ],
+  "tc_004_product_details_page_relCanonical" : [
+    {
+      "rowID" : "tc_004_product_details_page_relCanonical.01",
+      "description" : "Product details page - test rel canonical",
+      "pagePath" : "/catalogo/mensola-pop-con-fermalibro-argento-36332030-p"
+    }
+  ]
+}
+
