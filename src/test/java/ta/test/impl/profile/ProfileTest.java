@@ -10,6 +10,7 @@ import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.LoginPO;
 import ta.pageobjects.impl.ProfilePO;
 import ta.test.BaseTest;
+
 import static ta.utilities.constants.Constants.Url.BASE_URL;
 
 public class ProfileTest extends BaseTest {
@@ -23,16 +24,16 @@ public class ProfileTest extends BaseTest {
         driver.get(BASE_URL);
         HomePagePO homePagePO = new HomePagePO();
         ProfilePO profile = new ProfilePO();
-        LoginPO loginPO = homePagePO.clickLoginIconLink();
+        LoginPO loginPO = new LoginPO();
+        driver.navigate().to("https://www-qa3.leroymerlin.it/login?redirectUrl=https://www-qa3.leroymerlin.it/");
         loginPO.enterUsernameAndPassword(testData.get("username").toString(), testData.get("password").toString());
         loginPO.clickcookie();
         loginPO.clickAccedi();
-        driver.navigate().to((BASE_URL)+ testData.get("urlProfile").toString());
-        profile.clickChipProfile();
-        profile.clickCodFiscale();
+        Thread.sleep(5000);
+        driver.navigate().to((BASE_URL) + testData.get("urlProfile").toString());
+        Thread.sleep(20000);
+        profile.clickChipEmail();
         profile.clickSaveButton();
-
-
 
     }
 }

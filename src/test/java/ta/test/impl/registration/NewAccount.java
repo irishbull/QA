@@ -3,10 +3,8 @@ package ta.test.impl.registration;
 import com.sun.jmx.snmp.Timestamp;
 import io.qameta.allure.Description;
 import org.json.simple.JSONObject;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,13 +15,13 @@ import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.LoginPO;
 import ta.pageobjects.impl.RegisterPO;
 import ta.test.BaseTest;
+
 import java.time.Duration;
 
 
 public class NewAccount extends BaseTest {
 
     private static final Logger logger = LoggerFactory.getLogger(NewAccount.class);
-
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 0)
     @Description("Create New Account Private ")
@@ -39,7 +37,8 @@ public class NewAccount extends BaseTest {
         register.genderClick();
         register.maleClick();
         register.enterUsernameAndPassword(testData.get("nome").toString(), testData.get("cognome").toString(),
-            timestamp.getDateTime() + testData.get("email").toString() + ".it", testData.get("password").toString(), testData.get("numeroditelefono").toString(), testData.get("cap").toString());
+            timestamp.getDateTime() + testData.get("email").toString()
+                + ".it", testData.get("password").toString(), testData.get("numeroditelefono").toString(), testData.get("cap").toString());
         register.selectStore();
         register.continueClick();
         register.clickrifiuto();
@@ -52,10 +51,11 @@ public class NewAccount extends BaseTest {
         user.logout();
     }
 
-    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class , priority = 1)
+
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 1)
     @Description("Create New Account Azienda")
 
-     public void tc_002_newAccount(JSONObject testData) throws Exception {
+    public void tc_002_newAccount(JSONObject testData) throws Exception {
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
@@ -65,24 +65,25 @@ public class NewAccount extends BaseTest {
         //goLogin.clickLogin(); menu dropdown!
         driver.navigate().to("https://www-qa3.leroymerlin.it/registrazione");
         register.aziendaClick();
-        autoCompleteSelect();
-        register.enterForCompany(testData.get("ragioneSociale").toString(),testData.get("cognome").toString(),testData.get("nome").toString(),
-            timestamp.getDateTime() + testData.get("email").toString() + ".it",testData.get("password").toString(),testData.get("telefono").toString(),testData.get("cap").toString());
+        allSelectClickCompany();
+        register.enterForCompany(testData.get("ragioneSociale").toString(), testData.get("cognome").toString(), testData.get("nome").toString(),
+            timestamp.getDateTime() + testData.get("email").toString()
+                + ".it", testData.get("password").toString(), testData.get("telefono").toString(), testData.get("cap").toString());
         register.selectStore();
         register.continueClick();
         register.accettaButton();
         register.accettaTermini();
         register.accettaProfilazione();
         register.concludiRegistrazione();
-        Thread.sleep(10000);
+        Thread.sleep(20000);
         register.goProfileButton();
-        new WebDriverWait(driver, 60).until(ExpectedConditions.urlContains("/mylm"));
+        new WebDriverWait(driver, 60).withTimeout(Duration.ofMillis(10000));
         user.logout();
     }
 
-    private static void autoCompleteSelect() throws Exception{
+    private static void allSelectClickCompany() throws Exception {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
-        logger.info("---> Select Click Start <----");
+        logger.info("---> Select Registration Page Click Start <----");
         Thread.sleep(1000);
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Titolo*'])[1]/following::div[3]")).click();
         Thread.sleep(1000);
