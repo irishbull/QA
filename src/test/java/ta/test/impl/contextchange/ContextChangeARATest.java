@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
+import ta.pageobjects.impl.AngularHeaderCommonPO;
 import ta.pageobjects.impl.AngularLoginPO;
 import ta.pageobjects.impl.HomePagePO;
 import ta.test.BaseTest;
@@ -37,15 +38,17 @@ public class ContextChangeARATest extends BaseTest {
 
         loginPO.enterUsernameAndPassword(testData.get("username").toString(), testData.get("password").toString());
 
-        HomePagePO homePagePO = loginPO.clickLoginButton();
+        AngularHeaderCommonPO headerCommonPO = loginPO.clickLoginButton();
 
         // after successful login user is redirected to homepage
         assertEquals(SeleniumDriver.getInstance().getDriver().getCurrentUrl(), url, "Page url");
 
-        BrowserUtils.waitFor(homePagePO.getUserFirstName(), Constants.WaitTime.EXPLICIT_WAIT);
+
+        BrowserUtils.waitFor(headerCommonPO.getCustomerName(), Constants.WaitTime.EXPLICIT_WAIT);
 
         // after successful user firstName has the expected value
-        assertEquals(homePagePO.getUserFirstName().getText(), testData.get("firstName").toString(), "User first name");
+        BrowserUtils.elementContainsText(headerCommonPO.getCustomerName(), Constants.WaitTime.EXPLICIT_WAIT, testData.get("expectedValue").toString());
+        assertEquals(headerCommonPO.getCustomerName().getText(), testData.get("expectedValue").toString(), "User first name");
 
     }
 }

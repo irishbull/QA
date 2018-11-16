@@ -9,18 +9,14 @@ import ta.pageobjects.PageObject;
 
 public class AngularHeaderCommonPO extends PageObject {
 
-    @FindBy(how = How.ID, using = "email")
+    @FindBy(how = How.CLASS_NAME, using = "common-voice-container")
     @CacheLookup
-    private WebElement email;
+    private WebElement commonVoicesContainer;
 
-    @FindBy(how = How.ID, using = "password")
-    @CacheLookup
-    private WebElement password;
+    @FindBy(how = How.CLASS_NAME, using = "customer-info-name")
+    private WebElement customerName;
 
-    @FindBy(how = How.NAME, using = "loginForm")
-    @CacheLookup
-    private WebElement loginForm;
-
-    @FindBy(how = How.CLASS_NAME, using = "error-login")
-    private WebElement loginErrorMessageWrapper;
+    public WebElement getCustomerName() {
+        return customerName;
+    }
 }
