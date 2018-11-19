@@ -23,11 +23,15 @@ public class HeaderPO extends PageObject {
     @FindBy(how = How.NAME, using = "QUANTITY_COUNTER")
     private WebElement cartQuantityCounter;
 
-    public String getCustomerName() {
-        return headerLoginElem.findElement(By.tagName("div")).getText();
+    public WebElement getCustomerNameElem() {
+        return headerLoginElem.findElement(By.tagName("div"));
     }
 
     public String getCartQuantity() {
         return cartQuantityCounter.getText();
+    }
+
+    public WebElement getHeaderLoginElem() {
+        return headerLoginElem;
     }
 }

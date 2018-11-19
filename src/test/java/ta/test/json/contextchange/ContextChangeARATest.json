@@ -1,12 +1,13 @@
 {
-  "tc_001_angularLogin": [
+  "tc_001_angularReactAngular": [
     {
-      "rowID" : "tc_001_angularLogin.01",
+      "rowID" : "tc_001_angularReactAngular.01",
       "description" : "Login test with valid username and password",
       "username" : "fabio@fazio.it",
       "password" : "fabio@fazio.it",
-      "expectedValue" : "Fgfg",
-      "pathAndQuery" : "/adesione/datiContatto"
+      "userFirstName" : "Fgfg",
+      "angularPage1" : "/adesione/datiContatto",
+      "angularPage2" : "/servizi"
     }
   ],
   "tc_002_loginFailure": [

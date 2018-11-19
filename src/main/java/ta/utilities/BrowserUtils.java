@@ -197,6 +197,19 @@ public class BrowserUtils {
 
 
     /**
+     * Wait until text in the element matches the specified string
+     *
+     * @param element
+     * @param timer
+     * @param text
+     */
+    public static void waitForTextMatches(WebElement element, int timer, String text) {
+        WebDriverWait wait = new WebDriverWait(SeleniumDriver.getInstance().getDriver(), timer);
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.textToBePresentInElement(element, text)));
+    }
+
+
+    /**
      * Check if element contains text
      *
      * @param element
@@ -206,11 +219,7 @@ public class BrowserUtils {
      */
     public static boolean elementContainsText(WebElement element, int timer, String text) {
         try {
-
-            WebDriverWait wait = new WebDriverWait(SeleniumDriver.getInstance().getDriver(), timer);
-
-            wait.until(ExpectedConditions.refreshed(ExpectedConditions.textToBePresentInElement(element, text)));
-
+            waitForTextMatches(element, timer, text);
             return true;
         } catch (StaleElementReferenceException | TimeoutException | NoSuchElementException exc) {
             return false;
