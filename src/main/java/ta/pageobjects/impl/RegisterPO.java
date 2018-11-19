@@ -26,7 +26,7 @@ public class RegisterPO extends PageObject {
     private WebElement ragioneSociale;
 
     @FindBy (how = How.ID_OR_NAME, using ="menu-sector")
-    private WebElement menu_sector;
+    private WebElement menuSector;
 
     @FindBy(how = How.NAME, using = "_AZIENDA")
     private WebElement azienda;

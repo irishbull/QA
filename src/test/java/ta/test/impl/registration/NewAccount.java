@@ -1,6 +1,5 @@
 package ta.test.impl.registration;
 
-import com.sun.jmx.snmp.Timestamp;
 import io.qameta.allure.Description;
 import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
@@ -15,8 +14,9 @@ import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.LoginPO;
 import ta.pageobjects.impl.RegisterPO;
 import ta.test.BaseTest;
-
 import java.time.Duration;
+import java.util.Date;
+
 
 
 public class NewAccount extends BaseTest {
@@ -27,7 +27,7 @@ public class NewAccount extends BaseTest {
     @Description("Create New Account Private ")
     public void tc_001_newAccount(JSONObject testData) throws Exception {
 
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        Date data = new Date();
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         RegisterPO register = new RegisterPO();
         LoginPO user = new LoginPO();
@@ -37,7 +37,7 @@ public class NewAccount extends BaseTest {
         register.genderClick();
         register.maleClick();
         register.enterUsernameAndPassword(testData.get("nome").toString(), testData.get("cognome").toString(),
-            timestamp.getDateTime() + testData.get("email").toString()
+            data.getTime() + testData.get("email").toString()
                 + ".it", testData.get("password").toString(), testData.get("numeroditelefono").toString(), testData.get("cap").toString());
         register.selectStore();
         register.continueClick();
@@ -57,7 +57,7 @@ public class NewAccount extends BaseTest {
 
     public void tc_002_newAccount(JSONObject testData) throws Exception {
 
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        Date data = new Date();
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         RegisterPO register = new RegisterPO();
         HomePagePO goLogin = new HomePagePO();
@@ -67,7 +67,7 @@ public class NewAccount extends BaseTest {
         register.aziendaClick();
         allSelectClickCompany();
         register.enterForCompany(testData.get("ragioneSociale").toString(), testData.get("cognome").toString(), testData.get("nome").toString(),
-            timestamp.getDateTime() + testData.get("email").toString()
+            data.getTime() + testData.get("email").toString()
                 + ".it", testData.get("password").toString(), testData.get("telefono").toString(), testData.get("cap").toString());
         register.selectStore();
         register.continueClick();
