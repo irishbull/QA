@@ -3,9 +3,8 @@ package ta.pageobjects.impl.example;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-
 import ta.pageobjects.PageObject;
-import ta.pageobjects.impl.example.ReceiptPO;
+
 
 public class SignUpPO extends PageObject {
 
