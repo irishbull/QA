@@ -1,0 +1,69 @@
+{
+  "tc_001_newAccount": [
+    { "rowID": "tc_001_newAccount.01",
+      "landingurl":"mylm",
+      "nome": "Denòàzel",
+      "cognome":"Wòashington",
+      "email":"Denzel@Leroy",
+      "password":"GissiM89",
+      "numeroditelefono":"55571146582",
+      "cap":"76121"
+    },
+    { "rowID": "tc_001_newAccount.02",
+      "landingurl":"mylm",
+      "nome": "Li",
+      "cognome":"Liang",
+      "email":"liang@Leroy.it",
+      "password":"~Li89shenzhen",
+      "numeroditelefono":"55571146582",
+      "cap":"85100"
+    },
+     {
+      "rowID": "tc_001_newAccount.03",
+      "landingurl":"mylm",
+      "nome": "Diletta",
+      "cognome":"Leotta",
+      "email":"diletta@leotta",
+      "password":"$RichGirl1$",
+      "numeroditelefono":"00393271146582",
+      "cap":"70100"
+    },
+    {
+      "rowID": "tc_001_newAccount.04",
+      "landingurl":"mylm",
+      "nome": "Christian",
+      "cognome":"Vieri",
+      "email":"SerieA@Ibiza",
+      "password":"nicolA^2coٸٸﷻ",
+      "numeroditelefono":"00393271146582",
+      "cap":"99999"
+    }
+  ],
+  "tc_002_newAccount": [
+    {
+      "rowID": "tc_002_newAccount.01",
+      "landingurl":"mylm",
+      "ragioneSociale":"LeroyMerlin S.P.A0",
+      "nome": "Vasco",
+      "cognome":"Rossi",
+      "email":"Vasco@Coca",
+      "password":"Pippo89",
+      "telefono":"55571146582",
+      "cap":"76121"
+    },{
+      "rowID": "tc_02_newAccount.02",
+      "landingurl":"mylm",
+      "ragioneSociale":"LeroyMerlin S.P.A1",
+      "nome": "Vasco",
+      "cognome":"Rossi",
+      "email":"Vasco@Coca",
+      "password":"Pippo89",
+      "telefono":"55571146582",
+      "cap":"76121"
+    }
+  ]
+}
+
+
+
+

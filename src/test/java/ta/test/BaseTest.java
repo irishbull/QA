@@ -1,5 +1,6 @@
 package ta.test;
 
+import org.openqa.selenium.Dimension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -47,7 +48,7 @@ public abstract class BaseTest {
         SeleniumDriver.getInstance().setDriver(browser, isProxyRequired);
         logger.info("Driver instance {}", SeleniumDriver.getInstance().toString());
 
-        SeleniumDriver.getInstance().getDriver().manage().window().maximize();
+        SeleniumDriver.getInstance().getDriver().manage().window().setSize(new Dimension(1920, 1080));
 
         // set current customer store
         SeleniumDriver.getInstance().getDriver().get(BASE_URL);

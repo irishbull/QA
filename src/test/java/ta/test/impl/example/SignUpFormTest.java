@@ -40,4 +40,8 @@ public class SignUpFormTest extends BaseTest {
 
         assertEquals("Thank you!", receiptPO.confirmationHeader());
     }
+
+    
+
+
 }
