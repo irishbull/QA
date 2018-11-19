@@ -155,11 +155,9 @@ public class SeleniumDriver {
                 ChromeOptions chrOptions = new ChromeOptions();
                 chrOptions.setExperimentalOption("prefs", chromePrefs);
                 chrOptions.addArguments("--disable-plugins", "--disable-extensions", "--disable-popup-blocking");
-
                 chrOptions.addArguments("--window-size=1920,1080");
 
                 chrOptions.addArguments("--headless");
-                chrOptions.addArguments("--window-size=1920,1080");
 
                 // Chrome desired capabilities
                 capabilities = DesiredCapabilities.chrome();
