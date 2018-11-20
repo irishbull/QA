@@ -13,7 +13,6 @@
         <suite-file path="suites/example-test-suite.xml"/>
         <suite-file path="suites/functional-test-suite.xml"/>
         <suite-file path="suites/context-change-test-suite.xml"/>
-        
 
         <!--
         Proxy tests are slower than non-proxy tests.

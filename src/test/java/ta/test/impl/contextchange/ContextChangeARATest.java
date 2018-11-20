@@ -18,7 +18,7 @@ import ta.utilities.BrowserUtils;
 import static org.testng.Assert.assertEquals;
 import static ta.utilities.constants.Constants.Url.BASE_URL;
 import static ta.utilities.constants.Constants.WaitTime.EXPLICIT_WAIT;
-import static ta.utilities.constants.Constants.WaitTime.FIVE_SEC;
+import static ta.utilities.constants.Constants.WaitTime.FIVE_SECONDS;
 
 public class ContextChangeARATest extends BaseTest {
 
@@ -43,7 +43,7 @@ public class ContextChangeARATest extends BaseTest {
 
         // after successful login user first name has the expected value
         BrowserUtils.waitFor(headerCommonPO.getCustomerName(), EXPLICIT_WAIT);
-        BrowserUtils.waitForTextMatches(headerCommonPO.getCustomerName(), FIVE_SEC, testData.get("userFirstName").toString());
+        BrowserUtils.waitForTextMatches(headerCommonPO.getCustomerName(), FIVE_SECONDS, testData.get("userFirstName").toString());
 
         // avoid element stale
         AngularHeaderCommonPO angularHeaderCommonPO = new AngularHeaderCommonPO();

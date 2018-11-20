@@ -26,8 +26,6 @@ public class OrangeLoginTest extends BaseTest {
 
         OrangeLoginPO loginPage = new OrangeLoginPO();
 
-        BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
-
         loginPage.enterUsernameAndPassword("Admin", "adm");
 
         OrangeWelcomePO orangeWelcomePO = loginPage.submit();
@@ -49,8 +47,6 @@ public class OrangeLoginTest extends BaseTest {
         SeleniumDriver.getInstance().getDriver().get("http://opensource.demo.orangehrmlive.com/");
 
         OrangeLoginPO loginPage = new OrangeLoginPO();
-
-        BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
 
         loginPage.enterUsernameAndPassword("username", "password");
 

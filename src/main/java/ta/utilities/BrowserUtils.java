@@ -1,14 +1,12 @@
 package ta.utilities;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -20,23 +18,6 @@ import ta.driver.SeleniumDriver;
 public class BrowserUtils {
 
     private static final String CONSTRUCTION_FORBIDDEN = "BrowserUtils - Object construction is forbidden";
-
-    /**
-     * Wait for page fully loaded
-     *
-     * @param timeout
-     */
-    public static void waitForPageFullyLoaded(int timeout) {
-        WebDriver driver = SeleniumDriver.getInstance().getDriver();
-        ExpectedCondition<Boolean> pageLoadCondition = new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver driver) {
-                return ((JavascriptExecutor) driver).executeScript("return document.readyState")
-                        .equals("complete");
-            }
-        };
-        WebDriverWait wait = new WebDriverWait(driver, timeout);
-        wait.until(pageLoadCondition);
-    }
 
     /**
      * Get the rendered page
