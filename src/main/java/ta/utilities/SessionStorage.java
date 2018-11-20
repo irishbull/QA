@@ -1,14 +1,10 @@
 package ta.utilities;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Selenium WebDriver Javascript execution for sessionStorage
  */
 public class SessionStorage {
 
-    private static final Logger logger = LoggerFactory.getLogger(SessionStorage.class);
     private static final String CONSTRUCTION_FORBIDDEN = "SessionStorage - Object construction is forbidden";
 
     /**

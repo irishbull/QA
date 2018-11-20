@@ -26,7 +26,6 @@ public class IdeaPiuPO extends PageObject {
     }
 
     public String getDivAttribute() throws Exception {
-        BrowserUtils.waitForPageFullyLoaded(Constants.WaitTime.EXPLICIT_WAIT);
         return div.getAttribute("class");
     }
 
