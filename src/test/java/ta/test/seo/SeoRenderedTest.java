@@ -2,6 +2,7 @@ package ta.test.seo;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -26,8 +27,12 @@ public abstract class SeoRenderedTest extends SeoBaseTest {
 
         Assert.assertNotNull(pagePath, "The parameter 'pagePath' is mandatory. It cannot be null");
 
+        WebDriver driver = SeleniumDriver.getInstance().getDriver();
+
         String url = BASE_URL + pagePath;
         logger.info("Analyse rendered page with url {}", url);
+
+        driver.get(url);
 
         // Rendered page
         // wait for quiescence
