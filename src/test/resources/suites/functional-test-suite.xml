@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="FunctionalTestSuite" >
-
+<!--
     <parameter name="isProxyRequired" value= "false"/>
 
     <test name = "productMenuNavigation">
@@ -25,7 +25,7 @@
             <class name = "ta.test.impl.registration.Login"/>
         </classes>
     </test>
-
+-->
 
     <test name = "createAccount">
         <parameter name="json-path" value="src/test/java/ta/test/json/registration/NewAccount.json"/>
