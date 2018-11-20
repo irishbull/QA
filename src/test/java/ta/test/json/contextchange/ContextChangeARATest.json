@@ -2,7 +2,7 @@
   "tc_001_angularReactAngular": [
     {
       "rowID" : "tc_001_angularReactAngular.01",
-      "description" : "Login test with valid username and password",
+      "description" : "Context change: Angular > React > Angular",
       "username" : "fabio@fazio.it",
       "password" : "fabio@fazio.it",
       "userFirstName" : "Fgfg",
@@ -10,20 +10,16 @@
       "angularPage2" : "/servizi"
     }
   ],
-  "tc_002_loginFailure": [
+  "tc_002_reactAngularReact": [
     {
-      "rowID" : "tc_002_loginFailure.01",
-      "description" : "Login test with valid username and wrong password",
-      "username" : "giovanni.bologna@nttdata.com",
-      "password" : "wrong-password",
-      "expectedValue": "Email o password errate"
-    },
-    {
-      "rowID" : "tc_002_loginFailure.02",
-      "description" : "Login test with wrong username and password",
-      "username" : "wrongUsername@mail.com",
-      "password" : "wrong-password",
-      "expectedValue": "Email o password errate"
+      "rowID" : "tc_002_reactAngularReact.01",
+      "description" : "Context change: React > Angular > React",
+      "username" : "fabio@fazio.it",
+      "password" : "fabio@fazio.it",
+      "userFirstName" : "Fgfg",
+      "reactPage1" : "/login?redirectUrl=",
+      "angularPage" : "/servizi",
+      "reactPage2" : "/"
     }
   ]
 }

@@ -27,7 +27,7 @@ public class LoginPO extends PageObject {
     @CacheLookup
     private WebElement password;
 
-    @FindBy(how = How.ID_OR_NAME, using = "/html/body/div[1]/main/div/div/div/div/div/div/div/div[1]/form/div[2]/div/button")
+    @FindBy(how = How.XPATH, using = "/html/body/div[1]/main/div/div/div/div/div/div/div/div[1]/form/div[2]/div/button")
     @CacheLookup
     private WebElement loginButton;
 

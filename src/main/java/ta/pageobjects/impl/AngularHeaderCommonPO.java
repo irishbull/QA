@@ -1,5 +1,6 @@
 package ta.pageobjects.impl;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -17,8 +18,15 @@ public class AngularHeaderCommonPO extends PageObject {
     @FindBy(how = How.CLASS_NAME, using = "logo-container")
     private WebElement logoContainer;
 
+    @FindBy(how = How.ID, using = "headingOne")
+    private WebElement headingOne;
+
     public WebElement getCustomerName() {
         return customerName;
+    }
+
+    public WebElement getHeadingOne() {
+        return headingOne.findElement(By.tagName("span"));
     }
 
     public WebElement getLogoContainer() {

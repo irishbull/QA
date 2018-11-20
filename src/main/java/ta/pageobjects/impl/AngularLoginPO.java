@@ -33,9 +33,8 @@ public class AngularLoginPO extends PageObject {
         this.password.sendKeys(password);
     }
 
-    public AngularHeaderCommonPO clickLoginButton() {
-        this.loginForm.findElement(By.tagName("button")).click();
-        return new AngularHeaderCommonPO();
+    public void clickLoginButton() {
+        loginForm.findElement(By.tagName("button")).click();
     }
 
     public WebElement getLoginErrorMessageWrapper() {
