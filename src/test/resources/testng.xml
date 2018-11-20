@@ -10,15 +10,17 @@
     </listeners>
 
     <suite-files>
-        <!--<suite-file path="suites/example-test-suite.xml"/>-->
+
+        <suite-file path="suites/example-test-suite.xml"/>
         <suite-file path="suites/functional-test-suite.xml"/>
-        <suite-file path="suites/seo-test-suite.xml"/>
+
         <!--
         Proxy tests are slower than non-proxy tests.
         BrowserMobProxy is not currently meant to be stopped and restarted.
-        Tooso test suite needs proxy therefore it should be run as the last.
+        Tooso test suite and Seo test suit need proxy therefore they should be run as the last.
         -->
-     <!--   <suite-file path="suites/tooso-test-suite.xml"/>-->
+        <suite-file path="suites/seo-test-suite.xml"/>
+        <suite-file path="suites/tooso-test-suite.xml"/>
     </suite-files>
 
 </suite>
