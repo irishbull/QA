@@ -15,6 +15,9 @@ public class AngularHeaderCommonPO extends PageObject {
     @FindBy(how = How.CLASS_NAME, using = "customer-info-name")
     private WebElement customerName;
 
+    @FindBy(how = How.ID, using = "login-toggle")
+    private WebElement loginToggle;
+
     @FindBy(how = How.CLASS_NAME, using = "logo-container")
     private WebElement logoContainer;
 
@@ -35,5 +38,9 @@ public class AngularHeaderCommonPO extends PageObject {
 
     public void clickLinkToHome() {
         logoContainer.click();
+    }
+
+    public void clickLinkToMyLM() {
+        loginToggle.click();
     }
 }

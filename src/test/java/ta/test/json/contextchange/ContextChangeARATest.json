@@ -7,7 +7,7 @@
       "password" : "fabio@fazio.it",
       "userFirstName" : "Fgfg",
       "angularPage1" : "/adesione/datiContatto",
-      "angularPage2" : "/servizi"
+      "angularPage2" : "/mylm"
     }
   ],
   "tc_002_reactAngularReact": [
@@ -17,9 +17,7 @@
       "username" : "fabio@fazio.it",
       "password" : "fabio@fazio.it",
       "userFirstName" : "Fgfg",
-      "reactPage1" : "/login?redirectUrl=",
-      "angularPage" : "/servizi",
-      "reactPage2" : "/"
+      "angularPage2" : "/mylm"
     }
   ]
 }
