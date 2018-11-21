@@ -30,10 +30,12 @@ public class ContextChangeARATest extends BaseTest {
     private static final Logger logger = LoggerFactory.getLogger(ContextChangeARATest.class);
 
     @Test(priority = 1, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("<ul><li>effettuo la login da pagina in contesto angular [<code>angularPage1</code>]</li>" +
-            "<li>navigo su pagina in contesto react [homepage] e verifico che l'utente sia ancora loggato</li>" +
-            "<li>ritorno su pagina in contesto angular [<code>angularPage2</code>] e verifico che l'utente sia ancora loggato</li>" +
-            "<li>effettuo il logout</li>")
+    @Description("<div>Given: utente non loggato&nbsp;</div>\n" +
+           "<div>When: utente effuttua la login da pagina in contesto react (<span style=\"font-family:courier new,courier,monospace\">https://www.leroymerlin.it/login?redirectUrl=https://www.leroymerlin.it</span>)</div>\n" +
+           "<div>&nbsp; &nbsp; &nbsp; And: utente naviga su pagina in contesto angular (<span style=\"font-family:courier new,courier,monospace\">https://www.leroymerlin.it/mylm</span>)&nbsp;</div>\n" +
+           "<div>&nbsp; &nbsp; &nbsp; And: utente naviga su pagina in contesto react&nbsp;(<span style=\"font-family:courier new,courier,monospace\">https://www.leroymerlin.it</span>)</div>\n" +
+           "<div>Then: utente resta loggato&nbsp;&nbsp;</div>")
+
     public void tc_001_angularReactAngular(JSONObject testData) {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
@@ -82,10 +84,12 @@ public class ContextChangeARATest extends BaseTest {
 
 
     @Test(priority = 2, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("<ul><li>effettuo la login da pagina in contesto react [<code>reactPage1</code>]</li>" +
-            "<li>navigo su pagina in contesto angular [<code>/mylm</code>] e verifico che l'utente sia ancora loggato</li>" +
-            "<li>ritorno su pagina in contesto react [<code>reactPage2</code>] e verifico che l'utente sia ancora loggato</li>" +
-            "<li>effettuo il logout</li>")
+    @Description("<div>Given: utente non loggato&nbsp;</div>\n" +
+            "<div>When: utente effettua la login da pagina in contesto angular (<span style=\"font-family:courier new,courier,monospace\">https://www.leroymerlin.it/adesione/datiContatto</span>)</div>\n" +
+            "<div>&nbsp; &nbsp; &nbsp; And:&nbsp;utente naviga su pagina in contesto react&nbsp;(<span style=\"font-family:courier new,courier,monospace\">https://www.leroymerlin.it</span>)&nbsp;</div>\n" +
+            "<div>&nbsp; &nbsp; &nbsp; And:&nbsp;utente naviga su pagina in contesto react&nbsp;(<span style=\"font-family:courier new,courier,monospace\">https://www.leroymerlin.it/mylm</span>)&nbsp;</div>\n" +
+            "<div>Then: utente resta loggato&nbsp;</div>")
+
     public void tc_002_reactAngularReact(JSONObject testData) {
 
         // login from react context
