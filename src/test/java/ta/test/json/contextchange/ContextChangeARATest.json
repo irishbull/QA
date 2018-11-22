@@ -5,9 +5,7 @@
       "description" : "Context change: Angular > React > Angular",
       "username" : "fabio@fazio.it",
       "password" : "fabio@fazio.it",
-      "userFirstName" : "Fgfg",
-      "angularPage1" : "/adesione/datiContatto",
-      "angularPage2" : "/mylm"
+      "userFirstName" : "Fgfg"
     }
   ],
   "tc_002_reactAngularReact": [
@@ -16,8 +14,7 @@
       "description" : "Context change: React > Angular > React",
       "username" : "fabio@fazio.it",
       "password" : "fabio@fazio.it",
-      "userFirstName" : "Fgfg",
-      "angularPage2" : "/mylm"
+      "userFirstName" : "Fgfg"
     }
   ]
 }

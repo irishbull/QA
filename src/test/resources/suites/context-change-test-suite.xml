@@ -3,13 +3,19 @@
 
 <suite name="ContextChangeTestSuite">
 
-
-    <test name = "contextChangeARA">
+    <test name = "ContextChangeARATest">
         <parameter name="json-path"  value="src/test/java/ta/test/json/contextchange/ContextChangeARATest.json"/>
         <classes>
-            <class name = "ta.test.impl.contextchange.ContextChangeARATest" />
+            <class name="ta.test.impl.contextchange.ContextChangeARATest"/>
         </classes>
     </test>
+
+   <!-- <test name = "AddToCartAddToWishListTest">
+        <parameter name="json-path"  value="src/test/java/ta/test/json/contextchange/AddToCartAddToWishListTest.json"/>
+        <classes>
+            <class name="ta.test.impl.contextchange.AddToCartAddToWishListTest"/>
+        </classes>
+    </test>-->
 
 
 </suite>
