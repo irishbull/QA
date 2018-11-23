@@ -59,8 +59,7 @@ public class AddToCartAddToWishListTest extends BaseTest {
         driver.get(BASE_URL + "/checkout/carrello");
 
         AngularCartItemsListPO angularCartItemsListPO = new AngularCartItemsListPO();
-        logger.info("MY VALUE = " + angularCartItemsListPO.getListSize());
-
-
+        logger.info("Number of entries = " + angularCartItemsListPO.getListSize());
+        // TODO remove entries
     }
 }

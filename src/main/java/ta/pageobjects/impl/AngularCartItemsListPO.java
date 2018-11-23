@@ -12,9 +12,9 @@ public class AngularCartItemsListPO extends PageObject {
     @FindBy(how = How.CLASS_NAME, using = "cart-items-list")
     private WebElement cartItemsList;
 
-    public String getListSize() {
+    public int getListSize() {
         WebElement counterWrapper = cartItemsList.findElements(By.tagName("div")).get(0);
-        return counterWrapper.getAttribute("data-total-items");
+        return Integer.valueOf(counterWrapper.getAttribute("data-total-items"));
     }
 
 }

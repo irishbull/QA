@@ -10,12 +10,11 @@
         </classes>
     </test>
 
-   <!-- <test name = "AddToCartAddToWishListTest">
+    <test name = "AddToCartAddToWishListTest">
         <parameter name="json-path"  value="src/test/java/ta/test/json/contextchange/AddToCartAddToWishListTest.json"/>
         <classes>
             <class name="ta.test.impl.contextchange.AddToCartAddToWishListTest"/>
         </classes>
-    </test>-->
-
+    </test>
 
 </suite>
