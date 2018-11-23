@@ -103,7 +103,7 @@ test {
         events 'started', 'passed', 'skipped', 'failed'
 
         // Logging the exception stack trace
-        exceptionFormat 'short'
+        exceptionFormat 'full'
     }
 
     useTestNG() {
