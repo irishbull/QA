@@ -15,7 +15,9 @@ public class Constants {
     public static class WaitTime {
         public static final Integer IMPLICIT_WAIT = 5;
         public static final Integer EXPLICIT_WAIT = 2;
+        public static final Integer FIVE_SECONDS = 5;
         public static final Integer TEN_SECONDS = 10;
+        public static final Integer FIFTEEN_SECONDS = 15;
 
         private WaitTime() {
             throw new IllegalStateException(CONSTRUCTION_FORBIDDEN);

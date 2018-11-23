@@ -1,0 +1,21 @@
+{
+  "tc_001_loginFromAngularContext": [
+    {
+      "rowID" : "tc_001_loginFromAngularContext.01",
+      "description" : "Login from angular context",
+      "username" : "fabio@fazio.it",
+      "password" : "fabio@fazio.it",
+      "userFirstName" : "Fgfg"
+    }
+  ],
+  "tc_002_emptyUserCart": [
+    {
+      "rowID" : "tc_002_emptyUserCart.01",
+      "description" : "Empty the cart - user logged",
+      "username" : "fabio@fazio.it",
+      "password" : "fabio@fazio.it",
+      "userFirstName" : "Fgfg",
+      "cart" : "/checkout/carrello"
+    }
+  ]
+}

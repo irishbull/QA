@@ -27,14 +27,14 @@ public class LoginPO extends PageObject {
     @CacheLookup
     private WebElement password;
 
-    @FindBy(how = How.ID_OR_NAME, using = "/html/body/div[1]/main/div/div/div/div/div/div/div/div[1]/form/div[2]/div/button")
+    @FindBy(how = How.XPATH, using = "/html/body/div[1]/main/div/div/div/div/div/div/div/div[1]/form/div[2]/div/button")
     @CacheLookup
     private WebElement loginButton;
 
     @FindBy(how = How.CLASS_NAME, using = "error-login")
     private WebElement loginErrorMessageWrapper;
 
-    public void enterUsernameAndPassword(String email, String password) throws Exception {
+    public void enterUsernameAndPassword(String email, String password) {
         this.email.clear();
         this.email.sendKeys(email);
         this.password.clear();

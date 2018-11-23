@@ -155,7 +155,6 @@ public class SeleniumDriver {
                 ChromeOptions chrOptions = new ChromeOptions();
                 chrOptions.setExperimentalOption("prefs", chromePrefs);
                 chrOptions.addArguments("--disable-plugins", "--disable-extensions", "--disable-popup-blocking");
-
                 chrOptions.addArguments("--window-size=1920,1080");
 
                 chrOptions.addArguments("--headless");
@@ -164,6 +163,7 @@ public class SeleniumDriver {
                 capabilities = DesiredCapabilities.chrome();
                 capabilities.setCapability(ChromeOptions.CAPABILITY, chrOptions);
                 capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+
 
                 if (isProxyRequired) {
 
