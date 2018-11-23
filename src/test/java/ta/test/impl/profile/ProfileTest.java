@@ -2,6 +2,7 @@ package ta.test.impl.profile;
 
 import org.json.simple.JSONObject;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -11,6 +12,7 @@ import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.LoginPO;
 import ta.pageobjects.impl.ProfilePO;
 import ta.test.BaseTest;
+import ta.utilities.BrowserUtils;
 
 import static ta.utilities.constants.Constants.Url.BASE_URL;
 
@@ -35,6 +37,7 @@ public class ProfileTest extends BaseTest {
         Thread.sleep(20000);
         profile.clickChipEmail();
         profile.clickSaveButton();
+        BrowserUtils.elementContainsText(profile.toast(),10,"Operazione completata con successo");
 
     }
 }

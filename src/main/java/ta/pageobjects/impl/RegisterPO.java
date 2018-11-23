@@ -56,6 +56,8 @@ public class RegisterPO extends PageObject {
     @FindBy(how = How.XPATH, xpath = "/html/body/div[1]/div/div[6]/div/div[14]/div/div[2]/div[1]/div")
     private WebElement profiloCheck;
 
+
+
     @FindBy(how = How.ID_OR_NAME, using = "name")
     private WebElement nome;
 
@@ -94,11 +96,13 @@ public class RegisterPO extends PageObject {
     private WebElement profiling;
 
     public void checkconditions(){termsConditions.click();}
+
     public void accettaButton(){accettaButton.click();}
 
     public void profilingClick(){
         profiling.click();
     }
+
 
     public void concludiRegistrazione(){
         concludiRegistrazione.click();
@@ -106,8 +110,8 @@ public class RegisterPO extends PageObject {
 
     public void registratiClick(){ registrati.click();}
 
-    public void accettaTermini(){ accettaTermini.click();
-    }
+
+    public void accettaTermini(){ accettaTermini.click(); }
 
     public void selPrivatoClick(){
         privato.click();

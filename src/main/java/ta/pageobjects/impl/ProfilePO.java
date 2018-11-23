@@ -13,6 +13,9 @@ public class ProfilePO extends PageObject {
     @FindBy(how = How.ID_OR_NAME, using = "PROFILE_CHIP_EMAIL")
     private WebElement chipEmail;
 
+    @FindBy(how = How.XPATH, xpath = "/html/body/div[1]/div/div[6]/div/div[1]/div")
+    private WebElement toast;
+
     @FindBy(how = How.ID_OR_NAME, using = "PROFILE_CHIP_NUMBER")
     private WebElement chipNumber;
 
@@ -31,6 +34,11 @@ public class ProfilePO extends PageObject {
         codFiscale.clear();
         codFiscale.sendKeys("GSSGPP95D05B619O");
     }
+
+    public WebElement toast(){
+        return toast;
+    }
+
     public void clickSaveButton(){
         saveButton.click();
     }
