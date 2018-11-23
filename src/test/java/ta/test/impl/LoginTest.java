@@ -40,7 +40,7 @@ public class LoginTest extends BaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Login test with valid username and password")
-    public void tc_001_loginSuccess(JSONObject testData) throws Exception {
+    public void tc_001_loginSuccess(JSONObject testData) {
 
         HomePagePO homePagePO = new HomePagePO();
 
@@ -61,7 +61,7 @@ public class LoginTest extends BaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Login test with erroneous username or password")
-    public void tc_002_loginFailure(JSONObject testData) throws Exception {
+    public void tc_002_loginFailure(JSONObject testData) {
 
         HomePagePO homePagePO = new HomePagePO();
 
@@ -76,7 +76,6 @@ public class LoginTest extends BaseTest {
 
         // error message has the expected value
         assertEquals(loginPO.getLoginErrorMessageWrapper().getText(), testData.get("expectedValue").toString(), "Error message");
-
     }
 }
 

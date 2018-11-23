@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -31,7 +32,7 @@ public class ToosoPageViewTest extends ToosoBaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("GET [type = PAGEVIEW] - validate request")
-    public void tc_001_verifyPageViewRequest(JSONObject testData) throws Exception {
+    public void tc_001_verifyPageViewRequest(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
 
@@ -48,7 +49,7 @@ public class ToosoPageViewTest extends ToosoBaseTest {
 
         Assert.assertEquals(entriesOfPageViewType.size(), 1, "Number of requests [type = PAGEVIEW] captured by proxy:");
 
-        String urlToValidate  = entriesOfPageViewType.get(0).getRequest().getUrl();
+        String urlToValidate = entriesOfPageViewType.get(0).getRequest().getUrl();
         logger.info("Request [type = {}] to validate -> {}", PAGEVIEW, urlToValidate);
 
         // check

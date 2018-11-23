@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -32,7 +33,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
     @Test(priority = 1, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Validate request [type = SEARCH] from homepage. Event; search")
-    public void tc_001_verifyFirstSearchRequest(JSONObject testData) throws Exception {
+    public void tc_001_verifyFirstSearchRequest(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
 
@@ -61,7 +62,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         List<HarEntry> entriesToValidate = ToosoAnalyticsUtils.retrieveEntriesOfType(entriesCaptured, SEARCH);
 
-        Assert.assertEquals(entriesToValidate.size(),  1, "Number of requests [type = SEARCH] captured by proxy:");
+        Assert.assertEquals(entriesToValidate.size(), 1, "Number of requests [type = SEARCH] captured by proxy:");
 
         String urlToValidate = entriesToValidate.get(0).getRequest().getUrl();
 
@@ -73,7 +74,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
     @Test(priority = 2, dependsOnMethods = {"tc_001_verifyFirstSearchRequest"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Validate request [type = SEARCH] from serp. Event: go to next result page")
-    public void tc_002_verifySecondSearchRequest(JSONObject testData) throws Exception {
+    public void tc_002_verifySecondSearchRequest(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
 
@@ -92,7 +93,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         List<HarEntry> entriesToValidate = ToosoAnalyticsUtils.retrieveEntriesOfType(entriesCaptured, SEARCH);
 
-        Assert.assertEquals(entriesToValidate.size(),  1, "Number of requests [type = SEARCH] captured by proxy:");
+        Assert.assertEquals(entriesToValidate.size(), 1, "Number of requests [type = SEARCH] captured by proxy:");
 
         String urlToValidate = entriesToValidate.get(0).getRequest().getUrl();
 
@@ -104,7 +105,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
     @Test(priority = 3, dependsOnMethods = {"tc_002_verifySecondSearchRequest"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Validate request [type = SEARCH] from serp. Event: apply filter")
-    public void tc_003_verifySearchRequestWithFilter(JSONObject testData) throws Exception {
+    public void tc_003_verifySearchRequestWithFilter(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
 
@@ -121,7 +122,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         List<HarEntry> entriesToValidate = ToosoAnalyticsUtils.retrieveEntriesOfType(entriesCaptured, SEARCH);
 
-        Assert.assertEquals(entriesToValidate.size(),  1, "Number of requests [type = SEARCH] captured by proxy:");
+        Assert.assertEquals(entriesToValidate.size(), 1, "Number of requests [type = SEARCH] captured by proxy:");
 
         String urlToValidate = entriesToValidate.get(0).getRequest().getUrl();
 
@@ -133,7 +134,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
     @Test(priority = 4, dependsOnMethods = {"tc_003_verifySearchRequestWithFilter"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Validate request [type = SEARCH] from serp. Event: apply sorting")
-    public void tc_004_verifySearchRequestWithSorting(JSONObject testData) throws Exception {
+    public void tc_004_verifySearchRequestWithSorting(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
 
@@ -150,7 +151,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         List<HarEntry> entriesToValidate = ToosoAnalyticsUtils.retrieveEntriesOfType(entriesCaptured, SEARCH);
 
-        Assert.assertEquals(entriesToValidate.size(),  1, "Number of requests [type = SEARCH] captured by proxy:");
+        Assert.assertEquals(entriesToValidate.size(), 1, "Number of requests [type = SEARCH] captured by proxy:");
 
         String urlToValidate = entriesToValidate.get(0).getRequest().getUrl();
 
@@ -162,7 +163,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
     @Test(priority = 5, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Validate request [type = SEARCH] with typoCorrection = false")
-    public void tc_005_verifySearchRequestWithTypoCorrection(JSONObject testData) throws Exception {
+    public void tc_005_verifySearchRequestWithTypoCorrection(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
 
@@ -193,7 +194,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         List<HarEntry> sortedEntriesToValidate = ToosoAnalyticsUtils.retrieveEntriesOfType(entriesCaptured, SEARCH);
 
-        Assert.assertEquals(sortedEntriesToValidate.size(),  2, "Number of requests [type = SEARCH] captured by proxy:");
+        Assert.assertEquals(sortedEntriesToValidate.size(), 2, "Number of requests [type = SEARCH] captured by proxy:");
 
         // validate only the first request (request with typoCorrection=false comes first in alphabetical order)
         String urlToValidate = sortedEntriesToValidate.get(0).getRequest().getUrl();

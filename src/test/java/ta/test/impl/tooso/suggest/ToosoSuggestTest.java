@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -34,7 +35,7 @@ public class ToosoSuggestTest extends ToosoBaseTest {
     // REACT
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("GET [type = SUGGEST] - validate requests (react)")
-    public void tc_001_verifySuggestRequest(JSONObject testData) throws Exception {
+    public void tc_001_verifySuggestRequest(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
 
@@ -66,7 +67,7 @@ public class ToosoSuggestTest extends ToosoBaseTest {
         ToosoAnalyticsUtils.checkSuggestQueryParamQ(entriesToValidate.get(0).getRequest().getUrl(), 1, PROXY_SUGGEST_PREFIX);
 
         // check the other entries
-        for(int i = 1; i < entriesToValidate.size(); i++) {
+        for (int i = 1; i < entriesToValidate.size(); i++) {
             String url = entriesToValidate.get(i).getRequest().getUrl();
             logger.info("{} - Request [type = {}] to validate -> {}", i, SUGGEST, url);
             ToosoAnalyticsUtils.checkParameters(url, testData, SUGGEST);
@@ -78,7 +79,7 @@ public class ToosoSuggestTest extends ToosoBaseTest {
     // ANGULAR
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("GET [type = SUGGEST] - validate requests (angular)")
-    public void tc_002_verifyAngularSuggestRequest(JSONObject testData) throws Exception {
+    public void tc_002_verifyAngularSuggestRequest(JSONObject testData) throws URISyntaxException {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
@@ -108,7 +109,7 @@ public class ToosoSuggestTest extends ToosoBaseTest {
         ToosoAnalyticsUtils.checkSuggestQueryParamQ(entriesToValidate.get(0).getRequest().getUrl(), 1, PROXY_SUGGEST_PREFIX);
 
         // check the other entries
-        for(int i = 1; i < entriesToValidate.size(); i++) {
+        for (int i = 1; i < entriesToValidate.size(); i++) {
             String url = entriesToValidate.get(i).getRequest().getUrl();
             logger.info("{} - Request [type = {}] to validate -> {}", i, SUGGEST, url);
             ToosoAnalyticsUtils.checkParameters(url, testData, SUGGEST);

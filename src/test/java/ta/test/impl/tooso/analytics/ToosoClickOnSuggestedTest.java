@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -34,7 +35,7 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
     // REACT
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("GET [type = CLICK ON SUGGESTED] - validate request (react)")
-    public void tc_001_verifyClickOnSuggestRequest(JSONObject testData) throws Exception {
+    public void tc_001_verifyClickOnSuggestRequest(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
 
@@ -60,7 +61,7 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
         Assert.assertEquals(entriesToCheck.size(), 1, "Number of requests [type = CLICK ON SUGGESTED] captured by proxy:");
 
         String urlToVerify = entriesToCheck.get(0).getRequest().getUrl();
-        logger.info("Request [type = {}] to validate -> {}", CLICK_ON_SUGGESTED,  urlToVerify);
+        logger.info("Request [type = {}] to validate -> {}", CLICK_ON_SUGGESTED, urlToVerify);
 
         // check
         ToosoAnalyticsUtils.checkParameters(urlToVerify, testData, CLICK_ON_SUGGESTED);
@@ -69,7 +70,7 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
     // ANGULAR
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("GET [type = CLICK ON SUGGESTED] - validate request (angular)")
-    public void tc_002_verifyAngularClickOnSuggestRequest(JSONObject testData) throws Exception {
+    public void tc_002_verifyAngularClickOnSuggestRequest(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
 
@@ -95,7 +96,7 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
         Assert.assertEquals(entriesToCheck.size(), 1, "Number of requests [type = CLICK ON SUGGESTED] captured by proxy:");
 
         String urlToVerify = entriesToCheck.get(0).getRequest().getUrl();
-        logger.info("Request [type = {}] to validate -> {}", CLICK_ON_SUGGESTED,  urlToVerify);
+        logger.info("Request [type = {}] to validate -> {}", CLICK_ON_SUGGESTED, urlToVerify);
 
         // check
         ToosoAnalyticsUtils.checkParameters(urlToVerify, testData, CLICK_ON_SUGGESTED);

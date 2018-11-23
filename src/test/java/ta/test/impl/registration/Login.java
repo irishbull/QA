@@ -1,9 +1,10 @@
 package ta.test.impl.registration;
 
-import io.qameta.allure.Description;
 import org.json.simple.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
+
+import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
@@ -20,7 +21,7 @@ public class Login extends BaseTest {
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Login test with valid username and password")
 
-    public void tc_001_loginSuccess(JSONObject testData) throws Exception {
+    public void tc_001_loginSuccess(JSONObject testData) {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         driver.get(BASE_URL);
@@ -30,13 +31,13 @@ public class Login extends BaseTest {
         loginPO.clickcookie();
         loginPO.clickAccedi();
         BrowserUtils.waitFor(homePagePO.getUserFromHomePage(), Constants.WaitTime.EXPLICIT_WAIT);
-        assertEquals(homePagePO.getCustomerName().getText(), testData.get("firstName").toString(), "User first name" );
+        assertEquals(homePagePO.getCustomerName().getText(), testData.get("firstName").toString(), "User first name");
         loginPO.logout();
     }
 
-   @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Login test with NOT valid username and password")
-    public void tc_002_loginFailure (JSONObject testData) throws Exception {
+    public void tc_002_loginFailure(JSONObject testData) {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         driver.get(BASE_URL);
         HomePagePO homePagePO = new HomePagePO();

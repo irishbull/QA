@@ -15,17 +15,17 @@ public class IdeaPiuPO extends PageObject {
     @FindBy(how = How.ID, using = "idea-piu")
     WebElement div;
 
-    public String getTitle() throws Exception {
+    public String getTitle() {
         BrowserUtils.waitForTitle("Diventa Titolare Idea", Constants.WaitTime.EXPLICIT_WAIT);
         return SeleniumDriver.getInstance().getDriver().getTitle();
     }
 
-    public String getUrl() throws Exception {
+    public String getUrl() {
         BrowserUtils.waitForURLContains("idea-piu", Constants.WaitTime.EXPLICIT_WAIT);
         return SeleniumDriver.getInstance().getDriver().getCurrentUrl();
     }
 
-    public String getDivAttribute() throws Exception {
+    public String getDivAttribute() {
         return div.getAttribute("class");
     }
 

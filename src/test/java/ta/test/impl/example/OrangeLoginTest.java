@@ -20,7 +20,7 @@ public class OrangeLoginTest extends BaseTest {
 
     @Test
     @Description("Login test with valid username and password")
-    public void loginSuccess() throws Exception {
+    public void loginSuccess() {
 
         SeleniumDriver.getInstance().getDriver().get("http://opensource.demo.orangehrmlive.com/");
 
@@ -42,7 +42,7 @@ public class OrangeLoginTest extends BaseTest {
 
     @Test
     @Description("Login test with invalid username and password")
-    public void loginFailure() throws Exception {
+    public void loginFailure() {
 
         SeleniumDriver.getInstance().getDriver().get("http://opensource.demo.orangehrmlive.com/");
 

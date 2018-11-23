@@ -24,7 +24,7 @@ public class ProductMenuTest extends BaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Verifica la navigazione del menu")
-    public void tc_001_navigateProductMenu(JSONObject testData) throws Exception {
+    public void tc_001_navigateProductMenu(JSONObject testData) {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 

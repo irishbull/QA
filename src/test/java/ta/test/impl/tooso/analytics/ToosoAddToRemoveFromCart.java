@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -34,7 +35,7 @@ public class ToosoAddToRemoveFromCart extends ToosoBaseTest {
 
     @Test(priority = 1, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Validate request [type = ADD TO CART] - from serp")
-    public void tc_001_verifyAddToCartFromSerp(JSONObject testData) throws Exception {
+    public void tc_001_verifyAddToCartFromSerp(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
 
@@ -67,7 +68,7 @@ public class ToosoAddToRemoveFromCart extends ToosoBaseTest {
 
         Assert.assertEquals(entries.size(), 1, "Number of requests [type = ADD TO CART] captured by proxy:");
 
-        String urlToValidate  = entries.get(0).getRequest().getUrl();
+        String urlToValidate = entries.get(0).getRequest().getUrl();
         logger.info("Request [type = {}] to validate -> {}", ADD_TO_CART, urlToValidate);
 
         // check
@@ -77,7 +78,7 @@ public class ToosoAddToRemoveFromCart extends ToosoBaseTest {
 
     @Test(priority = 2, dependsOnMethods = {"tc_001_verifyAddToCartFromSerp"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Validate request [type = REMOVE FROM CART]")
-    public void tc_002_verifyRemoveFromCart(JSONObject testData) throws Exception {
+    public void tc_002_verifyRemoveFromCart(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
 
@@ -94,7 +95,7 @@ public class ToosoAddToRemoveFromCart extends ToosoBaseTest {
 
         Assert.assertEquals(entries.size(), 1, "Number of requests [type = REMOVE FROM CART] captured by proxy:");
 
-        String urlToValidate  = entries.get(0).getRequest().getUrl();
+        String urlToValidate = entries.get(0).getRequest().getUrl();
         logger.info("Request [type = {}] to validate -> {}", REMOVE_FROM_CART, urlToValidate);
 
         // check

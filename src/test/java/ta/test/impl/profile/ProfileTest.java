@@ -1,9 +1,10 @@
 package ta.test.impl.profile;
 
-import io.qameta.allure.Description;
 import org.json.simple.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
+
+import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
@@ -18,7 +19,7 @@ public class ProfileTest extends BaseTest {
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Test Profile")
 
-    public void tc_001_loginSuccess(JSONObject testData) throws Exception {
+    public void tc_001_loginSuccess(JSONObject testData) throws InterruptedException {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         driver.get(BASE_URL);

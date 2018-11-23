@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -33,7 +34,7 @@ public class ToosoClickAfterSearch extends ToosoBaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Validate request [type = PRODUCT CLICK AFTER SEARCH] - product without variant")
-    public void tc_001_verifyClickAfterSearchRequest(JSONObject testData) throws Exception {
+    public void tc_001_verifyClickAfterSearchRequest(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
 
@@ -64,7 +65,7 @@ public class ToosoClickAfterSearch extends ToosoBaseTest {
 
         Assert.assertEquals(entriesOfPageViewType.size(), 1, "Number of requests [type = CLICK_AFTER_SEARCH] captured by proxy:");
 
-        String urlToValidate  = entriesOfPageViewType.get(0).getRequest().getUrl();
+        String urlToValidate = entriesOfPageViewType.get(0).getRequest().getUrl();
         logger.info("Request [type = {}] to validate -> {}", CLICK_AFTER_SEARCH, urlToValidate);
 
         // check

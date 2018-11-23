@@ -50,7 +50,7 @@ public class ProductMenuPO extends PageObject {
     }
 
     // actions
-    public void mouseHoverMacroCategoryGroup(String str) throws Exception {
+    public void mouseHoverMacroCategoryGroup(String str) {
 
         WebElement link = findMacroCategoryGroupLink(str);
         WebElement ancestor = getFirstAncestorDiv(link);
@@ -58,7 +58,7 @@ public class ProductMenuPO extends PageObject {
         BrowserUtils.hover(ancestor);
     }
 
-    public void mouseHoverMacroCategory(String str) throws Exception {
+    public void mouseHoverMacroCategory(String str) {
 
         WebElement link = findMacroCategoryLink(str);
         WebElement ancestor = getFirstAncestorDiv(link);

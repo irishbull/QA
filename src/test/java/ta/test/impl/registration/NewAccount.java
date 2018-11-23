@@ -1,6 +1,5 @@
 package ta.test.impl.registration;
 
-import io.qameta.allure.Description;
 import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,15 +7,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
+
+import java.io.UnsupportedEncodingException;
+import java.time.Duration;
+import java.util.Date;
+
+import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
 import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.LoginPO;
 import ta.pageobjects.impl.RegisterPO;
 import ta.test.BaseTest;
-import java.time.Duration;
-import java.util.Date;
-
 
 
 public class NewAccount extends BaseTest {
@@ -25,20 +27,20 @@ public class NewAccount extends BaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 0)
     @Description("Create New Account Private ")
-    public void tc_001_newAccount(JSONObject testData) throws Exception {
+    public void tc_001_newAccount(JSONObject testData) throws UnsupportedEncodingException, InterruptedException {
 
         Date data = new Date();
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         RegisterPO register = new RegisterPO();
         LoginPO user = new LoginPO();
         HomePagePO goLogin = new HomePagePO();
-        //goLogin.clickLogin(); menu dropdown!
-        driver.navigate().to("https://www-qa3.leroymerlin.it/registrazione");
+        goLogin.clickLogin();
+        register.registratiClick();
         register.genderClick();
         register.maleClick();
         register.enterUsernameAndPassword(testData.get("nome").toString(), testData.get("cognome").toString(),
-            data.getTime() + testData.get("email").toString()
-                + ".it", testData.get("password").toString(), testData.get("numeroditelefono").toString(), testData.get("cap").toString());
+                data.getTime() + testData.get("email").toString()
+                        + ".it", testData.get("password").toString(), testData.get("numeroditelefono").toString(), testData.get("cap").toString());
         register.selectStore();
         register.continueClick();
         register.clickrifiuto();
@@ -55,20 +57,19 @@ public class NewAccount extends BaseTest {
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 1)
     @Description("Create New Account Azienda")
 
-    public void tc_002_newAccount(JSONObject testData) throws Exception {
+    public void tc_002_newAccount(JSONObject testData) throws InterruptedException, UnsupportedEncodingException {
 
         Date data = new Date();
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         RegisterPO register = new RegisterPO();
         HomePagePO goLogin = new HomePagePO();
         LoginPO user = new LoginPO();
-        //goLogin.clickLogin(); menu dropdown!
-        driver.navigate().to("https://www-qa3.leroymerlin.it/registrazione");
+        goLogin.clickLogin();
         register.aziendaClick();
         allSelectClickCompany();
         register.enterForCompany(testData.get("ragioneSociale").toString(), testData.get("cognome").toString(), testData.get("nome").toString(),
-            data.getTime() + testData.get("email").toString()
-                + ".it", testData.get("password").toString(), testData.get("telefono").toString(), testData.get("cap").toString());
+                data.getTime() + testData.get("email").toString()
+                        + ".it", testData.get("password").toString(), testData.get("telefono").toString(), testData.get("cap").toString());
         register.selectStore();
         register.continueClick();
         register.accettaButton();
@@ -81,7 +82,7 @@ public class NewAccount extends BaseTest {
         user.logout();
     }
 
-    private static void allSelectClickCompany() throws Exception {
+    private static void allSelectClickCompany() throws InterruptedException {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         logger.info("---> Select Registration Page Click Start <----");
         Thread.sleep(1000);

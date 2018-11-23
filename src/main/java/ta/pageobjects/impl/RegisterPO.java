@@ -145,7 +145,7 @@ public class RegisterPO extends PageObject {
         return new String (toEncode.getBytes(), "UTF-8");
  }
 
-    public void enterUsernameAndPassword(String nome, String cognome, String email, String password , String telefono, String cap) throws Exception {
+    public void enterUsernameAndPassword(String nome, String cognome, String email, String password , String telefono, String cap) throws UnsupportedEncodingException {
         this.nome.click();
         this.nome.clear();
         this.nome.sendKeys(converterToUtf(nome));
@@ -165,7 +165,7 @@ public class RegisterPO extends PageObject {
         this.cap.sendKeys(converterToUtf(cap));
     }
 
-    public void enterForCompany(String ragioneSociale,String nome, String cognome, String email, String password , String telefono, String cap) throws Exception {
+    public void enterForCompany(String ragioneSociale,String nome, String cognome, String email, String password , String telefono, String cap) throws UnsupportedEncodingException {
         this.ragioneSociale.click();
         this.ragioneSociale.clear();
         this.ragioneSociale.sendKeys(converterToUtf(ragioneSociale));

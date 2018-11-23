@@ -17,7 +17,7 @@ public class IperCookieTest extends BaseTest {
     private static final Logger logger = LoggerFactory.getLogger(IperCookieTest.class);
 
     @Test
-    public void cookieTest() throws Exception {
+    public void cookieTest() {
 
         logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
 

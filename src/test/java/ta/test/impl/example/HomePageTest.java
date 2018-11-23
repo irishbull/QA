@@ -47,7 +47,7 @@ public class HomePageTest extends BaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Verifica il corretto funzionamento del link idea-piu")
-    public void tc_002_ideaPiuLinkTest(JSONObject testData) throws Exception {
+    public void tc_002_ideaPiuLinkTest(JSONObject testData) {
 
         logger.info("thread-id:{}", String.valueOf(Thread.currentThread().getId()));
 

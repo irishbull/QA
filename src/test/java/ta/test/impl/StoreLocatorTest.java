@@ -14,7 +14,7 @@ import static ta.utilities.constants.Constants.Url.BASE_URL;
 public class StoreLocatorTest extends BaseTest {
 
     @Test
-    public void openPopup() throws Exception {
+    public void openPopup() {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
