@@ -25,19 +25,35 @@ public class ProfileTest extends BaseTest {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         driver.get(BASE_URL);
-        HomePagePO homePagePO = new HomePagePO();
+        HomePagePO goLogin = new HomePagePO();
         ProfilePO profile = new ProfilePO();
         LoginPO loginPO = new LoginPO();
-        driver.navigate().to("https://www-qa3.leroymerlin.it/login?redirectUrl=https://www-qa3.leroymerlin.it/");
+        goLogin.clickLogin();
         loginPO.enterUsernameAndPassword(testData.get("username").toString(), testData.get("password").toString());
-        loginPO.clickcookie();
         loginPO.clickAccedi();
-        Thread.sleep(5000);
         driver.navigate().to((BASE_URL) + testData.get("urlProfile").toString());
         Thread.sleep(20000);
         profile.clickChipEmail();
         profile.clickSaveButton();
         BrowserUtils.elementContainsText(profile.toast(),10,"Operazione completata con successo");
-
     }
+
+    public void tc_002_loginSuccess(JSONObject testData) throws InterruptedException {
+
+        WebDriver driver = SeleniumDriver.getInstance().getDriver();
+        driver.get(BASE_URL);
+        HomePagePO goLogin = new HomePagePO();
+        ProfilePO profile = new ProfilePO();
+        LoginPO loginPO = new LoginPO();
+        goLogin.clickLogin();
+        loginPO.enterUsernameAndPassword(testData.get("username").toString(), testData.get("password").toString());
+        loginPO.clickAccedi();
+        Thread.sleep(9000);
+        driver.navigate().to((BASE_URL) + testData.get("urlProfile").toString());
+        Thread.sleep(20000);
+        profile.clickChipEmail();
+        profile.clickSaveButton();
+        BrowserUtils.elementContainsText(profile.toast(),10,"Operazione completata con successo");
+    }
+
 }

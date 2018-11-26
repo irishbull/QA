@@ -6,7 +6,17 @@
       "username": "fabio@fazio.it",
       "password": "fabio@fazio.it",
       "firstName": "Fabio",
-      "urlProfile":"mylm/profilo"
+      "urlProfile":"/mylm/profilo"
+    }
+  ],
+  "tc_002_loginSuccess": [
+    {
+      "rowID": "tc_001_loginSuccess.01",
+      "description": "Test Profile - Fabio Fazio",
+      "username": "lelly12@kelly.it",
+      "password": "Lelly123",
+      "firstName": "Fabio",
+      "urlProfile":"/mylm/profilo"
     }
   ]
 }
