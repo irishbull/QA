@@ -2,9 +2,7 @@ package ta.test.impl.profile;
 
 import org.json.simple.JSONObject;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
@@ -13,15 +11,16 @@ import ta.pageobjects.impl.LoginPO;
 import ta.pageobjects.impl.ProfilePO;
 import ta.test.BaseTest;
 import ta.utilities.BrowserUtils;
+import ta.utilities.SessionStorage;
 
 import static ta.utilities.constants.Constants.Url.BASE_URL;
 
 public class ProfileTest extends BaseTest {
 
-    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("Test Profile")
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class , priority = 0)
+    @Description("Test Private Profile")
 
-    public void tc_001_loginSuccess(JSONObject testData) throws InterruptedException {
+    public void tc_001_PrivateProfile(JSONObject testData) throws InterruptedException {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         driver.get(BASE_URL);
@@ -32,13 +31,17 @@ public class ProfileTest extends BaseTest {
         loginPO.enterUsernameAndPassword(testData.get("username").toString(), testData.get("password").toString());
         loginPO.clickAccedi();
         driver.navigate().to((BASE_URL) + testData.get("urlProfile").toString());
-        Thread.sleep(20000);
-        profile.clickChipEmail();
+        profile.clickChipNumber();
+        profile.clickCodFiscale();
         profile.clickSaveButton();
         BrowserUtils.elementContainsText(profile.toast(),10,"Operazione completata con successo");
+        SeleniumDriver.getInstance().getDriver().manage().deleteAllCookies();
+        SessionStorage.clear();
     }
 
-    public void tc_002_loginSuccess(JSONObject testData) throws InterruptedException {
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class , priority=1)
+    @Description("Test Company Profile")
+    public void tc_002_CompanyProfile(JSONObject testData) throws InterruptedException {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         driver.get(BASE_URL);
@@ -48,10 +51,9 @@ public class ProfileTest extends BaseTest {
         goLogin.clickLogin();
         loginPO.enterUsernameAndPassword(testData.get("username").toString(), testData.get("password").toString());
         loginPO.clickAccedi();
-        Thread.sleep(9000);
         driver.navigate().to((BASE_URL) + testData.get("urlProfile").toString());
-        Thread.sleep(20000);
-        profile.clickChipEmail();
+        profile.clickChipNumber();
+        profile.clickCodFiscale();
         profile.clickSaveButton();
         BrowserUtils.elementContainsText(profile.toast(),10,"Operazione completata con successo");
     }

@@ -1,22 +1,22 @@
 {
-  "tc_001_loginSuccess": [
+  "tc_001_PrivateProfile": [
     {
-      "rowID": "tc_001_loginSuccess.01",
+      "rowID": "tc_001_PrivateProfile.01",
       "description": "Test Profile - Fabio Fazio",
       "username": "fabio@fazio.it",
       "password": "fabio@fazio.it",
       "firstName": "Fabio",
-      "urlProfile":"/mylm/profilo"
+      "urlProfile":"mylm/profilo"
     }
   ],
-  "tc_002_loginSuccess": [
+  "tc_002_CompanyProfile": [
     {
-      "rowID": "tc_001_loginSuccess.01",
+      "rowID": "tc_002_CompanyProfile.01",
       "description": "Test Profile - Fabio Fazio",
       "username": "lelly12@kelly.it",
       "password": "Lelly123",
       "firstName": "Fabio",
-      "urlProfile":"/mylm/profilo"
+      "urlProfile":"mylm/profilo"
     }
   ]
 }

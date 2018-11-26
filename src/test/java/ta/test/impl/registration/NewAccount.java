@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.UnsupportedEncodingException;
 import java.time.Duration;
@@ -17,6 +18,8 @@ import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.LoginPO;
 import ta.pageobjects.impl.RegisterPO;
 import ta.test.BaseTest;
+import static ta.utilities.constants.Constants.Url.BASE_URL;
+import static javafx.scene.input.DataFormat.URL;
 
 
 public class NewAccount extends BaseTest {
@@ -46,6 +49,8 @@ public class NewAccount extends BaseTest {
         register.accettaProfilazione();
         register.concludiRegistrazione();
         Thread.sleep(10000);
+        String URL = driver.getCurrentUrl();
+        Assert.assertEquals(URL, BASE_URL+"/registrazione/benvenuto");
         register.goProfileButton();
         new WebDriverWait(driver, 30).withTimeout(Duration.ofMillis(6000));
         user.logout();
@@ -74,28 +79,29 @@ public class NewAccount extends BaseTest {
         register.accettaTermini();
         register.accettaProfilazione();
         register.concludiRegistrazione();
-        Thread.sleep(20000);
+        String URL = driver.getCurrentUrl();
+        Assert.assertEquals(URL, BASE_URL+"/registrazione/benvenuto");
         register.goProfileButton();
-        new WebDriverWait(driver, 60).withTimeout(Duration.ofMillis(10000));
+        new WebDriverWait(driver, 30).withTimeout(Duration.ofMillis(6000));
         user.logout();
     }
 
     private static void allSelectClickCompany() throws InterruptedException {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         logger.info("---> Select Registration Page Click Start <----");
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Titolo*'])[1]/following::div[3]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Info societarie'])[1]/following::li[1]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Forma legale*'])[1]/following::div[3]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='SPA'])[1]/following::li[1]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Settore*'])[1]/following::div[3]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Bancario/Finanziario'])[1]/following::li[1]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         logger.info("--> Select Click Finish <---");
     }
 

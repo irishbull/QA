@@ -56,5 +56,4 @@ public class LoginPO extends PageObject {
 
     public void logout(){ logout.click(); }
 
-
 }

@@ -19,20 +19,20 @@ public class ProfilePO extends PageObject {
     @FindBy(how = How.ID_OR_NAME, using = "PROFILE_CHIP_NUMBER")
     private WebElement chipNumber;
 
-    @FindBy(how = How.ID, using ="id_taxCode")
+    @FindBy(how = How.ID, using ="id_taxID")
     private  WebElement codFiscale;
 
     @FindBy(how = How.ID_OR_NAME, using ="EDITCUSTOMER_SUBMIT")
     private  WebElement saveButton;
 
     public void clickChipProfile(){ chipProfile.click(); }
-    public void clickChipEmail(){ clickChipEmail(); }
-    public void clickChipNumber(){ clickChipNumber(); }
+
+    public void clickChipNumber(){ chipNumber.click(); }
 
     public void clickCodFiscale(){
         codFiscale.click();
         codFiscale.clear();
-        codFiscale.sendKeys("GSSGPP95D05B619O");
+        codFiscale.sendKeys("GSSGPP95D05B618Q");
     }
 
     public WebElement toast(){
