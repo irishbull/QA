@@ -119,6 +119,10 @@ public class RegisterPO extends PageObject {
 
     public void aziendaClick(){ azienda.click(); }
 
+    public WebElement setAzienda () {
+        return azienda;
+    }
+
     public void settoreClick(){ settore.click(); }
 
     public void continueClick(){ prosegui.click(); }

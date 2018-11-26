@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.UnsupportedEncodingException;
+import java.sql.Driver;
 import java.time.Duration;
 import java.util.Date;
 import io.qameta.allure.Description;
@@ -18,6 +19,10 @@ import ta.pageobjects.impl.HomePagePO;
 import ta.pageobjects.impl.LoginPO;
 import ta.pageobjects.impl.RegisterPO;
 import ta.test.BaseTest;
+import ta.utilities.BrowserUtils;
+import ta.utilities.SessionStorage;
+import ta.utilities.constants.Constants;
+
 import static ta.utilities.constants.Constants.Url.BASE_URL;
 import static javafx.scene.input.DataFormat.URL;
 
@@ -26,7 +31,7 @@ public class NewAccount extends BaseTest {
 
     private static final Logger logger = LoggerFactory.getLogger(NewAccount.class);
 
-    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 0)
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 1)
     @Description("Create New Account Private ")
     public void tc_001_newAccount(JSONObject testData) throws UnsupportedEncodingException, InterruptedException {
 
@@ -48,16 +53,18 @@ public class NewAccount extends BaseTest {
         register.accettaTermini();
         register.accettaProfilazione();
         register.concludiRegistrazione();
-        Thread.sleep(10000);
+        BrowserUtils.waitForURLContains("/registrazione/benvenuto",15);
         String URL = driver.getCurrentUrl();
         Assert.assertEquals(URL, BASE_URL+"/registrazione/benvenuto");
         register.goProfileButton();
         new WebDriverWait(driver, 30).withTimeout(Duration.ofMillis(6000));
         user.logout();
+        SeleniumDriver.getInstance().getDriver().manage().deleteAllCookies();
+        SessionStorage.clear();
     }
 
 
-    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 1)
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 2)
     @Description("Create New Account Azienda")
 
     public void tc_002_newAccount(JSONObject testData) throws InterruptedException, UnsupportedEncodingException {
@@ -68,6 +75,8 @@ public class NewAccount extends BaseTest {
         HomePagePO goLogin = new HomePagePO();
         LoginPO user = new LoginPO();
         goLogin.clickLogin();
+        register.registratiClick();
+        BrowserUtils.waitFor(register.setAzienda(),Constants.WaitTime.FIVE_SECONDS);
         register.aziendaClick();
         allSelectClickCompany();
         register.enterForCompany(testData.get("ragioneSociale").toString(), testData.get("cognome").toString(), testData.get("nome").toString(),
@@ -79,11 +88,14 @@ public class NewAccount extends BaseTest {
         register.accettaTermini();
         register.accettaProfilazione();
         register.concludiRegistrazione();
+        BrowserUtils.waitForURLContains("/registrazione/benvenuto",15);
         String URL = driver.getCurrentUrl();
         Assert.assertEquals(URL, BASE_URL+"/registrazione/benvenuto");
         register.goProfileButton();
         new WebDriverWait(driver, 30).withTimeout(Duration.ofMillis(6000));
         user.logout();
+        SeleniumDriver.getInstance().getDriver().manage().deleteAllCookies();
+        SessionStorage.clear();
     }
 
     private static void allSelectClickCompany() throws InterruptedException {
