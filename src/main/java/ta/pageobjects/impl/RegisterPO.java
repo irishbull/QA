@@ -57,6 +57,12 @@ public class RegisterPO extends PageObject {
     private WebElement profiloCheck;
 
 
+    @FindBy(how = How.XPATH, xpath = "/html/body/div[1]/div/div[6]/div/div[14]/div/div[4]/div[1]/div")
+    private WebElement promo;
+
+    @FindBy(how = How.XPATH, xpath = "/html/body/div[1]/div/div[6]/div/div[14]/div/div[6]/div[1]/div")
+    private WebElement directMarketing;
+
 
     @FindBy(how = How.ID_OR_NAME, using = "name")
     private WebElement nome;
@@ -97,7 +103,7 @@ public class RegisterPO extends PageObject {
 
     public void checkconditions(){termsConditions.click();}
 
-    public void accettaButton(){accettaButton.click();}
+    public void accetta(){accettaButton.click();}
 
     public void profilingClick(){
         profiling.click();
@@ -140,9 +146,12 @@ public class RegisterPO extends PageObject {
         rifiuto.click();
     }
 
-    public void accettaProfilazione(){
-        profiloCheck.click();
-    }
+    public void accettaProfilazione(){ profiloCheck.click(); }
+
+    public void accettaPromo(){ promo.click(); }
+
+    public void accettaDirectMarketing(){ directMarketing.click(); }
+
     public void selectStore(){
         storeCode.click();
         livornoShop.click();

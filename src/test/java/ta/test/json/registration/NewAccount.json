@@ -61,7 +61,20 @@
       "telefono":"55571146582",
       "cap":"76121"
     }
-  ]
+  ],
+  "tc_003_newAccount": [
+  {
+    "rowID": "tc_003_newAccount.01",
+    "landingurl":"mylm",
+    "ragioneSociale":"LeroyMerlin S.P.A0",
+    "nome": "Life",
+    "cognome":"Empty",
+    "email":"Love@Red",
+    "password":"Francesco1989@",
+    "telefono":"25571146582",
+    "cap":"76133"
+  }
+]
 }
 
 

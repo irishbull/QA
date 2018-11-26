@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.UnsupportedEncodingException;
-import java.sql.Driver;
 import java.time.Duration;
 import java.util.Date;
 import io.qameta.allure.Description;
@@ -22,9 +21,7 @@ import ta.test.BaseTest;
 import ta.utilities.BrowserUtils;
 import ta.utilities.SessionStorage;
 import ta.utilities.constants.Constants;
-
 import static ta.utilities.constants.Constants.Url.BASE_URL;
-import static javafx.scene.input.DataFormat.URL;
 
 
 public class NewAccount extends BaseTest {
@@ -41,6 +38,7 @@ public class NewAccount extends BaseTest {
         LoginPO user = new LoginPO();
         HomePagePO goLogin = new HomePagePO();
         goLogin.clickLogin();
+        logger.info("-----STEP 1 REGISTRAZIONE-----");
         register.registratiClick();
         register.genderClick();
         register.maleClick();
@@ -49,10 +47,12 @@ public class NewAccount extends BaseTest {
                         + ".it", testData.get("password").toString(), testData.get("numeroditelefono").toString(), testData.get("cap").toString());
         register.selectStore();
         register.continueClick();
+        logger.info("-----STEP 2 REGISTRAZIONE-----");
         register.clickrifiuto();
         register.accettaTermini();
         register.accettaProfilazione();
         register.concludiRegistrazione();
+        logger.info("-----STEP 3 REGISTRAZIONE-----");
         BrowserUtils.waitForURLContains("/registrazione/benvenuto",15);
         String URL = driver.getCurrentUrl();
         Assert.assertEquals(URL, BASE_URL+"/registrazione/benvenuto");
@@ -73,6 +73,7 @@ public class NewAccount extends BaseTest {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
         RegisterPO register = new RegisterPO();
         HomePagePO goLogin = new HomePagePO();
+        logger.info("-----STEP 1 REGISTRAZIONE-----");
         LoginPO user = new LoginPO();
         goLogin.clickLogin();
         register.registratiClick();
@@ -84,10 +85,14 @@ public class NewAccount extends BaseTest {
                         + ".it", testData.get("password").toString(), testData.get("telefono").toString(), testData.get("cap").toString());
         register.selectStore();
         register.continueClick();
-        register.accettaButton();
+        logger.info("-----STEP 2 REGISTRAZIONE-----");
+        register.accetta();
         register.accettaTermini();
         register.accettaProfilazione();
+        register.accettaPromo();
+        register.accettaDirectMarketing();
         register.concludiRegistrazione();
+        logger.info("-----STEP 3 REGISTRAZIONE-----");
         BrowserUtils.waitForURLContains("/registrazione/benvenuto",15);
         String URL = driver.getCurrentUrl();
         Assert.assertEquals(URL, BASE_URL+"/registrazione/benvenuto");
@@ -97,6 +102,45 @@ public class NewAccount extends BaseTest {
         SeleniumDriver.getInstance().getDriver().manage().deleteAllCookies();
         SessionStorage.clear();
     }
+
+
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 3)
+    @Description("Create New Account Privato - Accetta carta con profilazione completa")
+
+    public void tc_003_newAccount(JSONObject testData) throws InterruptedException, UnsupportedEncodingException {
+
+        Date data = new Date();
+        WebDriver driver = SeleniumDriver.getInstance().getDriver();
+        RegisterPO register = new RegisterPO();
+        HomePagePO goLogin = new HomePagePO();
+        LoginPO user = new LoginPO();
+        logger.info("-----STEP 1 REGISTRAZIONE-----");
+        goLogin.clickLogin();
+        register.registratiClick();
+        BrowserUtils.waitFor(register.setAzienda(),Constants.WaitTime.FIVE_SECONDS);
+        register.aziendaClick();
+        allSelectClickCompany();
+        register.enterForCompany(testData.get("ragioneSociale").toString(), testData.get("cognome").toString(), testData.get("nome").toString(),
+            data.getTime() + testData.get("email").toString()
+                + ".it", testData.get("password").toString(), testData.get("telefono").toString(), testData.get("cap").toString());
+        register.selectStore();
+        register.continueClick();
+        logger.info("-----STEP 2 REGISTRAZIONE-----");
+        register.accetta();
+        register.accettaTermini();
+        register.accettaProfilazione();
+        register.concludiRegistrazione();
+        logger.info("-----STEP 3 REGISTRAZIONE-----");
+        BrowserUtils.waitForURLContains("/registrazione/benvenuto",15);
+        String URL = driver.getCurrentUrl();
+        Assert.assertEquals(URL, BASE_URL+"/registrazione/benvenuto");
+        register.goProfileButton();
+        new WebDriverWait(driver, 30).withTimeout(Duration.ofMillis(6000));
+        user.logout();
+        SeleniumDriver.getInstance().getDriver().manage().deleteAllCookies();
+        SessionStorage.clear();
+    }
+
 
     private static void allSelectClickCompany() throws InterruptedException {
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
