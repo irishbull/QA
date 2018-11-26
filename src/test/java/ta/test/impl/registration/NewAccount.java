@@ -29,7 +29,7 @@ public class NewAccount extends BaseTest {
     private static final Logger logger = LoggerFactory.getLogger(NewAccount.class);
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 1)
-    @Description("Create New Account Private ")
+    @Description("Creazione Nuovo Account Privato ")
     public void tc_001_newAccount(JSONObject testData) throws UnsupportedEncodingException, InterruptedException {
 
         Date data = new Date();
@@ -48,14 +48,17 @@ public class NewAccount extends BaseTest {
         register.selectStore();
         register.continueClick();
         logger.info("-----STEP 2 REGISTRAZIONE-----");
+        BrowserUtils.waitForURLContains("/registrazione/vantaggi",15);
+        String url = driver.getCurrentUrl();
+        Assert.assertEquals(url, BASE_URL+"/registrazione/vantaggi");
         register.clickrifiuto();
         register.accettaTermini();
         register.accettaProfilazione();
         register.concludiRegistrazione();
         logger.info("-----STEP 3 REGISTRAZIONE-----");
         BrowserUtils.waitForURLContains("/registrazione/benvenuto",15);
-        String URL = driver.getCurrentUrl();
-        Assert.assertEquals(URL, BASE_URL+"/registrazione/benvenuto");
+        String urlBenvenuto = driver.getCurrentUrl();
+        Assert.assertEquals(urlBenvenuto, BASE_URL+"/registrazione/benvenuto");
         register.goProfileButton();
         new WebDriverWait(driver, 30).withTimeout(Duration.ofMillis(6000));
         user.logout();
@@ -65,7 +68,7 @@ public class NewAccount extends BaseTest {
 
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 2)
-    @Description("Create New Account Azienda")
+    @Description("Creazione Nuovo Account Azienda")
 
     public void tc_002_newAccount(JSONObject testData) throws InterruptedException, UnsupportedEncodingException {
 
@@ -86,6 +89,9 @@ public class NewAccount extends BaseTest {
         register.selectStore();
         register.continueClick();
         logger.info("-----STEP 2 REGISTRAZIONE-----");
+        BrowserUtils.waitForURLContains("/registrazione/vantaggi",15);
+        String url = driver.getCurrentUrl();
+        Assert.assertEquals(url, BASE_URL+"/registrazione/vantaggi");
         register.accetta();
         register.accettaTermini();
         register.accettaProfilazione();
@@ -94,8 +100,8 @@ public class NewAccount extends BaseTest {
         register.concludiRegistrazione();
         logger.info("-----STEP 3 REGISTRAZIONE-----");
         BrowserUtils.waitForURLContains("/registrazione/benvenuto",15);
-        String URL = driver.getCurrentUrl();
-        Assert.assertEquals(URL, BASE_URL+"/registrazione/benvenuto");
+        String urlBenvenuto = driver.getCurrentUrl();
+        Assert.assertEquals(urlBenvenuto, BASE_URL+"/registrazione/benvenuto");
         register.goProfileButton();
         new WebDriverWait(driver, 30).withTimeout(Duration.ofMillis(6000));
         user.logout();
@@ -105,7 +111,7 @@ public class NewAccount extends BaseTest {
 
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class, priority = 3)
-    @Description("Create New Account Privato - Accetta carta con profilazione completa")
+    @Description("Create New Account Azienda - Accetta carta con profilazione completa")
 
     public void tc_003_newAccount(JSONObject testData) throws InterruptedException, UnsupportedEncodingException {
 
@@ -126,14 +132,17 @@ public class NewAccount extends BaseTest {
         register.selectStore();
         register.continueClick();
         logger.info("-----STEP 2 REGISTRAZIONE-----");
+        BrowserUtils.waitForURLContains("/registrazione/vantaggi",15);
+        String url = driver.getCurrentUrl();
+        Assert.assertEquals(url, BASE_URL+"/registrazione/vantaggi");
         register.accetta();
         register.accettaTermini();
         register.accettaProfilazione();
         register.concludiRegistrazione();
         logger.info("-----STEP 3 REGISTRAZIONE-----");
         BrowserUtils.waitForURLContains("/registrazione/benvenuto",15);
-        String URL = driver.getCurrentUrl();
-        Assert.assertEquals(URL, BASE_URL+"/registrazione/benvenuto");
+        String urlBenvenuto = driver.getCurrentUrl();
+        Assert.assertEquals(urlBenvenuto, BASE_URL+"/registrazione/benvenuto");
         register.goProfileButton();
         new WebDriverWait(driver, 30).withTimeout(Duration.ofMillis(6000));
         user.logout();
