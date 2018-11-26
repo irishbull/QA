@@ -18,5 +18,14 @@
       "firstName": "Fabio",
       "urlProfile":"mylm/profilo"
     }
-  ]
+  ],"tc_003_PrivateProfileChangePassword": [
+  {
+    "rowID": "tc_002_CompanyProfile.01",
+    "description": "Test Profile - Fabio Fazio",
+    "username": "lelly12@kelly.it",
+    "password": "Lelly123",
+    "firstName": "Fabio",
+    "urlProfile":"mylm/profilo"
+  }
+]
 }

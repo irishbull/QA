@@ -17,7 +17,7 @@ import static ta.utilities.constants.Constants.Url.BASE_URL;
 
 public class ProfileTest extends BaseTest {
 
-    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class , priority = 0)
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class , priority = 1)
     @Description("Test Private Profile")
 
     public void tc_001_PrivateProfile(JSONObject testData) throws InterruptedException {
@@ -30,7 +30,8 @@ public class ProfileTest extends BaseTest {
         goLogin.clickLogin();
         loginPO.enterUsernameAndPassword(testData.get("username").toString(), testData.get("password").toString());
         loginPO.clickAccedi();
-        driver.navigate().to((BASE_URL) + testData.get("urlProfile").toString());
+        BrowserUtils.waitForURLContains("/mylm",30);
+        profile.clickProfiloMattonella();
         profile.clickChipNumber();
         profile.clickCodFiscale();
         profile.clickSaveButton();
@@ -39,7 +40,7 @@ public class ProfileTest extends BaseTest {
         SessionStorage.clear();
     }
 
-    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class , priority=1)
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class , priority=2)
     @Description("Test Company Profile")
     public void tc_002_CompanyProfile(JSONObject testData) throws InterruptedException {
 
@@ -51,11 +52,38 @@ public class ProfileTest extends BaseTest {
         goLogin.clickLogin();
         loginPO.enterUsernameAndPassword(testData.get("username").toString(), testData.get("password").toString());
         loginPO.clickAccedi();
-        driver.navigate().to((BASE_URL) + testData.get("urlProfile").toString());
+        BrowserUtils.waitForURLContains("/mylm",30);
+        profile.clickProfiloMattonella();
         profile.clickChipNumber();
         profile.clickCodFiscale();
         profile.clickSaveButton();
         BrowserUtils.elementContainsText(profile.toast(),10,"Operazione completata con successo");
+        SeleniumDriver.getInstance().getDriver().manage().deleteAllCookies();
+        SessionStorage.clear();
     }
 
+
+
+    @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class , priority = 3)
+    @Description("Test Private Profile - Cambio Password")
+
+    public void tc_003_PrivateProfileChangePassword(JSONObject testData) throws InterruptedException {
+
+        WebDriver driver = SeleniumDriver.getInstance().getDriver();
+        driver.get(BASE_URL);
+        HomePagePO goLogin = new HomePagePO();
+        ProfilePO profile = new ProfilePO();
+        LoginPO loginPO = new LoginPO();
+        goLogin.clickLogin();
+        loginPO.enterUsernameAndPassword(testData.get("username").toString(), testData.get("password").toString());
+        loginPO.clickAccedi();
+        BrowserUtils.waitForURLContains("/mylm",30);
+        profile.clickProfiloMattonella();
+        profile.clickPassword();
+        profile.clickCodFiscale();
+        profile.clickSaveButton();
+        BrowserUtils.elementContainsText(profile.toast(),10,"Operazione completata con successo");
+        SeleniumDriver.getInstance().getDriver().manage().deleteAllCookies();
+        SessionStorage.clear();
+    }
 }
