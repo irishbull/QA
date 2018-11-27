@@ -43,7 +43,7 @@ public class ToosoConstants {
     // Tooso quiet period
     public static final Long QUIET_PERIOD = 3L;
     // Tooso timeout
-    public static final Long TIMEOUT = 10L;
+    public static final Long TIMEOUT = 15L;
 
     // Tooso environment values
     public static final String METHOD = "GET";

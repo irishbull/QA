@@ -7,7 +7,7 @@
       "expectedEqual": {
         "dl": "/",
         "dp": "/",
-        "dr": "",
+        "dr": "/",
         "dt": "Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin"
       },
       "expectedNotEmpty": [],
