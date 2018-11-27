@@ -58,10 +58,20 @@ public class ProfilePO extends PageObject {
         return sb;
     }
 
-    private static StringBuilder randomPassword() {
-        final String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static StringBuilder randomPartitaIva() {
+        final String ALPHABET = "0123456789";
         Random rnd = new Random(System.currentTimeMillis());
-        final int LENGHT = 9;
+        final int LENGHT = 6;
+        StringBuilder sb = new StringBuilder(LENGHT);
+        for (int i = 0; i < LENGHT; i++) {
+            sb.append(ALPHABET.charAt(rnd.nextInt(ALPHABET.length())));
+        }
+        return sb;
+    }
+    private static StringBuilder randomcap() {
+        final String ALPHABET = "0123456789";
+        Random rnd = new Random(System.currentTimeMillis());
+        final int LENGHT = 5;
         StringBuilder sb = new StringBuilder(LENGHT);
         for (int i = 0; i < LENGHT; i++) {
             sb.append(ALPHABET.charAt(rnd.nextInt(ALPHABET.length())));
