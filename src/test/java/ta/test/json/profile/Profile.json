@@ -1,7 +1,7 @@
 {
-  "tc_001_PrivateProfile": [
+  "tc_001_Profile": [
     {
-      "rowID": "tc_001_PrivateProfile.01",
+      "rowID": "tc_001_Profile.01",
       "description": "Test Profile - Fabio Fazio",
       "username": "fabio@fazio.it",
       "password": "fabio@fazio.it",
@@ -9,23 +9,14 @@
       "urlProfile":"mylm/profilo"
     }
   ],
-  "tc_002_CompanyProfile": [
+  "tc_002_Profile": [
     {
-      "rowID": "tc_002_CompanyProfile.01",
-      "description": "Test Profile - Fabio Fazio",
+      "rowID": "tc_002_Profile.01",
+      "description": "Test Profile - Lelly Kelly",
       "username": "lelly12@kelly.it",
       "password": "Lelly123",
-      "firstName": "Fabio",
+      "firstName": "Lelly",
       "urlProfile":"mylm/profilo"
     }
-  ],"tc_003_PrivateProfileChangePassword": [
-  {
-    "rowID": "tc_002_CompanyProfile.01",
-    "description": "Test Profile - Fabio Fazio",
-    "username": "lelly12@kelly.it",
-    "password": "Lelly123",
-    "firstName": "Fabio",
-    "urlProfile":"mylm/profilo"
-  }
-]
+  ]
 }

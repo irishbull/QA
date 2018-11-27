@@ -48,7 +48,7 @@ public class ProfilePO extends PageObject {
     }
 
     private static StringBuilder randomCode() {
-        final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        final String ALPHABET = "BCDFGHJKLMNPQRSTVWXYZ";
         Random rnd = new Random(System.currentTimeMillis());
         final int LENGHT = 6;
         StringBuilder sb = new StringBuilder(LENGHT);
