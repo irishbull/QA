@@ -157,55 +157,55 @@ public class RegisterPO extends PageObject {
         livornoShop.click();
     }
 
-
+/*
    public String converterToUtf(String toEncode) throws UnsupportedEncodingException {
         return new String (toEncode.getBytes(), "UTF-8");
- }
+ }*/
 
     public void enterUsernameAndPassword(String nome, String cognome, String email, String password , String telefono, String cap) throws UnsupportedEncodingException {
         this.nome.click();
         this.nome.clear();
-        this.nome.sendKeys(converterToUtf(nome));
+        this.nome.sendKeys(nome);
         this.cognome.click();
         this.cognome.clear();
-        this.cognome.sendKeys(converterToUtf(cognome));
+        this.cognome.sendKeys(cognome);
         this.telefono.click();
         this.telefono.clear();
-        this.telefono.sendKeys(converterToUtf(telefono));
+        this.telefono.sendKeys(telefono);
         this.email.click();
         this.email.clear();
-        this.email.sendKeys(converterToUtf(email));
+        this.email.sendKeys(email);
         this.password.click();
-        this.password.sendKeys(converterToUtf(password));
+        this.password.sendKeys(password);
         this.cap.click();
         this.cap.clear();
-        this.cap.sendKeys(converterToUtf(cap));
+        this.cap.sendKeys(cap);
     }
 
     public void enterForCompany(String ragioneSociale,String nome, String cognome, String email, String password , String telefono, String cap) throws UnsupportedEncodingException {
         this.ragioneSociale.click();
         this.ragioneSociale.clear();
-        this.ragioneSociale.sendKeys(converterToUtf(ragioneSociale));
+        this.ragioneSociale.sendKeys(ragioneSociale);
         this.nome.click();
         this.nome.clear();
-        this.nome.sendKeys(converterToUtf(nome));
+        this.nome.sendKeys(nome);
         this.cognome.click();
         this.cognome.clear();
-        this.cognome.sendKeys(converterToUtf(cognome));
+        this.cognome.sendKeys(cognome);
         this.telefono.click();
         this.telefono.clear();
         this.telefono.click();
         this.telefono.clear();
-        this.telefono.sendKeys(converterToUtf(telefono));
+        this.telefono.sendKeys(telefono);
         this.email.click();
         this.email.clear();
-        this.email.sendKeys(converterToUtf(email));
+        this.email.sendKeys(email);
         this.password.click();
         this.password.clear();
-        this.password.sendKeys(converterToUtf(password));
+        this.password.sendKeys(password);
         this.cap.clear();
         this.cap.click();
-        this.cap.sendKeys(converterToUtf(cap));
+        this.cap.sendKeys(cap);
     }
 
 }
