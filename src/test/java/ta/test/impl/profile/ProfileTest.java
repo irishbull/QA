@@ -62,10 +62,11 @@ public class ProfileTest extends BaseTest {
         goLogin.clickLogin();
         loginPO.enterUsernameAndPassword(testData.get("username").toString(), testData.get("password").toString());
         loginPO.clickAccedi();
-        BrowserUtils.waitForURLContains("mylm",30);
+        BrowserUtils.waitForURLContains("mylm",100);
         profile.clickProfiloMattonella();
         profile.clickChipNumber();
-        profile.clickCodFiscale();
+        profile.clickPartitaIva();
+        profile.sendPartitaIva();
         profile.clickSaveButton();
         try {
             if (BrowserUtils.elementContainsText(profile.toast(), 10, "Operazione completata con successo")
