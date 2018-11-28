@@ -33,7 +33,8 @@ dependencies {
             'com.googlecode.json-simple:json-simple:1.1',
             'net.lightbody.bmp:browsermob-core:2.1.5',
             'org.apache.httpcomponents:httpclient: 4.5.5',
-            'org.jsoup:jsoup:1.8.3'
+            'org.jsoup:jsoup:1.8.3',
+            'org.beanshell:bsh:2.0b5'
     )
 
     testCompile('org.testng:testng:6.10'
@@ -110,11 +111,18 @@ test {
         useDefaultListeners = true
         suites 'src/test/resources/testng.xml'
 
-        // Default browser = chrome
+        // browser (default value = chrome)
         def selectedBrowser = project.hasProperty('Browser') ? project.getProperty('Browser') : 'chrome'
-
+        
         // Set the property selectedBrowser in systemProperty
         systemProperty "selectedBrowser", selectedBrowser
+        
+        // target environment  (default value = development)
+        def targetEnv = project.hasProperty('Env') ? project.getProperty('Env') : 'development'
+
+        // Set the property targetEnv in systemProperty
+        systemProperty "targetEnv", targetEnv
+
     }
 }
 
