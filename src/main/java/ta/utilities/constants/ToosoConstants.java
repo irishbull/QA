@@ -154,8 +154,8 @@ public class ToosoConstants {
             static {
                 Map<String, String> map = new HashMap<>();
                 map.put("tid", TID);
-                map.put("v", "1");
-                map.put("de", Constants.Encode.UTF_8);
+                // map.put("v", "1"); TODO TOOSO_REMOVE
+                // map.put("de", Constants.Encode.UTF_8); TODO TOOSO_REMOVE
                 map.put("cu", "EUR");
                 map.put("cid", "from cookie _ta");
                 map.put("uid", "from sessionStorage.authData when user is logged-in, from localStorage.sessionID otherwise");
@@ -167,9 +167,9 @@ public class ToosoConstants {
 
             static {
                 List<String> list = new ArrayList<>(Arrays.asList(
-                        "ul",
-                        "sr",
-                        "sd",
+                        // "ul", TODO TOOSO_REMOVE
+                        // "sr", TODO TOOSO_REMOVE
+                        // "sd", TODO TOOSO_REMOVE
                         "tm",
                         "z"
                         //"cd0"  geolocation needed

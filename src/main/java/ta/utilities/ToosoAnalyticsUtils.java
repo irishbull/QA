@@ -143,11 +143,11 @@ public class ToosoAnalyticsUtils {
         // query parameters to check
         final Map<String, String> urlQueryParams = getQueryParams(url);
 
-        // map containing parameters <name, value> (dynamically retrieved from json) for EQUALITY check
-        Map<String, String> expectedEqual = (HashMap<String, String>) testData.get("expectedEqual");
+        // map containing parameters <name, value> for EQUALITY check
+        Map<String, String> expectedEqual = new HashMap<>();
 
-        // list containing parameters <name> (dynamically retrieved from json) that should be NOT EMPTY
-        List<String> expectedNotEmpty = (List<String>) testData.get("expectedNotEmpty");
+        // list containing parameters <name> that should be NOT EMPTY
+        List<String> expectedNotEmpty = new ArrayList<>();
 
         // add common parameters according request type
         switch (type) {
@@ -164,6 +164,13 @@ public class ToosoAnalyticsUtils {
                 expectedNotEmpty.addAll(ToosoConstants.Analytics.Common.ASSERT_NOT_EMPTY_QUERY_PARAMS);
                 break;
         }
+
+        //add parameters (dynamically retrieved from json) for EQUALITY check
+        expectedEqual.putAll((HashMap<String, String>) testData.get("expectedEqual"));
+
+        //add parameters(dynamically retrieved from json) that should be NOT EMPTY
+        expectedNotEmpty.addAll((List<String>) testData.get("expectedNotEmpty"));
+
 
         assertEquals(urlQueryParams, expectedEqual);
         assertNotEmpty(urlQueryParams, expectedNotEmpty);
@@ -213,9 +220,9 @@ public class ToosoAnalyticsUtils {
             Assert.assertTrue(actual.containsKey(key), String.format(ASSERT_MANDATORY_MESSAGE, key));
 
             switch (key) {
-                // dr expected value should be equal to baseUrl and json dl concatenation when json dr is not empty
+                // dr expected value should be equal to baseUrl and json dr concatenation when json dr is not empty
                 case DR:
-                    expectedValue = entry.getValue().toString().isEmpty() ? entry.getValue().toString() : BASE_URL.concat(entry.getValue().toString());
+                    expectedValue = entry.getValue().toString().isEmpty() ? "" : BASE_URL.concat(entry.getValue().toString());
                     break;
                 // dl expected value should be equal to baseUrl and json dl
                 case DL:

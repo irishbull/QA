@@ -7,10 +7,7 @@
       "search":"lampade",
       "productCardIndex":"1",
       "expectedEqual": {
-        "dl":"/ricerca?q=lampade&page=1",
         "dp":"/ricerca?q=lampade&page=1",
-        "dr":"/",
-        "dt":"Fai da te, arredo casa e giardino: prodotti e idee | Leroy Merlin",
         "pr1qt":"1",
         "pr1ps":"2",
         "pr1storeid":"7"
@@ -28,10 +25,7 @@
       "rowID":"tc_002_verifyRemoveFromCart.01",
       "description":"Validate request [type = REMOVE FROM CART]",
       "expectedEqual": {
-        "dl":"/checkout/carrello",
         "dp":"/checkout/carrello",
-        "dr":"/ricerca?q=lampade&page=1",
-        "dt":"",
         "pr1qt":"1",
         "pr1ps":"1",
         "pr1storeid":"7"
