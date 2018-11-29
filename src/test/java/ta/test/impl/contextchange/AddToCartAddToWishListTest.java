@@ -41,12 +41,12 @@ public class AddToCartAddToWishListTest extends BaseTest {
         loginPO.clickAccedi();
 
         // wait page redirect - find element that appears only in mylm when user is logged
-        BrowserUtils.waitForURLContains("/mylm", 60 );
-        BrowserUtils.waitFor(driver.findElement(By.name("mylm_logout")), 60);
+        BrowserUtils.waitForURLContains("/mylm", TEN_SECONDS );
+        BrowserUtils.waitFor(driver.findElement(By.name("mylm_logout")), FIFTEEN_SECONDS);
         AngularHeaderCommonPO angularHeaderCommonPO = new AngularHeaderCommonPO();
 
         // assert that user first name is correct
-        BrowserUtils.waitForTextMatches(angularHeaderCommonPO.getCustomerName(), 60, testData.get("userFirstName").toString());
+        BrowserUtils.waitForTextMatches(angularHeaderCommonPO.getCustomerName(), TEN_SECONDS, testData.get("userFirstName").toString());
         assertEquals(angularHeaderCommonPO.getCustomerName().getText(), testData.get("userFirstName").toString(), "Angular context. User first name");
     }
 
