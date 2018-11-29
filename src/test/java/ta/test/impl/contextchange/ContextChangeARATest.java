@@ -44,34 +44,34 @@ public class ContextChangeARATest extends BaseTest {
         loginPO.clickLoginButton();
 
         // wait page redirect - find element that appears only when user is logged from angular
-        BrowserUtils.waitFor(driver.findElement(By.className("form-section-label")), FIFTEEN_SECONDS);
+        BrowserUtils.waitFor(driver.findElement(By.className("form-section-label")), 60);
         AngularHeaderCommonPO angularHeaderCommonPO = new AngularHeaderCommonPO();
 
         // assert that user first name has the expected value - angular context
-        BrowserUtils.waitForTextMatches(angularHeaderCommonPO.getCustomerName(), TEN_SECONDS, testData.get("userFirstName").toString());
+        BrowserUtils.waitForTextMatches(angularHeaderCommonPO.getCustomerName(), 60, testData.get("userFirstName").toString());
         assertEquals(angularHeaderCommonPO.getCustomerName().getText(), testData.get("userFirstName").toString(), "Angular context. User first name");
 
 
         // navigate to homepage - react context
         angularHeaderCommonPO.clickLinkToHome();
-        BrowserUtils.waitForURLMatches(BASE_URL, TEN_SECONDS);
+        BrowserUtils.waitForURLMatches(BASE_URL, 60);
 
         // assert that user first name has the expected value - react context
         HeaderPO headerPO = new HeaderPO();
-        BrowserUtils.waitFor(headerPO.getHeaderLoginElem(), EXPLICIT_WAIT);
-        BrowserUtils.waitForTextMatches(headerPO.getCustomerNameElem(), TEN_SECONDS, testData.get("userFirstName").toString());
+        BrowserUtils.waitFor(headerPO.getHeaderLoginElem(), 60);
+        BrowserUtils.waitForTextMatches(headerPO.getCustomerNameElem(), 60, testData.get("userFirstName").toString());
         assertEquals(headerPO.getCustomerNameElem().getText(), testData.get("userFirstName").toString(), "React context. User first name");
 
 
         // navigate to /mylm - angular context
         driver.get(BASE_URL + "/mylm");
-        BrowserUtils.waitForURLContains("mylm", TEN_SECONDS);
+        BrowserUtils.waitForURLContains("mylm", 60);
 
         angularHeaderCommonPO = new AngularHeaderCommonPO();
 
         // assert that user first name has the expected value - angular context
-        BrowserUtils.waitFor(angularHeaderCommonPO.getCustomerName(), EXPLICIT_WAIT);
-        BrowserUtils.waitForTextMatches(angularHeaderCommonPO.getCustomerName(), TEN_SECONDS, testData.get("userFirstName").toString());
+        BrowserUtils.waitFor(angularHeaderCommonPO.getCustomerName(), 60);
+        BrowserUtils.waitForTextMatches(angularHeaderCommonPO.getCustomerName(), 60, testData.get("userFirstName").toString());
         assertEquals(angularHeaderCommonPO.getCustomerName().getText(), testData.get("userFirstName").toString(), "Angular context. User first name");
 
         // logout
@@ -99,34 +99,34 @@ public class ContextChangeARATest extends BaseTest {
         loginPO.clickAccedi();
 
         // wait page redirect - find element that appears only in /mylm when user is logged - angular context
-        BrowserUtils.waitForURLContains("/mylm", TEN_SECONDS);
-        BrowserUtils.waitFor(driver.findElement(By.name("mylm_logout")), FIFTEEN_SECONDS);
+        BrowserUtils.waitForURLContains("/mylm", 60);
+        BrowserUtils.waitFor(driver.findElement(By.name("mylm_logout")), 60);
         AngularHeaderCommonPO angularHeaderCommonPO = new AngularHeaderCommonPO();
 
         // assert that user first name has the expected value - angular context
-        BrowserUtils.waitForTextMatches(angularHeaderCommonPO.getCustomerName(), TEN_SECONDS, testData.get("userFirstName").toString());
+        BrowserUtils.waitForTextMatches(angularHeaderCommonPO.getCustomerName(), 60, testData.get("userFirstName").toString());
         assertEquals(angularHeaderCommonPO.getCustomerName().getText(), testData.get("userFirstName").toString(), "Angular context. User first name");
 
 
         // navigate to homepage - react context
         angularHeaderCommonPO.clickLinkToHome();
-        BrowserUtils.waitForURLMatches(BASE_URL, TEN_SECONDS);
+        BrowserUtils.waitForURLMatches(BASE_URL, 60);
 
         // assert that user first name has the expected value - react context
         HeaderPO headerPO = new HeaderPO();
-        BrowserUtils.waitFor(headerPO.getHeaderLoginElem(), EXPLICIT_WAIT);
-        BrowserUtils.waitForTextMatches(headerPO.getCustomerNameElem(), TEN_SECONDS, testData.get("userFirstName").toString());
+        BrowserUtils.waitFor(headerPO.getHeaderLoginElem(), 60);
+        BrowserUtils.waitForTextMatches(headerPO.getCustomerNameElem(), 60, testData.get("userFirstName").toString());
         assertEquals(headerPO.getCustomerNameElem().getText(), testData.get("userFirstName").toString(), "React context. User first name");
 
 
         // navigate to /mylm angular context
         driver.get(BASE_URL + "/mylm");
-        BrowserUtils.waitForURLContains("mylm", TEN_SECONDS);
+        BrowserUtils.waitForURLContains("mylm", 60);
         angularHeaderCommonPO = new AngularHeaderCommonPO();
 
         // assert that user first name has the expected value - angular context
-        BrowserUtils.waitFor(angularHeaderCommonPO.getCustomerName(), EXPLICIT_WAIT);
-        BrowserUtils.waitForTextMatches(angularHeaderCommonPO.getCustomerName(), TEN_SECONDS, testData.get("userFirstName").toString());
+        BrowserUtils.waitFor(angularHeaderCommonPO.getCustomerName(), 60);
+        BrowserUtils.waitForTextMatches(angularHeaderCommonPO.getCustomerName(), 60, testData.get("userFirstName").toString());
         assertEquals(angularHeaderCommonPO.getCustomerName().getText(), testData.get("userFirstName").toString(), "Angular context. User first name");
 
         // logout
