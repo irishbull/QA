@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
@@ -38,7 +39,9 @@ public class ToosoPageViewTest extends ToosoBaseTest {
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        driver.get(BASE_URL + testData.get("pathAndQuery").toString());
+        String url = BASE_URL + testData.get("pathAndQuery").toString();
+
+        driver.get(url);
 
         // wait for quiescence
         SeleniumDriver.getInstance().getProxy().waitForQuiescence(QUIET_PERIOD, TIMEOUT, TimeUnit.SECONDS);
@@ -47,12 +50,15 @@ public class ToosoPageViewTest extends ToosoBaseTest {
 
         List<HarEntry> entriesOfPageViewType = ToosoAnalyticsUtils.retrieveEntriesOfType(har.getLog().getEntries(), PAGEVIEW);
 
-        Assert.assertEquals(entriesOfPageViewType.size(), 1, "Number of requests [type = PAGEVIEW] captured by proxy:");
+        Assert.assertEquals(entriesOfPageViewType.size(), 1, String.format("Page[%s]\n Number of requests [type = PAGEVIEW] captured by proxy:", url));
 
         String urlToValidate = entriesOfPageViewType.get(0).getRequest().getUrl();
         logger.info("Request [type = {}] to validate -> {}", PAGEVIEW, urlToValidate);
 
         // check
-        ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, PAGEVIEW);
+        List<String> errorMessages = ToosoAnalyticsUtils.queryParamsValidation(urlToValidate, testData, PAGEVIEW);
+
+        Assert.assertTrue(errorMessages.isEmpty(),
+                errorMessages.stream().collect(Collectors.joining("")) + String.format("Page[%s]\n Query parameters are valid", url));
     }
 }

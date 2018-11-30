@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
@@ -32,7 +33,7 @@ public class ToosoSearchTest extends ToosoBaseTest {
     private static final Logger logger = LoggerFactory.getLogger(ToosoSearchTest.class);
 
     @Test(priority = 1, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("Validate request [type = SEARCH] from homepage. Event; search")
+    @Description("Validate request [type = SEARCH] from homepage. [Event = search]")
     public void tc_001_verifyFirstSearchRequest(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
@@ -68,12 +69,17 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
 
-        ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, SEARCH);
+        // check
+        List<String> errorMessages = ToosoAnalyticsUtils.queryParamsValidation(urlToValidate, testData, SEARCH);
+
+        Assert.assertTrue(errorMessages.isEmpty(),
+                errorMessages.stream().collect(Collectors.joining("")) + "Query parameters are valid");
+
     }
 
 
     @Test(priority = 2, dependsOnMethods = {"tc_001_verifyFirstSearchRequest"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("Validate request [type = SEARCH] from serp. Event: go to next result page")
+    @Description("Validate request [type = SEARCH] from serp. [Event = go to next result page]")
     public void tc_002_verifySecondSearchRequest(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
@@ -99,12 +105,17 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
 
-        ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, SEARCH);
+        // check
+        List<String> errorMessages = ToosoAnalyticsUtils.queryParamsValidation(urlToValidate, testData, SEARCH);
+
+        Assert.assertTrue(errorMessages.isEmpty(),
+                errorMessages.stream().collect(Collectors.joining("")) + "Query parameters are valid");
+
     }
 
 
     @Test(priority = 3, dependsOnMethods = {"tc_002_verifySecondSearchRequest"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("Validate request [type = SEARCH] from serp. Event: apply filter")
+    @Description("Validate request [type = SEARCH] from serp. [Event = apply filter]")
     public void tc_003_verifySearchRequestWithFilter(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
@@ -128,12 +139,16 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
 
-        ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, SEARCH);
+        // check
+        List<String> errorMessages = ToosoAnalyticsUtils.queryParamsValidation(urlToValidate, testData, SEARCH);
+
+        Assert.assertTrue(errorMessages.isEmpty(),
+                errorMessages.stream().collect(Collectors.joining("")) + "Query parameters are valid");
     }
 
 
     @Test(priority = 4, dependsOnMethods = {"tc_003_verifySearchRequestWithFilter"}, dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
-    @Description("Validate request [type = SEARCH] from serp. Event: apply sorting")
+    @Description("Validate request [type = SEARCH] from serp. [Event = apply sorting]")
     public void tc_004_verifySearchRequestWithSorting(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
@@ -157,7 +172,11 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
 
-        ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, SEARCH);
+        // check
+        List<String> errorMessages = ToosoAnalyticsUtils.queryParamsValidation(urlToValidate, testData, SEARCH);
+
+        Assert.assertTrue(errorMessages.isEmpty(),
+                errorMessages.stream().collect(Collectors.joining("")) + "Query parameters are valid");
     }
 
 
@@ -201,7 +220,11 @@ public class ToosoSearchTest extends ToosoBaseTest {
 
         logger.info("Request [type = {}] to validate -> {}", SEARCH, urlToValidate);
 
-        ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, SEARCH);
+        // check
+        List<String> errorMessages = ToosoAnalyticsUtils.queryParamsValidation(urlToValidate, testData, SEARCH);
+
+        Assert.assertTrue(errorMessages.isEmpty(),
+                errorMessages.stream().collect(Collectors.joining("")) + "Query parameters are valid");
     }
 
 }

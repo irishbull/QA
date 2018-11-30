@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
@@ -91,7 +92,10 @@ public class ToosoPageViewDetail extends ToosoBaseTest {
         logger.info("Request [type = {}] to validate -> {}", PAGEVIEW_DETAIL, urlToValidate);
 
         // check
-        ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, PAGEVIEW_DETAIL);
+        List<String> errorMessages = ToosoAnalyticsUtils.queryParamsValidation(urlToValidate, testData, PAGEVIEW_DETAIL);
+
+        Assert.assertTrue(errorMessages.isEmpty(),
+                errorMessages.stream().collect(Collectors.joining("")) + String.format("\nURL[%s]\nQuery parameters are valid", urlToValidate));
 
     }
 }

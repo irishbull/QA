@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
@@ -72,7 +73,10 @@ public class ToosoAddToRemoveFromCart extends ToosoBaseTest {
         logger.info("Request [type = {}] to validate -> {}", ADD_TO_CART, urlToValidate);
 
         // check
-        ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, ADD_TO_CART);
+        List<String> errorMessages = ToosoAnalyticsUtils.queryParamsValidation(urlToValidate, testData, ADD_TO_CART);
+
+        Assert.assertTrue(errorMessages.isEmpty(),
+                errorMessages.stream().collect(Collectors.joining("")) + String.format("\nURL[%s]\nQuery parameters are valid", urlToValidate));
     }
 
 
@@ -99,6 +103,10 @@ public class ToosoAddToRemoveFromCart extends ToosoBaseTest {
         logger.info("Request [type = {}] to validate -> {}", REMOVE_FROM_CART, urlToValidate);
 
         // check
-        ToosoAnalyticsUtils.checkParameters(urlToValidate, testData, REMOVE_FROM_CART);
+        List<String> errorMessages = ToosoAnalyticsUtils.queryParamsValidation(urlToValidate, testData, REMOVE_FROM_CART);
+
+        Assert.assertTrue(errorMessages.isEmpty(),
+                errorMessages.stream().collect(Collectors.joining("")) + String.format("\nURL[%s]\nQuery parameters are valid", urlToValidate));
+
     }
 }

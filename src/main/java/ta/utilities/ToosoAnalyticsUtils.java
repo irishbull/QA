@@ -8,7 +8,6 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -38,7 +37,11 @@ public class ToosoAnalyticsUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(ToosoAnalyticsUtils.class);
     private static final String CONSTRUCTION_FORBIDDEN = "ToosoAnalyticsUtils - Object construction is forbidden";
-    private static final String ASSERT_MANDATORY_MESSAGE = "Request should contain the mandatory parameter [%s]:";
+
+    private static final String MISSING_MANDATORY_PARAM_MESSAGE = "Parameter [%s]: mandatory but NOT found \n";
+    private static final String INVALID_PARAM_VALUE_MESSAGE = "Parameter [%s]: expected [%s] but found [%s] \n";
+    private static final String INVALID_PARAM_Q_VALUE_MESSAGE = "Parameter q[%s]: expected [%s] but found [%s] \n";
+    private static final String EMPTY_VALUE_PARAM_MESSAGE = "Parameter [%s]: empty value \n";
 
 
     /**
@@ -138,9 +141,9 @@ public class ToosoAnalyticsUtils {
      * @throws URISyntaxException
      */
     @SuppressWarnings("unchecked")
-    public static void checkParameters(String url, JSONObject testData, RequestType type) throws URISyntaxException {
+    public static List<String> queryParamsValidation(String url, JSONObject testData, RequestType type) throws URISyntaxException {
 
-        // query parameters to check
+        // query parameters to validate
         final Map<String, String> urlQueryParams = getQueryParams(url);
 
         // map containing parameters <name, value> for EQUALITY check
@@ -148,6 +151,8 @@ public class ToosoAnalyticsUtils {
 
         // list containing parameters <name> that should be NOT EMPTY
         List<String> expectedNotEmpty = new ArrayList<>();
+
+        List<String> errorMessages = new ArrayList<>();
 
         // add common parameters according request type
         switch (type) {
@@ -158,28 +163,34 @@ public class ToosoAnalyticsUtils {
                 expectedNotEmpty.addAll(ToosoConstants.SearchAndSuggest.Common.ASSERT_NOT_EMPTY_QUERY_PARAMS);
                 break;
 
-           // Tooso Analytics
+            // Tooso Analytics
             default:
                 expectedEqual.putAll(ToosoConstants.Analytics.Common.ASSERT_EQUALS_QUERY_PARAMS);
                 expectedNotEmpty.addAll(ToosoConstants.Analytics.Common.ASSERT_NOT_EMPTY_QUERY_PARAMS);
                 break;
         }
 
-        //add parameters (dynamically retrieved from json) for EQUALITY check
+        // add parameters (dynamically retrieved from json) for EQUALITY check
         expectedEqual.putAll((HashMap<String, String>) testData.get("expectedEqual"));
 
-        //add parameters(dynamically retrieved from json) that should be NOT EMPTY
+        // add parameters(dynamically retrieved from json) that should be NOT EMPTY
         expectedNotEmpty.addAll((List<String>) testData.get("expectedNotEmpty"));
-
-
-        assertEquals(urlQueryParams, expectedEqual);
-        assertNotEmpty(urlQueryParams, expectedNotEmpty);
 
         // map containing <name, pattern> (dynamically retrieved from json)
         // the pattern is used to create a Matcher object that can match parameter value against the regular expression
         Map<String, String> paramsPatterns = Objects.nonNull(testData.get("expectedMatch")) ? (HashMap<String, String>) testData.get("expectedMatch") : Collections.emptyMap();
 
-        validateAgainstRegex(urlQueryParams, paramsPatterns);
+
+        // equality check
+        errorMessages.addAll(equalityCheck(urlQueryParams, expectedEqual));
+
+        // not empty check
+        errorMessages.addAll(notEmptyCheck(urlQueryParams, expectedNotEmpty));
+
+        // pattern check
+        errorMessages.addAll(patternCheck(urlQueryParams, paramsPatterns));
+
+        return errorMessages;
     }
 
 
@@ -190,15 +201,26 @@ public class ToosoAnalyticsUtils {
      * @param word
      * @throws URISyntaxException
      */
-    public static void checkSuggestQueryParamQ(String url, int index, String word) throws URISyntaxException {
+    public static List<String> paramQValidation(String url, int index, String word) throws URISyntaxException {
 
         // request query parameters
         Map<String, String> urlQueryParams = getQueryParams(url);
 
+        List<String> errorMessages = new ArrayList<>();
+
         String actualQ = urlQueryParams.get("q");
+        if (actualQ.isEmpty()) {
+            String errorMessage = String.format(MISSING_MANDATORY_PARAM_MESSAGE, "q");
+            errorMessages.add(errorMessage);
+            logger.error(errorMessage);
 
-        Assert.assertEquals(actualQ, word.substring(0, index), "Suggest request - parameter [q]:");
+        } else if (!actualQ.equals(word.substring(0, index))) {
+            String errorMessage = String.format(INVALID_PARAM_Q_VALUE_MESSAGE, String.valueOf(index), word.substring(0, index), actualQ);
+            errorMessages.add(errorMessage);
+            logger.info(errorMessage);
+        }
 
+        return errorMessages;
     }
 
 
@@ -208,16 +230,23 @@ public class ToosoAnalyticsUtils {
     }
 
 
-    private static void assertEquals(Map<String, String> actual, Map<String, String> expected) {
+    private static List<String> equalityCheck(Map<String, String> actual, Map<String, String> expected) {
 
         String key;
         String expectedValue;
+
+        List<String> errorMessages = new ArrayList<>();
 
         for (Map.Entry entry : expected.entrySet()) {
 
             key = (String) entry.getKey();
 
-            Assert.assertTrue(actual.containsKey(key), String.format(ASSERT_MANDATORY_MESSAGE, key));
+            if (!actual.containsKey(key)) {
+                String errorMessage = String.format(MISSING_MANDATORY_PARAM_MESSAGE, key);
+                errorMessages.add(errorMessage);
+                logger.error(String.format(MISSING_MANDATORY_PARAM_MESSAGE, key));
+                continue;
+            }
 
             switch (key) {
                 // dr expected value should be equal to baseUrl and json dr concatenation when json dr is not empty
@@ -240,24 +269,44 @@ public class ToosoAnalyticsUtils {
                     expectedValue = entry.getValue().toString();
             }
 
-            logger.info("{} : expected[{}] - found[{}]", key, expectedValue, actual.get(key));
-            Assert.assertEquals(actual.get(key), expectedValue, String.format("Invalid query parameter value [%s]:", key));
+            if (!expectedValue.equals(actual.get(key))) {
+                String errorMessage = String.format(INVALID_PARAM_VALUE_MESSAGE, key, expectedValue, actual.get(key));
+                errorMessages.add(errorMessage);
+                logger.error(errorMessage);
+            }
         }
+
+        return errorMessages;
     }
 
 
-    private static void assertNotEmpty(Map<String, String> actual, List<String> notEmptyParams) {
+    private static List<String> notEmptyCheck(Map<String, String> actual, List<String> notEmptyParams) {
+
+        List<String> errorMessages = new ArrayList<>();
 
         for (String param : notEmptyParams) {
-            Assert.assertTrue(actual.containsKey(param), String.format(ASSERT_MANDATORY_MESSAGE, param));
-            Assert.assertFalse(actual.get(param).isEmpty(), String.format("Query parameter [%s] value is empty:", param));
 
-            logger.info("{} : expected[not empty] - found[{}]", param, actual.get(param));
+            if (!actual.containsKey(param)) {
+                String errorMessage = String.format(MISSING_MANDATORY_PARAM_MESSAGE, param);
+                errorMessages.add(errorMessage);
+                logger.error(String.format(MISSING_MANDATORY_PARAM_MESSAGE, param));
+                continue;
+            }
+
+            if (actual.get(param).isEmpty()) {
+                String errorMessage = String.format(EMPTY_VALUE_PARAM_MESSAGE, param);
+                errorMessages.add(errorMessage);
+                logger.error(errorMessage);
+            }
         }
+
+        return errorMessages;
     }
 
 
-    private static void validateAgainstRegex(Map<String, String> actual, Map<String, String> paramsPatterns) {
+    private static List<String> patternCheck(Map<String, String> actual, Map<String, String> paramsPatterns) {
+
+        List<String> errorMessages = new ArrayList<>();
 
         String key;
         String pattern;
@@ -267,16 +316,26 @@ public class ToosoAnalyticsUtils {
             key = entry.getKey().toString();
             pattern = entry.getValue().toString();
 
-            Assert.assertTrue(actual.containsKey(key), String.format(ASSERT_MANDATORY_MESSAGE, key));
+            if (!actual.containsKey(key)) {
+                String errorMessage = String.format(MISSING_MANDATORY_PARAM_MESSAGE, key);
+                errorMessages.add(errorMessage);
+                continue;
+            }
 
             Pattern p = Pattern.compile(pattern);
             Matcher m = p.matcher(actual.get(key));
-            boolean match = m.matches();
 
             logger.info("Validate the parameter [{} = {}] against the regular expression [{}]  ", key, actual.get(key), pattern);
-            Assert.assertTrue(match, String.format("The regular expression [%s] matches the parameter [%s = %s]", pattern, key, actual.get(key)));
 
+            boolean match = m.matches();
+
+            if (!match) {
+                String errrorMessage = String.format("The regular expression [%s] does NOT match the parameter [%s = %s]", pattern, key, actual.get(key));
+                errorMessages.add(errrorMessage);
+            }
         }
+
+        return errorMessages;
     }
 
 

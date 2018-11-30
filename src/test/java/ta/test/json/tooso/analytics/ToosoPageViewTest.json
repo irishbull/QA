@@ -102,9 +102,9 @@
     {
       "rowID": "tc_001_verifyPageViewRequest.12",
       "description": "validate GET PageView - Ispirati e Impara",
-      "pathAndQuery": "/ispirati-impara",
+      "pathAndQuery": "/ispirati-impara/",
       "expectedEqual": {
-        "dp": "/ispirati-impara"
+        "dp": "/ispirati-impara/"
       },
       "expectedNotEmpty": []
     },
@@ -114,6 +114,15 @@
       "pathAndQuery": "/ispirati-impara/corsi-fai-da-te/",
       "expectedEqual": {
         "dp": "/ispirati-impara/corsi-fai-da-te/"
+      },
+      "expectedNotEmpty": []
+    },
+    {
+      "rowID": "tc_001_verifyPageViewRequest.14",
+      "description": "validate GET PageView - Pagina di prodotto",
+      "pathAndQuery": "/catalogo/trapano-avvitatore-dexter-12-v-12-ah-34489616-p",
+      "expectedEqual": {
+        "dp": "/catalogo/trapano-avvitatore-dexter-12-v-12-ah-34489616-p"
       },
       "expectedNotEmpty": []
     }

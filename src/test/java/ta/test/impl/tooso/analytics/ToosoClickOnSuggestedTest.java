@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
@@ -64,8 +65,12 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
         logger.info("Request [type = {}] to validate -> {}", CLICK_ON_SUGGESTED, urlToVerify);
 
         // check
-        ToosoAnalyticsUtils.checkParameters(urlToVerify, testData, CLICK_ON_SUGGESTED);
+        List<String> errorMessages = ToosoAnalyticsUtils.queryParamsValidation(urlToVerify, testData, CLICK_ON_SUGGESTED);
+
+        Assert.assertTrue(errorMessages.isEmpty(),
+                errorMessages.stream().collect(Collectors.joining("")) + String.format("\nURL[%s]\nQuery parameters are valid", urlToVerify));
     }
+
 
     // ANGULAR
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
@@ -99,6 +104,9 @@ public class ToosoClickOnSuggestedTest extends ToosoBaseTest {
         logger.info("Request [type = {}] to validate -> {}", CLICK_ON_SUGGESTED, urlToVerify);
 
         // check
-        ToosoAnalyticsUtils.checkParameters(urlToVerify, testData, CLICK_ON_SUGGESTED);
+        List<String> errorMessages = ToosoAnalyticsUtils.queryParamsValidation(urlToVerify, testData, CLICK_ON_SUGGESTED);
+
+        Assert.assertTrue(errorMessages.isEmpty(),
+                errorMessages.stream().collect(Collectors.joining("")) + String.format("\nURL[%s]\nQuery parameters are valid", urlToVerify));
     }
 }
