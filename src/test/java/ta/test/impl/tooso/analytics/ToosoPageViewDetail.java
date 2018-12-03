@@ -18,8 +18,6 @@ import java.util.stream.Collectors;
 import io.qameta.allure.Description;
 import ta.dataproviders.JSONDataProvider;
 import ta.driver.SeleniumDriver;
-import ta.pageobjects.impl.SerpPO;
-import ta.pageobjects.impl.ToosoSearchPO;
 import ta.test.tooso.ToosoBaseTest;
 import ta.utilities.ToosoAnalyticsUtils;
 
@@ -34,17 +32,13 @@ public class ToosoPageViewDetail extends ToosoBaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Validate request [type = PAGEVIEW DETAIL] - without variant")
-    private void tc_001_verifyPageViewDetail(JSONObject testData) throws URISyntaxException {
+    private void tc_001_verifyPageViewDetailWithVariant(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
         driver.get((BASE_URL) + testData.get("pathAndQuery").toString());
-
-        SerpPO serpPO = new SerpPO();
-
-        serpPO.clickOnProductCard(testData.get("productCardIndex").toString());
 
         checkPageViewParams(testData);
 
@@ -52,27 +46,13 @@ public class ToosoPageViewDetail extends ToosoBaseTest {
 
     @Test(dataProvider = "fetchJSONData", dataProviderClass = JSONDataProvider.class)
     @Description("Validate request [type = PAGEVIEW DETAIL] -  with variant")
-    private void tc_002_verifyPageViewDetail(JSONObject testData) throws URISyntaxException {
+    private void tc_002_verifyPageViewDetailWithoutVariant(JSONObject testData) throws URISyntaxException {
 
         logger.info(testData.get("description").toString());
 
         WebDriver driver = SeleniumDriver.getInstance().getDriver();
 
-        ToosoSearchPO toosoSearchPO = new ToosoSearchPO();
-
-        SerpPO serpPO = new SerpPO();
-
         driver.get((BASE_URL) + testData.get("pathAndQuery").toString());
-
-        toosoSearchPO.clickOnSearchTopBar();
-
-        String word = testData.get("search").toString();
-
-        toosoSearchPO.enterWord(word);
-
-        toosoSearchPO.search();
-
-        serpPO.clickOnProductCard(testData.get("productCardIndex").toString());
 
         checkPageViewParams(testData);
 

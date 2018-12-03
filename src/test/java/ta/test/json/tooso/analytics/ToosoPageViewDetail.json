@@ -1,18 +1,17 @@
 {
-  "tc_001_verifyPageViewDetail": [
+  "tc_001_verifyPageViewDetailWithVariant": [
     {
-      "rowID": "tc_001_verifyPageViewDetail.01",
+      "rowID": "tc_001_verifyPageViewDetailWithVariant.01",
       "description": "Validate request [type = PAGEVIEW DETAIL] - product without variant",
-      "pathAndQuery": "/ricerca?q=Fiocchi&page=1",
-      "productCardIndex": "0",
+      "pathAndQuery": "/catalogo/doccia-con-porta-pieghevole-e-lato-fisso-neo-67---71-x-77---79-cm-h-2017-cm-vetro-temperato-6-mm-serigrafato-nero-81259130-p",
       "expectedEqual": {
-        "dp": "/catalogo/fiocco-a-campana-34329120-p",
-        "pr1id": "35839636",
-        "pr1ca": "CAT992",
-        "pr1br": "",
-        "pr1nm": "Fiocco a campana",
-        "pr1va": "",
-        "pr1pr": "8.65",
+        "dp": "/catalogo/doccia-con-porta-pieghevole-e-lato-fisso-neo-67---71-x-77---79-cm-h-2017-cm-vetro-temperato-6-mm-serigrafato-nero-81259130-p",
+        "pr1id": "81259130",
+        "pr1ca": "CAT4115",
+        "pr1br": "MC_Sensea",
+        "pr1nm": "Doccia con porta pieghevole e lato fisso Neo 67 - 71 x 77 - 79 cm, H 201,7 cm vetro temperato 6 mm serigrafato/nero",
+        "pr1va": "master",
+        "pr1pr": "609.00",
         "pr1storeid": "7",
         "pr1qt": "1",
         "pr1ps": "1"
@@ -21,21 +20,18 @@
     }
   ],
 
-  "tc_002_verifyPageViewDetail": [
+  "tc_002_verifyPageViewDetailWithoutVariant": [
     {
-      "rowID": "tc_002_verifyPageViewDetail.02",
+      "rowID": "tc_002_verifyPageViewDetailWithoutVariant.02",
       "description": "Validate request [type = PAGEVIEW DETAIL] - product with variant",
-      "pathAndQuery": "/",
-      "productCardIndex": "1",
-      "search": "Mensola Spaceo nero L 56",
+      "pathAndQuery": "/catalogo/lampada-da-comodino-inspire-scaly-oro-81264347-p",
       "expectedEqual": {
-        "dp": "/catalogo/mensola-spaceo-nero-l-56-x-p-155-sp-18-cm-36074542-p",
-        "pr1id": "36074542",
-        "pr1ca": "CAT101",
-        "pr1br": "MC_Spaceo",
-        "pr1nm": "Mensola Spaceo nero L 56 x P 15,5, sp 1,8 cm",
-        "pr1va": "36074542_36074556",
-        "pr1pr": "7.99",
+        "dp": "/catalogo/lampada-da-comodino-inspire-scaly-oro-81264347-p",
+        "pr1id": "81264347",
+        "pr1ca": "CAT163",
+        "pr1br": "MC_Inspire",
+        "pr1nm": "Lampada da comodino Inspire Scaly oro",
+        "pr1pr": "14.90",
         "pr1storeid": "7",
         "pr1qt": "1",
         "pr1ps": "1"
