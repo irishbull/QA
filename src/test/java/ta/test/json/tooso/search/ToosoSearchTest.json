@@ -35,14 +35,14 @@
       "rowID":"tc_003_verifySearchRequestWithFilter.01",
       "description":"Validate request [type = SEARCH] from serp. Event: apply filter 'categoria'",
       "filterType":"Categoria",
-      "filterId":"Lampade da tavolo",
+      "filterId":"Lampade da tavolo e da comodino",
       "expectedEqual": {
         "q":"lampade",
-        "dl":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo",
+        "dl":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%2520e%2520da%2520comodino",
         "dr":"/ricerca?q=lampade&page=2",
         "typoCorrection":"true",
         "page":"0",
-        "filter":"CategoryName:Lampade da tavolo:storeCode:7"
+        "filter":"CategoryName:Lampade da tavolo e da comodino:storeCode:7"
       },
       "expectedNotEmpty": []
     },
@@ -53,11 +53,11 @@
       "filterId":"Inspire",
       "expectedEqual": {
         "q":"lampade",
-        "dl":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%3ABrand%3AInspire",
-        "dr":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo",
+        "dl":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%2520e%2520da%2520comodino%3ABrand%3AInspire",
+        "dr":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%2520e%2520da%2520comodino",
         "typoCorrection":"true",
         "page":"0",
-        "filter":"CategoryName:Lampade da tavolo:Brand:Inspire:storeCode:7"
+        "filter":"CategoryName:Lampade da tavolo e da comodino:Brand:Inspire:storeCode:7"
       },
       "expectedNotEmpty": []
     },
@@ -68,11 +68,11 @@
       "filterId":"20.0-50.0",
       "expectedEqual": {
         "q":"lampade",
-        "dl":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%3ABrand%3AInspire%3ArangePriceFilter%3A20.0%3ArangePriceFilter%3A50.0",
-        "dr":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%3ABrand%3AInspire",
+        "dl":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%2520e%2520da%2520comodino%3ABrand%3AInspire%3ArangePriceFilter%3A20.0%3ArangePriceFilter%3A50.0",
+        "dr":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%2520e%2520da%2520comodino%3ABrand%3AInspire",
         "typoCorrection":"true",
         "page":"0",
-        "filter":"CategoryName:Lampade da tavolo:Brand:Inspire:rangePriceFilter:20.0:rangePriceFilter:50.0:storeCode:7"
+        "filter":"CategoryName:Lampade da tavolo e da comodino:Brand:Inspire:rangePriceFilter:20.0:rangePriceFilter:50.0:storeCode:7"
       },
       "expectedNotEmpty": []
     }
@@ -84,12 +84,12 @@
       "sortingType":"Prezzo crescente",
       "expectedEqual": {
         "q":"lampade",
-        "dl":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%3ABrand%3AInspire%3ArangePriceFilter%3A20.0%3ArangePriceFilter%3A50.0&sort=price-asc",
-        "dr":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%3ABrand%3AInspire%3ArangePriceFilter%3A20.0%3ArangePriceFilter%3A50.0",
+        "dl":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%2520e%2520da%2520comodino%3ABrand%3AInspire%3ArangePriceFilter%3A20.0%3ArangePriceFilter%3A50.0&sort=price-asc",
+        "dr":"/ricerca?q=lampade&activeFilter=CategoryName%3ALampade%2520da%2520tavolo%2520e%2520da%2520comodino%3ABrand%3AInspire%3ArangePriceFilter%3A20.0%3ArangePriceFilter%3A50.0",
         "sort":"price-asc",
         "typoCorrection":"true",
         "page":"0",
-        "filter":"CategoryName:Lampade da tavolo:Brand:Inspire:rangePriceFilter:20.0:rangePriceFilter:50.0:storeCode:7"
+        "filter":"CategoryName:Lampade da tavolo e da comodino:Brand:Inspire:rangePriceFilter:20.0:rangePriceFilter:50.0:storeCode:7"
       },
       "expectedNotEmpty": []
     }
