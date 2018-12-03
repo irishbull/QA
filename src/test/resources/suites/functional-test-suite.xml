@@ -26,7 +26,7 @@
         </classes>
     </test>
 
-    <test name="createAccount">
+    <!--test name="createAccount">
         <method-selectors>
             <method-selector>
                 <script language="beanshell">
@@ -44,7 +44,7 @@
         <classes>
             <class name="ta.test.impl.registration.NewAccount"/>
         </classes>
-    </test>
+    </test-->
 
     <test name="profileTest">
         <parameter name="json-path" value="src/test/java/ta/test/json/profile/Profile.json"/>
