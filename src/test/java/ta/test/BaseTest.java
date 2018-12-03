@@ -32,18 +32,16 @@ public abstract class BaseTest {
     public void beforeSuite(@Optional("false") boolean isProxyRequired) {
         logger.info("Suite set up");
 
-        // TO REMOVE
+        Assert.assertNotNull(System.getProperty("targetEnv"), "TARGET ENVIRONMENT not found");
+        logger.info("Target environment = [{}]", System.getProperty("targetEnv"));
+
+        // TODO REMOVE
         String environment = ReadPropertiesFile.getProperty("environment");
         Assert.assertNotNull(environment, "Required property 'environment' not found");
-        logger.info("Environment = [{}]", environment);
+        logger.info("Environment value specified in environment property file is : [{}]", environment);
 
         String browser = System.getProperty("selectedBrowser");
         Assert.assertNotNull(browser, "Required parameter 'Browser' is missing");
-
-        /* debug locally
-        String browser = System.getProperty("selectedBrowser", "chrome");
-        logger.info("Browser [{}]", browser);
-        */
 
         SeleniumDriver.getInstance().setDriver(browser, isProxyRequired);
         logger.info("Driver instance {}", SeleniumDriver.getInstance().toString());
